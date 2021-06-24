@@ -6,7 +6,7 @@ export const HeaderStylesContainer = styled.div`
   height: 2.6rem;
   position: absolute;
   margin-top: 2rem;
-  background-color: #151516a9;
+  background-color: #1a1a1f99;
   display: flex;
   align-items: center;
 `;
@@ -27,7 +27,7 @@ export const OptionsContainer = styled.div``;
 
 export const OptionsLink = styled(Link)`
   margin: 12px;
-  color: white;
+  color: #dfdfdf;
   font-size: 1rem;
   transition: 200ms ease-in-out;
   :hover,

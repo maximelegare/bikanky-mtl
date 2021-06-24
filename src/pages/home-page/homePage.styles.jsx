@@ -8,15 +8,19 @@ export const HomePageContainer = styled.div`
 `;
 
 export const ImageContainer = styled.div`
-    background-image: url(/assets/homepage__top-image.jpg);
-    background-position: 20;
+    background-image: url(/assets/top.jpg);
+    background-position-y:37%;
+    background-position-x:50%;
     width: 100%;
-    height: 40%;
+    height: 45%;
+    background-repeat: no-repeat;
+    background-size: cover;
+
 `
 
 export const TopSectionContainer = styled.div`
 height: 100%;
-background-color: black;
+background-color: #dfdfdf;
 
 `
 

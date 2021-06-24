@@ -1,4 +1,8 @@
 import React from "react";
+import DirectoryList from "../../components/directory-list/directory-list.component";
+import AboutSection from "../../components/about-section/about-section.component";
+
+
 import {
   HomePageContainer,
   ImageContainer,
@@ -11,7 +15,9 @@ const HomePage = () => {
       <HomePageContainer>
         <TopSectionContainer>
           <ImageContainer />
+          <DirectoryList />
         </TopSectionContainer>
+        <AboutSection></AboutSection>
       </HomePageContainer>
     </div>
   );
