@@ -1,5 +1,5 @@
 import React from "react";
-import { ReactComponent as Logo } from "../../assets/Logo.svg";
+import bikankyLogoHeader from '../../assets/logoHeader.svg';
 import {
   HeaderStylesContainer,
   LogoContainer,
@@ -13,7 +13,7 @@ const Header = () => {
     <HeaderStylesContainer>
       <HeaderContainer>
         <LogoContainer to="/">
-          <Logo />
+          <img src={bikankyLogoHeader} alt="bikanky Logo Header" />
         </LogoContainer>
         <OptionsContainer>
           <OptionsLink to="/creations">Créations</OptionsLink>

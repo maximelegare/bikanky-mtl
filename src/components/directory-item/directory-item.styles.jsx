@@ -2,29 +2,27 @@ import styled, { css } from "styled-components";
 
 const getCardHeight = (props) => {
   
-  if (props.large) {
-    return largeStyle;
-  } else if (props.medium) {
-    return mediumStyle;
-  } else if (props.small) {
-    return smallStyle;
+  if (props.products) {
+    return productsStyles;
+  } else if (props.story) {
+    return storyStyles;
+  } else if (props.services) {
+    return servicesStyles;
+  }else if(props.lookbook){
+      return lookbookStyles
   }
 };
 
 export const DirectoryItemContainer = styled.div`
   background-color: #363636;
-  margin: 0 20px;
   background-image:  ${props => (`url(${props.url})`)};
   background-size: cover;
   background-repeat: no-repeat;
   background-position: bottom;
   background-position-x: 100%;
-  width: 10rem;
-  transition: 100ms ease-in-out;
-  /* height: 70%; */
-
-  /* flex: 1 1 10em; */
-  height: 70%;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px #8b8b8b;
+  cursor: pointer;
   ${getCardHeight}
 
   &:hover{
@@ -32,12 +30,19 @@ export const DirectoryItemContainer = styled.div`
   }
 `;
 
-const largeStyle = css`
-  height: 80%;
+const productsStyles = css`
+  grid-area: products;
+  background-color: red;
 `;
-const mediumStyle = css`
-  height: 70%;
+const storyStyles = css`
+  grid-area: story;
+  background-color: blue;
 `;
-const smallStyle = css`
-  height: 60%;
+const servicesStyles = css`
+  grid-area: services;
+  background-color: yellow;
+`;
+const lookbookStyles = css`
+  grid-area: lookbook;
+  background-color: green;
 `;

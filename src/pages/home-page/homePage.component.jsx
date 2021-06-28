@@ -1,24 +1,17 @@
 import React from "react";
-import DirectoryList from "../../components/directory-list/directory-list.component";
+import DirectoryGrid from "../../components/directory-gird/directory-grid.component";
 import AboutSection from "../../components/about-section/about-section.component";
-
-
-import {
-  HomePageContainer,
-  ImageContainer,
-  TopSectionContainer,
-} from "./homePage.styles";
+import TopImageSection from "../../components/top-image-section/top-image-section.component";
+import {  MainSectionContainer } from "./homePage.styles";
 
 const HomePage = () => {
   return (
     <div>
-      <HomePageContainer>
-        <TopSectionContainer>
-          <ImageContainer />
-          <DirectoryList />
-        </TopSectionContainer>
-        <AboutSection></AboutSection>
-      </HomePageContainer>
+      <TopImageSection homePage/>
+      <MainSectionContainer>
+        <DirectoryGrid />
+      </MainSectionContainer>
+      <AboutSection></AboutSection>
     </div>
   );
 };

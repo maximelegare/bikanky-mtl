@@ -9,6 +9,7 @@ export const HeaderStylesContainer = styled.div`
   background-color: #1a1a1f99;
   display: flex;
   align-items: center;
+  z-index: 10;
 `;
 export const HeaderContainer = styled.div`
   width: 90%;

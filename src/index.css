@@ -1,5 +1,4 @@
 body {
-  margin: 0;
   font-family: 'Quicksand', sans-serif;
 }
 
@@ -7,10 +6,13 @@ a{
   text-decoration: none;
 }
 
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
 *{
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
