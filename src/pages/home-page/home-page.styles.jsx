@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 
 export const MainSectionContainer = styled.div`
-height: 65vh ;
+height: 62vh ;
 /* background-color: #dfdfdf; */
 
 

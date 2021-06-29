@@ -3,10 +3,9 @@ import styled from "styled-components";
 
 
 export const DirectoryGridContainer = styled.div`
-padding-top: 30px;
 width:50%;
 height: 50vh;
-margin:  0  auto;
+margin: 30px auto 0;
 display: grid;
 grid-template-columns: repeat(4, 1fr);
 grid-template-rows:  1fr 1fr;

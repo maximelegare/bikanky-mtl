@@ -1,8 +1,18 @@
-import styled from "styled-components";
+import React from "react";
+import { ItemsPreviewContainer } from "./items-preview.styles";
 
-export const ItemsPreviewContainer = styled.div`
-width: 100%;
-height: 50%;
-background-color: black;
-
-`
+const ItemsPreview = () => (
+    
+  <ItemsPreviewContainer>
+    <div>
+      <h1>Manches</h1>
+    </div>
+    <div>
+      <div>Item</div>
+      <div>Item</div>
+      <div>Item</div>
+      <div>Item</div>
+    </div>
+  </ItemsPreviewContainer>
+);
+export default ItemsPreview
