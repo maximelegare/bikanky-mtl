@@ -9,7 +9,7 @@ margin: 30px auto 0;
 display: grid;
 grid-template-columns: repeat(4, 1fr);
 grid-template-rows:  1fr 1fr;
-gap: 10px;
+gap: 15px;
 
 
 grid-template-areas: 

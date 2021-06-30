@@ -16,7 +16,7 @@ const ItemsPreview = ({ productsCategories }) => {
     <div>
       {productsCategories.map(({ id, title, items }) => (
         <ItemsPreviewContainer key={id}>
-          <TitleContainer>{title}</TitleContainer>
+          <TitleContainer>{title.toUpperCase()}</TitleContainer>
           <ItemsListContainer>
             {items
               .filter((item, idx) => idx < 4)

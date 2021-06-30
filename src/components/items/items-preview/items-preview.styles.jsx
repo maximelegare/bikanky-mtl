@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const ItemsPreviewContainer = styled.div`
-  width: 85%;
+  width: 75%;
   margin: 40px auto 0;
    
 `;
