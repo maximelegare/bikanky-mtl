@@ -1,3 +1,5 @@
+// The top-image is shown below the header and changes depending if it's the homePage or another page.
+
 import React from "react";
 import { ImageContainer, TextLogoContainer, TitleContainer } from "./top-image-section.styles";
 import bikankyTitleHeader from "../../assets/bikankyTitleHeader.svg";

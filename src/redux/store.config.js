@@ -1,9 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import logger from "redux-logger";
 import productsReducer from './products/products.reducers'
+import directoryRecucer from './directory/directory.reducers'
+
 
 const reducer = {
-    products: productsReducer
+    products: productsReducer,
+    directory:directoryRecucer
 }
 
 const store = configureStore({

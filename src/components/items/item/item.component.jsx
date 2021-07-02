@@ -13,7 +13,7 @@ import {
 import IconButton from "../../buttons/icon-button.component";
 
 const Item = (props) => {
-  const { imageUrl, name, price } = props.item;
+  const { imageUrl, name,  price} = props.item;
   return (
     <ItemWrapperContainer>
       <ProductImgContainer image={imageUrl}></ProductImgContainer>
@@ -23,7 +23,8 @@ const Item = (props) => {
           <PriceNameContainer>
             <div>
               <h2>{name}</h2>
-            <h4>{`$${price}`}</h4>
+            <h4>{`${price}`}&thinsp;$</h4>
+            
             </div>
           </PriceNameContainer>
           <IconButton icon="add_shopping_cart" />

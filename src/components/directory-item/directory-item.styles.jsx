@@ -2,20 +2,21 @@ import styled, { css } from "styled-components";
 
 const getCardHeight = (props) => {
   
-  if (props.products) {
-    return productsStyles;
-  } else if (props.story) {
-    return storyStyles;
-  } else if (props.services) {
-    return servicesStyles;
-  }else if(props.lookbook){
+  switch (props.name) {
+    case 'hats':
+      return productsStyles
+    case 'jackets':
+      return storyStyles
+    case 'sneakers':
+      return servicesStyles
+    case 'womens':
       return lookbookStyles
   }
 };
 
 export const DirectoryItemContainer = styled.div`
   background-color: #363636;
-  background-image:  ${props => (`url(${props.url})`)};
+  background-image:  ${props => (`url(${props.imageUrl})`)};
   background-size: cover;
   background-repeat: no-repeat;
   background-position: bottom;

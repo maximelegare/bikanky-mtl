@@ -10,14 +10,14 @@ const selectHeight = ({ homePage }) => {
 
 const homePageHeight = css`
   height: 35vh;
-  @media only screen and (max-width: 860px) {
+  @media only screen and (max-width: 900px) {
     height: 25vh;
   }
 `;
 
 const otherHeight = css`
   height: 23vh;
-  @media only screen and (max-width: 860px) {
+  @media only screen and (max-width: 900px) {
     height: 15vh;
   }
 `;
@@ -38,7 +38,7 @@ export const TitleContainer = styled.div`
   color: #efcb1d;
   text-align: center;
   font-size: 4rem;
-  padding-top: 80px;
+  padding-top: 100px;
 `;
 
 export const TextLogoContainer = styled.img`

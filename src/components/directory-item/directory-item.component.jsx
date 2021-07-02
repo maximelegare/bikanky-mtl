@@ -1,10 +1,17 @@
-import React from 'react';
-import {DirectoryItemContainer} from './directory-item.styles'
+/* eslint-disable react/prop-types */
+// Individual items inside the directory-grid on the homePage.
 
-const DirectoryItem = (props) => {
-    return (
-        <DirectoryItemContainer {...props}/>
-    );
+import { withRouter } from "react-router";
+import React from "react";
+import { DirectoryItemContainer } from "./directory-item.styles";
+
+const DirectoryItem = ({ history, linkUrl, ...otherProps }) => {
+  return (
+    <DirectoryItemContainer
+      onClick={() => history.push(linkUrl)}
+      {...otherProps}
+    />
+  );
 };
 
-export default DirectoryItem;
+export default withRouter(DirectoryItem);

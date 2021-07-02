@@ -3,14 +3,20 @@ import styled from "styled-components";
 export const ItemsPreviewContainer = styled.div`
   width: 75%;
   margin: 40px auto 0;
-   
+  @media screen and (max-width:1100px){
+    width: 95%;
+  } 
+  @media screen and (max-width:900px){
+    width:80%
+  }
 `;
 
 export const ItemsListContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: auto;
-  grid-gap: 15px;
+  grid-column-gap: 15px;
+  grid-row-gap: 50px;
   justify-content: space-evenly;
 
   @media screen and (max-width:900px){
@@ -23,5 +29,5 @@ export const ItemsListContainer = styled.div`
 
 export const TitleContainer = styled.h1`
   margin-bottom: 20px;
-  width: 50%;
+  /* width: 50%; */
 `;

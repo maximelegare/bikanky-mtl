@@ -1,3 +1,5 @@
+// The Items-preview is a grid in creationPage to show multiple categories (contain only some products)
+
 /* eslint-disable react/prop-types */
 import React from "react";
 import {
@@ -9,15 +11,20 @@ import Item from "../item/item.component";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { selectProductsCategories } from "../../../redux/products/products.selectors";
+import TopImageSection from "../../top-image-section/top-image-section.component";
 
 const ItemsPreview = ({ productsCategories }) => {
   // console.log(productsCategories)
   return (
     <div>
-      {productsCategories.map(({ id, title, items }) => (
+      <TopImageSection>CRÉATIONS</TopImageSection>
+
+      {/* select all categories and map */}
+      {Object.values(productsCategories).map(({ id, title, items }) => (
         <ItemsPreviewContainer key={id}>
           <TitleContainer>{title.toUpperCase()}</TitleContainer>
           <ItemsListContainer>
+            {/* select items, filter only four items, then map */}
             {items
               .filter((item, idx) => idx < 4)
               .map((item) => (

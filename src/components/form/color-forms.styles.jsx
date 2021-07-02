@@ -1,3 +1,5 @@
+// geometric forms used in the app
+
 import styled from "styled-components";
 
 export const CircleContainer = styled.div`

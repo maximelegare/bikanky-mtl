@@ -7,9 +7,9 @@ export const ItemWrapperContainer = styled.div`
 
   box-shadow: 0 5px 10px #1b1b1b55;
   background-color: white;
-  transition:1s cubic-bezier(.53,-0.02,.1,1.18);
+  transition:0.85s cubic-bezier(.53,-0.02,.1,1.18);
   :hover{
-    transform: scale(1.07)
+    transform: scale(1.1)
   }
 `;
 
@@ -31,6 +31,12 @@ export const ProductImgContainer = styled.div`
 
   @media screen and (max-width: 1800px) {
     height: 30vh;
+  }
+  @media screen and (max-width: 1400px) {
+    height: 25vh;
+  }
+  @media screen and (max-width: 1100px) {
+    height: 20vh;
   }
 `;
 

@@ -1,18 +1,17 @@
 import { createReducer } from "@reduxjs/toolkit";
-import SHOP_DATA from './shop.data'
+import SHOP_DATA from "./shop.data";
+
 const initialState = {
-  productsCategories: SHOP_DATA
+  productsCategories: SHOP_DATA,
 };
 
-const productReducer = createReducer({
-  initialState,
-},
-builder => {
-    builder
-        .addDefaultCase((state) => state.productslist)
-
-}
-
+const productReducer = createReducer(
+  {
+    initialState,
+  },
+  (builder) => {
+    builder.addDefaultCase((state) => state.productsCategories);
+  }
 );
 
 export default productReducer;
