@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { selectCategory } from "../../../redux/products/products.selectors";
 import  Item  from '../item/item.component'
 import TopImageSection from "../../top-image-section/top-image-section.component";
+import { useEffect } from 'react'
 
 // import Item from '../item/item.component';
 
@@ -16,6 +17,12 @@ import {
 } from "../items-preview/items-preview.styles";
 
 const CollectionItemsOverview = ({ collection: { title, items } }) => {
+  
+  useEffect(() => {
+   return window.scrollTo(0,0)
+  }, [])
+
+
   return (
     <div>
       <TopImageSection>{title.toUpperCase()}</TopImageSection>

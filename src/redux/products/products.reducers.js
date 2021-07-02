@@ -1,5 +1,5 @@
 import { createReducer } from "@reduxjs/toolkit";
-import SHOP_DATA from "./shop.data";
+import SHOP_DATA from "../shop.data";
 
 const initialState = {
   productsCategories: SHOP_DATA,

@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 export const HeaderStylesContainer = styled.div`
   width: 100%;
@@ -26,13 +27,17 @@ export const LogoContainer = styled(Link)`
 
 export const OptionsContainer = styled.div``;
 
-export const OptionsLink = styled(Link)`
+export const OptionsLink = styled(NavLink)`
   margin: 12px;
   color: #dfdfdf;
   font-size: 1rem;
   transition: 200ms ease-in-out;
-  :hover,
-  :focus {
+  :hover{
     color: #efcb1d;
   }
+
+  &.active{
+    color:#efcb1d;
+  }
+  
 `;

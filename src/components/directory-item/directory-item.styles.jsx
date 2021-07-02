@@ -2,7 +2,7 @@ import styled, { css } from "styled-components";
 
 const getCardHeight = (props) => {
   
-  switch (props.name) {
+  switch (props.routeName) {
     case 'hats':
       return productsStyles
     case 'jackets':

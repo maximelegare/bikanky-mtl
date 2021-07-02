@@ -1,5 +1,5 @@
 import React from "react";
-import bikankyLogoHeader from '../../assets/logoHeader.svg';
+import bikankyLogoHeader from "../../assets/logoHeader.svg";
 import {
   HeaderStylesContainer,
   LogoContainer,
@@ -16,10 +16,18 @@ const Header = () => {
           <img src={bikankyLogoHeader} alt="bikanky Logo Header" />
         </LogoContainer>
         <OptionsContainer>
-          <OptionsLink to="/creations">Créations</OptionsLink>
-          <OptionsLink to="/services">Services</OptionsLink>
-          <OptionsLink to="/about">À Propos</OptionsLink>
-          <OptionsLink to="/contact">Contact</OptionsLink>
+          <OptionsLink activeClassName="active" to="/creations">
+            Créations
+          </OptionsLink>
+          <OptionsLink activeClassName="active" to="/services">
+            Services
+          </OptionsLink>
+          <OptionsLink activeClassName="active" to="/about">
+            À Propos
+          </OptionsLink>
+          <OptionsLink activeClassName="active" to="/contact">
+            Contact
+          </OptionsLink>
         </OptionsContainer>
       </HeaderContainer>
     </HeaderStylesContainer>

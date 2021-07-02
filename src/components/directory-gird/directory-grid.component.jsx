@@ -13,7 +13,7 @@ import { selectSections } from "../../redux/directory/directory.selector";
 const DirectoryList = ({ sections }) => {
   return (
     <DirectoryGridContainer>
-      {sections.map(({id, ...otherProps}) => (
+      {Object.values(sections).map(({id, ...otherProps}) => (
         <DirectoryItem key={id} {...otherProps}></DirectoryItem>
       ))}
     </DirectoryGridContainer>

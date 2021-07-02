@@ -13,7 +13,7 @@ import {
 import IconButton from "../../buttons/icon-button.component";
 
 const Item = (props) => {
-  const { imageUrl, name,  price} = props.item;
+  const { imageUrl, title,  price} = props.item;
   return (
     <ItemWrapperContainer>
       <ProductImgContainer image={imageUrl}></ProductImgContainer>
@@ -22,7 +22,7 @@ const Item = (props) => {
         <ProductPriceButtonContainer>
           <PriceNameContainer>
             <div>
-              <h2>{name}</h2>
+              <h2>{title}</h2>
             <h4>{`${price}`}&thinsp;$</h4>
             
             </div>

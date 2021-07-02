@@ -12,17 +12,18 @@ import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { selectProductsCategories } from "../../../redux/products/products.selectors";
 import TopImageSection from "../../top-image-section/top-image-section.component";
+import { withRouter } from "react-router-dom";
 
-const ItemsPreview = ({ productsCategories }) => {
+const ItemsPreview = ({ productsCategories, history }) => {
   // console.log(productsCategories)
   return (
     <div>
       <TopImageSection>CRÉATIONS</TopImageSection>
 
       {/* select all categories and map */}
-      {Object.values(productsCategories).map(({ id, title, items }) => (
+      {Object.values(productsCategories).map(({ id, title, items, linkUrl }) => (
         <ItemsPreviewContainer key={id}>
-          <TitleContainer>{title.toUpperCase()}</TitleContainer>
+          <TitleContainer onClick={() => history.push(linkUrl)}>{title.toUpperCase()}</TitleContainer>
           <ItemsListContainer>
             {/* select items, filter only four items, then map */}
             {items
@@ -40,4 +41,4 @@ const ItemsPreview = ({ productsCategories }) => {
 const mapStateToProps = createStructuredSelector({
   productsCategories: selectProductsCategories,
 });
-export default connect(mapStateToProps)(ItemsPreview);
+export default withRouter(connect(mapStateToProps)(ItemsPreview));

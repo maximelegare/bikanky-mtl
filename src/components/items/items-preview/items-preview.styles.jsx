@@ -29,5 +29,6 @@ export const ItemsListContainer = styled.div`
 
 export const TitleContainer = styled.h1`
   margin-bottom: 20px;
+  cursor: pointer;
   /* width: 50%; */
 `;
