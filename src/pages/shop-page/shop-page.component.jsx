@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from "react";
 import { Route } from "react-router-dom";
-import CollectionItemsOverview from "../../components/items/collection-items-overview/collection-items-overview.component";
+import CollectionItemsOverview from "../../components/items/items-category-overview/items-category-overview.component";
 
 import { ShopPageContainer } from "./shop-page.styles";
 import ItemsPreview from "../../components/items/items-preview/items-preview.component";
