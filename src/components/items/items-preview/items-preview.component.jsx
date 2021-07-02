@@ -7,21 +7,21 @@ import {
   ItemsListContainer,
   TitleContainer,
 } from "./items-preview.styles";
-import Item from "../item/item.component";
+import Item from "../item-card/item-card.component";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
-import { selectProductsCategories } from "../../../redux/products/products.selectors";
+import { selectItemsCategories } from "../../../redux/items/items.selectors";
 import TopImageSection from "../../top-image-section/top-image-section.component";
 import { withRouter } from "react-router-dom";
 
-const ItemsPreview = ({ productsCategories, history }) => {
+const ItemsPreview = ({ itemsCategories, history }) => {
   // console.log(productsCategories)
   return (
     <div>
       <TopImageSection>CRÉATIONS</TopImageSection>
 
       {/* select all categories and map */}
-      {Object.values(productsCategories).map(({ id, title, items, linkUrl }) => (
+      {Object.values(itemsCategories).map(({ id, title, items, linkUrl }) => (
         <ItemsPreviewContainer key={id}>
           <TitleContainer onClick={() => history.push(linkUrl)}>{title.toUpperCase()}</TitleContainer>
           <ItemsListContainer>
@@ -39,6 +39,6 @@ const ItemsPreview = ({ productsCategories, history }) => {
 };
 
 const mapStateToProps = createStructuredSelector({
-  productsCategories: selectProductsCategories,
+  itemsCategories: selectItemsCategories,
 });
 export default withRouter(connect(mapStateToProps)(ItemsPreview));

@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import logger from "redux-logger";
-import productsReducer from './products/products.reducers'
+import productsReducer from './items/items.reducers'
 import directoryRecucer from './directory/directory.reducers'
 
 
