@@ -18,7 +18,7 @@ const ItemsPreview = ({ itemsCategories, history }) => {
   // console.log(productsCategories)
   return (
     <div>
-      <TopImageSection>CRÉATIONS</TopImageSection>
+      <TopImageSection>Créations</TopImageSection>
 
       {/* select all categories and map */}
       {Object.values(itemsCategories).map(({ id, title, items, linkUrl }) => (

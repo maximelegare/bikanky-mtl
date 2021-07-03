@@ -38,7 +38,7 @@ export const TitleContainer = styled.div`
   color: #efcb1d;
   text-align: center;
   font-size: 4rem;
-  padding-top: 100px;
+  padding-top: 90px;
 `;
 
 export const TextLogoContainer = styled.img`

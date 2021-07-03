@@ -17,7 +17,6 @@ import IconButton from "../../buttons/icon-button.component";
 
 const ItemCard = ({ item, history, location }) => {
   const { imageUrl, title, price, linkUrl } = item;
-  console.log(location);
   return (
     <ItemWrapperContainer
       onClick={() =>

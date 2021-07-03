@@ -26,7 +26,7 @@ const ItemsOverview = ({ collection: { title, items } }) => {
 
   return (
     <div>
-      <TopImageSection>{title.toUpperCase()}</TopImageSection>
+      <TopImageSection>{title}</TopImageSection>
 
       <ItemsPreviewContainer style={{ marginTop: "100px" }}>
         <ItemsListContainer>
