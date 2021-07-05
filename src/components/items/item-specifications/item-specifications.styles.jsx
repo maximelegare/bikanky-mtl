@@ -24,8 +24,8 @@ display: flex;
 `
 
 export const ItemImagesContainer = styled.div`
-flex:2;
-width: 65%;
+flex:1;
+width: 50%;
 height: 100%;
 background-color: yellow;
 

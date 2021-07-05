@@ -3,9 +3,10 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 
+import { ProductImgContainer } from '../../_styling-containers/img-styling-container/img-styling-containers.styles'
+
 import {
   ItemWrapperContainer,
-  ProductImgContainer,
   ProductInfosContainer,
   ProductTextContainer,
   ProductPriceButtonContainer,

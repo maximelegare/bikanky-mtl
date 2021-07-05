@@ -14,7 +14,7 @@ export const IconWrapperContainer = styled.div`
 display: flex;
 width: 100px;
 border-left: 1px solid #bdbdbd  ;
-
+height: 100%;
 transition: 0.5s ease-in-out;
 
 :hover{
