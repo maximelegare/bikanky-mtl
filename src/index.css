@@ -1,22 +1,33 @@
 body {
   /* font-family: 'Quicksand', sans-serif; */
-  color:rgb(47, 52, 54)
+  color: rgb(47, 52, 54);
 }
 
-a{
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+a {
   text-decoration: none;
 }
-div{
-  font-family: 'Quicksand', sans-serif;
-  
+div {
+  font-family: "Quicksand", sans-serif;
 }
 
-h1{
+h1 {
   font-size: clamp(1.8rem, 2vw, 2rem);
-  font-family: 'Quicksand', sans-serif;
+  font-family: "Quicksand", sans-serif;
 }
-h2, h3, h4, h5, h6, p, a{
-  font-family: 'Open Sans', sans-serif;
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a {
+  font-family: "Open Sans", sans-serif;
 }
 
 h2 {
@@ -29,7 +40,7 @@ h3 {
 }
 
 h4 {
-  font-size: 1.00em;
+  font-size: 1em;
 }
 
 h5 {
@@ -39,13 +50,13 @@ h5 {
 h6 {
   font-size: 0.67em;
 }
-p{
+p {
   color: white;
 }
 
-*{
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  
+hr {
+  background-color: #bbb;
+  border: 0 none;
+  color: #bbb;
+  height: 1px;
 }

@@ -1,0 +1,30 @@
+.swiper-wrapper-styles {
+  width: 80%;
+  height: 65%;
+  margin-top: 20px;
+  border-radius: 8px;
+}
+
+.swiper-slide-styles {
+  height: 150px;
+  width: 70%;
+  margin-top: 20px;
+  border-radius: 8px;
+  position: relative;
+  
+  
+}
+.swiper-slide-thumb-active {
+  border: 3px solid #efcb1d;
+  border-radius: 12px;
+}
+
+.swiper-button-prev, .swiper-button-next{
+  color:#efcb1d;
+  height: 50%;
+  width: 40px;
+  top: 40%;
+}
+
+
+

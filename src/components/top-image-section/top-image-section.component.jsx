@@ -7,10 +7,10 @@ import bikankyTitleHeader from "../../assets/bikankyTitleHeader.svg";
 
 
 // eslint-disable-next-line react/prop-types
-const TopImageSection = ({ homePage, children }) => {  
+const TopImageSection = ({ type, children }) => {  
   return (
-    <ImageContainer homePage={homePage}>
-      {homePage ? (
+    <ImageContainer type={type}>
+      {type === 'home-page' ? (
         <TextLogoContainer src={bikankyTitleHeader} alt="bikankyTitleHeader"/> 
       ) : (
         <TitleContainer>{children}</TitleContainer>

@@ -3,10 +3,10 @@
 
 import React from "react";
 import { DirectoryGridContainer } from "./directory-gird.styles";
-import DirectoryItem from "../directory-item/directory-item.component";
+import DirectoryItem from '../directory-item/directory-item.component';
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
-import { selectSections } from "../../redux/directory/directory.selector";
+import { selectSections } from '../../../redux/directory/directory.selector';
 
 
 

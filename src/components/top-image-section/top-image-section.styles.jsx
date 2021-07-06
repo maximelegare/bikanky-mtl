@@ -1,25 +1,33 @@
 import styled, { css } from "styled-components";
 
-const selectHeight = ({ homePage }) => {
-  if (homePage) {
-    return homePageHeight;
-  } else {
-    return otherHeight;
+const selectHeight = (props) => {
+  switch (props.type) {
+    case "home-page":
+      return homePageStyles;
+    case "items-page":
+      return itemsPagesStyles;
+    case "item-specifications":
+      return itemSpecificationsStyles;
+    default:
+      return itemsPagesStyles
   }
 };
 
-const homePageHeight = css`
+const homePageStyles = css`
   height: 35vh;
   @media only screen and (max-width: 900px) {
     height: 25vh;
   }
 `;
 
-const otherHeight = css`
+const itemsPagesStyles = css`
   height: 23vh;
   @media only screen and (max-width: 900px) {
     height: 15vh;
   }
+`;
+const itemSpecificationsStyles = css`
+  height: 16vh;
 `;
 
 export const ImageContainer = styled.div`

@@ -20,6 +20,11 @@ transition: 0.5s ease-in-out;
 :hover{
     background-color: #efcb1d;
 }
+`
+
+export const ButtonContainer = styled.button`
+
 
 `
+
 

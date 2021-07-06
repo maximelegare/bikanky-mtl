@@ -1,19 +1,44 @@
-import styled from 'styled-components'
+import styled, { css } from "styled-components";
 
-export const ProductImgContainer = styled.div`
+const selectStyles = (props) => {
+  switch (props.type) {
+    case "slider":
+      return sliderStyles;
+      
+    case "slider-thumbs":
+      return sliderThumbsStyles;
+      
+    case "card-image" :
+      return cardStyles
+    default:
+      return cardStyles  
+  }
+};
+
+const cardStyles = css`
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
+  height: 75%;
+`
+const sliderStyles = css`
+border-radius: 8px;
+height: 100%;
+`
+const sliderThumbsStyles = css`
+border-radius:8px;
+height: 95%;
+width:95%;
+margin: 3px auto ;
+`
 
-
+export const ProductImgContainer = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-
   background-image: ${(props) => `url(${props.image})`};
-  height: 75%;
   width: 100%;
   cursor: pointer;
-  
+  ${selectStyles}
 
   /* @media screen and (max-width: 1800px) {
     height: 30vh;

@@ -26,7 +26,7 @@ const ItemsOverview = ({ collection: { title, items } }) => {
 
   return (
     <div>
-      <TopImageSection>{title}</TopImageSection>
+      <TopImageSection type="items-page">{title}</TopImageSection>
 
       <ItemsPreviewContainer style={{ marginTop: "100px" }}>
         <ItemsListContainer>

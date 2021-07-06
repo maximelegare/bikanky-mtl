@@ -1,11 +1,11 @@
 import React from "react";
-import { IconButtonContainer,IconWrapperContainer } from "./icon-button.styles";
+import { IconButtonContainer,IconWrapperContainer } from "./buttons.styles";
 import { PropTypes } from "prop-types";
 
 
 const IconButton = ({ icon }) => (
   <IconWrapperContainer >
-    <IconButtonContainer className={`material-icons`}>{icon}</IconButtonContainer>
+    <IconButtonContainer className="material-icons">{icon}</IconButtonContainer>
   </IconWrapperContainer>
 );
 

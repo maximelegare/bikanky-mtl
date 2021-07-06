@@ -1,6 +1,6 @@
 import React from "react";
 import { AboutSectionContainer, QuoteContainer } from "./about-section.styles";
-import { CircleContainer } from "../form/color-forms.styles";
+import { CircleContainer } from "../_styling-containers/special-elements/special-elemets.styles";
 
 const AboutSection = () => {
   return (

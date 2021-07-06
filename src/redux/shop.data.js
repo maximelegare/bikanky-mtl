@@ -9,10 +9,24 @@ const SHOP_DATA = {
       {
         id: 1,
         title: "Brown Brim",
+        shortDescription:
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
+        stock: 1,
+        bulletPoints: [
+          "this is a bullet point",
+          "this is another bullet point",
+          "anotherbulletPoint...",
+        ],
         routeName: "brown-brim",
         linkUrl: "hats/brown-brim",
         imageUrl: "https://i.ibb.co/ZYW3VTp/brown-brim.png",
-        price: 25,
+        carouselImages: [
+          "https://i.ibb.co/ZYW3VTp/brown-brim.png",
+          "https://i.ibb.co/ZYW3VTp/brown-brim.png",
+          "https://i.ibb.co/ZYW3VTp/brown-brim.png",
+          "https://i.ibb.co/ZYW3VTp/brown-brim.png",
+        ],
+        price: 26.00,
       },
       {
         id: 2,
@@ -20,6 +34,11 @@ const SHOP_DATA = {
         routeName: "stoen-salapaitch",
         linkUrl: "hats/stoen-salapaitch",
         imageUrl: "https://i.ibb.co/ypkgK0X/blue-beanie.png",
+        carouselImages: [
+          "https://i.ibb.co/ZYW3VTp/brown-brim.png",
+          "https://i.ibb.co/ZYW3VTp/brown-brim.png",
+          "https://i.ibb.co/ZYW3VTp/brown-brim.png",
+        ],
         price: 18,
       },
       {
@@ -28,6 +47,11 @@ const SHOP_DATA = {
         routeName: "brown-cowboy",
         linkUrl: "hats/brown-cowboy",
         imageUrl: "https://i.ibb.co/QdJwgmp/brown-cowboy.png",
+        carouselImages: [
+          "https://i.ibb.co/ZYW3VTp/brown-brim.png",
+          "https://i.ibb.co/ZYW3VTp/brown-brim.png",
+          "https://i.ibb.co/ZYW3VTp/brown-brim.png",
+        ],
         price: 35,
       },
       {
@@ -36,6 +60,11 @@ const SHOP_DATA = {
         routeName: "grey-brim",
         linkUrl: "hats/grey-brim",
         imageUrl: "https://i.ibb.co/RjBLWxB/grey-brim.png",
+        carouselImages: [
+          "https://i.ibb.co/ZYW3VTp/brown-brim.png",
+          "https://i.ibb.co/ZYW3VTp/brown-brim.png",
+          "https://i.ibb.co/ZYW3VTp/brown-brim.png",
+        ],
         price: 25,
       },
       {
@@ -44,6 +73,11 @@ const SHOP_DATA = {
         routeName: "green-beanie",
         linkUrl: "hats/green-beanie",
         imageUrl: "https://i.ibb.co/YTjW3vF/green-beanie.png",
+        carouselImages: [
+          "https://i.ibb.co/ZYW3VTp/brown-brim.png",
+          "https://i.ibb.co/ZYW3VTp/brown-brim.png",
+          "https://i.ibb.co/ZYW3VTp/brown-brim.png",
+        ],
         price: 18,
       },
       {
@@ -52,6 +86,11 @@ const SHOP_DATA = {
         routeName: "palm-tree-cap",
         linkUrl: "hats/palm-tree-cap",
         imageUrl: "https://i.ibb.co/rKBDvJX/palm-tree-cap.png",
+        carouselImages: [
+          "https://i.ibb.co/ZYW3VTp/brown-brim.png",
+          "https://i.ibb.co/ZYW3VTp/brown-brim.png",
+          "https://i.ibb.co/ZYW3VTp/brown-brim.png",
+        ],
         price: 14,
       },
       {
@@ -60,6 +99,11 @@ const SHOP_DATA = {
         routeName: "red-beanie",
         linkUrl: "hats/red-beanie",
         imageUrl: "https://i.ibb.co/bLB646Z/red-beanie.png",
+        carouselImages: [
+          "https://i.ibb.co/ZYW3VTp/brown-brim.png",
+          "https://i.ibb.co/ZYW3VTp/brown-brim.png",
+          "https://i.ibb.co/ZYW3VTp/brown-brim.png",
+        ],
         price: 18,
       },
       {
@@ -68,6 +112,11 @@ const SHOP_DATA = {
         routeName: "wolf-cap",
         linkUrl: "hats/wolf-cap",
         imageUrl: "https://i.ibb.co/1f2nWMM/wolf-cap.png",
+        carouselImages: [
+          "https://i.ibb.co/ZYW3VTp/brown-brim.png",
+          "https://i.ibb.co/ZYW3VTp/brown-brim.png",
+          "https://i.ibb.co/ZYW3VTp/brown-brim.png",
+        ],
         price: 14,
       },
       {
@@ -76,6 +125,11 @@ const SHOP_DATA = {
         routeName: "blue-snapback",
         linkUrl: "hats/blue-snapback",
         imageUrl: "https://i.ibb.co/X2VJP2W/blue-snapback.png",
+        carouselImages: [
+          "https://i.ibb.co/ZYW3VTp/brown-brim.png",
+          "https://i.ibb.co/ZYW3VTp/brown-brim.png",
+          "https://i.ibb.co/ZYW3VTp/brown-brim.png",
+        ],
         price: 16,
       },
     ],
@@ -93,6 +147,11 @@ const SHOP_DATA = {
         routeName: "adidas-nmd",
         linkUrl: "sneakers/adidas-nmd",
         imageUrl: "https://i.ibb.co/0s3pdnc/adidas-nmd.png",
+        carouselImages: [
+          "https://i.ibb.co/ZYW3VTp/brown-brim.png",
+          "https://i.ibb.co/ZYW3VTp/brown-brim.png",
+          "https://i.ibb.co/ZYW3VTp/brown-brim.png",
+        ],
         price: 220,
       },
       {
@@ -101,6 +160,11 @@ const SHOP_DATA = {
         routeName: "adidas-yeezy",
         linkUrl: "sneakers/adidas-yeezy",
         imageUrl: "https://i.ibb.co/dJbG1cT/yeezy.png",
+        carouselImages: [
+          "https://i.ibb.co/ZYW3VTp/brown-brim.png",
+          "https://i.ibb.co/ZYW3VTp/brown-brim.png",
+          "https://i.ibb.co/ZYW3VTp/brown-brim.png",
+        ],
         price: 280,
       },
       {
@@ -109,6 +173,11 @@ const SHOP_DATA = {
         routeName: "black-converse",
         linkUrl: "sneakers/black-converse",
         imageUrl: "https://i.ibb.co/bPmVXyP/black-converse.png",
+        carouselImages: [
+          "https://i.ibb.co/ZYW3VTp/brown-brim.png",
+          "https://i.ibb.co/ZYW3VTp/brown-brim.png",
+          "https://i.ibb.co/ZYW3VTp/brown-brim.png",
+        ],
         price: 110,
       },
       {
@@ -117,6 +186,11 @@ const SHOP_DATA = {
         routeName: "nike-white-airforce",
         linkUrl: "sneakers/nike-white-airforce",
         imageUrl: "https://i.ibb.co/1RcFPk0/white-nike-high-tops.png",
+        carouselImages: [
+          "https://i.ibb.co/ZYW3VTp/brown-brim.png",
+          "https://i.ibb.co/ZYW3VTp/brown-brim.png",
+          "https://i.ibb.co/ZYW3VTp/brown-brim.png",
+        ],
         price: 160,
       },
       {
@@ -125,6 +199,11 @@ const SHOP_DATA = {
         routeName: "nike-red-high-tops",
         linkUrl: "sneakers/nike-red-high-tops",
         imageUrl: "https://i.ibb.co/QcvzydB/nikes-red.png",
+        carouselImages: [
+          "https://i.ibb.co/ZYW3VTp/brown-brim.png",
+          "https://i.ibb.co/ZYW3VTp/brown-brim.png",
+          "https://i.ibb.co/ZYW3VTp/brown-brim.png",
+        ],
         price: 160,
       },
       {
@@ -133,6 +212,11 @@ const SHOP_DATA = {
         routeName: "nike-brown-high-tops",
         linkUrl: "sneakers/nike-brown-high-tops",
         imageUrl: "https://i.ibb.co/fMTV342/nike-brown.png",
+        carouselImages: [
+          "https://i.ibb.co/ZYW3VTp/brown-brim.png",
+          "https://i.ibb.co/ZYW3VTp/brown-brim.png",
+          "https://i.ibb.co/ZYW3VTp/brown-brim.png",
+        ],
         price: 160,
       },
       {
@@ -141,6 +225,11 @@ const SHOP_DATA = {
         routeName: "air-jordan-limited",
         linkUrl: "sneakers/air-jordan-limited",
         imageUrl: "https://i.ibb.co/w4k6Ws9/nike-funky.png",
+        carouselImages: [
+          "https://i.ibb.co/ZYW3VTp/brown-brim.png",
+          "https://i.ibb.co/ZYW3VTp/brown-brim.png",
+          "https://i.ibb.co/ZYW3VTp/brown-brim.png",
+        ],
         price: 190,
       },
       {
@@ -149,6 +238,11 @@ const SHOP_DATA = {
         routeName: "timberlands",
         linkUrl: "sneakers/timberlands",
         imageUrl: "https://i.ibb.co/Mhh6wBg/timberlands.png",
+        carouselImages: [
+          "https://i.ibb.co/ZYW3VTp/brown-brim.png",
+          "https://i.ibb.co/ZYW3VTp/brown-brim.png",
+          "https://i.ibb.co/ZYW3VTp/brown-brim.png",
+        ],
         price: 200,
       },
     ],
@@ -166,6 +260,11 @@ const SHOP_DATA = {
         routeName: "black-jean-shearling",
         linkUrl: "jackets/black-jean-shearling",
         imageUrl: "https://i.ibb.co/XzcwL5s/black-shearling.png",
+        carouselImages: [
+          "https://i.ibb.co/ZYW3VTp/brown-brim.png",
+          "https://i.ibb.co/ZYW3VTp/brown-brim.png",
+          "https://i.ibb.co/ZYW3VTp/brown-brim.png",
+        ],
         price: 125,
       },
       {
@@ -174,6 +273,11 @@ const SHOP_DATA = {
         routeName: "blue-jean-jacket",
         linkUrl: "jackets/blue-jean-jacket",
         imageUrl: "https://i.ibb.co/mJS6vz0/blue-jean-jacket.png",
+        carouselImages: [
+          "https://i.ibb.co/ZYW3VTp/brown-brim.png",
+          "https://i.ibb.co/ZYW3VTp/brown-brim.png",
+          "https://i.ibb.co/ZYW3VTp/brown-brim.png",
+        ],
         price: 90,
       },
       {
@@ -182,6 +286,11 @@ const SHOP_DATA = {
         routeName: "grey-jean-jacket",
         linkUrl: "jackets/grey-jean-jacket",
         imageUrl: "https://i.ibb.co/N71k1ML/grey-jean-jacket.png",
+        carouselImages: [
+          "https://i.ibb.co/ZYW3VTp/brown-brim.png",
+          "https://i.ibb.co/ZYW3VTp/brown-brim.png",
+          "https://i.ibb.co/ZYW3VTp/brown-brim.png",
+        ],
         price: 90,
       },
       {
@@ -190,6 +299,11 @@ const SHOP_DATA = {
         routeName: "brown-shearling",
         linkUrl: "jackets/brown-shearling",
         imageUrl: "https://i.ibb.co/s96FpdP/brown-shearling.png",
+        carouselImages: [
+          "https://i.ibb.co/ZYW3VTp/brown-brim.png",
+          "https://i.ibb.co/ZYW3VTp/brown-brim.png",
+          "https://i.ibb.co/ZYW3VTp/brown-brim.png",
+        ],
         price: 165,
       },
       {
@@ -198,6 +312,11 @@ const SHOP_DATA = {
         routeName: "tan-trench",
         linkUrl: "jackets/tan-trench",
         imageUrl: "https://i.ibb.co/M6hHc3F/brown-trench.png",
+        carouselImages: [
+          "https://i.ibb.co/ZYW3VTp/brown-brim.png",
+          "https://i.ibb.co/ZYW3VTp/brown-brim.png",
+          "https://i.ibb.co/ZYW3VTp/brown-brim.png",
+        ],
         price: 185,
       },
     ],
@@ -215,6 +334,11 @@ const SHOP_DATA = {
         routeName: "blue-tanktop",
         linkUrl: "womens/blue-tanktop",
         imageUrl: "https://i.ibb.co/7CQVJNm/blue-tank.png",
+        carouselImages: [
+          "https://i.ibb.co/ZYW3VTp/brown-brim.png",
+          "https://i.ibb.co/ZYW3VTp/brown-brim.png",
+          "https://i.ibb.co/ZYW3VTp/brown-brim.png",
+        ],
         price: 25,
       },
       {
@@ -223,6 +347,11 @@ const SHOP_DATA = {
         routeName: "floral-blouse",
         linkUrl: "womens/floral-blouse",
         imageUrl: "https://i.ibb.co/4W2DGKm/floral-blouse.png",
+        carouselImages: [
+          "https://i.ibb.co/ZYW3VTp/brown-brim.png",
+          "https://i.ibb.co/ZYW3VTp/brown-brim.png",
+          "https://i.ibb.co/ZYW3VTp/brown-brim.png",
+        ],
         price: 20,
       },
       {
@@ -231,6 +360,11 @@ const SHOP_DATA = {
         routeName: "floral-dress",
         linkUrl: "womens/floral-dress",
         imageUrl: "https://i.ibb.co/KV18Ysr/floral-skirt.png",
+        carouselImages: [
+          "https://i.ibb.co/ZYW3VTp/brown-brim.png",
+          "https://i.ibb.co/ZYW3VTp/brown-brim.png",
+          "https://i.ibb.co/ZYW3VTp/brown-brim.png",
+        ],
         price: 80,
       },
       {
@@ -239,6 +373,11 @@ const SHOP_DATA = {
         routeName: "red-dots-dress",
         linkUrl: "womens/red-dots-dress",
         imageUrl: "https://i.ibb.co/N3BN1bh/red-polka-dot-dress.png",
+        carouselImages: [
+          "https://i.ibb.co/ZYW3VTp/brown-brim.png",
+          "https://i.ibb.co/ZYW3VTp/brown-brim.png",
+          "https://i.ibb.co/ZYW3VTp/brown-brim.png",
+        ],
         price: 80,
       },
       {
@@ -247,6 +386,11 @@ const SHOP_DATA = {
         routeName: "striped-sweater",
         linkUrl: "womens/striped-sweater",
         imageUrl: "https://i.ibb.co/KmSkMbH/striped-sweater.png",
+        carouselImages: [
+          "https://i.ibb.co/ZYW3VTp/brown-brim.png",
+          "https://i.ibb.co/ZYW3VTp/brown-brim.png",
+          "https://i.ibb.co/ZYW3VTp/brown-brim.png",
+        ],
         price: 45,
       },
       {
@@ -255,6 +399,11 @@ const SHOP_DATA = {
         routeName: "yellow-track-suit",
         linkUrl: "womens/yellow-track-suit",
         imageUrl: "https://i.ibb.co/v1cvwNf/yellow-track-suit.png",
+        carouselImages: [
+          "https://i.ibb.co/ZYW3VTp/brown-brim.png",
+          "https://i.ibb.co/ZYW3VTp/brown-brim.png",
+          "https://i.ibb.co/ZYW3VTp/brown-brim.png",
+        ],
         price: 135,
       },
       {
@@ -263,6 +412,11 @@ const SHOP_DATA = {
         routeName: "white-blouse",
         linkUrl: "womens/white-blouse",
         imageUrl: "https://i.ibb.co/qBcrsJg/white-vest.png",
+        carouselImages: [
+          "https://i.ibb.co/ZYW3VTp/brown-brim.png",
+          "https://i.ibb.co/ZYW3VTp/brown-brim.png",
+          "https://i.ibb.co/ZYW3VTp/brown-brim.png",
+        ],
         price: 20,
       },
     ],

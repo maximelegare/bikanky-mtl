@@ -26,14 +26,14 @@ const ItemCard = ({ item, history, location }) => {
           : history.push(linkUrl)
       }
     >
-      <ProductImgContainer image={imageUrl}></ProductImgContainer>
+      <ProductImgContainer type="card-image" image={imageUrl}></ProductImgContainer>
       <ProductInfosContainer>
         <ProductTextContainer></ProductTextContainer>
         <ProductPriceButtonContainer>
           <PriceNameContainer>
             <div>
               <h2>{title}</h2>
-              <h4>{`${price}`}&thinsp;$</h4>
+              <h4>{`${price.toFixed(2)}`}&thinsp;$</h4>
             </div>
           </PriceNameContainer>
           <IconButton icon="add_shopping_cart" />
