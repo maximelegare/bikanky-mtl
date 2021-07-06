@@ -27,6 +27,12 @@ export const LogoContainer = styled(Link)`
 
 export const OptionsContainer = styled.div``;
 
+
+export const RightSectionWrapperContainer = styled.div`
+display: flex;
+align-items: center;
+`
+
 export const OptionsLink = styled(NavLink)`
   margin: 12px;
   color: #dfdfdf;
