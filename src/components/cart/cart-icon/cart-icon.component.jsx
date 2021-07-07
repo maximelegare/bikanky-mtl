@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { selectCartItems } from "../../../redux/cart/cart.selectors";  
+import { selectCartCount } from "../../../redux/cart/cart.selectors";  
 import {
   CartIconContainer,
   CartNumberContainer,
@@ -10,16 +10,18 @@ import {
 
 
 
+
 import { toggleCartVisibility } from "../../../redux/cart/cart.slices";
 
 const CartIcon = () => {
-    const cartItemsNumber = useSelector(selectCartItems)
+    const cartItemsCount = useSelector(selectCartCount)
+    console.log(cartItemsCount)
     const dispatch = useDispatch() 
   return (
       <CartIconContainer onClick={() => dispatch(toggleCartVisibility())}>
       {/* <CartIconContainer > */}
         <CartNumberContainer>
-          <NumberContainer>{cartItemsNumber.length}</NumberContainer>
+          <NumberContainer>{cartItemsCount}</NumberContainer>
         </CartNumberContainer>
         <div className="material-icons" style={{fontSize:'28px'}}>shopping_cart</div>
       </CartIconContainer>

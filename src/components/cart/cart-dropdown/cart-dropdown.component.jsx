@@ -15,13 +15,14 @@ import {
   CartContainer,
   TitleContainer,
   CartItemsSectionContainer,
+  EmptyCartMessage
 } from "./cart-dropdown.styles";
 
 import CustomButton from "../../buttons/custombutton.component";
 
 const CartDropdown = ({ margin }) => {
   const cartItems = useSelector(selectCartItems);
-  console.log(cartItems);
+  
 
   return (
     <Dropdown margin={margin}>
@@ -33,9 +34,13 @@ const CartDropdown = ({ margin }) => {
           <hr />
 
           <CartItemsSectionContainer>
-            {cartItems.map(({ id, ...otherProps }) => (
+            {cartItems.length ?
+            cartItems.map(({ id, ...otherProps }) => (
               <CartDropdownItem key={id} id={id}  {...otherProps} />
-            ))}
+            ))
+          :
+          (<EmptyCartMessage>Your Cart is empty</EmptyCartMessage>)
+          }
           </CartItemsSectionContainer>
 
           <hr />

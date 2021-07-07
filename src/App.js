@@ -8,6 +8,8 @@ import ShopPage from './pages/shop-page/shop-page.component';
 // import DropDown from "./components/drop-down/drop-down.component";
 // import ItemSpecifications  from './components/items/item-specifications/item-specifications.component'
 
+
+
 function App() {
 
   return (

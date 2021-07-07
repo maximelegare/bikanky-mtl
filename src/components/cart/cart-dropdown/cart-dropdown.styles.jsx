@@ -44,3 +44,8 @@ export const ButtonWrapperContainer = styled.div`
   display: flex;
   justify-content: center;
 `;
+
+export const EmptyCartMessage = styled.h4`
+text-align: center;
+font-weight: 400;
+`

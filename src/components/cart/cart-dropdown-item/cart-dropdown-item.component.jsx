@@ -15,9 +15,9 @@ import {
   ItemQuantityAndPriceContainer,
 } from "./cart-dropdown-item.styles";
 
-const CartDropdownItem = ({ title, price, imageUrl, id }) => {
+const CartDropdownItem = ({ title, price, imageUrl, id, cartQuantity }) => {
   const dispatch = useDispatch();
-  console.log(id);
+  
   return (
     <CartDropdownWrapperContainer>
       <CartDropdownContainer>
@@ -26,7 +26,7 @@ const CartDropdownItem = ({ title, price, imageUrl, id }) => {
           <ItemTitleContainer>{title}</ItemTitleContainer>
           {/* <hr/> */}
           <ItemQuantityAndPriceContainer>
-            {`5 x ${price.toFixed(2)}`}&thinsp;$
+            {`${cartQuantity} x ${price.toFixed(2)}`}&thinsp;$
           </ItemQuantityAndPriceContainer>
         </DescriptionContainer>
         <div
@@ -45,6 +45,7 @@ CartDropdownItem.propTypes = {
   price: PropTypes.number,
   imageUrl: PropTypes.string,
   id: PropTypes.number,
+  cartQuantity:PropTypes.number
 };
 
 export default CartDropdownItem;

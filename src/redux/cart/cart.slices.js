@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-// import { addItemToCartUtil } from './cart.utils'
+import { addItemToCartUtil } from './cart.utils'
 
 
 const initialState = {
@@ -14,8 +14,8 @@ const cartSlice = createSlice({
         state.cartVisibility = !state.cartVisibility
     },
     addItemToCart(state, action){
-      
-      state.cartItems.push(action.payload)
+      state.cartItems = addItemToCartUtil(state.cartItems, action.payload)
+      // state.cartItems.push(action.payload)
     },
     deleteItemFromCart(state, action){
       state.cartItems = state.cartItems.filter((cartItem) => cartItem.id !== action.payload)

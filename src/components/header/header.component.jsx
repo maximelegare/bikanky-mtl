@@ -2,7 +2,7 @@
 import React from "react";
 import { selectCartVisibility } from "../../redux/cart/cart.selectors";
 
-import { useSelector  } from "react-redux";
+import { useSelector } from "react-redux";
 import bikankyLogoHeader from "../../assets/logoHeader.svg";
 import {
   HeaderStylesContainer,
@@ -18,24 +18,20 @@ import CartDropdown from "../cart/cart-dropdown/cart-dropdown.component";
 import CartIcon from "../cart/cart-icon/cart-icon.component";
 
 const Header = () => {
-  const cartVisibility = useSelector(selectCartVisibility)
-
-  
+  const cartVisibility = useSelector(selectCartVisibility);
 
   return (
     <div>
       {cartVisibility ? <CartDropdown /> : null}
-      
-      
-      
+
       <HeaderStylesContainer>
         <HeaderContainer>
           <LogoContainer to="/">
             <img src={bikankyLogoHeader} alt="bikanky Logo Header" />
           </LogoContainer>
-          <RightSectionWrapperContainer >
+          <RightSectionWrapperContainer>
             <OptionsContainer>
-              <OptionsLink activeClassName="active" to="/creations" >
+              <OptionsLink activeClassName="active" to="/creations">
                 Créations
               </OptionsLink>
               <OptionsLink activeClassName="active" to="/services">
@@ -48,7 +44,9 @@ const Header = () => {
                 Contact
               </OptionsLink>
             </OptionsContainer>
-            <CartIcon></CartIcon>
+            <div>
+              <CartIcon></CartIcon>
+            </div>
           </RightSectionWrapperContainer>
         </HeaderContainer>
       </HeaderStylesContainer>
@@ -60,6 +58,4 @@ const Header = () => {
 //   cartVisibility: selectCartVisibility,
 // });
 
-
-
-export default Header ;
+export default Header;
