@@ -1,0 +1,9 @@
+.delete-icon{
+    color:rgb(172, 16, 16);
+    transition: 0.3s ease-in-out;
+    cursor: pointer;
+    &:hover{
+        color: lighten($color: rgb(172, 16, 16), $amount: 5);
+    }
+    
+}

@@ -2,11 +2,12 @@ import { configureStore } from "@reduxjs/toolkit";
 import logger from "redux-logger";
 import productsReducer from './items/items.reducers'
 import directoryRecucer from './directory/directory.reducers'
-
+import cartSlice from './cart-dropdown/cart-dropdown.slices'
 
 const reducer = {
     products: productsReducer,
-    directory:directoryRecucer
+    directory:directoryRecucer,
+    cart:cartSlice
 }
 
 const store = configureStore({

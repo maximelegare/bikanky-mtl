@@ -4,7 +4,7 @@ import React from "react";
 import { ItemWrapperContainer } from "../item-specifications.styles";
 import PropTypes from "prop-types";
 
-import CustomButton from "../../../buttons/button.component";
+import CustomButton from "../../../buttons/custombutton.component";
 
 import {
   TilteContainer,

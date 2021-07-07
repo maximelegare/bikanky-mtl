@@ -22,9 +22,6 @@ transition: 0.5s ease-in-out;
 }
 `
 
-export const ButtonContainer = styled.button`
 
-
-`
 
 

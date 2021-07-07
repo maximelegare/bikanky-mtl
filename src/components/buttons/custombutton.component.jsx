@@ -7,7 +7,9 @@ import React from "react";
 const useStyles = makeStyles({
   root: {
     backgroundColor: "#efcb1d",
-    width: "200px",
+    fontSize:15,
+    fontWeight:600,
+    fontFamily:'Open Sans',
     "&:hover": {
       backgroundColor: "#f7d321",
     },
@@ -21,7 +23,7 @@ const CustomButton = ({ children }) => {
     <Button
       classes={{ root: classes.root }}
       variant="contained"
-      color="primary"
+      // color="primary"
     >
       {children}
     </Button>
