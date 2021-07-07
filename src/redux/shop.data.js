@@ -9,6 +9,10 @@ const SHOP_DATA = {
       {
         id: 1,
         title: "Brown Brim",
+        collection:'hats',
+        routeName: "brown-brim",
+        price: 26.00,
+        cartQuantity:0,
         shortDescription:
           "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
         stock: 1,
@@ -17,7 +21,6 @@ const SHOP_DATA = {
           "this is another bullet point",
           "anotherbulletPoint...",
         ],
-        routeName: "brown-brim",
         linkUrl: "hats/brown-brim",
         imageUrl: "https://i.ibb.co/ZYW3VTp/brown-brim.png",
         carouselImages: [
@@ -26,7 +29,6 @@ const SHOP_DATA = {
           "https://i.ibb.co/ZYW3VTp/brown-brim.png",
           "https://i.ibb.co/ZYW3VTp/brown-brim.png",
         ],
-        price: 26.00,
       },
       {
         id: 2,

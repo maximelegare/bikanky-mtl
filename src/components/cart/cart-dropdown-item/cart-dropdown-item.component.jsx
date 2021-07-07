@@ -1,30 +1,50 @@
 import React from "react";
-import './delete-item.styles.scss'
+import "./delete-item.styles.scss";
+import { PropTypes } from "prop-types";
 
+import { deleteItemFromCart } from "../../../redux/cart/cart.slices";
+
+import { useDispatch } from "react-redux";
 
 import {
   CartDropdownWrapperContainer,
   ImageContainer,
   CartDropdownContainer,
-    DescriptionContainer,
-    ItemTitleContainer,
-    ItemQuantityAndPriceContainer,
+  DescriptionContainer,
+  ItemTitleContainer,
+  ItemQuantityAndPriceContainer,
 } from "./cart-dropdown-item.styles";
 
-const CartDropdownItem = () => {
+const CartDropdownItem = ({ title, price, imageUrl, id }) => {
+  const dispatch = useDispatch();
+  console.log(id);
   return (
     <CartDropdownWrapperContainer>
       <CartDropdownContainer>
-        <ImageContainer image="https://i.ibb.co/ZYW3VTp/brown-brim.png" />
+        <ImageContainer image={imageUrl} />
         <DescriptionContainer>
-          <ItemTitleContainer>Badinedonpas kbasf skfjh safkjh skjfh zfbb asfkhb </ItemTitleContainer>
+          <ItemTitleContainer>{title}</ItemTitleContainer>
           {/* <hr/> */}
-          <ItemQuantityAndPriceContainer>4 x 26.00$</ItemQuantityAndPriceContainer>
+          <ItemQuantityAndPriceContainer>
+            {`5 x ${price.toFixed(2)}`}&thinsp;$
+          </ItemQuantityAndPriceContainer>
         </DescriptionContainer>
-        <div className="material-icons delete-icon">delete</div>
+        <div
+          className="material-icons delete-icon"
+          onClick={() => dispatch(deleteItemFromCart(id))}
+        >
+          delete
+        </div>
       </CartDropdownContainer>
     </CartDropdownWrapperContainer>
   );
+};
+
+CartDropdownItem.propTypes = {
+  title: PropTypes.string,
+  price: PropTypes.number,
+  imageUrl: PropTypes.string,
+  id: PropTypes.number,
 };
 
 export default CartDropdownItem;

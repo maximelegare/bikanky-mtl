@@ -2,7 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import logger from "redux-logger";
 import productsReducer from './items/items.reducers'
 import directoryRecucer from './directory/directory.reducers'
-import cartSlice from './cart-dropdown/cart-dropdown.slices'
+import cartSlice from './cart/cart.slices'
 
 const reducer = {
     products: productsReducer,

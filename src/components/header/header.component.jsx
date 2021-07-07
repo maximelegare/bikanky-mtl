@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from "react";
-import { selectCartVisibility } from "../../redux/cart-dropdown/cart-dropdown.selectors";
+import { selectCartVisibility } from "../../redux/cart/cart.selectors";
 
 import { useSelector  } from "react-redux";
 import bikankyLogoHeader from "../../assets/logoHeader.svg";
@@ -20,6 +20,8 @@ import CartIcon from "../cart/cart-icon/cart-icon.component";
 const Header = () => {
   const cartVisibility = useSelector(selectCartVisibility)
 
+  
+
   return (
     <div>
       {cartVisibility ? <CartDropdown /> : null}
@@ -31,9 +33,9 @@ const Header = () => {
           <LogoContainer to="/">
             <img src={bikankyLogoHeader} alt="bikanky Logo Header" />
           </LogoContainer>
-          <RightSectionWrapperContainer>
+          <RightSectionWrapperContainer >
             <OptionsContainer>
-              <OptionsLink activeClassName="active" to="/creations">
+              <OptionsLink activeClassName="active" to="/creations" >
                 Créations
               </OptionsLink>
               <OptionsLink activeClassName="active" to="/services">
@@ -46,7 +48,7 @@ const Header = () => {
                 Contact
               </OptionsLink>
             </OptionsContainer>
-            <CartIcon />
+            <CartIcon></CartIcon>
           </RightSectionWrapperContainer>
         </HeaderContainer>
       </HeaderStylesContainer>

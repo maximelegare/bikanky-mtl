@@ -2,7 +2,9 @@
 import React from "react";
 import Dropdown from "../../drop-down/drop-down.component";
 import CartDropdownItem from "../cart-dropdown-item/cart-dropdown-item.component";
+import { useSelector } from "react-redux";
 
+import { selectCartItems } from "../../../redux/cart/cart.selectors";
 
 import "simplebar/src/simplebar.css";
 
@@ -16,7 +18,11 @@ import {
 } from "./cart-dropdown.styles";
 
 import CustomButton from "../../buttons/custombutton.component";
+
 const CartDropdown = ({ margin }) => {
+  const cartItems = useSelector(selectCartItems);
+  console.log(cartItems);
+
   return (
     <Dropdown margin={margin}>
       <CartDDContainerDimensions>
@@ -25,16 +31,12 @@ const CartDropdown = ({ margin }) => {
             <h2>Your Cart</h2>
           </TitleContainer>
           <hr />
-          
-            <CartItemsSectionContainer>
-              <CartDropdownItem />
-              <CartDropdownItem />
-              <CartDropdownItem />
-              <CartDropdownItem />
-              <CartDropdownItem />
-              <CartDropdownItem />
-              
-            </CartItemsSectionContainer>
+
+          <CartItemsSectionContainer>
+            {cartItems.map(({ id, ...otherProps }) => (
+              <CartDropdownItem key={id} id={id}  {...otherProps} />
+            ))}
+          </CartItemsSectionContainer>
 
           <hr />
         </CartContainer>

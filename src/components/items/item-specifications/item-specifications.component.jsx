@@ -18,7 +18,8 @@ import CarouselSwiper from "./Item-carousel-section/item-carousel-section.compon
 import ItemDescription from "./item-description-section/item-description-section.component";
 
 const ItemSpecifications = ({ item }) => {
-  const { carouselImages, ...otherProps } = item[0];
+  console.log(item)
+  const { carouselImages } = item[0];
   return (
     <div>
       <TopImageSection type="item-specifications"/>
@@ -27,7 +28,7 @@ const ItemSpecifications = ({ item }) => {
         <ItemContentContainer>
           <CarouselSwiper images={carouselImages} />
           <div style={{height:'100%', width:'20px'}}></div>
-          <ItemDescription {...otherProps}/>
+          <ItemDescription item={item[0]}/>
         </ItemContentContainer>
       </ItemSpecificationTopContainer>
     </div>

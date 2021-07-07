@@ -7,6 +7,8 @@ export const CartIconContainer = styled.div`
   color: white;
   transition: 0.3s ease-in-out;
   cursor: pointer;
+  background-color: transparent;
+  border: none;
   &:hover {
     color: #efcb1d;
   }

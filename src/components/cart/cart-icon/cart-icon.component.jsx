@@ -1,5 +1,6 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { selectCartItems } from "../../../redux/cart/cart.selectors";  
 import {
   CartIconContainer,
   CartNumberContainer,
@@ -7,16 +8,18 @@ import {
   
 } from "./cart-icon.styles";
 
-import { toggleCartVisibility } from "../../../redux/cart-dropdown/cart-dropdown.slices";
+
+
+import { toggleCartVisibility } from "../../../redux/cart/cart.slices";
 
 const CartIcon = () => {
-    
+    const cartItemsNumber = useSelector(selectCartItems)
     const dispatch = useDispatch() 
   return (
-    
       <CartIconContainer onClick={() => dispatch(toggleCartVisibility())}>
+      {/* <CartIconContainer > */}
         <CartNumberContainer>
-          <NumberContainer>29</NumberContainer>
+          <NumberContainer>{cartItemsNumber.length}</NumberContainer>
         </CartNumberContainer>
         <div className="material-icons" style={{fontSize:'28px'}}>shopping_cart</div>
       </CartIconContainer>

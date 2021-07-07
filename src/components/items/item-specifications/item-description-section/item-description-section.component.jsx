@@ -2,9 +2,12 @@
 import "./bullet-customization.styles.scss";
 import React from "react";
 import { ItemWrapperContainer } from "../item-specifications.styles";
-import PropTypes from "prop-types";
-
 import CustomButton from "../../../buttons/custombutton.component";
+
+// import { PropTypes } from "prop-types";
+import { useDispatch } from "react-redux";
+
+import { addItemToCart } from "../../../../redux/cart/cart.slices";
 
 import {
   TilteContainer,
@@ -14,17 +17,15 @@ import {
   PriceContainer,
   StockAvailabilityContainer,
   BulletPointsSectionContainer,
-  CustomButtonContainer
+  CustomButtonContainer,
 } from "./item-description-section.styles";
 
-const ItemDescription = ({
-  title,
-  price,
-  shortDescription,
-  stock,
-  bulletPoints,
-}) => {
-  console.log(price);
+const ItemDescription = ({item}) => {
+
+  const dispatch = useDispatch();
+  const { title, price, shortDescription, stock, bulletPoints } = item;
+
+
   return (
     <ItemWrapperContainer style={{ flex: 1 }}>
       <ItemWrapperContentContainer>
@@ -54,7 +55,7 @@ const ItemDescription = ({
             ))}
           </ul>
         </BulletPointsSectionContainer>
-        <CustomButtonContainer>
+        <CustomButtonContainer onClick={() => dispatch(addItemToCart(item))}>
           <CustomButton>Add to Cart</CustomButton>
         </CustomButtonContainer>
       </ItemWrapperContentContainer>
@@ -62,8 +63,12 @@ const ItemDescription = ({
   );
 };
 
-ItemDescription.proptypes = {
-  title: PropTypes.string,
-};
+// ItemDescription.propTypes = {
+//   title: PropTypes.string,
+//   shortDescription: PropTypes.string,
+//   bulletPoints: PropTypes.array,
+//   price: PropTypes.number,
+//   stock: PropTypes.number,
+// };
 
 export default ItemDescription;

@@ -2,7 +2,7 @@
 import React from "react";
 
 import { useDispatch } from "react-redux";
-import { toggleCartVisibility } from "../../redux/cart-dropdown/cart-dropdown.slices";
+import { toggleCartVisibility } from "../../redux/cart/cart.slices";
 import {
   DropDownWrapperContainer,
   BackgroundContainer,
