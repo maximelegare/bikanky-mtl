@@ -27,7 +27,7 @@ const ItemDescription = ({item}) => {
 
 
   return (
-    <ItemWrapperContainer style={{ flex: 1 }}>
+    <ItemWrapperContainer flex="1">
       <ItemWrapperContentContainer>
         <TilteContainer>{title}</TilteContainer>
         <TopDescriptionContainer>{shortDescription}</TopDescriptionContainer>

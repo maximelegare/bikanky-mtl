@@ -17,17 +17,15 @@ import TopImageSection from "../../top-image-section/top-image-section.component
 import CarouselSwiper from "./Item-carousel-section/item-carousel-section.component";
 import ItemDescription from "./item-description-section/item-description-section.component";
 
-const ItemSpecifications = ({ item }) => {
+const ItemSpecifications = ({ item  }) => {
   console.log(item)
   const { carouselImages } = item[0];
   return (
     <div>
       <TopImageSection type="item-specifications"/>
-
       <ItemSpecificationTopContainer>
-        <ItemContentContainer>
-          <CarouselSwiper images={carouselImages} />
-          <div style={{height:'100%', width:'20px'}}></div>
+        <ItemContentContainer>  
+          <CarouselSwiper images={carouselImages} /> 
           <ItemDescription item={item[0]}/>
         </ItemContentContainer>
       </ItemSpecificationTopContainer>

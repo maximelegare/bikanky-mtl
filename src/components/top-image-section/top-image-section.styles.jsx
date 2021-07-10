@@ -43,7 +43,7 @@ export const ImageContainer = styled.div`
 `;
 
 export const TitleContainer = styled.div`
-  color: #efcb1d;
+  color: var(--yellow-accent);
   text-align: center;
   font-size: 4rem;
   padding-top: 90px;
@@ -55,4 +55,7 @@ export const TextLogoContainer = styled.img`
   left: 50%;
   top: 58%;
   height: 180px;
+  @media only screen and (max-width: 900px) {
+    height: 120px;
+  }
 `;

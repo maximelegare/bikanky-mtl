@@ -9,16 +9,15 @@ export const IconButtonContainer = styled.span`
   margin: auto auto;
 `;
 export const IconWrapperContainer = styled.button`
-  display: flex;
-  width: 100px;
-  border-left: 1px solid #bdbdbd;
-  height: 100%;
+  /* display: flex; */
+  /* width: 50px; */
+  
   transition: 0.5s ease-in-out;
   cursor: pointer;
   border:none;
   background-color: transparent;
   
   :hover {
-    background-color: #efcb1d;
+    background-color: var(--yellow-accent);
   }
 `;

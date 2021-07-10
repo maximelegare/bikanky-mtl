@@ -2,28 +2,43 @@ import styled from "styled-components";
 
 export const ItemSpecificationTopContainer = styled.div`
   width: 70%;
-  height: 84vh;
-  margin: 0 auto ;
-  display: flex;
+  /* height: 80vh; */
+  margin: 0 auto;
   
-  @media screen and (max-width:1100px){
+  @media screen and (max-width: 1100px) {
     width: 95%;
-  } 
+  }
+  @media screen and (max-width: 900px) {
+    height: unset;
+  }
+
 `;
 
 export const ItemContentContainer = styled.div`
-width: 100%;
-height: 90%;
-margin-top: 30px;
-display: flex;
+  width: 100%;
+  /* height: 70vh; */
+  gap: 20px;
+  display: flex;
+  
 
-`
+  @media screen and (max-width: 900px) {
+    
+    display: block;
+  }
+`;
 export const ItemWrapperContainer = styled.div`
-  flex: 1;
-  width: 20%;
+  padding: 20px 0;
+  flex: ${props => props.flex};
+  width: 50%;
   height: 100%;
   background-color: white;
   border-radius: 8px 8px 8px 8px;
-  box-shadow: 0 5px 10px #1b1b1b55;
+  box-shadow: 0 5px 10px #524e4e54;
+  margin: 0 auto;
+  margin-top: 20px;
+  
+  @media screen and (max-width: 900px) {
+    width: 95%;
+    /* height: 80vh;  */
+  }
 `;
-

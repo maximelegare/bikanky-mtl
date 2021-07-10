@@ -6,7 +6,7 @@ import React from "react";
 
 const useStyles = makeStyles({
   root: {
-    backgroundColor: "#efcb1d",
+    backgroundColor: "var(--yellow-accent)",
     fontSize:15,
     fontWeight:600,
     fontFamily:'Open Sans',

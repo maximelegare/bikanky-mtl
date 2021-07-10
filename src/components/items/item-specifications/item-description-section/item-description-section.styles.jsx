@@ -8,7 +8,6 @@ margin: 0 auto;
 
 
 export const TilteContainer = styled.h1`
-margin-top: 20px;
 line-height: 1.2;
 font-family: 'Open Sans', sans-serif;
 

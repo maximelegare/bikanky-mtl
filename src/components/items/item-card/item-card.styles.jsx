@@ -30,10 +30,10 @@ export const ProductTextContainer = styled.div`
 // `;
 
 export const PriceNameContainer = styled.div`
-  width: 100%;
+  width: 80%;
   display:flex;
   align-items: center;
-  margin-left:10px ;
+  
   height: 100%;
   h4{
     color: #646464;
@@ -46,7 +46,7 @@ export const ProductPriceButtonContainer = styled.div`
   width: 100%;
   height: 100%;
   margin-top: 6%;
-  
+  justify-content: space-evenly;
   
 `;
 

@@ -1,13 +1,16 @@
 .swiper-wrapper-styles {
+  height: 50vh;
   width: 80%;
-  height: 65%;
-  margin-top: 20px;
   border-radius: 8px;
   z-index: 0;
-
+ @media screen and (max-width:600px){
+  height: 30vh;
+ } 
 }
 
-
+.swiper-pagination-bullet{
+  background-color:var(--yellow-accent);
+}
 
 .swiper-slide-styles {
   height: 150px;
@@ -16,15 +19,17 @@
   border-radius: 8px;
   z-index: 0;  
   
-  
+  @media screen and (max-width:600px){
+    display: none;
+   }
 }
 .swiper-slide-thumb-active {
-  border: 3px solid #efcb1d;
+  border: 3px solid var(--yellow-accent);
   border-radius: 12px;
 }
 
 .swiper-button-prev, .swiper-button-next{
-  color:#efcb1d;
+  color:var(--yellow-accent);
   height: 50%;
   width: 40px;
   top: 40%;

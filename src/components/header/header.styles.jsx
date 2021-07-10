@@ -39,11 +39,11 @@ export const OptionsLink = styled(NavLink)`
   font-size: 1rem;
   transition: 200ms ease-in-out;
   :hover{
-    color: #efcb1d;
+    color: var(--yellow-accent);
   }
 
   &.active{
-    color:#efcb1d;
+    color:var(--yellow-accent);
   }
   
 `;

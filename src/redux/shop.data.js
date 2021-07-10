@@ -8,7 +8,7 @@ const SHOP_DATA = {
     items: [
       {
         id: 1,
-        title: "Brown Brim",
+        title: "Badinedonpas",
         collection:'hats',
         routeName: "brown-brim",
         price: 26.00,

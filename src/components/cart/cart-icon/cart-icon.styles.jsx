@@ -10,7 +10,7 @@ export const CartIconContainer = styled.div`
   background-color: transparent;
   border: none;
   &:hover {
-    color: #efcb1d;
+    color: var(--yellow-accent);
   }
 `;
 
@@ -23,7 +23,7 @@ export const CartNumberContainer = styled.div`
   align-items: center;
   width: 30px;
   height: 30px;
-  background-color: #efcb1d;
+  background-color: var(--yellow-accent);
   border-radius: 50%;
   box-shadow: 0 0 3px #272727;
 `;

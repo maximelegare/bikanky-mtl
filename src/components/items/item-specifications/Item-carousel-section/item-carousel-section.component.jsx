@@ -2,22 +2,22 @@
 import "./swiper-carousel.styles.scss";
 import React, { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, { Thumbs, Virtual, Navigation } from "swiper/core";
-import { ItemWrapperContainer } from '../item-specifications.styles';
+import SwiperCore, { Thumbs, Virtual, Navigation, Pagination } from "swiper/core";
+import { ItemWrapperContainer } from "../item-specifications.styles";
 
 import { ProductImgContainer } from "../../../_styling-containers/img-styling-container/img-styling-containers.styles";
 
-SwiperCore.use([Thumbs, Virtual, Navigation]);
+SwiperCore.use([Thumbs, Virtual, Navigation, Pagination]);
 
 const CarouselSwiper = ({ images }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
   return (
-    <ItemWrapperContainer style={{flex:2}}>
+    <ItemWrapperContainer flex="2">
       <Swiper
         thumbs={{ swiper: thumbsSwiper }}
         className="swiper-wrapper-styles"
-        
+        pagination
         slidesPerView={1}
         spaceBetween={50}
       >
