@@ -23,27 +23,49 @@ export const HeaderContainer = styled.div`
 export const LogoContainer = styled(Link)`
   width: 3.4rem;
   height: 100%;
+  img{
+    @media (max-width: 700px) {
+    width: 2.5rem;
+    }
+  }
+
+`;
+
+// desktop view
+export const RightSectionDesktopWrapperContainer = styled.div`
+  display: flex;
+  align-items: center;
+  @media (max-width: 900px) {
+  display:none;
+  }
 `;
 
 export const OptionsContainer = styled.div``;
-
-
-export const RightSectionWrapperContainer = styled.div`
-display: flex;
-align-items: center;
-`
 
 export const OptionsLink = styled(NavLink)`
   margin: 12px;
   color: #dfdfdf;
   font-size: 1rem;
   transition: 200ms ease-in-out;
-  :hover{
+  :hover {
     color: var(--yellow-accent);
   }
 
-  &.active{
-    color:var(--yellow-accent);
+  &.active {
+    color: var(--yellow-accent);
   }
-  
 `;
+
+// mobile view
+
+export const RightSectionMobileWrapperContainer = styled.div`
+display: none;
+position: relative;
+z-index: 1;
+@media (max-width: 900px) {
+
+  display:initial;
+  }
+`
+
+

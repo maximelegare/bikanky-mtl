@@ -1,6 +1,7 @@
 body {
   /* font-family: 'Quicksand', sans-serif; */
   color: rgb(47, 52, 54);
+  overflow-x: hidden;
 }
 
 * {

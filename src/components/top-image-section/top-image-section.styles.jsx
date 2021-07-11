@@ -16,8 +16,12 @@ const selectHeight = (props) => {
 const homePageStyles = css`
   height: 35vh;
   @media only screen and (max-width: 900px) {
-    height: 25vh;
+    height: 250px;
   }
+  @media only screen and (max-width: 700px) {
+    height: 200px;
+  }
+
 `;
 
 const itemsPagesStyles = css`
@@ -54,8 +58,12 @@ export const TextLogoContainer = styled.img`
   transform: translate(-50%, -50%);
   left: 50%;
   top: 58%;
-  height: 180px;
+  height: 150px;
   @media only screen and (max-width: 900px) {
     height: 120px;
+  }
+  @media only screen and (max-width: 700px) {
+    top: 65%;
+    height: 90px;
   }
 `;

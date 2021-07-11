@@ -2,7 +2,7 @@
 
 import React from "react";
 import { ImageContainer, TextLogoContainer, TitleContainer } from "./top-image-section.styles";
-import bikankyTitleHeader from "../../assets/bikankyTitleHeader.svg";
+import bikankyTitleHeader from "../../assets/homePageHeaderTitle.svg";
 
 
 

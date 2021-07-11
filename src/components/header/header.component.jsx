@@ -1,8 +1,11 @@
 /* eslint-disable react/prop-types */
-import React from "react";
-import { selectCartVisibility } from "../../redux/cart/cart.selectors";
-
+import React, { useState, useCallback } from "react";
 import { useSelector } from "react-redux";
+import { selectCartVisibility } from "../../redux/cart/cart.selectors";
+import { HamburgerSlider } from "react-animated-burgers";
+
+import { CSSTransition } from "react-transition-group";
+
 import bikankyLogoHeader from "../../assets/logoHeader.svg";
 import {
   HeaderStylesContainer,
@@ -10,15 +13,22 @@ import {
   HeaderContainer,
   OptionsContainer,
   OptionsLink,
-  RightSectionWrapperContainer,
+  RightSectionDesktopWrapperContainer,
+  RightSectionMobileWrapperContainer,
 } from "./header.styles";
 
 import CartDropdown from "../cart/cart-dropdown/cart-dropdown.component";
-
+import SideSlider from "../side-slider/side-slider.component";
 import CartIcon from "../cart/cart-icon/cart-icon.component";
 
 const Header = () => {
   const cartVisibility = useSelector(selectCartVisibility);
+  const [isActive, setIsActive] = useState(false);
+
+  const toggleButton = useCallback(
+    () => setIsActive((prevState) => !prevState),
+    []
+  );
 
   return (
     <div>
@@ -29,7 +39,20 @@ const Header = () => {
           <LogoContainer to="/">
             <img src={bikankyLogoHeader} alt="bikanky Logo Header" />
           </LogoContainer>
-          <RightSectionWrapperContainer>
+
+          <RightSectionMobileWrapperContainer>
+            <HamburgerSlider
+              buttonWidth={30}
+              barColor={"var( --yellow-accent)"}
+              {...{ isActive, toggleButton }}
+            />
+          </RightSectionMobileWrapperContainer>
+
+          <CSSTransition >
+            <SideSlider isActive={isActive} />
+          </CSSTransition>
+
+          <RightSectionDesktopWrapperContainer>
             <OptionsContainer>
               <OptionsLink activeClassName="active" to="/creations">
                 Créations
@@ -47,7 +70,7 @@ const Header = () => {
             <div>
               <CartIcon></CartIcon>
             </div>
-          </RightSectionWrapperContainer>
+          </RightSectionDesktopWrapperContainer>
         </HeaderContainer>
       </HeaderStylesContainer>
     </div>
