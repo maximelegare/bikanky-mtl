@@ -1,10 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from "react";
 import Dropdown from "../../drop-down/drop-down.component";
-import CartDropdownItem from "../cart-dropdown-item/cart-dropdown-item.component";
-import { useSelector } from "react-redux";
 
-import { selectCartItems } from "../../../redux/cart/cart.selectors";
 
 import "simplebar/src/simplebar.css";
 
@@ -14,14 +11,13 @@ import {
   BottomSectionContainer,
   CartContainer,
   TitleContainer,
-  CartItemsSectionContainer,
-  EmptyCartMessage
+  
 } from "./cart-dropdown.styles";
 
 import CustomButton from "../../buttons/custombutton.component";
-
+import CartItemSection from "../cart-items-section/cartItemsSection.component";
 const CartDropdown = ({ margin }) => {
-  const cartItems = useSelector(selectCartItems);
+ 
   
 
   return (
@@ -33,15 +29,7 @@ const CartDropdown = ({ margin }) => {
           </TitleContainer>
           <hr />
 
-          <CartItemsSectionContainer>
-            {cartItems.length ?
-            cartItems.map(({ id, ...otherProps }) => (
-              <CartDropdownItem key={id} id={id}  {...otherProps} />
-            ))
-          :
-          (<EmptyCartMessage>Your Cart is empty</EmptyCartMessage>)
-          }
-          </CartItemsSectionContainer>
+          <CartItemSection/>          
 
           <hr />
         </CartContainer>

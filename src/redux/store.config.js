@@ -9,12 +9,13 @@ import logger from "redux-logger";
 import productsReducer from './items/items.reducers'
 import directoryRecucer from './directory/directory.reducers'
 import cartSlice from './cart/cart.slices'
-
+import sliderSlice from "./side-slider/side-slider.slice";
 
 const reducers = combineReducers({
     products: productsReducer,
     directory:directoryRecucer,
-    cart:cartSlice
+    cart:cartSlice,
+    slider:sliderSlice
 })
 
 

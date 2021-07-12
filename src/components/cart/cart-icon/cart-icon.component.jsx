@@ -15,7 +15,6 @@ import { toggleCartVisibility } from "../../../redux/cart/cart.slices";
 
 const CartIcon = () => {
     const cartItemsCount = useSelector(selectCartCount)
-    console.log(cartItemsCount)
     const dispatch = useDispatch() 
   return (
       <CartIconContainer onClick={() => dispatch(toggleCartVisibility())}>

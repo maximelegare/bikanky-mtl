@@ -1,34 +1,56 @@
 /* eslint-disable react/prop-types */
-import React, { useState, useCallback } from "react";
-import { useSelector } from "react-redux";
+import React, { useCallback, useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { selectSliderVisibility } from "../../redux/side-slider/side-slider.selectors";
+
+import { toggleSliderVisibility } from "../../redux/side-slider/side-slider.slice";
+
 import { selectCartVisibility } from "../../redux/cart/cart.selectors";
 import { HamburgerSlider } from "react-animated-burgers";
-
-import { CSSTransition } from "react-transition-group";
 
 import bikankyLogoHeader from "../../assets/logoHeader.svg";
 import {
   HeaderStylesContainer,
   LogoContainer,
   HeaderContainer,
-  OptionsContainer,
+  MobileOptionsContainer,
   OptionsLink,
   RightSectionDesktopWrapperContainer,
   RightSectionMobileWrapperContainer,
+
 } from "./header.styles";
 
 import CartDropdown from "../cart/cart-dropdown/cart-dropdown.component";
-import SideSlider from "../side-slider/side-slider.component";
+import SideSlider from "../side-slider/side-slider/side-slider.component";
 import CartIcon from "../cart/cart-icon/cart-icon.component";
+import SliderOptionsLink from "../side-slider/side-slider-options-link/side-slider-options-link.component";
+import CartSideSliderMobile from "../cart/cart-slider-mobile/cart-slider-mobile.component";
 
 const Header = () => {
   const cartVisibility = useSelector(selectCartVisibility);
-  const [isActive, setIsActive] = useState(false);
+  const sliderVisibility = useSelector(selectSliderVisibility);
+  const dispatch = useDispatch();
+
+  // sliderVisibility is set at !sliderVisibility because useEffect runs the function everyTime it changes, including when it mount. But the first time, I want the icon to be the burger, not the X
+  const [isActive, setIsActive] = useState(!sliderVisibility);
+
+  useEffect(() => {
+    console.log(sliderVisibility);
+    toggleButton();
+  }, [sliderVisibility]);
 
   const toggleButton = useCallback(
-    () => setIsActive((prevState) => !prevState),
-    []
+    () =>
+      setIsActive((prevState) => {
+        return !prevState;
+      }),
+    [sliderVisibility]
   );
+
+  const handleClickEvent = () => {
+    dispatch(toggleSliderVisibility());
+    toggleButton();
+  };
 
   return (
     <div>
@@ -40,7 +62,10 @@ const Header = () => {
             <img src={bikankyLogoHeader} alt="bikanky Logo Header" />
           </LogoContainer>
 
-          <RightSectionMobileWrapperContainer>
+          <RightSectionMobileWrapperContainer
+            onClick={() => handleClickEvent()}
+            sliderVisibility={sliderVisibility}
+          >
             <HamburgerSlider
               buttonWidth={30}
               barColor={"var( --yellow-accent)"}
@@ -48,12 +73,18 @@ const Header = () => {
             />
           </RightSectionMobileWrapperContainer>
 
-          <CSSTransition >
-            <SideSlider isActive={isActive} />
-          </CSSTransition>
+          <SideSlider>
+            <MobileOptionsContainer>
+              <SliderOptionsLink route="/creations" title="Créations" />
+              <SliderOptionsLink route="/services" title="Services" />
+              <SliderOptionsLink route="/about" title="À Propos" />
+              <SliderOptionsLink route="/contact" title="Contact" />
+              <CartSideSliderMobile/>
+            </MobileOptionsContainer>
+          </SideSlider>
 
           <RightSectionDesktopWrapperContainer>
-            <OptionsContainer>
+            <div>
               <OptionsLink activeClassName="active" to="/creations">
                 Créations
               </OptionsLink>
@@ -66,7 +97,7 @@ const Header = () => {
               <OptionsLink activeClassName="active" to="/contact">
                 Contact
               </OptionsLink>
-            </OptionsContainer>
+            </div>
             <div>
               <CartIcon></CartIcon>
             </div>

@@ -8,7 +8,7 @@ import { MainSectionContainer, LandingSectionWrapperContainer } from "./home-pag
 const HomePage = () => {
   return (
     <div>
-      <LandingSectionWrapperContainer>
+      <LandingSectionWrapperContainer >
         <TopImageSection type="home-page" />
         <MainSectionContainer>
           <DirectoryGrid />

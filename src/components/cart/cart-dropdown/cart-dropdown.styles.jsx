@@ -15,25 +15,7 @@ export const TitleContainer = styled.div`
   margin-bottom: 10px;
 `;
 
-export const CartItemsSectionContainer = styled.div`
-  margin: 10px 0;
-  width: 100%;
-  min-height: 150px;
-  max-height: 300px;
-  overflow-y: auto;
 
-  /* hides the scrollbar across browsers */
-  /* scrollbar-width: none;
-  -ms-overflow-style: none; */
-  /* &::-webkit-scrollbar-thumb{
-      background-color: red;
-      border-radius: 6px;
-  }
-  &::-webkit-scrollbar {
-    width: 12px;
-    height: 0; */
-  /* } */
-`;
 export const CartItemsList = styled.div``;
 
 export const BottomSectionContainer = styled.div`
@@ -45,7 +27,3 @@ export const ButtonWrapperContainer = styled.div`
   justify-content: center;
 `;
 
-export const EmptyCartMessage = styled.h4`
-text-align: center;
-font-weight: 400;
-`

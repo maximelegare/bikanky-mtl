@@ -4,7 +4,7 @@ export const CartDropdownWrapperContainer = styled.div`
 width: 100%;
 height: 80px;
 margin: 5px 0;
-background-color: #eeeeee;
+background-color: ${props => props.sideSlider ? 'var(--mobile-hover)' : '#f0f0f0'};
 border-radius: 8px;
 `
 export const CartDropdownContainer = styled.div`
@@ -13,15 +13,17 @@ display: flex;
 justify-content: space-evenly;
 align-items: center;
 margin:0 auto ;
+
 `
 
 export const ImageContainer = styled.div`
 background-image: ${props => `url(${props.image})`};
 background-position: center;
 background-size: cover;
-width: 70px;
-height: 70px;
+width: 4em;
+height: 4em;
 border-radius: 4px;
+
 `
 
 export const DescriptionContainer = styled.div`

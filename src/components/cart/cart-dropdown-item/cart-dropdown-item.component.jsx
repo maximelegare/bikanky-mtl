@@ -15,11 +15,11 @@ import {
   ItemQuantityAndPriceContainer,
 } from "./cart-dropdown-item.styles";
 
-const CartDropdownItem = ({ title, price, imageUrl, id, cartQuantity }) => {
+const CartDropdownItem = ({ title, price, imageUrl, id, cartQuantity, sideSlider}) => {
   const dispatch = useDispatch();
-  
+
   return (
-    <CartDropdownWrapperContainer>
+    <CartDropdownWrapperContainer sideSlider={sideSlider}>
       <CartDropdownContainer>
         <ImageContainer image={imageUrl} />
         <DescriptionContainer>
@@ -45,7 +45,8 @@ CartDropdownItem.propTypes = {
   price: PropTypes.number,
   imageUrl: PropTypes.string,
   id: PropTypes.number,
-  cartQuantity:PropTypes.number
+  cartQuantity: PropTypes.number,
+  sideSlider:PropTypes.bool
 };
 
 export default CartDropdownItem;

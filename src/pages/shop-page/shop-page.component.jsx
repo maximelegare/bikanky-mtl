@@ -14,7 +14,7 @@ const ShopPage = ({ match }) => {
   
 
   return (
-    <ShopPageContainer>
+    <ShopPageContainer >
       <Route exact path={`${match.path}`} component={ItemsPreview}/>
       <Route
         exact
