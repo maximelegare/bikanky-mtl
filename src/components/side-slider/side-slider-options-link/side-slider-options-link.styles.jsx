@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 export const OptionsLinkSlider = styled(NavLink)`
   padding: 10px;
   display: block;
-  color: #dfdfdf;
+  color: var(--mobile-slider-text-color);
   font-size: 1rem;
   
   transition: 200ms ease-in-out;   

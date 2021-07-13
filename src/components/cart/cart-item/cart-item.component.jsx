@@ -11,9 +11,8 @@ import {
   ImageContainer,
   CartDropdownContainer,
   DescriptionContainer,
-  ItemTitleContainer,
-  ItemQuantityAndPriceContainer,
-} from "./cart-dropdown-item.styles";
+  CartLeftContainer
+} from "./cart-item.styles";
 
 const CartDropdownItem = ({ title, price, imageUrl, id, cartQuantity, sideSlider}) => {
   const dispatch = useDispatch();
@@ -21,20 +20,25 @@ const CartDropdownItem = ({ title, price, imageUrl, id, cartQuantity, sideSlider
   return (
     <CartDropdownWrapperContainer sideSlider={sideSlider}>
       <CartDropdownContainer>
-        <ImageContainer image={imageUrl} />
-        <DescriptionContainer>
-          <ItemTitleContainer>{title}</ItemTitleContainer>
-          {/* <hr/> */}
-          <ItemQuantityAndPriceContainer>
-            {`${cartQuantity} x ${price.toFixed(2)}`}&thinsp;$
-          </ItemQuantityAndPriceContainer>
-        </DescriptionContainer>
-        <div
+        <CartLeftContainer>
+          <ImageContainer image={imageUrl} />
+          <DescriptionContainer sideSlider={sideSlider}>
+            <h5 className="title">{title}</h5>
+            <h5 className="price">
+              {`${cartQuantity} x ${price.toFixed(2)}`}&thinsp;$
+            </h5>
+          </DescriptionContainer>
+        </CartLeftContainer>
+        {
+          sideSlider ?
+            null :
+       ( <div 
           className="material-icons delete-icon"
           onClick={() => dispatch(deleteItemFromCart(id))}
         >
           delete
-        </div>
+        </div>)
+        }
       </CartDropdownContainer>
     </CartDropdownWrapperContainer>
   );

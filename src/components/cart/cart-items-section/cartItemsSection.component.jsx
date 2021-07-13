@@ -3,7 +3,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { selectCartItems } from '../../../redux/cart/cart.selectors';
 
-import CartDropdownItem from '../cart-dropdown-item/cart-dropdown-item.component'
+import CartDropdownItem from '../cart-item/cart-item.component'
 import { CartItemsSectionContainer, EmptyCartMessage } from './cartItemsSection.styles'
 
 const CartItemsSection = ({sideSlider}) => {
