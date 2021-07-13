@@ -2,6 +2,8 @@ import React from "react";
 import "./delete-item.styles.scss";
 import { PropTypes } from "prop-types";
 
+import { useSwipeable } from "react-swipeable";
+
 import { deleteItemFromCart } from "../../../redux/cart/cart.slices";
 
 import { useDispatch } from "react-redux";
@@ -11,14 +13,27 @@ import {
   ImageContainer,
   CartDropdownContainer,
   DescriptionContainer,
-  CartLeftContainer
+  CartLeftContainer,
+  CartDropdownSwipeSection,
 } from "./cart-item.styles";
 
-const CartDropdownItem = ({ title, price, imageUrl, id, cartQuantity, sideSlider}) => {
+const CartDropdownItem = ({
+  title,
+  price,
+  imageUrl,
+  id,
+  cartQuantity,
+  sideSlider,
+}) => {
   const dispatch = useDispatch();
+
+  const handlers = useSwipeable({
+    onSwipedLeft: () => dispatch(deleteItemFromCart(id)),
+  });
 
   return (
     <CartDropdownWrapperContainer sideSlider={sideSlider}>
+      <CartDropdownSwipeSection {...handlers} />
       <CartDropdownContainer>
         <CartLeftContainer>
           <ImageContainer image={imageUrl} />
@@ -29,16 +44,14 @@ const CartDropdownItem = ({ title, price, imageUrl, id, cartQuantity, sideSlider
             </h5>
           </DescriptionContainer>
         </CartLeftContainer>
-        {
-          sideSlider ?
-            null :
-       ( <div 
-          className="material-icons delete-icon"
-          onClick={() => dispatch(deleteItemFromCart(id))}
-        >
-          delete
-        </div>)
-        }
+        {sideSlider ? null : (
+          <div
+            className="material-icons delete-icon"
+            onClick={() => dispatch(deleteItemFromCart(id))}
+          >
+            delete
+          </div>
+        )}
       </CartDropdownContainer>
     </CartDropdownWrapperContainer>
   );
@@ -50,7 +63,7 @@ CartDropdownItem.propTypes = {
   imageUrl: PropTypes.string,
   id: PropTypes.number,
   cartQuantity: PropTypes.number,
-  sideSlider:PropTypes.bool
+  sideSlider: PropTypes.bool,
 };
 
 export default CartDropdownItem;
