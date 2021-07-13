@@ -25,9 +25,9 @@ const homePageStyles = css`
 `;
 
 const itemsPagesStyles = css`
-  height: 23vh;
+  height: 180px;
   @media only screen and (max-width: 900px) {
-    height: 15vh;
+    height: 160px;
   }
 `;
 const itemSpecificationsStyles = css`
@@ -46,11 +46,15 @@ export const ImageContainer = styled.div`
   ${selectHeight};
 `;
 
-export const TitleContainer = styled.div`
+export const TitleContainer = styled.h1`
   color: var(--yellow-accent);
   text-align: center;
-  font-size: 4rem;
-  padding-top: 90px;
+  
+  padding-top: 80px;
+  font-weight: 400;
+  @media only screen and (max-width:900px){
+    
+  }
 `;
 
 export const TextLogoContainer = styled.img`

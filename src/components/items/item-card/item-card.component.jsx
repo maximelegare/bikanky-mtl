@@ -2,7 +2,7 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
-import { PropTypes } from 'prop-types'
+import { PropTypes } from "prop-types";
 
 import { ProductImgContainer } from "../../_styling-containers/img-styling-container/img-styling-containers.styles";
 
@@ -12,15 +12,16 @@ import {
   ProductTextContainer,
   ProductPriceButtonContainer,
   PriceNameContainer,
+  IconButtonWrapperContainer
 } from "./item-card.styles";
 
-import IconButton from "../../buttons/icon-button.component";
+// import IconButton from "../../buttons/icon-button.component";
 import { addItemToCart } from "../../../redux/cart/cart.slices";
-
+import CustomButton from "../../buttons/custombutton.component";
 
 const ItemCard = ({ item, history, location }) => {
   const { imageUrl, title, price, linkUrl } = item;
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   return (
     <ItemWrapperContainer>
       <ProductImgContainer
@@ -37,13 +38,13 @@ const ItemCard = ({ item, history, location }) => {
         <ProductPriceButtonContainer>
           <PriceNameContainer>
             <div>
-              <h2>{title}</h2>
+              <h3>{title}</h3>
               <h4>{`${price.toFixed(2)}`}&thinsp;$</h4>
             </div>
           </PriceNameContainer>
-          <div onClick={() => dispatch(addItemToCart(item))}>
-            <IconButton icon="add_shopping_cart" />
-          </div>
+          <IconButtonWrapperContainer onClick={() => dispatch(addItemToCart(item))}>
+            <CustomButton icon><span className="material-icons">add_shopping_cart</span></CustomButton>
+          </IconButtonWrapperContainer>
         </ProductPriceButtonContainer>
       </ProductInfosContainer>
     </ItemWrapperContainer>
@@ -52,14 +53,13 @@ const ItemCard = ({ item, history, location }) => {
 
 ItemCard.propTypes = {
   item: PropTypes.shape({
-    imageUrl:PropTypes.string,
-    linkUrl:PropTypes.string,
-    title:PropTypes.string,
-    price:PropTypes.number,
+    imageUrl: PropTypes.string,
+    linkUrl: PropTypes.string,
+    title: PropTypes.string,
+    price: PropTypes.number,
   }),
   history: PropTypes.object,
-  location: PropTypes.object,  
-}
-
+  location: PropTypes.object,
+};
 
 export default withRouter(ItemCard);

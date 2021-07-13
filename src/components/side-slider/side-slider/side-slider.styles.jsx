@@ -29,7 +29,7 @@ const sliderAnimationCloseMobile = keyframes`
 export const SideSliderStylesContainer = styled.div`
   position: fixed;
   top: 0;
-  height: 100vh;
+  bottom: 0;
   width: 50%;
   background-color: #0c0c0cef;
   z-index: 1;
@@ -64,6 +64,6 @@ top: 0;
 left: 0;
 right: 0;
 bottom: 0;
-background-color: #18181888;
+background-color: var(--bg-color-modal);
 
 `

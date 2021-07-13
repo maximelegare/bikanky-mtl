@@ -7,10 +7,13 @@ export const ItemWrapperContainer = styled.div`
 
   box-shadow: 0 5px 10px #1b1b1b55;
   background-color: white;
-  transition:0.85s cubic-bezier(.53,-0.02,.1,1.18);
+  transition:600ms cubic-bezier(.53,-0.02,.1,1.18);
   height:40vh;
   :hover{
-    transform: scale(1.1)
+    transform: scale(1.05)
+  }
+  @media only screen and (max-width:500px){
+    height: 50vh;
   }
 `;
 
@@ -18,7 +21,10 @@ export const ProductInfosContainer = styled.div`
   /* height: 95px; */
 `;
 
-
+export const IconButtonWrapperContainer = styled.div`
+display: flex;
+align-items: center;
+`
 
 export const ProductTextContainer = styled.div`
 
@@ -33,7 +39,6 @@ export const PriceNameContainer = styled.div`
   width: 80%;
   display:flex;
   align-items: center;
-  
   height: 100%;
   h4{
     color: #646464;
@@ -45,7 +50,8 @@ export const ProductPriceButtonContainer = styled.div`
   display: flex;
   width: 100%;
   height: 100%;
-  margin-top: 6%;
+  padding: 0 5px;
+  margin-top: 5px;
   justify-content: space-evenly;
   
 `;

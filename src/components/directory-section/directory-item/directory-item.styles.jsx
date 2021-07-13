@@ -48,7 +48,7 @@ export const TextWrapperContainer = styled.div`
   background-color: #18181892;
 `;
 
-export const TextContentContainer = styled.h1`
+export const TextContentContainer = styled.h2`
   color: var(--yellow-accent);
   text-align: center;
   padding: 5px 8px;

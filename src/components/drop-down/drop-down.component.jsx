@@ -1,29 +1,29 @@
 /* eslint-disable react/prop-types */
 import React from "react";
-
 import { useDispatch } from "react-redux";
 import { toggleCartVisibility } from "../../redux/cart/cart.slices";
 import {
-  DropDownWrapperContainer,
+  // DropDownWrapperContainer,
   BackgroundContainer,
   DropDownContainer,
   TriangleContainer,
   DropdownStylesContainer,
 } from "./drop-down.styles";
 
-const Dropdown = ({ margin, children }) => {
-  const dispatch = useDispatch()
+const Dropdown = ({ margin, children, isActive }) => {
+  const dispatch = useDispatch();
 
   return (
-    <DropDownWrapperContainer style={{ marginRight: `${margin}px` }}>
+    <div style={{ marginRight: `${margin}px`, position: "relative" }}>
       <DropDownContainer>
         <TriangleContainer />
-        <DropdownStylesContainer >
-            {children}
-        </DropdownStylesContainer>
+        <DropdownStylesContainer>{children}</DropdownStylesContainer>
       </DropDownContainer>
-      <BackgroundContainer onClick={() => dispatch(toggleCartVisibility())} />
-    </DropDownWrapperContainer>
+
+      {isActive ? (
+        <BackgroundContainer onClick={() => dispatch(toggleCartVisibility())} />
+      ) : null}
+    </div>
   );
 };
 

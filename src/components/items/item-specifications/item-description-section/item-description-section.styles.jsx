@@ -7,7 +7,7 @@ margin: 0 auto;
 `
 
 
-export const TilteContainer = styled.h1`
+export const TilteContainer = styled.h2`
 line-height: 1.2;
 font-family: 'Open Sans', sans-serif;
 
@@ -23,7 +23,7 @@ display: flex;
 justify-content: space-between;
 align-items: center;
 `
-export const PriceContainer = styled.h2`
+export const PriceContainer = styled.h3`
 
 `
 export const StockAvailabilityContainer = styled.div`

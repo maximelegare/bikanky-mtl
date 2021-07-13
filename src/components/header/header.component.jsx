@@ -1,4 +1,7 @@
 /* eslint-disable react/prop-types */
+
+import "./cart.animation.scss";
+
 import React, { useCallback, useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { selectSliderVisibility } from "../../redux/side-slider/side-slider.selectors";
@@ -17,7 +20,6 @@ import {
   OptionsLink,
   RightSectionDesktopWrapperContainer,
   RightSectionMobileWrapperContainer,
-
 } from "./header.styles";
 
 import CartDropdown from "../cart/cart-dropdown/cart-dropdown.component";
@@ -53,7 +55,11 @@ const Header = () => {
 
   return (
     <div>
-      {cartVisibility ? <CartDropdown /> : null}
+      {
+        cartVisibility?
+        <CartDropdown isActive={cartVisibility} />
+        : null
+      } 
 
       <HeaderStylesContainer>
         <HeaderContainer>
@@ -78,7 +84,7 @@ const Header = () => {
               <SliderOptionsLink route="/services" title="Services" />
               <SliderOptionsLink route="/about" title="À Propos" />
               <SliderOptionsLink route="/contact" title="Contact" />
-              <CartSideSliderMobile/>
+              <CartSideSliderMobile />
             </MobileOptionsContainer>
           </SideSlider>
 

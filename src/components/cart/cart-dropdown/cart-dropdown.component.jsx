@@ -2,7 +2,6 @@
 import React from "react";
 import Dropdown from "../../drop-down/drop-down.component";
 
-
 import "simplebar/src/simplebar.css";
 
 import {
@@ -11,17 +10,12 @@ import {
   BottomSectionContainer,
   CartContainer,
   TitleContainer,
-  
 } from "./cart-dropdown.styles";
-
 import CustomButton from "../../buttons/custombutton.component";
 import CartItemSection from "../cart-items-section/cartItemsSection.component";
-const CartDropdown = ({ margin }) => {
- 
-  
-
+const CartDropdown = ({ margin, isActive }) => {
   return (
-    <Dropdown margin={margin}>
+    <Dropdown margin={margin} isActive={isActive}>
       <CartDDContainerDimensions>
         <CartContainer>
           <TitleContainer>
@@ -29,7 +23,7 @@ const CartDropdown = ({ margin }) => {
           </TitleContainer>
           <hr />
 
-          <CartItemSection/>          
+          <CartItemSection />
 
           <hr />
         </CartContainer>

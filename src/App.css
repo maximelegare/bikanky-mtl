@@ -4,5 +4,10 @@
   --mobile-hover:#1f1f1fc5;
   --mobile-line:#333333;
   --mobile-slider-text-color:#dfdfdf;
+  --pale-button-on-white-bg:#fafafa;
+  --bg-color-modal:#1f1f1f67;
+
+  --light-box-shadow:0px 3px 5px rgb(231, 231, 231); 
+  --medium-box-shadow:0 3px 8px #3d3d3d;
 }
 

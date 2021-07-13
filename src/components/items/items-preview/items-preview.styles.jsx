@@ -4,10 +4,7 @@ export const ItemsPreviewContainer = styled.div`
   width: 75%;
   margin: 40px auto 0;
   @media screen and (max-width: 1300px) {
-    width: 95%;
-  }
-  @media screen and (max-width: 900px) {
-    width: 80%;
+    width: 90%;
   }
 `;
 
@@ -28,7 +25,7 @@ export const ItemsListContainer = styled.div`
   }
 `;
 
-export const TitleContainer = styled.h1`
+export const TitleContainer = styled.h2`
   margin-bottom: 20px;
   cursor: pointer;
   /* width: 50%; */

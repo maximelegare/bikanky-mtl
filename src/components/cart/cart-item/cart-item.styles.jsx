@@ -11,19 +11,8 @@ export const CartDropdownWrapperContainer = styled.div`
   
 `;
 
-// this section sits on top of every swipe cart items to make sure the right element is selected when a user swipe
-export const CartDropdownSwipeSection = styled.div`
-  position: absolute;
-  /* background-color: #000000c7; */
-  z-index: 10;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  &.delete-item{
-    background-color: red;
-  }
-`;
+
+
 
 export const CartDropdownContainer = styled.div`
   height: 100%;

@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const CartIconContainer = styled.div`
-  height: 100%;
   display: inline-block;
   position: relative;
   color: white;

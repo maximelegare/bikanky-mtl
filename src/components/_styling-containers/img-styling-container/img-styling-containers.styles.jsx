@@ -18,7 +18,10 @@ const selectStyles = (props) => {
 const cardStyles = css`
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
-  height: 75%;
+  height: 70%;
+  @media only screen and (max-width:800px){
+    height: 80%;
+  }
 `
 const sliderStyles = css`
 border-radius: 8px;

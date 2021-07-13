@@ -1,6 +1,9 @@
-/* eslint-disable react/prop-types */
+
 import Button from "@material-ui/core/Button";
+import IconButton from "@material-ui/core/IconButton";
 import { makeStyles } from "@material-ui/core/styles";
+import { PropTypes } from 'prop-types'
+
 
 import React from "react";
 
@@ -14,20 +17,35 @@ const useStyles = makeStyles({
       backgroundColor: "#f7d321",
     },
   },
+  iconClass:{
+    color:'black',
+    "&:hover": {
+      backgroundColor: "#f7d3215a",
+    },
+  }
 });
 
-const CustomButton = ({ children }) => {
+const CustomButton = ({ children, icon }) => {
   const classes = useStyles();
 
   return (
-    <Button
+    icon ?
+    (<IconButton classes={{root: classes.iconClass}} variant="contained">{children}</IconButton>)
+    :
+    (<Button
       classes={{ root: classes.root }}
       variant="contained"
-      // color="primary"
+      
     >
       {children}
-    </Button>
+    </Button>)
   );
 };
+
+CustomButton.propTypes = {
+  children: PropTypes.any,
+  icon: PropTypes.bool
+}
+
 
 export default CustomButton;

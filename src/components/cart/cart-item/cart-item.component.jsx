@@ -14,7 +14,7 @@ import {
   CartDropdownContainer,
   DescriptionContainer,
   CartLeftContainer,
-  CartDropdownSwipeSection,
+ 
 } from "./cart-item.styles";
 
 const CartDropdownItem = ({
@@ -32,8 +32,8 @@ const CartDropdownItem = ({
   });
 
   return (
-    <CartDropdownWrapperContainer sideSlider={sideSlider}>
-      <CartDropdownSwipeSection {...handlers} />
+    <CartDropdownWrapperContainer {...handlers} sideSlider={sideSlider}>
+      
       <CartDropdownContainer>
         <CartLeftContainer>
           <ImageContainer image={imageUrl} />
