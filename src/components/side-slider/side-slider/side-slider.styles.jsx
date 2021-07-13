@@ -5,13 +5,13 @@ const sliderAnimationEnterTablet = keyframes`
         right:-50%
     }
     to{
-        right:-5%
+        right:-2%
     }
 `;
 
 const sliderAnimationCloseTablet = keyframes`
     from {
-        right:-5%
+        right:-2%
     }
     to{
         right:-50%
@@ -19,7 +19,7 @@ const sliderAnimationCloseTablet = keyframes`
 `;
 const sliderAnimationCloseMobile = keyframes`
     from {
-        right:-5%
+        right:-2%
     }
     to{
         right:-75%
@@ -33,7 +33,7 @@ export const SideSliderStylesContainer = styled.div`
   width: 50%;
   background-color: #0c0c0cef;
   z-index: 1;
-  right: -5%;
+  right: -2%;
   box-shadow: 0 3px 8px #0f0f0f;
 
   &.slider-enter-active {

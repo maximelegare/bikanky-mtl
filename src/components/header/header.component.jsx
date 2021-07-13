@@ -35,7 +35,6 @@ const Header = () => {
   const [isActive, setIsActive] = useState(!sliderVisibility);
 
   useEffect(() => {
-    console.log(sliderVisibility);
     toggleButton();
   }, [sliderVisibility]);
 

@@ -5,7 +5,7 @@ import {SliderCartContainer} from "./cart-slider-mobile.styles";
 const CartSideSliderMobile = () => {
   return (
     <SliderCartContainer>
-      <h4>Cart</h4>
+      <h4>Votre panier&thinsp;:</h4>
       <CartItemsSection sideSlider />
     </SliderCartContainer>
   );

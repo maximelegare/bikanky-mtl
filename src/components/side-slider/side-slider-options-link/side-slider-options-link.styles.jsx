@@ -6,7 +6,7 @@ export const OptionsLinkSlider = styled(NavLink)`
   display: block;
   color: var(--mobile-slider-text-color);
   font-size: 1rem;
-  
+  width: 120%;
   transition: 200ms ease-in-out;   
   border-top: 1px solid var(--mobile-line);
   :hover {
