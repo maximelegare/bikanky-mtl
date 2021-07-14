@@ -28,7 +28,7 @@ const ItemsOverview = ({ collection: { title, items } }) => {
     <div>
       <TopImageSection type="items-page">{title}</TopImageSection>
 
-      <ItemsPreviewContainer style={{ marginTop: "100px" }}>
+      <ItemsPreviewContainer>
         <ItemsListContainer>
           {items.map((item) => (
             <Item key={item.id} item={item}></Item>

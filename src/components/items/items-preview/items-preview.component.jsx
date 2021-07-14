@@ -6,6 +6,7 @@ import {
   ItemsPreviewContainer,
   ItemsListContainer,
   TitleContainer,
+  TitleWrapperContainer,
 } from "./items-preview.styles";
 import Item from "../item-card/item-card.component";
 import { connect } from "react-redux";
@@ -23,7 +24,13 @@ const ItemsPreview = ({ itemsCategories, history }) => {
       {/* select all categories and map */}
       {Object.values(itemsCategories).map(({ id, title, items, linkUrl }) => (
         <ItemsPreviewContainer key={id}>
-          <TitleContainer onClick={() => history.push(linkUrl)}>{title.toUpperCase()}</TitleContainer>
+          <TitleWrapperContainer>
+            <TitleContainer onClick={() => history.push(linkUrl)}>
+              {title.toUpperCase()}
+              <sup>voir&nbsp;plus</sup>
+            </TitleContainer>
+            <hr />
+          </TitleWrapperContainer>
           <ItemsListContainer>
             {/* select items, filter only four items, then map */}
             {items
