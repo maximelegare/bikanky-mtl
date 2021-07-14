@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
 
-import "./cart.animation.scss";
 
 import React, { useCallback, useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
@@ -29,6 +28,7 @@ import SliderOptionsLink from "../side-slider/side-slider-options-link/side-slid
 import CartSideSliderMobile from "../cart/cart-slider-mobile/cart-slider-mobile.component";
 
 const Header = () => {
+
   const cartVisibility = useSelector(selectCartVisibility);
   const sliderVisibility = useSelector(selectSliderVisibility);
   const dispatch = useDispatch();
@@ -55,11 +55,7 @@ const Header = () => {
 
   return (
     <div>
-      {
-        cartVisibility?
-        <CartDropdown isActive={cartVisibility} />
-        : null
-      } 
+      <CartDropdown isActive={cartVisibility} />
 
       <HeaderStylesContainer>
         <HeaderContainer>

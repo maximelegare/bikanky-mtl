@@ -1,10 +1,32 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
+const cartEnterAnimation = keyframes`
+    0% {
+        opacity:0;
+        top:90px;
+    }
+    20%{
+        opacity:1
+    }
+    100%{
+        top:80px
+    }
+`;
 
-
+const cartExitAnimation = keyframes`
+    0% {
+        opacity:1;
+        top:80px
+    }
+    100%{
+        opacity:0;
+        top:90px
+        
+    }
+`;
 
 export const DropDownWrapperContainer = styled.div`
-  
+  position: relative;
 `;
 export const DropDownContainer = styled.div`
   position: absolute;
@@ -13,6 +35,15 @@ export const DropDownContainer = styled.div`
   top: 80px;
   margin-right: 5%;
 
+  &.cart-enter-active {
+    animation: ${cartEnterAnimation} 0.6s cubic-bezier(0.05, 0.74, 0.26, 1)
+      forwards;
+  }
+
+  &.cart-exit-active {
+    animation: ${cartExitAnimation} 0.2s cubic-bezier(0.33, -0.36, 0.42, 0.97)
+      forwards;
+  }
 `;
 export const TriangleContainer = styled.div`
   width: 0px;
