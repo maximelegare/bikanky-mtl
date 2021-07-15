@@ -1,5 +1,5 @@
 import React from "react";
-import Dropdown from "../drop-down/drop-down.component";
+import Dropdown from "../dropdown-bones/drop-down.component";
 import { PropTypes } from "prop-types";
 import { Link } from "react-router-dom";
 import {
@@ -7,7 +7,7 @@ import {
   ContentWrapperContainer,
 } from "./signin-signup-dropdown.styles";
 
-import CustomButton from "../buttons/material-ui/custombutton.component";
+import CustomButton from "../../buttons/material-ui/custombutton.component";
 
 const SigninAndSignupDropdown = ({ isActive, margin }) => {
   return (

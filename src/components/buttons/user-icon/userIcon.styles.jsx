@@ -8,9 +8,14 @@ color: white;
 background-color: transparent;
 border: none;
 font-size: 2rem;
-padding: 10px;
+/* padding: 10px; */
 cursor: pointer;
 transition:300ms ease-in-out;
+height: 100%;
+/* padding: 2px; */
+height: 20px;
+  width: 20px;
+  margin:0 12px;
 :hover{
     color: var(--yellow-accent);
 

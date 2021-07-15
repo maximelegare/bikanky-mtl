@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  signInVisibility: true,
+  signInVisibility: false,
   cartVisibility:false
 };
 

@@ -18,21 +18,22 @@ import {
   RightSectionMobileWrapperContainer,
 } from "./header.styles";
 
-import CartDropdown from "../cart/cart-dropdown/cart-dropdown.component";
+import CartDropdown from "../drop-down/cart-dropdown/cart-dropdown.component";
 import SideSlider from "../side-slider/side-slider/side-slider.component";
 import CartIcon from "../buttons/cart-icon/cart-icon.component";
 import SliderOptionsLink from "../side-slider/side-slider-options-link/side-slider-options-link.component";
 import CartSideSliderMobile from "../cart/cart-slider-mobile/cart-slider-mobile.component";
 import UserIconButton from "../buttons/user-icon/userIcon.component";
-import SigninAndSignupDropdown from "../sigin-and-signup/signin-signup-dropdown.component";
+import SigninAndSignupDropdown from "../drop-down/signin-signup-dropdown/signin-signup-dropdown.component";
+import DropdownWithTransitions from "../drop-down/dropdown-with-transitions/dropdown-with-transitions.component";
 
 import { selectCartVisibility } from "../../redux/dropdown-elements-visibility/dropdown.selector";
 import { selectSignInVisibility } from "../../redux/dropdown-elements-visibility/dropdown.selector";
 
 const Header = () => {
   const sliderVisibility = useSelector(selectSliderVisibility);
-  const cartVisibility = useSelector(selectCartVisibility)
-  const signinVisibility = useSelector(selectSignInVisibility)
+  const cartVisibility = useSelector(selectCartVisibility);
+  const signinVisibility = useSelector(selectSignInVisibility);
 
   const dispatch = useDispatch();
 
@@ -58,9 +59,6 @@ const Header = () => {
 
   return (
     <div>
-      <CartDropdown margin="64" isActive={cartVisibility} />
-      <SigninAndSignupDropdown margin="12" isActive={signinVisibility}/>
-
       <HeaderStylesContainer>
         <HeaderContainer>
           <LogoContainer to="/">
@@ -103,13 +101,20 @@ const Header = () => {
                 Contact
               </OptionsLink>
             </div>
-            <div>
-              <CartIcon></CartIcon>
-            </div>
-            {/* <span style={{width:'20px'}}/> */}
-            <div >
-              <UserIconButton>account_circle</UserIconButton>
-            </div>
+            <DropdownWithTransitions
+              isActive={cartVisibility}
+              icon={<CartIcon />}
+              dropdownEl={<CartDropdown margin="45" />}
+              type="cartVisibility"
+            />
+
+            <DropdownWithTransitions
+              isActive={signinVisibility}
+              icon={<UserIconButton>account_circle</UserIconButton>}
+              dropdownEl={<SigninAndSignupDropdown margin="-1" />}
+              type="signInVisibility"
+            />
+
           </RightSectionDesktopWrapperContainer>
         </HeaderContainer>
       </HeaderStylesContainer>

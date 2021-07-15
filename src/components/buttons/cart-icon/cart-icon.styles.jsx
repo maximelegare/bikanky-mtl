@@ -8,7 +8,10 @@ export const CartIconContainer = styled.div`
   cursor: pointer;
   background-color: transparent;
   border: none;
-  margin:12px;
+  margin:0 12px;
+  height: 20px;
+  width: 20px;
+  height: 100%;
   &:hover {
     color: var(--yellow-accent);
   }

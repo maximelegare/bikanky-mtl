@@ -1,5 +1,5 @@
 import React from "react";
-import Dropdown from "../../drop-down/drop-down.component";
+import Dropdown from "../../drop-down/dropdown-bones/drop-down.component";
 
 import "simplebar/src/simplebar.css";
 
@@ -11,7 +11,7 @@ import {
   TitleContainer,
 } from "./cart-dropdown.styles";
 import CustomButton from "../../buttons/material-ui/custombutton.component";
-import CartItemSection from "../cart-items-section/cartItemsSection.component";
+import CartItemsSection from "../../cart/cart-items-section/cartItemsSection.component";
 const CartDropdown = ({...props}) => {
   return (
     <Dropdown {...props}>
@@ -22,7 +22,7 @@ const CartDropdown = ({...props}) => {
           </TitleContainer>
           <hr />
 
-          <CartItemSection />
+          <CartItemsSection />
 
           <hr />
         </CartContainer>
