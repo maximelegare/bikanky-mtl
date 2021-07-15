@@ -10,9 +10,10 @@ export const HeaderStylesContainer = styled.div`
   background-color: #1a1a1f99;
   display: flex;
   align-items: center;
-  z-index: 10;
+  z-index: 300;
 `;
 export const HeaderContainer = styled.div`
+
   width: 90%;
   margin: 0 auto;
   display: flex;
@@ -32,6 +33,7 @@ export const LogoContainer = styled(Link)`
 
 // desktop view
 export const RightSectionDesktopWrapperContainer = styled.div`
+  
   display: flex;
   align-items: center;
   @media (max-width: 900px) {
@@ -48,6 +50,8 @@ export const MobileOptionsContainer = styled.div`
 
 
 export const OptionsLink = styled(NavLink)`
+  position: relative;
+  z-index: 10;
   margin: 12px;
   color: #dfdfdf;
   font-size: 1rem;

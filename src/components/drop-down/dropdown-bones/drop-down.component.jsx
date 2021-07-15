@@ -11,12 +11,14 @@ const Dropdown = ({ margin, children }) => {
   // const dispatch = useDispatch();
 
   return (
-    <DropDownContainer margin={margin}>
-      <TriangleWrapperContainer>
-        <TriangleContainer />
-      </TriangleWrapperContainer>
-      <DropdownStylesContainer>{children}</DropdownStylesContainer>
-    </DropDownContainer>
+    
+      <DropDownContainer margin={margin}>
+        <TriangleWrapperContainer>
+          <TriangleContainer />
+        </TriangleWrapperContainer>
+        <DropdownStylesContainer>{children}</DropdownStylesContainer>
+      </DropDownContainer>
+    
   );
 };
 

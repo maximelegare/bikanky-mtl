@@ -10,12 +10,13 @@ const dropdownSlice = createSlice({
   initialState,
   reducers: {
     toggleDropdownVisibility(state, action) {
-      const value = action.payload.value
+      state[action.payload.type] = action.payload.value
+      // const value = action.payload.value
   
-      return {
-        ...state,
-        [action.payload.type]:value
-      }
+      // return {
+      //   ...state,
+      //   [action.payload.type]:value
+      // }
       
     },
   },

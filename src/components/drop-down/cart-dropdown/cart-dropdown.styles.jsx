@@ -1,11 +1,12 @@
 import styled from "styled-components";
 
 export const CartWrapperContainer = styled.div`
-  width: 350px;
+  width: 300px;
 `;
 export const CartContainer = styled.div`
   width: 90%;
   margin: 0 auto;
+  
 `;
 
 export const TitleContainer = styled.div`

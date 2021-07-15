@@ -102,19 +102,17 @@ const Header = () => {
               </OptionsLink>
             </div>
             <DropdownWithTransitions
-              isActive={cartVisibility}
-              icon={<CartIcon />}
-              dropdownEl={<CartDropdown margin="45" />}
-              type="cartVisibility"
-            />
-
-            <DropdownWithTransitions
               isActive={signinVisibility}
               icon={<UserIconButton>account_circle</UserIconButton>}
-              dropdownEl={<SigninAndSignupDropdown margin="-1" />}
+              dropdownEl={<SigninAndSignupDropdown margin="55" />}
               type="signInVisibility"
             />
-
+            <DropdownWithTransitions
+              isActive={cartVisibility}
+              icon={<CartIcon />}
+              dropdownEl={<CartDropdown margin="0" />}
+              type="cartVisibility"
+            />
           </RightSectionDesktopWrapperContainer>
         </HeaderContainer>
       </HeaderStylesContainer>

@@ -4,21 +4,21 @@ import styled from "styled-components";
 
 export const DropDownContainer = styled.div`
   ${(props) => `margin-right: calc(5% + ${props.margin}px)`};
-  position: absolute;
+  /* margin-right:20%; */
+  /* position: inherit; */
   z-index: 100;
+  position: absolute;
+  /* transform: translate(-50%, 0); */
   right: 0;
-  margin-top: 7px;
-
-
 `;
 
 export const TriangleWrapperContainer = styled.div`
   position: absolute;
-  margin-top: -17px;
+  margin-top: -20px;
   margin-right: 6px;
   right: 0;
-  padding:4px;
-  padding-top: 7px;
+  padding:13px;
+  padding-top: 15px;
   
 `;
 

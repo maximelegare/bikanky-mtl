@@ -3,15 +3,18 @@ import styled from "styled-components";
 export const CartIconContainer = styled.div`
   display: inline-block;
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
   color: white;
   transition: 0.3s ease-in-out;
   cursor: pointer;
   background-color: transparent;
   border: none;
-  margin:0 12px;
-  height: 20px;
-  width: 20px;
-  height: 100%;
+  width: 2rem;
+  height: 2.6rem;
+  /* margin:0 12px; */
   &:hover {
     color: var(--yellow-accent);
   }
@@ -20,6 +23,7 @@ export const CartIconContainer = styled.div`
 export const CartNumberContainer = styled.div`
   display: flex;
   position: absolute;
+  margin-left: -2px;
   transform: translate(-50%, -50%);
   left: 100%;
   justify-content: center;
