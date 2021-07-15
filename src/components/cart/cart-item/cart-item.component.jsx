@@ -1,5 +1,4 @@
 import React from "react";
-import "./delete-item.styles.scss";
 import { PropTypes } from "prop-types";
 
 import { useSwipeable } from "react-swipeable";
@@ -8,13 +7,14 @@ import { deleteItemFromCart } from "../../../redux/cart/cart.slices";
 
 import { useDispatch } from "react-redux";
 
+import CustomButton from "../../buttons/material-ui/custombutton.component";
+
 import {
   CartDropdownWrapperContainer,
   ImageContainer,
   CartDropdownContainer,
   DescriptionContainer,
   CartLeftContainer,
- 
 } from "./cart-item.styles";
 
 const CartDropdownItem = ({
@@ -33,7 +33,6 @@ const CartDropdownItem = ({
 
   return (
     <CartDropdownWrapperContainer {...handlers} sideSlider={sideSlider}>
-      
       <CartDropdownContainer>
         <CartLeftContainer>
           <ImageContainer image={imageUrl} />
@@ -45,11 +44,10 @@ const CartDropdownItem = ({
           </DescriptionContainer>
         </CartLeftContainer>
         {sideSlider ? null : (
-          <div
-            className="material-icons delete-icon"
-            onClick={() => dispatch(deleteItemFromCart(id))}
-          >
-            delete
+          <div onClick={() => dispatch(deleteItemFromCart(id))}>
+            <CustomButton type="icon" deleteIcon>
+              delete
+            </CustomButton>
           </div>
         )}
       </CartDropdownContainer>

@@ -10,12 +10,15 @@ import productsReducer from './items/items.reducers'
 import directoryRecucer from './directory/directory.reducers'
 import cartSlice from './cart/cart.slices'
 import sliderSlice from "./side-slider/side-slider.slice";
+import dropdownSlice from "./dropdown-elements-visibility/dropdown.slice";
+
 
 const reducers = combineReducers({
     products: productsReducer,
     directory:directoryRecucer,
     cart:cartSlice,
-    slider:sliderSlice
+    slider:sliderSlice,
+    dropdown:dropdownSlice
 })
 
 

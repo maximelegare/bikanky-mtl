@@ -25,16 +25,13 @@ const cartExitAnimation = keyframes`
     }
 `;
 
-export const DropDownWrapperContainer = styled.div`
-  position: relative;
-`;
 export const DropDownContainer = styled.div`
-  position: absolute;
+  ${props => `margin-right: calc(5% + ${props.margin}px)`};
+  position: absolute; 
   z-index: 100;
   right: 0;
   top: 80px;
-  margin-right: 5%;
-
+  
   &.cart-enter-active {
     animation: ${cartEnterAnimation} 0.6s cubic-bezier(0.05, 0.74, 0.26, 1)
       forwards;
@@ -45,6 +42,7 @@ export const DropDownContainer = styled.div`
       forwards;
   }
 `;
+
 export const TriangleContainer = styled.div`
   width: 0px;
   height: 0px;
@@ -57,10 +55,14 @@ export const TriangleContainer = styled.div`
   right: 0;
 `;
 
+
 export const DropdownStylesContainer = styled.div`
   background-color: var(--div-bg-color);
   border-radius: 8px;
   box-shadow: var(--medium-box-shadow);
+  min-width: 50px;
+  min-height: 50px;
+  
 `;
 
 export const BackgroundContainer = styled.div`
@@ -71,19 +73,4 @@ export const BackgroundContainer = styled.div`
   right: 0;
   position: fixed;
   z-index: 1;
-
-  .background-enter {
-    opacity: 0;
-  }
-  .background-enter-active {
-    opacity: 1;
-    transition: opacity 200ms;
-  }
-  .background-exit {
-    opacity: 1;
-  }
-  .background-exit-active {
-    opacity: 0;
-    transition: opacity 200ms;
-  }
 `;

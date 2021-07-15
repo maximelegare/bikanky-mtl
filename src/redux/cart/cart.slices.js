@@ -3,16 +3,12 @@ import { addItemToCartUtil } from './cart.utils'
 
 
 const initialState = {
-  cartVisibility: true,
   cartItems:[]
 };
 const cartSlice = createSlice({
   name: "cartSlice",
   initialState,
   reducers: {
-    toggleCartVisibility(state){
-        state.cartVisibility = !state.cartVisibility
-    },
     addItemToCart(state, action){
       state.cartItems = addItemToCartUtil(state.cartItems, action.payload)
       // state.cartItems.push(action.payload)
@@ -25,4 +21,4 @@ const cartSlice = createSlice({
 
 export default cartSlice.reducer
 
-export const { toggleCartVisibility, addItemToCart, deleteItemFromCart } = cartSlice.actions
+export const { addItemToCart, deleteItemFromCart } = cartSlice.actions

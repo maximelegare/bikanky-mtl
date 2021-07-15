@@ -9,6 +9,10 @@ import ShopPage from './pages/shop-page/shop-page.component';
 // import ItemSpecifications  from './components/items/item-specifications/item-specifications.component'
 
 
+// eslint-disable-next-line no-undef
+
+
+
 
 function App() {
 

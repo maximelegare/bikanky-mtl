@@ -1,13 +1,10 @@
 /* eslint-disable react/prop-types */
-
-
 import React, { useCallback, useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { selectSliderVisibility } from "../../redux/side-slider/side-slider.selectors";
 
 import { toggleSliderVisibility } from "../../redux/side-slider/side-slider.slice";
 
-import { selectCartVisibility } from "../../redux/cart/cart.selectors";
 import { HamburgerSlider } from "react-animated-burgers";
 
 import bikankyLogoHeader from "../../assets/logoHeader.svg";
@@ -23,14 +20,20 @@ import {
 
 import CartDropdown from "../cart/cart-dropdown/cart-dropdown.component";
 import SideSlider from "../side-slider/side-slider/side-slider.component";
-import CartIcon from "../cart/cart-icon/cart-icon.component";
+import CartIcon from "../buttons/cart-icon/cart-icon.component";
 import SliderOptionsLink from "../side-slider/side-slider-options-link/side-slider-options-link.component";
 import CartSideSliderMobile from "../cart/cart-slider-mobile/cart-slider-mobile.component";
+import UserIconButton from "../buttons/user-icon/userIcon.component";
+import SigninAndSignupDropdown from "../sigin-and-signup/signin-signup-dropdown.component";
+
+import { selectCartVisibility } from "../../redux/dropdown-elements-visibility/dropdown.selector";
+import { selectSignInVisibility } from "../../redux/dropdown-elements-visibility/dropdown.selector";
 
 const Header = () => {
-
-  const cartVisibility = useSelector(selectCartVisibility);
   const sliderVisibility = useSelector(selectSliderVisibility);
+  const cartVisibility = useSelector(selectCartVisibility)
+  const signinVisibility = useSelector(selectSignInVisibility)
+
   const dispatch = useDispatch();
 
   // sliderVisibility is set at !sliderVisibility because useEffect runs the function everyTime it changes, including when it mount. But the first time, I want the icon to be the burger, not the X
@@ -55,7 +58,8 @@ const Header = () => {
 
   return (
     <div>
-      <CartDropdown isActive={cartVisibility} />
+      <CartDropdown margin="64" isActive={cartVisibility} />
+      <SigninAndSignupDropdown margin="12" isActive={signinVisibility}/>
 
       <HeaderStylesContainer>
         <HeaderContainer>
@@ -101,6 +105,10 @@ const Header = () => {
             </div>
             <div>
               <CartIcon></CartIcon>
+            </div>
+            {/* <span style={{width:'20px'}}/> */}
+            <div >
+              <UserIconButton>account_circle</UserIconButton>
             </div>
           </RightSectionDesktopWrapperContainer>
         </HeaderContainer>

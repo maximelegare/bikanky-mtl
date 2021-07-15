@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
 import React, { useRef } from "react";
 import { CSSTransition } from "react-transition-group";
-import { useDispatch } from "react-redux";
-import { toggleCartVisibility } from "../../redux/cart/cart.slices";
+// import { useDispatch } from "react-redux";
+// import { toggleCartVisibility } from "../../redux/cart/cart.slices";
 import {
   // DropDownWrapperContainer,
   BackgroundContainer,
@@ -12,25 +12,25 @@ import {
 } from "./drop-down.styles";
 
 const Dropdown = ({ margin, children, isActive }) => {
-  const dispatch = useDispatch();
-  const modalRef = useRef()
+  // const dispatch = useDispatch();
+  const modalRef = useRef();
 
   return (
-    <div style={{ marginRight: `${margin}px` }}>
-      <CSSTransition 
-      in={isActive}
-      timeout={200}
-      classNames="cart"
-      nodeRef={modalRef}
-      unmountOnExit={true}
+    <div>
+      <CSSTransition
+        in={isActive}
+        timeout={200}
+        classNames="cart"
+        nodeRef={modalRef}
+        unmountOnExit={true}
       >
-        <DropDownContainer ref={modalRef}>
+        <DropDownContainer ref={modalRef} margin={margin}>
           <TriangleContainer />
           <DropdownStylesContainer>{children}</DropdownStylesContainer>
         </DropDownContainer>
       </CSSTransition>
       {isActive ? (
-        <BackgroundContainer onClick={() => dispatch(toggleCartVisibility())} />
+        <BackgroundContainer  />
       ) : null}
     </div>
   );

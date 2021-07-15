@@ -8,6 +8,7 @@ export const CartIconContainer = styled.div`
   cursor: pointer;
   background-color: transparent;
   border: none;
+  margin:12px;
   &:hover {
     color: var(--yellow-accent);
   }

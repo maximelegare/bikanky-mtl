@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const CartDDContainerDimensions = styled.div`
+export const CartWrapperContainer = styled.div`
   width: 350px;
 `;
 export const CartContainer = styled.div`
@@ -15,8 +15,6 @@ export const TitleContainer = styled.div`
   margin-bottom: 10px;
 `;
 
-
-export const CartItemsList = styled.div``;
 
 export const BottomSectionContainer = styled.div`
   padding-bottom: 20px;
