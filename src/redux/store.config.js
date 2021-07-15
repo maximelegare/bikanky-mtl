@@ -26,7 +26,7 @@ const reducers = combineReducers({
 const persistConfig = {
     key:'root',
     storage,
-    whitelist:['slider']
+    whitelist:['cart']
 }
 
 const persistedReducer = persistReducer(persistConfig, reducers)
@@ -34,8 +34,10 @@ const persistedReducer = persistReducer(persistConfig, reducers)
 
 export const store = configureStore({
     reducer:persistedReducer,
-    // devTools: process.env.NODE_ENV !== 'production',
+    
     // eslint-disable-next-line no-undef
+    devTools: process.env.NODE_ENV !== 'production',
+    
     middleware: [logger]
 })
 

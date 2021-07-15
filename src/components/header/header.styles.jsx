@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 
 export const HeaderStylesContainer = styled.div`
+  z-index: 10;
   width: 100%;
   height: 2.6rem;
   position: absolute;
@@ -13,7 +14,7 @@ export const HeaderStylesContainer = styled.div`
   z-index: 300;
 `;
 export const HeaderContainer = styled.div`
-
+  
   width: 90%;
   margin: 0 auto;
   display: flex;
@@ -22,6 +23,8 @@ export const HeaderContainer = styled.div`
 `;
 
 export const LogoContainer = styled(Link)`
+  position: relative;
+  z-index: 10;
   width: 3.4rem;
   height: 100%;
   img {

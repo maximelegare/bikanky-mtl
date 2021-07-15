@@ -1,27 +1,29 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  signInVisibility: false,
-  cartVisibility:false
+  signInVisibility: {
+    hover: false,
+    click: false,
+  },
+  cartVisibility: {
+    hover: false,
+    click: false,
+  },
 };
 
 const dropdownSlice = createSlice({
   name: "dropdown",
   initialState,
   reducers: {
-    toggleDropdownVisibility(state, action) {
-      state[action.payload.type] = action.payload.value
-      // const value = action.payload.value
-  
-      // return {
-      //   ...state,
-      //   [action.payload.type]:value
-      // }
-      
+    toggleHoverDropdownVisibility(state, action) {
+      state[action.payload.type].hover = action.payload.value;
+    },
+    toggleClickDropdownVisibility(state, action) {
+      state[action.payload.type].click = !state[action.payload.type].click;
     },
   },
 });
 
-export const {toggleDropdownVisibility} = dropdownSlice.actions
+export const { toggleHoverDropdownVisibility, toggleClickDropdownVisibility } = dropdownSlice.actions;
 
-export default dropdownSlice.reducer
+export default dropdownSlice.reducer;

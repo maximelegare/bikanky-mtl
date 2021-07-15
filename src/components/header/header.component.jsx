@@ -27,13 +27,18 @@ import UserIconButton from "../buttons/user-icon/userIcon.component";
 import SigninAndSignupDropdown from "../drop-down/signin-signup-dropdown/signin-signup-dropdown.component";
 import DropdownWithTransitions from "../drop-down/dropdown-with-transitions/dropdown-with-transitions.component";
 
-import { selectCartVisibility } from "../../redux/dropdown-elements-visibility/dropdown.selector";
-import { selectSignInVisibility } from "../../redux/dropdown-elements-visibility/dropdown.selector";
+import { selectHoverCartVisibility } from "../../redux/dropdown-elements-visibility/dropdown.selector";
+import { selectClickCartVisibility } from "../../redux/dropdown-elements-visibility/dropdown.selector";
 
+import { selectHoverSignInVisibility } from "../../redux/dropdown-elements-visibility/dropdown.selector";
+import { selectClickSignInVisibility } from "../../redux/dropdown-elements-visibility/dropdown.selector";
 const Header = () => {
   const sliderVisibility = useSelector(selectSliderVisibility);
-  const cartVisibility = useSelector(selectCartVisibility);
-  const signinVisibility = useSelector(selectSignInVisibility);
+
+  const cartClickVisibility = useSelector(selectClickCartVisibility);
+  const cartHoverVisibility = useSelector(selectHoverCartVisibility);
+  const signinHoverVisibility = useSelector(selectHoverSignInVisibility);
+  const signinClickVisibility = useSelector(selectClickSignInVisibility);
 
   const dispatch = useDispatch();
 
@@ -102,13 +107,21 @@ const Header = () => {
               </OptionsLink>
             </div>
             <DropdownWithTransitions
-              isActive={signinVisibility}
+              isActive={
+                signinClickVisibility
+                  ? signinClickVisibility
+                  : signinHoverVisibility
+              }
               icon={<UserIconButton>account_circle</UserIconButton>}
               dropdownEl={<SigninAndSignupDropdown margin="55" />}
               type="signInVisibility"
             />
             <DropdownWithTransitions
-              isActive={cartVisibility}
+              isActive={
+                cartClickVisibility 
+                ? cartClickVisibility 
+                : cartHoverVisibility
+              }
               icon={<CartIcon />}
               dropdownEl={<CartDropdown margin="0" />}
               type="cartVisibility"
