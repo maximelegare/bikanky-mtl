@@ -114,7 +114,8 @@ const Header = () => {
               }
               icon={<UserIconButton>account_circle</UserIconButton>}
               dropdownEl={<SigninAndSignupDropdown margin="55" />}
-              type="signInVisibility"
+              name="signIn"
+              clickStatus={signinClickVisibility}
             />
             <DropdownWithTransitions
               isActive={
@@ -124,7 +125,8 @@ const Header = () => {
               }
               icon={<CartIcon />}
               dropdownEl={<CartDropdown margin="0" />}
-              type="cartVisibility"
+              name="cart"
+              clickStatus={cartClickVisibility}
             />
           </RightSectionDesktopWrapperContainer>
         </HeaderContainer>

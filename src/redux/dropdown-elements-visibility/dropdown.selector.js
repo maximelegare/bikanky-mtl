@@ -5,11 +5,11 @@ const selectDropdownInitialState = (state) => state.dropdown;
 // cart visibility selectors
 export const selectHoverCartVisibility = createSelector(
   [selectDropdownInitialState],
-  (dropdown) => dropdown.cartVisibility.hover
+  (dropdown) => dropdown.cart.hover
 );
 export const selectClickCartVisibility = createSelector(
   [selectDropdownInitialState],
-  (dropdown) => dropdown.cartVisibility.click
+  (dropdown) => dropdown.cart.click
 );
 
 
@@ -17,10 +17,10 @@ export const selectClickCartVisibility = createSelector(
 // SignIn visibility selectors
 export const selectHoverSignInVisibility = createSelector(
   [selectDropdownInitialState],
-  (dropdown) => dropdown.signInVisibility.hover
+  (dropdown) => dropdown.signIn.hover
 );
 
 export const selectClickSignInVisibility = createSelector(
   [selectDropdownInitialState],
-  (dropdown) => dropdown.signInVisibility.click
+  (dropdown) => dropdown.signIn.click
 );

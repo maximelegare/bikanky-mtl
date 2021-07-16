@@ -1,8 +1,6 @@
 import React from "react";
 import Dropdown from "../../drop-down/dropdown-bones/drop-down.component";
 
-import "simplebar/src/simplebar.css";
-
 import {
   CartWrapperContainer,
   ButtonWrapperContainer,
@@ -12,7 +10,10 @@ import {
 } from "./cart-dropdown.styles";
 import CustomButton from "../../buttons/material-ui/custombutton.component";
 import CartItemsSection from "../../cart/cart-items-section/cartItemsSection.component";
-const CartDropdown = ({...props}) => {
+const CartDropdown = ({ ...props }) => {
+  
+ 
+
   return (
     <Dropdown {...props}>
       <CartWrapperContainer>
@@ -28,7 +29,9 @@ const CartDropdown = ({...props}) => {
         </CartContainer>
         <BottomSectionContainer>
           <ButtonWrapperContainer>
-            <CustomButton>Go to Checkout</CustomButton>
+            <CustomButton type="link" routeName="/checkout" name="cart">
+              Go to Checkout
+            </CustomButton>
           </ButtonWrapperContainer>
         </BottomSectionContainer>
       </CartWrapperContainer>
