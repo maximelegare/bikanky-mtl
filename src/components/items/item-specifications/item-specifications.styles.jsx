@@ -11,7 +11,6 @@ export const ItemSpecificationTopContainer = styled.div`
   @media screen and (max-width: 900px) {
     height: unset;
   }
-
 `;
 
 export const ItemContentContainer = styled.div`
@@ -28,7 +27,7 @@ export const ItemContentContainer = styled.div`
 `;
 export const ItemWrapperContainer = styled.div`
   padding: 20px 0;
-  flex: ${props => props.flex};
+  flex: ${props => props.flex ? props.flex : 'unset'};
   width: 50%;
   height: 100%;
   background-color: white;

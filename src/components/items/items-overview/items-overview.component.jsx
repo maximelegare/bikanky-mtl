@@ -14,10 +14,8 @@ import TopImageSection from "../../top-image-section/top-image-section.component
 // import Item from '../item/item.component';
 
 // The styling of the items-overview is the same as items-preview. Barrowed it.
-import {
-  ItemsPreviewContainer,
-  ItemsListContainer,
-} from "../items-preview/items-preview.styles";
+import { ItemsListContainer } from "../../_styling-containers/pages-styling-containers/pages-styling-containers.styles";
+import { PageMediumMarginsContainer } from "../../_styling-containers/pages-styling-containers/pages-styling-containers.styles";
 
 const ItemsOverview = ({ collection: { title, items } }) => {
   useEffect(() => {
@@ -26,15 +24,15 @@ const ItemsOverview = ({ collection: { title, items } }) => {
 
   return (
     <div>
-      <TopImageSection type="items-page">{title}</TopImageSection>
-
-      <ItemsPreviewContainer>
+      <TopImageSection type="with-title">{title}</TopImageSection>
+      
+      <PageMediumMarginsContainer>
         <ItemsListContainer>
           {items.map((item) => (
             <Item key={item.id} item={item}></Item>
           ))}
         </ItemsListContainer>
-      </ItemsPreviewContainer>
+      </PageMediumMarginsContainer>
     </div>
   );
 };

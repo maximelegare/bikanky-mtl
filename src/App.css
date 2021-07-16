@@ -1,7 +1,7 @@
 :root{
   --dark-font-color:rgb(47, 52, 54);
   --dark-font-hover:hsl(203, 9%, 34%);
-
+  --card-background-color:white;
 
   --yellow-accent:#efcb1d;  
   --dark-yellow-accent:#b69d23;  

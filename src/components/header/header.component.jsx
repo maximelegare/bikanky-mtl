@@ -24,8 +24,9 @@ import CartIcon from "../buttons/cart-icon/cart-icon.component";
 import SliderOptionsLink from "../side-slider/side-slider-options-link/side-slider-options-link.component";
 import CartSideSliderMobile from "../cart/cart-slider-mobile/cart-slider-mobile.component";
 import UserIconButton from "../buttons/user-icon/userIcon.component";
-import SigninAndSignupDropdown from "../drop-down/signin-signup-dropdown/signin-signup-dropdown.component";
 import DropdownWithTransitions from "../drop-down/dropdown-with-transitions/dropdown-with-transitions.component";
+import UserDropdown from "../drop-down/user-dropdown/user-dropodwn.component";
+
 
 import { selectHoverCartVisibility } from "../../redux/dropdown-elements-visibility/dropdown.selector";
 import { selectClickCartVisibility } from "../../redux/dropdown-elements-visibility/dropdown.selector";
@@ -113,7 +114,7 @@ const Header = () => {
                   : signinHoverVisibility
               }
               icon={<UserIconButton>account_circle</UserIconButton>}
-              dropdownEl={<SigninAndSignupDropdown margin="55" />}
+              dropdownEl={<UserDropdown margin="55" />}
               name="signIn"
               clickStatus={signinClickVisibility}
             />

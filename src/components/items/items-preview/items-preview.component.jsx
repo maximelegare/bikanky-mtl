@@ -2,14 +2,17 @@
 
 /* eslint-disable react/prop-types */
 import React from "react";
+import { connect } from "react-redux";
+
+import { PageMediumMarginsContainer } from "../../_styling-containers/pages-styling-containers/pages-styling-containers.styles";
 import {
-  ItemsPreviewContainer,
-  ItemsListContainer,
   TitleContainer,
   TitleWrapperContainer,
 } from "./items-preview.styles";
+
+import { ItemsListContainer } from "../../_styling-containers/pages-styling-containers/pages-styling-containers.styles";
+
 import Item from "../item-card/item-card.component";
-import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { selectItemsCategories } from "../../../redux/items/items.selectors";
 import TopImageSection from "../../top-image-section/top-image-section.component";
@@ -19,11 +22,11 @@ const ItemsPreview = ({ itemsCategories, history }) => {
   // console.log(productsCategories)
   return (
     <div>
-      <TopImageSection type="items-page">Créations</TopImageSection>
+      <TopImageSection type="with-title">Créations</TopImageSection>
 
       {/* select all categories and map */}
       {Object.values(itemsCategories).map(({ id, title, items, linkUrl }) => (
-        <ItemsPreviewContainer key={id}>
+        <PageMediumMarginsContainer key={id}>
           <TitleWrapperContainer>
             <TitleContainer onClick={() => history.push(linkUrl)}>
               {title.toUpperCase()}
@@ -39,7 +42,7 @@ const ItemsPreview = ({ itemsCategories, history }) => {
                 <Item key={item.id} item={item}></Item>
               ))}
           </ItemsListContainer>
-        </ItemsPreviewContainer>
+        </PageMediumMarginsContainer>
       ))}
     </div>
   );

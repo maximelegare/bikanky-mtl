@@ -1,0 +1,16 @@
+import styled from "styled-components";
+
+export const InputContainer = styled.div`
+  margin-bottom: 17px;
+  width: 100%;
+`;
+
+export const InputLabel = styled.h5`
+font-weight: 600;
+margin-bottom: 5px;
+`
+
+export const ErrorContainer = styled.h6`
+  color: red;
+  margin-top: 2px;
+`;

@@ -22,7 +22,7 @@ const ItemSpecifications = ({ item  }) => {
   const { carouselImages } = item[0];
   return (
     <div>
-      <TopImageSection type="item-specifications"/>
+      <TopImageSection type="without-title"/>
       <ItemSpecificationTopContainer>
         <ItemContentContainer>  
           <CarouselSwiper images={carouselImages} /> 

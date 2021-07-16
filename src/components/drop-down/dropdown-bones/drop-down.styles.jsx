@@ -14,11 +14,12 @@ export const DropDownContainer = styled.div`
 
 export const TriangleWrapperContainer = styled.div`
   position: absolute;
-  margin-top: -20px;
+  margin-top: -13px;
   margin-right: 6px;
   right: 0;
-  padding:13px;
-  padding-top: 15px;
+  padding-left:25px;
+  padding-right: 13px;
+  padding-top: 7px;
   
 `;
 

@@ -22,6 +22,7 @@ const dropdownSlice = createSlice({
       const dropdownToHide = Object.entries(state).filter(
         (dropdown) => dropdown[0] !== action.payload.dropdownName
       );
+      
       state[dropdownToHide[0][0]].click = false;
     },
     toggleClickDropdownVisibility(state, action) {

@@ -13,7 +13,7 @@ const useStyles = makeStyles({
   root: {
     backgroundColor: "var(--yellow-accent)",
     fontSize: 15,
-    fontWeight: 600,
+    fontWeight: 400,
     fontFamily: "Open Sans",
     "&:hover": {
       backgroundColor: "#f7d321",
@@ -21,6 +21,7 @@ const useStyles = makeStyles({
   },
   iconClass: {
     color: "black",
+    
     "&:hover": {
       backgroundColor: "#f7d3215a",
     },
@@ -64,7 +65,7 @@ const CustomButton = ({ children, type, deleteIcon, routeName, name }) => {
     case "link":
       return (
         <Link to={routeName} onClick={() => handleClick()}>
-          <Button classes={{ root: classes.root }} variant="contained">
+          <Button classes={{ root: classes.root }} variant="contained" >
             {children}
           </Button>
         </Link>

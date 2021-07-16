@@ -4,9 +4,9 @@ const selectHeight = (props) => {
   switch (props.type) {
     case "home-page":
       return homePageStyles;
-    case "items-page":
+    case "with-title":
       return itemsPagesStyles;
-    case "item-specifications":
+    case "without-title":
       return itemSpecificationsStyles;
     default:
       return itemsPagesStyles

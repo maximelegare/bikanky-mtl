@@ -6,7 +6,7 @@ export const ItemWrapperContainer = styled.div`
   border-radius: 8px 8px 8px 8px;
 
   box-shadow: 0 5px 10px #1b1b1b55;
-  background-color: white;
+  background-color:var(--card-background-color);
   transition:600ms cubic-bezier(.53,-0.02,.1,1.18);
   height:40vh;
   :hover{
