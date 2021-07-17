@@ -18,5 +18,16 @@ export const ButtonSectionContainer = styled.div`
   justify-content: center;
 `;
 export const TitleContainer = styled.div`
-margin-bottom: 15px;
-`
+  margin-bottom: 20px;
+`;
+export const ChangePageContainter = styled.div`
+padding-top: 20px;
+  h5 {
+    margin-top: 10px;
+    span {
+      text-decoration: underline;
+      font-weight: 600;
+      cursor: pointer;
+    }
+  }
+`;

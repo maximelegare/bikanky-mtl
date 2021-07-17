@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-
+import { Link } from "react-router-dom";
 import { withRouter } from "react-router";
 import { PropTypes } from "prop-types";
 import {
@@ -7,6 +7,7 @@ import {
   InputSectionContainer,
   ButtonSectionContainer,
   TitleContainer,
+  ChangePageContainter
 } from "./signin-signup.styles";
 
 import FormInput from "../form-inputs/form-input.component";
@@ -23,8 +24,7 @@ const SigninSignup = ({ match }) => {
 
   const { email, password, confirmPassword, newUser } = credentials;
 
-
-// change newUser property depending on the page
+  // change newUser property depending on the page
   useEffect(() => {
     if (match.url === "/signup") {
       setCredentials({ ...credentials, newUser: true });
@@ -33,7 +33,7 @@ const SigninSignup = ({ match }) => {
     }
   }, [match.url]);
 
-// handle submit event 
+  // handle submit event
   const handleSubmit = (e) => {
     e.preventDefault;
   };
@@ -48,11 +48,7 @@ const SigninSignup = ({ match }) => {
       <form onSubmit={() => handleSubmit}>
         <InputSectionContainer>
           <TitleContainer>
-            <h3>
-              {newUser
-                ? "Create your account!"
-                : "Welcome Back!"}
-            </h3>
+            <h3>{newUser ? "Create your account!" : "Welcome Back!"}</h3>
           </TitleContainer>
           <FormInput
             type="email"
@@ -68,7 +64,6 @@ const SigninSignup = ({ match }) => {
             name="email"
             value={password}
             handleChange={handleChange}
-            placeHolder="At least 6 characters"
             message={
               newUser
                 ? "Your password must consist of at least 6 characters."
@@ -86,10 +81,26 @@ const SigninSignup = ({ match }) => {
             />
           ) : null}
           <ButtonSectionContainer>
-            <CustomButton>
-              {newUser ? "Sign up" : "Sign in"}
-            </CustomButton>
+            <CustomButton>{newUser ? "Sign up" : "Sign in"}</CustomButton>
           </ButtonSectionContainer>
+          <ChangePageContainter>
+          <hr/>
+            {newUser ? (
+              <h5>
+                Already have an account?{" "}
+                <span>
+                  <Link to="/signin">Sign in here</Link>
+                </span>
+              </h5>
+            ) : (
+              <h5>
+                New here?{" "}
+                <span>
+                  <Link to="/signup">Start here</Link>
+                </span>
+              </h5>
+            )}
+          </ChangePageContainter>
         </InputSectionContainer>
       </form>
     </WrapperContainer>

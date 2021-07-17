@@ -1,5 +1,5 @@
 import React from "react";
-import Dropdown from '../../dropdown-bones/drop-down.component'
+import Dropdown from "../../dropdown-bones/drop-down.component";
 import { PropTypes } from "prop-types";
 import { Link } from "react-router-dom";
 import {
@@ -7,9 +7,30 @@ import {
   ContentWrapperContainer,
 } from "./signin-signup-dropdown.styles";
 
+import { useDispatch } from "react-redux";
+import { toggleHoverDropdownVisibility } from "../../../../redux/dropdown-elements-visibility/dropdown.slice";
+import { toggleClickDropdownVisibility } from "../../../../redux/dropdown-elements-visibility/dropdown.slice";
+
 import CustomButton from "../../../buttons/material-ui/custombutton.component";
 
 const SigninAndSignupDropdown = ({ isActive, margin }) => {
+  const dispatch = useDispatch();
+
+  const handleClick = () => {
+    dispatch(
+      toggleHoverDropdownVisibility({
+        dropdownName: "signIn",
+        value: false,
+      })
+    );
+    dispatch(
+      toggleClickDropdownVisibility({
+        dropdownName: "signIn",
+        value: false,
+      })
+    );
+  };
+
   return (
     <Dropdown isActive={isActive} margin={margin}>
       <SignWrapperContainer>
@@ -20,7 +41,7 @@ const SigninAndSignupDropdown = ({ isActive, margin }) => {
           </CustomButton>
           <h5>
             New customer?{" "}
-            <span>
+            <span onClick={() => handleClick()}>
               <Link to="/signup">Start here</Link>
             </span>
           </h5>
