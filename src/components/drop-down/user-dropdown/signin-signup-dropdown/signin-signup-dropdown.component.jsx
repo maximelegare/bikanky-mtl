@@ -36,7 +36,7 @@ const SigninAndSignupDropdown = ({ isActive, margin }) => {
       <SignWrapperContainer>
         <ContentWrapperContainer>
           {/* the name props is to identify the button to it's dropdown in the reducer to close the dropdown */}
-          <CustomButton type="link" routeName="/signin" name="signIn">
+          <CustomButton kind="link" routeName="/signin" name="signIn">
             Sign In
           </CustomButton>
           <h5>

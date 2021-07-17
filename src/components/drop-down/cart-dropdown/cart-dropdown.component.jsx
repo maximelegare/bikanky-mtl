@@ -29,7 +29,7 @@ const CartDropdown = ({ ...props }) => {
         </CartContainer>
         <BottomSectionContainer>
           <ButtonWrapperContainer>
-            <CustomButton type="link" routeName="/checkout" name="cart">
+            <CustomButton kind="link" routeName="/checkout" name="cart">
               Go to Checkout
             </CustomButton>
           </ButtonWrapperContainer>

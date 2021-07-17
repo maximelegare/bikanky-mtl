@@ -21,7 +21,7 @@ const useStyles = makeStyles({
   },
   iconClass: {
     color: "black",
-    
+
     "&:hover": {
       backgroundColor: "#f7d3215a",
     },
@@ -34,7 +34,7 @@ const useStyles = makeStyles({
   },
 });
 
-const CustomButton = ({ children, type, deleteIcon, routeName, name }) => {
+const CustomButton = ({ children, kind, deleteIcon, routeName, name, type }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
 
@@ -48,7 +48,7 @@ const CustomButton = ({ children, type, deleteIcon, routeName, name }) => {
     );
   };
 
-  switch (type) {
+  switch (kind) {
     case "icon":
       return (
         <IconButton
@@ -58,21 +58,22 @@ const CustomButton = ({ children, type, deleteIcon, routeName, name }) => {
             } `,
           }}
           variant="contained"
+          type={type}
         >
           <span className="material-icons">{children}</span>
         </IconButton>
       );
     case "link":
       return (
-        <Link to={routeName} onClick={() => handleClick()}>
-          <Button classes={{ root: classes.root }} variant="contained" >
+        <Link to={routeName} onClick={() => handleClick}>
+          <Button classes={{ root: classes.root }} variant="contained" type={type}>
             {children}
           </Button>
         </Link>
       );
     default:
       return (
-        <Button classes={{ root: classes.root }} variant="contained">
+        <Button classes={{ root: classes.root }} variant="contained" type={type}>
           {children}
         </Button>
       );
@@ -82,9 +83,10 @@ const CustomButton = ({ children, type, deleteIcon, routeName, name }) => {
 CustomButton.propTypes = {
   children: PropTypes.any,
   type: PropTypes.string,
+  kind: PropTypes.string,
   deleteIcon: PropTypes.bool,
   routeName: PropTypes.string,
-  name:PropTypes.string
+  name: PropTypes.string,
 };
 
 export default CustomButton;

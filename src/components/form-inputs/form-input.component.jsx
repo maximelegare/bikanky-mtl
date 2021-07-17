@@ -1,7 +1,6 @@
 import React from "react";
 import { TextField } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
-
 import { PropTypes } from "prop-types";
 
 import { InputLabel, InputContainer } from "./form-input.styles";
@@ -28,18 +27,20 @@ const useStyles = makeStyles({
 
 const FormInput = ({
   handleChange,
+  removeError,
   type,
   label,
   error,
   message,
   placeHolder,
+  name
 }) => {
   const classes = useStyles();
   return (
     <InputContainer>
       <InputLabel>{label}</InputLabel>
       <TextField
-        // error
+        error={!!error}
         label={placeHolder ? placeHolder : null}
         variant="outlined"
         type={type}
@@ -49,6 +50,7 @@ const FormInput = ({
         fullWidth
         classes={{ root: classes.root }}
         color="secondary"
+        onBlur={() => removeError(name)}
       />
       {error ? (
         <ErrorContainer>{error}</ErrorContainer>
@@ -66,6 +68,8 @@ FormInput.propTypes = {
   error: PropTypes.string,
   message: PropTypes.string,
   placeHolder: PropTypes.string,
+  removeError:PropTypes.func,
+  name:PropTypes.string
 };
 
 export default FormInput;

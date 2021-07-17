@@ -45,7 +45,7 @@ const CartDropdownItem = ({
         </CartLeftContainer>
         {sideSlider ? null : (
           <div onClick={() => dispatch(deleteItemFromCart(id))}>
-            <CustomButton type="icon" deleteIcon>
+            <CustomButton kind="icon" deleteIcon>
               delete
             </CustomButton>
           </div>

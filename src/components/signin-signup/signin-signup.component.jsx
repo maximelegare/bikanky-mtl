@@ -7,7 +7,7 @@ import {
   InputSectionContainer,
   ButtonSectionContainer,
   TitleContainer,
-  ChangePageContainter
+  ChangePageContainter,
 } from "./signin-signup.styles";
 
 import FormInput from "../form-inputs/form-input.component";
@@ -20,9 +20,14 @@ const SigninSignup = ({ match }) => {
     password: "",
     confirmPassword: "",
     newUser: false,
+    error: {
+      email: null,
+      password: null,
+      confirmPassword: null,
+    },
   });
 
-  const { email, password, confirmPassword, newUser } = credentials;
+  const { email, password, confirmPassword, newUser, error } = credentials;
 
   // change newUser property depending on the page
   useEffect(() => {
@@ -35,7 +40,11 @@ const SigninSignup = ({ match }) => {
 
   // handle submit event
   const handleSubmit = (e) => {
-    e.preventDefault;
+    e.preventDefault();
+    
+    if (!email || !password || !confirmPassword) {
+      setCredentials({ ...credentials, error: { password: "error" } });
+    }
   };
 
   const handleChange = (e) => {
@@ -43,27 +52,39 @@ const SigninSignup = ({ match }) => {
     setCredentials({ ...credentials, [name]: value });
   };
 
+  const removeError = (name) => {
+    setCredentials({ ...credentials, error: { [name]: null } });
+  };
+
   return (
     <WrapperContainer>
-      <form onSubmit={() => handleSubmit}>
+      <form
+        onSubmit={(e) => {
+          handleSubmit(e);
+        }}
+      >
         <InputSectionContainer>
           <TitleContainer>
             <h3>{newUser ? "Create your account!" : "Welcome Back!"}</h3>
           </TitleContainer>
           <FormInput
+            error={error.email}
             type="email"
             label="Email"
             name="email"
             value={email}
             handleChange={handleChange}
+            removeError={removeError}
           />
 
           <FormInput
+            error={error.password}
             type="password"
             label="Password"
-            name="email"
+            name="password"
             value={password}
             handleChange={handleChange}
+            removeError={removeError}
             message={
               newUser
                 ? "Your password must consist of at least 6 characters."
@@ -73,18 +94,22 @@ const SigninSignup = ({ match }) => {
 
           {match.url === "/signup" ? (
             <FormInput
+              error={error.confirmPassword}
               type="password"
               label="Confirm Password"
-              name="email"
+              name="confirmPassword"
               value={confirmPassword}
               handleChange={handleChange}
+              removeError={removeError}
             />
           ) : null}
           <ButtonSectionContainer>
-            <CustomButton>{newUser ? "Sign up" : "Sign in"}</CustomButton>
+            <CustomButton type="submit">
+              {newUser ? "Sign up" : "Sign in"}
+            </CustomButton>
           </ButtonSectionContainer>
           <ChangePageContainter>
-          <hr/>
+            <hr />
             {newUser ? (
               <h5>
                 Already have an account?{" "}

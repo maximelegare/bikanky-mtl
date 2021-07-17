@@ -43,7 +43,7 @@ const ItemCard = ({ item, history, location }) => {
             </div>
           </PriceNameContainer>
           <IconButtonWrapperContainer onClick={() => dispatch(addItemToCart(item))}>
-            <CustomButton type="icon">add_shopping_cart</CustomButton>
+            <CustomButton kind="icon">add_shopping_cart</CustomButton>
           </IconButtonWrapperContainer>
         </ProductPriceButtonContainer>
       </ProductInfosContainer>
