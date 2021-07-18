@@ -33,13 +33,16 @@ const FormInput = ({
   error,
   message,
   placeHolder,
-  name
+  name,
+  value
 }) => {
   const classes = useStyles();
   return (
     <InputContainer>
       <InputLabel>{label}</InputLabel>
       <TextField
+        name={name}
+        value={value}
         error={!!error}
         label={placeHolder ? placeHolder : null}
         variant="outlined"
@@ -69,7 +72,8 @@ FormInput.propTypes = {
   message: PropTypes.string,
   placeHolder: PropTypes.string,
   removeError:PropTypes.func,
-  name:PropTypes.string
+  name:PropTypes.string,
+  value:PropTypes.string
 };
 
 export default FormInput;

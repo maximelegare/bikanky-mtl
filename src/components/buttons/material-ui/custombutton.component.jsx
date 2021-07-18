@@ -3,9 +3,6 @@ import IconButton from "@material-ui/core/IconButton";
 import { makeStyles } from "@material-ui/core/styles";
 import { PropTypes } from "prop-types";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { toggleHoverDropdownVisibility } from "../../../redux/dropdown-elements-visibility/dropdown.slice";
-import { toggleClickDropdownVisibility } from "../../../redux/dropdown-elements-visibility/dropdown.slice";
 
 import React from "react";
 
@@ -34,19 +31,10 @@ const useStyles = makeStyles({
   },
 });
 
-const CustomButton = ({ children, kind, deleteIcon, routeName, name, type }) => {
+const CustomButton = ({ children, kind, deleteIcon, routeName, type }) => {
   const classes = useStyles();
-  const dispatch = useDispatch();
 
-  const handleClick = () => {
-    console.log("here");
-    dispatch(
-      toggleClickDropdownVisibility({ dropdownName: name, value: false })
-    );
-    dispatch(
-      toggleHoverDropdownVisibility({ dropdownName: name, value: false })
-    );
-  };
+ 
 
   switch (kind) {
     case "icon":
@@ -65,7 +53,7 @@ const CustomButton = ({ children, kind, deleteIcon, routeName, name, type }) => 
       );
     case "link":
       return (
-        <Link to={routeName} onClick={() => handleClick}>
+        <Link to={routeName}>
           <Button classes={{ root: classes.root }} variant="contained" type={type}>
             {children}
           </Button>

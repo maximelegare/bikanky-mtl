@@ -41,10 +41,36 @@ const SigninSignup = ({ match }) => {
   // handle submit event
   const handleSubmit = (e) => {
     e.preventDefault();
-    
-    if (!email || !password || !confirmPassword) {
-      setCredentials({ ...credentials, error: { password: "error" } });
+    const message = createErrorMessage();
+    console.log(message);
+    console.log(message.email);
+    setCredentials({
+      ...credentials,
+      error: {
+        email: message.email,
+        password: message.password,
+        confirmPassword: message.confirmPassword,
+      },
+    });
+    console.log(credentials);
+  };
+
+  const createErrorMessage = () => {
+    var messageObj = {};
+
+    if (!email || !email.includes("@")) {
+      messageObj.email = "Please enter your email";
     }
+    if (!password) {
+      console.log("inside password");
+      messageObj.password = "Please enter your password";
+    }
+    if (!confirmPassword) {
+      console.log("inside confirm");
+      messageObj.confirmPassword = "Please confirm your password";
+    }
+    console.log(messageObj);
+    return messageObj;
   };
 
   const handleChange = (e) => {
@@ -53,6 +79,7 @@ const SigninSignup = ({ match }) => {
   };
 
   const removeError = (name) => {
+    console.log(name);
     setCredentials({ ...credentials, error: { [name]: null } });
   };
 
@@ -69,7 +96,7 @@ const SigninSignup = ({ match }) => {
           </TitleContainer>
           <FormInput
             error={error.email}
-            type="email"
+            type="text"
             label="Email"
             name="email"
             value={email}
