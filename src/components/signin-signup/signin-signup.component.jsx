@@ -15,19 +15,22 @@ import CustomButton from "../buttons/material-ui/custombutton.component";
 
 //  user credentials
 const SigninSignup = ({ match }) => {
+
+
   const [credentials, setCredentials] = useState({
     email: "",
     password: "",
     confirmPassword: "",
     newUser: false,
-    error: {
+    errors: {
       email: null,
       password: null,
       confirmPassword: null,
     },
   });
 
-  const { email, password, confirmPassword, newUser, error } = credentials;
+
+  const { email, password, confirmPassword, newUser, errors } = credentials;
 
   // change newUser property depending on the page
   useEffect(() => {
@@ -41,37 +44,46 @@ const SigninSignup = ({ match }) => {
   // handle submit event
   const handleSubmit = (e) => {
     e.preventDefault();
-    const message = createErrorMessage();
-    console.log(message);
-    console.log(message.email);
+
+    const message = validate();
+
     setCredentials({
       ...credentials,
-      error: {
+      errors: {
         email: message.email,
         password: message.password,
         confirmPassword: message.confirmPassword,
       },
     });
-    console.log(credentials);
   };
 
-  const createErrorMessage = () => {
+  
+
+
+
+  const validate = () => {
     var messageObj = {};
 
-    if (!email || !email.includes("@")) {
+    if (!email || !email.includes("@") || !email.includes('.'))   {
       messageObj.email = "Please enter your email";
     }
     if (!password) {
-      console.log("inside password");
       messageObj.password = "Please enter your password";
     }
+    if(password <= 6){
+      messageObj.password = "Your password must consist of at least 6 characters"
+    }
     if (!confirmPassword) {
-      console.log("inside confirm");
       messageObj.confirmPassword = "Please confirm your password";
     }
-    console.log(messageObj);
+    if(confirmPassword !== password){
+      messageObj.confirmPassword = "Your password and password validation must match"
+    }
+
+
     return messageObj;
   };
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -80,7 +92,7 @@ const SigninSignup = ({ match }) => {
 
   const removeError = (name) => {
     console.log(name);
-    setCredentials({ ...credentials, error: { [name]: null } });
+    setCredentials({ ...credentials, errors : { ...errors, [name]:null } });
   };
 
   return (
@@ -95,7 +107,7 @@ const SigninSignup = ({ match }) => {
             <h3>{newUser ? "Create your account!" : "Welcome Back!"}</h3>
           </TitleContainer>
           <FormInput
-            error={error.email}
+            error={errors.email}
             type="text"
             label="Email"
             name="email"
@@ -105,7 +117,7 @@ const SigninSignup = ({ match }) => {
           />
 
           <FormInput
-            error={error.password}
+            error={errors.password}
             type="password"
             label="Password"
             name="password"
@@ -121,7 +133,7 @@ const SigninSignup = ({ match }) => {
 
           {match.url === "/signup" ? (
             <FormInput
-              error={error.confirmPassword}
+              error={errors.confirmPassword}
               type="password"
               label="Confirm Password"
               name="confirmPassword"
