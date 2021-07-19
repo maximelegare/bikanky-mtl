@@ -15,8 +15,6 @@ import CustomButton from "../buttons/material-ui/custombutton.component";
 
 //  user credentials
 const SigninSignup = ({ match }) => {
-
-
   const [credentials, setCredentials] = useState({
     email: "",
     password: "",
@@ -28,7 +26,6 @@ const SigninSignup = ({ match }) => {
       confirmPassword: null,
     },
   });
-
 
   const { email, password, confirmPassword, newUser, errors } = credentials;
 
@@ -44,46 +41,41 @@ const SigninSignup = ({ match }) => {
   // handle submit event
   const handleSubmit = (e) => {
     e.preventDefault();
+    const isValid = validate();
 
-    const message = validate();
-
-    setCredentials({
-      ...credentials,
-      errors: {
-        email: message.email,
-        password: message.password,
-        confirmPassword: message.confirmPassword,
-      },
-    });
+    console.log(isValid)
   };
-
-  
-
-
 
   const validate = () => {
     var messageObj = {};
 
-    if (!email || !email.includes("@") || !email.includes('.'))   {
+    if (!email || !email.includes("@") || !email.includes(".")) {
       messageObj.email = "Please enter your email";
     }
     if (!password) {
       messageObj.password = "Please enter your password";
     }
-    if(password <= 6){
-      messageObj.password = "Your password must consist of at least 6 characters"
+    if (password <= 6) {
+      messageObj.password =
+        "Your password must consist of at least 6 characters";
     }
-    if (!confirmPassword) {
-      messageObj.confirmPassword = "Please confirm your password";
-    }
-    if(confirmPassword !== password){
-      messageObj.confirmPassword = "Your password and password validation must match"
+    if (!confirmPassword || confirmPassword !== password) {
+      messageObj.confirmPassword = "Your password and password validation must match";
     }
 
-
-    return messageObj;
+    setCredentials({
+      ...credentials,
+      errors: {
+        email: messageObj.email,
+        password: messageObj.password,
+        confirmPassword: messageObj.confirmPassword,
+      },
+    });
+    if (messageObj.email || messageObj.password || messageObj.confirmPassword) {
+      return false;
+    }
+    return true;
   };
-
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -92,7 +84,7 @@ const SigninSignup = ({ match }) => {
 
   const removeError = (name) => {
     console.log(name);
-    setCredentials({ ...credentials, errors : { ...errors, [name]:null } });
+    setCredentials({ ...credentials, errors: { ...errors, [name]: null } });
   };
 
   return (
