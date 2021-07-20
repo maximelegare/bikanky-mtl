@@ -13,6 +13,9 @@ import {
 import FormInput from "../form-inputs/form-input.component";
 import CustomButton from "../buttons/material-ui/custombutton.component";
 
+import { signInWithGoogle } from "../../firebase/firebase.utils";
+
+
 //  user credentials
 const SigninSignup = ({ match }) => {
   const [credentials, setCredentials] = useState({
@@ -100,7 +103,7 @@ const SigninSignup = ({ match }) => {
           </TitleContainer>
           <FormInput
             error={errors.email}
-            type="text"
+            type="email"
             label="Email"
             name="email"
             value={email}
@@ -137,6 +140,11 @@ const SigninSignup = ({ match }) => {
           <ButtonSectionContainer>
             <CustomButton type="submit">
               {newUser ? "Sign up" : "Sign in"}
+            </CustomButton>
+          </ButtonSectionContainer>
+          <ButtonSectionContainer onClick={signInWithGoogle} style={{marginTop:"15px"}}>
+            <CustomButton kind="signInWithGoogle">
+              Sign in with google
             </CustomButton>
           </ButtonSectionContainer>
           <ChangePageContainter>

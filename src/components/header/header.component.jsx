@@ -1,9 +1,18 @@
 /* eslint-disable react/prop-types */
 import React, { useCallback, useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { selectSliderVisibility } from "../../redux/side-slider/side-slider.selectors";
 
+
+// redux imports
+import { useSelector, useDispatch } from "react-redux";
 import { toggleSliderVisibility } from "../../redux/side-slider/side-slider.slice";
+import { selectSliderVisibility } from "../../redux/side-slider/side-slider.selectors";
+import { selectHoverCartVisibility } from "../../redux/dropdown-elements-visibility/dropdown.selector";
+import { selectClickCartVisibility } from "../../redux/dropdown-elements-visibility/dropdown.selector";
+
+import { selectHoverSignInVisibility } from "../../redux/dropdown-elements-visibility/dropdown.selector";
+import { selectClickSignInVisibility } from "../../redux/dropdown-elements-visibility/dropdown.selector";
+// import { selectCurrentUser } from "../../redux/user/user.selector";
+
 
 import { HamburgerSlider } from "react-animated-burgers";
 
@@ -18,6 +27,8 @@ import {
   RightSectionMobileWrapperContainer,
 } from "./header.styles";
 
+
+// components imports 
 import CartDropdown from "../drop-down/cart-dropdown/cart-dropdown.component";
 import SideSlider from "../side-slider/side-slider/side-slider.component";
 import CartIcon from "../buttons/cart-icon/cart-icon.component";
@@ -28,11 +39,10 @@ import DropdownWithTransitions from "../drop-down/dropdown-with-transitions/drop
 import UserDropdown from "../drop-down/user-dropdown/user-dropodwn.component";
 
 
-import { selectHoverCartVisibility } from "../../redux/dropdown-elements-visibility/dropdown.selector";
-import { selectClickCartVisibility } from "../../redux/dropdown-elements-visibility/dropdown.selector";
 
-import { selectHoverSignInVisibility } from "../../redux/dropdown-elements-visibility/dropdown.selector";
-import { selectClickSignInVisibility } from "../../redux/dropdown-elements-visibility/dropdown.selector";
+ 
+
+
 const Header = () => {
   const sliderVisibility = useSelector(selectSliderVisibility);
 
@@ -40,11 +50,17 @@ const Header = () => {
   const cartHoverVisibility = useSelector(selectHoverCartVisibility);
   const signinHoverVisibility = useSelector(selectHoverSignInVisibility);
   const signinClickVisibility = useSelector(selectClickSignInVisibility);
+  // const currentUser = useSelector(selectCurrentUser)
+
+
+  
 
   const dispatch = useDispatch();
 
   // sliderVisibility is set at !sliderVisibility because useEffect runs the function everyTime it changes, including when it mount. But the first time, I want the icon to be the burger, not the X
   const [isActive, setIsActive] = useState(!sliderVisibility);
+
+
 
   useEffect(() => {
     toggleButton();
@@ -70,6 +86,7 @@ const Header = () => {
           <LogoContainer to="/">
             <img src={bikankyLogoHeader} alt="bikanky Logo Header" />
           </LogoContainer>
+          
 
           <RightSectionMobileWrapperContainer
             onClick={() => handleClickEvent()}

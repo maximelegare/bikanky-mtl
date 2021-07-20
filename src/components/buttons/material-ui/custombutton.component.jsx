@@ -34,8 +34,6 @@ const useStyles = makeStyles({
 const CustomButton = ({ children, kind, deleteIcon, routeName, type }) => {
   const classes = useStyles();
 
- 
-
   switch (kind) {
     case "icon":
       return (
@@ -54,14 +52,32 @@ const CustomButton = ({ children, kind, deleteIcon, routeName, type }) => {
     case "link":
       return (
         <Link to={routeName}>
-          <Button classes={{ root: classes.root }} variant="contained" type={type}>
+          <Button
+            classes={{ root: classes.root }}
+            variant="contained"
+            type={type}
+          >
             {children}
           </Button>
         </Link>
       );
+    case "signInWithGoogle":
+      return (
+          <Button
+            variant="contained"
+            type={type}
+            color="primary"
+          >
+            {children}
+          </Button>
+      );
     default:
       return (
-        <Button classes={{ root: classes.root }} variant="contained" type={type}>
+        <Button
+          classes={{ root: classes.root }}
+          variant="contained"
+          type={type}
+        >
           {children}
         </Button>
       );
