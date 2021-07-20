@@ -17,7 +17,7 @@ import {
 
 // import IconButton from "../../buttons/icon-button.component";
 import { addItemToCart } from "../../../redux/cart/cart.slices";
-import CustomButton from "../../buttons/material-ui/custombutton.component";
+import CustomButtonMUI from "../../buttons/material-ui/custom-button-mui.component";
 
 const ItemCard = ({ item, history, location }) => {
   const { imageUrl, title, price, linkUrl } = item;
@@ -43,7 +43,7 @@ const ItemCard = ({ item, history, location }) => {
             </div>
           </PriceNameContainer>
           <IconButtonWrapperContainer onClick={() => dispatch(addItemToCart(item))}>
-            <CustomButton kind="icon">add_shopping_cart</CustomButton>
+            <CustomButtonMUI kind="icon">add_shopping_cart</CustomButtonMUI>
           </IconButtonWrapperContainer>
         </ProductPriceButtonContainer>
       </ProductInfosContainer>

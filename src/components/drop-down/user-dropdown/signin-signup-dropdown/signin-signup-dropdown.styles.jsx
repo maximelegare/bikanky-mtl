@@ -8,7 +8,7 @@ export const SignWrapperContainer = styled.div`
 
 export const ContentWrapperContainer = styled.div`
 padding: 15px 0;
-  text-align: center;
+text-align: center;
   h5{
       margin-top: 10px;
       span{

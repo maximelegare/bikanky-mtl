@@ -12,7 +12,7 @@ import {
   CartContainer,
   TitleContainer,
 } from "./cart-dropdown.styles";
-import CustomButton from "../../buttons/material-ui/custombutton.component";
+import CustomButtonMUI from "../../buttons/material-ui/custom-button-mui.component";
 import CartItemsSection from "../../cart/cart-items-section/cartItemsSection.component";
 const CartDropdown = ({ ...props }) => {
   const dispatch = useDispatch();
@@ -41,14 +41,14 @@ const CartDropdown = ({ ...props }) => {
         </CartContainer>
         <BottomSectionContainer>
           <ButtonWrapperContainer onClick={() => handleClick()}>
-            <CustomButton
+            <CustomButtonMUI
               type="button"
               kind="link"
               routeName="/checkout"
               name="cart"
             >
               Go to Checkout
-            </CustomButton>
+            </CustomButtonMUI>
           </ButtonWrapperContainer>
         </BottomSectionContainer>
       </CartWrapperContainer>

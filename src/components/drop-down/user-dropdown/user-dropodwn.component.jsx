@@ -12,7 +12,8 @@ const UserDropdown = ({ isActive, margin }) => {
 
   return (
     <Dropdown isActive={isActive} margin={margin}>
-      {currentUser ? <IsSignInUserDropdown /> : <SigninAndSignupDropdown />}
+        {/* <SigninAndSignupDropdown /> */}
+      {currentUser ? <IsSignInUserDropdown currentUser={currentUser}/> : <SigninAndSignupDropdown />}
     </Dropdown>
   );
 };

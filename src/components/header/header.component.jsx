@@ -31,10 +31,10 @@ import {
 // components imports 
 import CartDropdown from "../drop-down/cart-dropdown/cart-dropdown.component";
 import SideSlider from "../side-slider/side-slider/side-slider.component";
-import CartIcon from "../buttons/cart-icon/cart-icon.component";
+import CartIcon from "../buttons/my-buttons/cart-icon/cart-icon.component";
 import SliderOptionsLink from "../side-slider/side-slider-options-link/side-slider-options-link.component";
 import CartSideSliderMobile from "../cart/cart-slider-mobile/cart-slider-mobile.component";
-import UserIconButton from "../buttons/user-icon/userIcon.component";
+import UserIconButton from "../buttons/my-buttons/user-icon/userIcon.component";
 import DropdownWithTransitions from "../drop-down/dropdown-with-transitions/dropdown-with-transitions.component";
 import UserDropdown from "../drop-down/user-dropdown/user-dropodwn.component";
 

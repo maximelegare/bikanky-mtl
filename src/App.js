@@ -8,16 +8,13 @@ import ShopPage from "./pages/shop-page/shop-page.component";
 import SigninSignupPage from "./pages/signin-signup-page/signin-signup-page.component";
 
 import { useDispatch } from "react-redux";
-import { setCurrentUser } from "./redux/user/user.slice";
-import { auth } from "./firebase/firebase.utils";
-
+import { getCurrentUserStart } from "./redux/user/user.slice";
 function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    auth.onAuthStateChanged((user) => {
-      dispatch(setCurrentUser(user));
-    });
+
+    dispatch(getCurrentUserStart())
   }, []);
 
   

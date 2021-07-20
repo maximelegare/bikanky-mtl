@@ -11,7 +11,7 @@ import { useDispatch } from "react-redux";
 import { toggleHoverDropdownVisibility } from "../../../../redux/dropdown-elements-visibility/dropdown.slice";
 import { toggleClickDropdownVisibility } from "../../../../redux/dropdown-elements-visibility/dropdown.slice";
 
-import CustomButton from "../../../buttons/material-ui/custombutton.component";
+import CustomButtonMUI from "../../../buttons/material-ui/custom-button-mui.component";
 
 const SigninAndSignupDropdown = ({ isActive, margin }) => {
   const dispatch = useDispatch();
@@ -37,14 +37,14 @@ const SigninAndSignupDropdown = ({ isActive, margin }) => {
         <ContentWrapperContainer>
           {/* the name props is to identify the button to it's dropdown in the reducer to close the dropdown */}
           <div onClick={() => handleClick()}>
-            <CustomButton
+            <CustomButtonMUI
               type="button"
               kind="link"
               routeName="/signin"
               name="signIn"
             >
               Sign In
-            </CustomButton>
+            </CustomButtonMUI>
           </div>
           <h5>
             New customer?{" "}

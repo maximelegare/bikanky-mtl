@@ -31,7 +31,7 @@ const useStyles = makeStyles({
   },
 });
 
-const CustomButton = ({ children, kind, deleteIcon, routeName, type }) => {
+const CustomButtonMUI = ({ children, kind, deleteIcon, routeName, type }) => {
   const classes = useStyles();
 
   switch (kind) {
@@ -60,16 +60,12 @@ const CustomButton = ({ children, kind, deleteIcon, routeName, type }) => {
             {children}
           </Button>
         </Link>
-      );
+      );  
     case "signInWithGoogle":
       return (
-          <Button
-            variant="contained"
-            type={type}
-            color="primary"
-          >
-            {children}
-          </Button>
+        <Button variant="contained" type={type} color="primary">
+          {children}
+        </Button>
       );
     default:
       return (
@@ -84,7 +80,7 @@ const CustomButton = ({ children, kind, deleteIcon, routeName, type }) => {
   }
 };
 
-CustomButton.propTypes = {
+CustomButtonMUI.propTypes = {
   children: PropTypes.any,
   type: PropTypes.string,
   kind: PropTypes.string,
@@ -93,4 +89,4 @@ CustomButton.propTypes = {
   name: PropTypes.string,
 };
 
-export default CustomButton;
+export default CustomButtonMUI;

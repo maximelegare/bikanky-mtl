@@ -11,7 +11,7 @@ import {
 } from "./signin-signup.styles";
 
 import FormInput from "../form-inputs/form-input.component";
-import CustomButton from "../buttons/material-ui/custombutton.component";
+import CustomButtonMUI from "../buttons/material-ui/custom-button-mui.component";
 
 import { signInWithGoogle } from "../../firebase/firebase.utils";
 
@@ -138,14 +138,14 @@ const SigninSignup = ({ match }) => {
             />
           ) : null}
           <ButtonSectionContainer>
-            <CustomButton type="submit">
+            <CustomButtonMUI type="submit">
               {newUser ? "Sign up" : "Sign in"}
-            </CustomButton>
+            </CustomButtonMUI>
           </ButtonSectionContainer>
           <ButtonSectionContainer onClick={signInWithGoogle} style={{marginTop:"15px"}}>
-            <CustomButton kind="signInWithGoogle">
+            <CustomButtonMUI kind="signInWithGoogle">
               Sign in with google
-            </CustomButton>
+            </CustomButtonMUI>
           </ButtonSectionContainer>
           <ChangePageContainter>
             <hr />

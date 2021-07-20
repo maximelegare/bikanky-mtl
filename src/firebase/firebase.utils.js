@@ -7,8 +7,7 @@ import "firebase/auth";
 // eslint-disable-next-line no-undef
 const API_KEY = process.env.REACT_APP_FIREBASE_API_KEY;
 
-
-
+// firebase config
 const firebaseConfig = {
   apiKey: API_KEY,
   authDomain: "bikanky-montreal.firebaseapp.com",
@@ -18,28 +17,41 @@ const firebaseConfig = {
   appId: "1:104322449559:web:7786aec48bcc3931cea9d2",
   measurementId: "G-SV834GCNQY",
 };
-
+// initialize the firebase
 firebase.initializeApp(firebaseConfig);
 export const auth = firebase.auth();
-export const firestore = firebase.firestore()
+export const firestore = firebase.firestore();
 
-
-
-
-const provider = new firebase.auth.GoogleAuthProvider();
-provider.setCustomParameters({prompt: 'select_account'});
-
-export const signInWithGoogle = () => auth.signInWithRedirect(provider)
-
-export default firebase
-
-
-
-
+// get the current user obj and unsubscribe
 export const getCurrentUser = () => {
-    
-}
+  return new Promise((resolve, reject) => {
+    const unsubscribe = auth.onAuthStateChanged((userAuth) => {
+      unsubscribe();
+      resolve(userAuth);
+    }, reject);
+  });
+};
+
+// signin with email and password
+// firebase
+//   .auth()
+//   .signInWithEmailAndPassword(email, password)
+//   .then((userCredential) => {
+//     // Signed in
+//     var user = userCredential.user;
+//     // ...
+//   })
+//   .catch((error) => {
+//     var errorCode = error.code;
+//     var errorMessage = error.message;
+//   });
 
 
 
 
+// google signIn
+const provider = new firebase.auth.GoogleAuthProvider();
+provider.setCustomParameters({ prompt: "select_account" });
+export const signInWithGoogle = () => auth.signInWithRedirect(provider);
+
+export default firebase;

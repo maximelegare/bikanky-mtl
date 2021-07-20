@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { selectCartCount } from "../../../redux/cart/cart.selectors";
+import { selectCartCount } from "../../../../redux/cart/cart.selectors";
 import {
   CartIconContainer,
   CartNumberContainer,

@@ -7,7 +7,7 @@ import { deleteItemFromCart } from "../../../redux/cart/cart.slices";
 
 import { useDispatch } from "react-redux";
 
-import CustomButton from "../../buttons/material-ui/custombutton.component";
+import CustomButtonMUI from "../../buttons/material-ui/custom-button-mui.component";
 
 import {
   CartDropdownWrapperContainer,
@@ -45,9 +45,9 @@ const CartDropdownItem = ({
         </CartLeftContainer>
         {sideSlider ? null : (
           <div onClick={() => dispatch(deleteItemFromCart(id))}>
-            <CustomButton kind="icon" deleteIcon>
+            <CustomButtonMUI kind="icon" deleteIcon>
               delete
-            </CustomButton>
+            </CustomButtonMUI>
           </div>
         )}
       </CartDropdownContainer>

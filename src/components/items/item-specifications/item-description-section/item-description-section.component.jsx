@@ -2,7 +2,7 @@
 import "./bullet-customization.styles.scss";
 import React from "react";
 import { ItemWrapperContainer } from "../item-specifications.styles";
-import CustomButton from "../../../buttons/material-ui/custombutton.component";
+import CustomButtonMUI from "../../../buttons/material-ui/custom-button-mui.component";
 
 // import { PropTypes } from "prop-types";
 import { useDispatch } from "react-redux";
@@ -56,7 +56,7 @@ const ItemDescription = ({item}) => {
           </ul>
         </BulletPointsSectionContainer>
         <CustomButtonContainer onClick={() => dispatch(addItemToCart(item))}>
-          <CustomButton>Add to Cart</CustomButton>
+          <CustomButtonMUI>Add to Cart</CustomButtonMUI>
         </CustomButtonContainer>
       </ItemWrapperContentContainer>
     </ItemWrapperContainer>

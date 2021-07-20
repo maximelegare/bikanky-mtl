@@ -1,12 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
-// import { auth } from "../../firebase/firebase.utils";
+import { auth } from "../../firebase/firebase.utils";
 
-// const userLogIn = createAsyncThunk("user", async () => {});
-
-// export const getCurrentUser = createAsyncThunk("user/getCurrentUser", async () => {
-//     const {data} = await fetch('https://jsonplaceholder.typicode.com/posts')
-//     return data;
-//   });
+// check if there is a user and sets it
+export const getCurrentUserStart = () => {
+  return (dispatch) => {
+    auth.onAuthStateChanged((user) => {
+      dispatch(setCurrentUser(user));
+    });
+  };
+};
 
 const initialState = {
   currentUser: null,
@@ -21,19 +23,6 @@ const userSlice = createSlice({
       state.currentUser = payload;
     },
   },
-  //   extraReducers:  {
-  //     [getCurrentUser.pending] : (state) => {
-  //       state.status = "pending"
-  //     },
-  //     [getCurrentUser.fulfilled] : (state, { payload }) => {
-  //       state.status = "fulfilled"
-  //       state.currentUser = payload
-  //     },
-  //     [getCurrentUser.rejected] : (state) => {
-  //       state.status = "rejected"
-  //     }
-
-  //   },
 });
 export const { setCurrentUser } = userSlice.actions;
 export default userSlice.reducer;
