@@ -13,7 +13,6 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-
     dispatch(getCurrentUserStart())
   }, []);
 

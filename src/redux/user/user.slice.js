@@ -1,10 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { auth } from "../../firebase/firebase.utils";
+import { auth, createUserProfileDocument } from "../../firebase/firebase.utils";
 
 // check if there is a user and sets it
 export const getCurrentUserStart = () => {
   return (dispatch) => {
-    auth.onAuthStateChanged((user) => {
+    auth.onAuthStateChanged( async (user) => {
+      createUserProfileDocument(user)
       dispatch(setCurrentUser(user));
     });
   };

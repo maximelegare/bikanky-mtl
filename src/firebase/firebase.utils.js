@@ -1,7 +1,7 @@
 import firebase from "firebase";
 
 import "firebase/auth";
-// import "firebase/firestore";
+import "firebase/firestore";
 // import "firebase/analytics";
 
 // eslint-disable-next-line no-undef
@@ -22,6 +22,7 @@ firebase.initializeApp(firebaseConfig);
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
 
+
 // get the current user obj and unsubscribe
 export const getCurrentUser = () => {
   return new Promise((resolve, reject) => {
@@ -32,22 +33,33 @@ export const getCurrentUser = () => {
   });
 };
 
-// signin with email and password
-// firebase
-//   .auth()
-//   .signInWithEmailAndPassword(email, password)
-//   .then((userCredential) => {
-//     // Signed in
-//     var user = userCredential.user;
-//     // ...
-//   })
-//   .catch((error) => {
-//     var errorCode = error.code;
-//     var errorMessage = error.message;
-//   });
+
+export const createUserProfileDocument = async (userAuth, additionalData) => {
+  if(!userAuth){
+    return
+  }
+  const userRef = firestore.doc(`/users/${userAuth.uid}`)
+  const snapShot = await userRef.get()
+
+  if(!snapShot.exists){
+    const { displayName, email } = userAuth
+    const createAt = new Date()
 
 
+    try{
+      await userRef.set({
+        displayName,
+        email,
+        createAt,
+        additionalData: additionalData? additionalData : null
+      })
+    }catch(error){
+      console.log('error creating user', error.message)
+    }
+  }
+  return userRef
 
+}
 
 // google signIn
 const provider = new firebase.auth.GoogleAuthProvider();
