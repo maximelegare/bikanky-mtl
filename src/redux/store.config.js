@@ -7,17 +7,17 @@ import thunk from "redux-thunk";
 
 import logger from "redux-logger";
 
-import productsReducer from './items/items.reducers'
+// import productsReducer from './items/items.reducers'
 import directoryRecucer from './directory/directory.reducers'
 import cartSlice from './cart/cart.slices'
 import sliderSlice from "./side-slider/side-slider.slice";
 import dropdownSlice from "./dropdown-elements-visibility/dropdown.slice";
 import userSlice from "./user/user.slice";
-
+import itemsSlice from "./items/items.slice";
 
 // all reducers
 const reducers = combineReducers({
-    products: productsReducer,
+    items: itemsSlice,
     directory:directoryRecucer,
     cart:cartSlice,
     slider:sliderSlice,

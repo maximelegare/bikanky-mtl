@@ -25,10 +25,10 @@ const ItemsPreview = ({ itemsCategories, history }) => {
       <TopImageSection type="with-title">Créations</TopImageSection>
 
       {/* select all categories and map */}
-      {Object.values(itemsCategories).map(({ id, title, items, linkUrl }) => (
+      {Object.values(itemsCategories).map(({ id, title, items, routeName }) => (
         <PageMediumMarginsContainer key={id}>
           <TitleWrapperContainer>
-            <TitleContainer onClick={() => history.push(linkUrl)}>
+            <TitleContainer onClick={() => history.push(`creations/${routeName}`)}>
               {title.toUpperCase()}
               <sup>voir&nbsp;plus</sup>
             </TitleContainer>

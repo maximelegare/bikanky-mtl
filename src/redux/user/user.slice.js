@@ -5,7 +5,6 @@ import { auth, createUserProfileDocument } from "../../firebase/firebase.utils";
 export const getCurrentUserStart = () => {
   return (dispatch) => {
 
-
     // listen to user 
     auth.onAuthStateChanged(async (userAuth) => {
       // if there is a user, createUserProfileDocument => always returns the userRef
@@ -40,6 +39,7 @@ const userSlice = createSlice({
   reducers: {
     setCurrentUser(state, { payload }) {
       state.currentUser = payload;
+      
     },
   },
 });
