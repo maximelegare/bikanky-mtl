@@ -1,12 +1,30 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { auth, createUserProfileDocument } from "../../firebase/firebase.utils";
 
-// check if there is a user and sets it
+
 export const getCurrentUserStart = () => {
   return (dispatch) => {
-    auth.onAuthStateChanged( async (user) => {
-      createUserProfileDocument(user)
-      dispatch(setCurrentUser(user));
+
+
+    // listen to user 
+    auth.onAuthStateChanged(async (userAuth) => {
+      // if there is a user, createUserProfileDocument => always returns the userRef
+      if (userAuth) {
+        const userRef = await createUserProfileDocument(userAuth);
+
+        // listen to the userRef => when changes, create user with only the values I want
+        userRef.onSnapshot((snapshot) => {
+          dispatch(
+            setCurrentUser({
+              id: snapshot.id,
+              ...snapshot.data(),
+            })
+          );
+        });
+      } else {
+        // if there is no user, set current user to null
+        dispatch(setCurrentUser(null));
+      }
     });
   };
 };

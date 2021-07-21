@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 
 export const IsSignInWrapperContainer = styled.div`
-/* width:200px; */
+min-width:180px;
 display: flex;
 justify-content: center;
 `

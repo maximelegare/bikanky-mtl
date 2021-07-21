@@ -13,11 +13,16 @@ import {
 import FormInput from "../form-inputs/form-input.component";
 import CustomButtonMUI from "../buttons/material-ui/custom-button-mui.component";
 
-import { signInWithGoogle } from "../../firebase/firebase.utils";
+import {
+  auth,
+  createUserProfileDocument,
+  signInWithGoogle,
+} from "../../firebase/firebase.utils";
 
+import { errMessages } from "./signin-signup.utils";
 
 //  user credentials
-const SigninSignup = ({ match }) => {
+const SigninSignup = ({ match, history }) => {
   const [credentials, setCredentials] = useState({
     email: "",
     password: "",
@@ -41,31 +46,58 @@ const SigninSignup = ({ match }) => {
     }
   }, [match.url]);
 
+  // ////////////////////////////////
+
   // handle submit event
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const isValid = validate();
+    console.log(isValid);
 
-    console.log(isValid)
+    if (!isValid) return;
+
+    // if it's a new user, create new account
+    if (newUser) {
+      try {
+        const { user } = await auth.createUserWithEmailAndPassword(
+          email,
+          password
+        );
+        await createUserProfileDocument(user);
+        resetCredentials();
+        history.push("/");
+
+        return;
+      } catch (err) {
+        console.log(err);
+        return;
+      }
+    }
+    try {
+      await auth.signInWithEmailAndPassword(email, password);
+      resetCredentials();
+      history.push("/");
+    } catch (err) {
+      console.log(err);
+    }
   };
 
+  // reset the credentials
+  const resetCredentials = () => {
+    setCredentials({
+      ...credentials,
+      email: "",
+      password: "",
+      confirmPassword: "",
+    });
+  };
+
+  // ////////////////////////////////
+
+  // validate the inputs with external util
   const validate = () => {
-    var messageObj = {};
-
-    if (!email || !email.includes("@") || !email.includes(".")) {
-      messageObj.email = "Please enter your email";
-    }
-    if (!password) {
-      messageObj.password = "Please enter your password";
-    }
-    if (password <= 6) {
-      messageObj.password =
-        "Your password must consist of at least 6 characters";
-    }
-    if (!confirmPassword || confirmPassword !== password) {
-      messageObj.confirmPassword = "Your password and password validation must match";
-    }
-
+    const messageObj = errMessages(email, password, confirmPassword, newUser);
+    // sets the errors if that's the case
     setCredentials({
       ...credentials,
       errors: {
@@ -80,13 +112,16 @@ const SigninSignup = ({ match }) => {
     return true;
   };
 
+  // ////////////////////////////////
+
+  // handles change of inputs
   const handleChange = (e) => {
     const { name, value } = e.target;
     setCredentials({ ...credentials, [name]: value });
   };
 
+  // removes error with onBlur event. the key is dynamic (renders the name of the input)
   const removeError = (name) => {
-    console.log(name);
     setCredentials({ ...credentials, errors: { ...errors, [name]: null } });
   };
 
@@ -101,6 +136,7 @@ const SigninSignup = ({ match }) => {
           <TitleContainer>
             <h3>{newUser ? "Create your account!" : "Welcome Back!"}</h3>
           </TitleContainer>
+
           <FormInput
             error={errors.email}
             type="email"
@@ -126,7 +162,7 @@ const SigninSignup = ({ match }) => {
             }
           />
 
-          {match.url === "/signup" ? (
+          {newUser ? (
             <FormInput
               error={errors.confirmPassword}
               type="password"
@@ -137,12 +173,17 @@ const SigninSignup = ({ match }) => {
               removeError={removeError}
             />
           ) : null}
+
           <ButtonSectionContainer>
             <CustomButtonMUI type="submit">
               {newUser ? "Sign up" : "Sign in"}
             </CustomButtonMUI>
           </ButtonSectionContainer>
-          <ButtonSectionContainer onClick={signInWithGoogle} style={{marginTop:"15px"}}>
+
+          <ButtonSectionContainer
+            onClick={signInWithGoogle}
+            style={{ marginTop: "15px" }}
+          >
             <CustomButtonMUI kind="signInWithGoogle">
               Sign in with google
             </CustomButtonMUI>
@@ -173,6 +214,7 @@ const SigninSignup = ({ match }) => {
 
 SigninSignup.propTypes = {
   match: PropTypes.object,
+  history: PropTypes.object,
 };
 
 export default withRouter(SigninSignup);

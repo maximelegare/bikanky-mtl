@@ -22,6 +22,7 @@ firebase.initializeApp(firebaseConfig);
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
 
+// ///////////////////////////
 
 // get the current user obj and unsubscribe
 export const getCurrentUser = () => {
@@ -33,33 +34,52 @@ export const getCurrentUser = () => {
   });
 };
 
+// ///////////////////////////
 
-export const createUserProfileDocument = async (userAuth, additionalData) => {
-  if(!userAuth){
-    return
+// creates a firestore profile if there is no snapshot that exist.
+export const createUserProfileDocument = async (userAuth) => {
+  // console.log(additionnalData)
+  if (!userAuth) {
+    return;
   }
-  const userRef = firestore.doc(`/users/${userAuth.uid}`)
-  const snapShot = await userRef.get()
 
-  if(!snapShot.exists){
-    const { displayName, email } = userAuth
-    const createAt = new Date()
+  
 
 
-    try{
+  // userRef is a reference to the db collection/doc
+  const userRef = firestore.doc(`/users/${userAuth.uid}`);
+
+  // With snapshot, I can check if there is actually some data in that reference
+  const snapShot = await userRef.get();
+
+  if (!snapShot.exists) {
+    const {email } = userAuth;
+    const createAt = new Date();
+
+    const data = {
+      
+      email,
+      createAt,
+    };
+    
+    // if(!displayName){
+    //   data.displayName = additionnalData.displayName
+    // }
+
+    console.log(data)
+    // set data at the userRef
+    try {
       await userRef.set({
-        displayName,
-        email,
-        createAt,
-        additionalData: additionalData? additionalData : null
-      })
-    }catch(error){
-      console.log('error creating user', error.message)
+        data
+      });
+    } catch (error) {
+      console.log("error creating user", error.message);
     }
   }
-  return userRef
+  return userRef;
+};
 
-}
+// ///////////////////////////
 
 // google signIn
 const provider = new firebase.auth.GoogleAuthProvider();
