@@ -3,6 +3,8 @@ import styled, { css } from "styled-components";
 export const EmptyCartMessage = styled.h4`
 text-align: center;
 font-weight: 400;
+color: grey;
+
 `
 const getCartItemsStyles = props => {
   if(props.sideSlider){

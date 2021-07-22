@@ -25,7 +25,7 @@ export const SpinnerContainer = styled.div`
     width: 7px;
     height: 7px;
     border-radius: 50%;
-    background: var(--yellow-accent);
+    background: var(--dark-font-color);
     margin: -4px 0 0 -4px;
   }
   div:nth-child(1) {

@@ -15,7 +15,7 @@ const CartItemsSection = ({sideSlider}) => {
               <CartDropdownItem sideSlider={sideSlider} key={id} id={id}  {...otherProps} />
             ))
           :
-          (<EmptyCartMessage>Your Cart is empty</EmptyCartMessage>)
+          (<EmptyCartMessage className="empty-message" sideSlider={sideSlider}>Your Cart is empty</EmptyCartMessage>)
           }
           </CartItemsSectionContainer>
     );

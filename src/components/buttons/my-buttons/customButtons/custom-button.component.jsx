@@ -7,9 +7,9 @@ import {
   IconContainer,
 } from "./custom-button.styles";
 
-const CustomButton = ({ icon, title }) => {
+const CustomButton = ({ icon, title, accent }) => {
   return (
-    <ButtonWrapperContainer>
+    <ButtonWrapperContainer accent={accent}>
       <TextContainer>{title}</TextContainer>
       <IconContainer className="material-icons">{icon}</IconContainer>
     </ButtonWrapperContainer>
@@ -18,7 +18,8 @@ const CustomButton = ({ icon, title }) => {
 
 CustomButton.propTypes = {
   icon: PropTypes.string,
-  title: PropTypes.string
+  title: PropTypes.string,
+  accent:PropTypes.bool
 };
 
 export default CustomButton;

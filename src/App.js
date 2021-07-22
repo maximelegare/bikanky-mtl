@@ -14,6 +14,7 @@ import { useDispatch } from "react-redux";
 import { getCurrentUserStart } from "./redux/user/user.slice";
 import { fetchCollectionsStartAsync } from "./redux/items/items.slice";
 import { selectFetchItemsLoading } from "./redux/items/items.selectors";
+import { toggleClickDropdownVisibility } from "./redux/dropdown-elements-visibility/dropdown.slice";
 
 // withSpinner components
 const HomePageWithSpinner = WithSpinner(HomePage);
@@ -26,8 +27,13 @@ function App() {
   useEffect(() => {
     dispatch(getCurrentUserStart());
     dispatch(fetchCollectionsStartAsync());
+    setTimeout(() => {
+      dispatch(
+        toggleClickDropdownVisibility({ dropdownName: "signIn", value: true })
+      );
+    }, 700);
   }, []);
-  
+
   return (
     <div className="App">
       <Header />

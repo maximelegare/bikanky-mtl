@@ -35,11 +35,14 @@ const IsSignInUserDropdown = ({
       <ContentContainer>
         <UserInfos>
           <h5>Logged in as:</h5>
-          <h4>{email}</h4>
+          <h5 style={{fontWeight:600}}>{email}</h5>
         </UserInfos>
-        <hr style={{ marginTop: "10px" }} />
+        <hr style={{ marginTop: "8px" }} />
         <div onClick={() => handleClick()}>
-          <CustomButton icon="logout" title="Logout" />
+          <CustomButton icon="settings" title="Settings" />
+        </div>
+        <div onClick={() => handleClick()}>
+          <CustomButton icon="logout" title="Logout" accent/>
         </div>
       </ContentContainer>
     </IsSignInWrapperContainer>

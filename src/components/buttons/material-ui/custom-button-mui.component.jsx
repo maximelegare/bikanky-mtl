@@ -13,7 +13,7 @@ const useStyles = makeStyles({
     fontWeight: 400,
     fontFamily: "Open Sans",
     "&:hover": {
-      backgroundColor: "#f7d321",
+      backgroundColor: "var(--yellow-accent-hover)",
     },
   },
   iconClass: {

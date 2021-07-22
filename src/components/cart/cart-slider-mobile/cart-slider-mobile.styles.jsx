@@ -10,5 +10,10 @@ padding:10px;
     color: var(--mobile-slider-text-color);
     font-weight: 400;
     font-size: 1rem;
+    
+    &.empty-message{
+      font-size: 0.8rem;
+      color:var(--pale-bg-hover);
+    }
   }
 `
