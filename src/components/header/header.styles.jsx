@@ -44,11 +44,6 @@ export const RightSectionDesktopWrapperContainer = styled.div`
   }
 `;
 
-export const MobileOptionsContainer = styled.div`
-  width: 80%;
-  margin-top:100px;
-
-`;
 
 
 

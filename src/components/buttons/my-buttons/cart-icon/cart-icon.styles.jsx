@@ -7,7 +7,8 @@ export const CartIconContainer = styled.div`
   justify-content: center;
   align-items: center;
   z-index: 10;
-  color: white;
+  /* color: var(--yellow-accent); */
+  color:white;
   transition: 0.3s ease-in-out;
   cursor: pointer;
   background-color: transparent;
@@ -15,8 +16,11 @@ export const CartIconContainer = styled.div`
   width: 2rem;
   height: 2.6rem;
   /* margin:0 12px; */
-  &:hover {
-    color: var(--yellow-accent);
+
+  @media screen and (min-width: 900px) {
+    &:hover {
+      color: var(--yellow-accent);
+    }
   }
 `;
 
@@ -37,4 +41,5 @@ export const CartNumberContainer = styled.div`
 
 export const NumberContainer = styled.h4`
   color: black;
+  font-size: 1rem;
 `;

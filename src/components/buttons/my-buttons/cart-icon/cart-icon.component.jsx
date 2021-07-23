@@ -7,15 +7,13 @@ import {
   NumberContainer,
 } from "./cart-icon.styles";
 
-
+import { PropTypes } from "prop-types";
 
 const CartIcon = () => {
   const cartItemsCount = useSelector(selectCartCount);
-  
+
   return (
-    <CartIconContainer
-      
-    >
+    <CartIconContainer >
       <CartNumberContainer>
         <NumberContainer>{cartItemsCount}</NumberContainer>
       </CartNumberContainer>
@@ -24,6 +22,10 @@ const CartIcon = () => {
       </div>
     </CartIconContainer>
   );
+};
+
+CartIcon.propTypes = {
+  color: PropTypes.string,
 };
 
 export default CartIcon;

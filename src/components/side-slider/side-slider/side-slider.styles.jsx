@@ -67,3 +67,17 @@ bottom: 0;
 background-color: var(--bg-color-modal);
 
 `
+export const MobileOptionsContainer = styled.div`
+  width: 80%;
+  margin-top:100px;
+`;
+
+export const ButtonContainer = styled.div`
+margin-top: 20px;
+width: 100%;
+display: flex;
+justify-content: center;
+
+
+`
+

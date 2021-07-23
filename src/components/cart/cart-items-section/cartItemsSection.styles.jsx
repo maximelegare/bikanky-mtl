@@ -17,8 +17,8 @@ const getCartItemsStyles = props => {
 export const CartItemsSectionContainer = styled.div`
   margin: 10px 0;
   ${getCartItemsStyles}
-  min-height: 150px;
-  max-height: 300px;
+  height: 175px;
+  /* height: 300px; */
   overflow-y: auto;
   overscroll-behavior: contain;
   /* hides the scrollbar across browsers */

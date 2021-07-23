@@ -6,6 +6,9 @@ border-top: 1px solid var(--mobile-line);
 border-bottom: 1px solid var(--mobile-line);
 width: 120%;
 padding:10px;
+  h5{
+    color:var(--mobile-slider-darker-color);
+  }
   h4{
     color: var(--mobile-slider-text-color);
     font-weight: 400;

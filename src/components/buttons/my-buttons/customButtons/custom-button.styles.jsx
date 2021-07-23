@@ -25,3 +25,13 @@ export const ButtonWrapperContainer = styled.button`
 export const TextContainer = styled.h4``;
 
 export const IconContainer = styled.span``;
+
+
+export const TextButtonContainer = styled.button`
+background-color: transparent;
+border: none;
+color: var(--yellow-accent);
+padding: 10px 15px;
+cursor: pointer;
+font-size: 1rem;
+`

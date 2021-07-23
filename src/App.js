@@ -15,7 +15,7 @@ import { getCurrentUserStart } from "./redux/user/user.slice";
 import { fetchCollectionsStartAsync } from "./redux/items/items.slice";
 import { selectFetchItemsLoading } from "./redux/items/items.selectors";
 import { toggleClickDropdownVisibility } from "./redux/dropdown-elements-visibility/dropdown.slice";
-
+import CartIconMobile from "./components/buttons/my-buttons/cart-icon-mobile/cart-icon-mobile.component";
 // withSpinner components
 const HomePageWithSpinner = WithSpinner(HomePage);
 const ShopPageWithSpinner = WithSpinner(ShopPage);
@@ -37,6 +37,7 @@ function App() {
   return (
     <div className="App">
       <Header />
+      <CartIconMobile />
       <Switch>
         <Route
           exact

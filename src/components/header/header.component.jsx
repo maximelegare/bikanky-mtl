@@ -17,7 +17,6 @@ import {
   HeaderStylesContainer,
   LogoContainer,
   HeaderContainer,
-  MobileOptionsContainer,
   OptionsLink,
   RightSectionDesktopWrapperContainer,
   RightSectionMobileWrapperContainer,
@@ -27,12 +26,9 @@ import {
 import CartDropdown from "../drop-down/cart-dropdown/cart-dropdown.component";
 import SideSlider from "../side-slider/side-slider/side-slider.component";
 import CartIcon from "../buttons/my-buttons/cart-icon/cart-icon.component";
-import SliderOptionsLink from "../side-slider/side-slider-options-link/side-slider-options-link.component";
-import CartSideSliderMobile from "../cart/cart-slider-mobile/cart-slider-mobile.component";
 import UserIconButton from "../buttons/my-buttons/user-icon/userIcon.component";
 import DropdownWithTransitions from "../drop-down/dropdown-with-transitions/dropdown-with-transitions.component";
 import UserDropdown from "../drop-down/user-dropdown/user-dropodwn.component";
-import LoggedInSliderInfos from "../side-slider/logged-in-infos/logged-in-infos.component";
 
 const Header = () => {
   const sliderVisibility = useSelector(selectSliderVisibility);
@@ -84,14 +80,7 @@ const Header = () => {
           </RightSectionMobileWrapperContainer>
 
           <SideSlider>
-            <MobileOptionsContainer>
-              <LoggedInSliderInfos/>
-              <SliderOptionsLink route="/creations" title="Créations" />
-              <SliderOptionsLink route="/services" title="Services" />
-              <SliderOptionsLink route="/about" title="À Propos" />
-              <SliderOptionsLink route="/contact" title="Contact" />
-              <CartSideSliderMobile />
-            </MobileOptionsContainer>
+            
           </SideSlider>
 
           <RightSectionDesktopWrapperContainer>
