@@ -14,8 +14,8 @@ export const PageMediumMarginsContainer = styled.div`
 
 export const PageLargeMarginsContainer = styled.div`
 margin: 0 auto;
-width:40%
-`
+width:40%;
+`;
 
 
 

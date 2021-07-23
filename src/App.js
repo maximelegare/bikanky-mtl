@@ -9,13 +9,16 @@ import HomePage from "./pages/home-page/home-page.component";
 import Header from "./components/header/header.component";
 import ShopPage from "./pages/shop-page/shop-page.component";
 import SigninSignupPage from "./pages/signin-signup-page/signin-signup-page.component";
+import CartIconMobile from "./components/buttons/my-buttons/cart-icon-mobile/cart-icon-mobile.component";
+import CheckoutPage from "./pages/checkout-page/checkout-page.component";
 
 import { useDispatch } from "react-redux";
 import { getCurrentUserStart } from "./redux/user/user.slice";
 import { fetchCollectionsStartAsync } from "./redux/items/items.slice";
 import { selectFetchItemsLoading } from "./redux/items/items.selectors";
 import { toggleClickDropdownVisibility } from "./redux/dropdown-elements-visibility/dropdown.slice";
-import CartIconMobile from "./components/buttons/my-buttons/cart-icon-mobile/cart-icon-mobile.component";
+
+
 // withSpinner components
 const HomePageWithSpinner = WithSpinner(HomePage);
 const ShopPageWithSpinner = WithSpinner(ShopPage);
@@ -27,11 +30,13 @@ function App() {
   useEffect(() => {
     dispatch(getCurrentUserStart());
     dispatch(fetchCollectionsStartAsync());
-    setTimeout(() => {
-      dispatch(
-        toggleClickDropdownVisibility({ dropdownName: "signIn", value: true })
-      );
-    }, 700);
+    
+      setTimeout(() => {
+        dispatch(
+          toggleClickDropdownVisibility({ dropdownName: "signIn", value: true })
+        );
+      }, 700);
+    
   }, []);
 
   return (
@@ -52,6 +57,7 @@ function App() {
             <ShopPageWithSpinner isLoading={loading} {...props} />
           )}
         />
+        <Route path="/checkout" component={CheckoutPage}/>
         <Route path="/signin" component={SigninSignupPage} />
         <Route path="/signup" component={SigninSignupPage} />
       </Switch>

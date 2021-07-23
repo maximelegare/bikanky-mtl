@@ -86,7 +86,6 @@ CustomButtonMUI.propTypes = {
   kind: PropTypes.string,
   deleteIcon: PropTypes.bool,
   routeName: PropTypes.string,
-  name: PropTypes.string,
 };
 
 export default CustomButtonMUI;

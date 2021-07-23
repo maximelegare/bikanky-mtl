@@ -20,6 +20,7 @@ import CustomButton from "../../buttons/my-buttons/customButtons/custom-button.c
 import { auth } from "../../../firebase/firebase.utils";
 import { withRouter } from "react-router";
 
+
 const SideSlider = ({ history }) => {
   const sliderVisibility = useSelector(selectSliderVisibility);
   const currentUser = useSelector(selectCurrentUser);
@@ -78,7 +79,7 @@ const SideSlider = ({ history }) => {
 
 SideSlider.propTypes = {
   children: PropTypes.any,
-  history: PropTypes.obj,
+  history: PropTypes.object,
 };
 
 export default withRouter(SideSlider);
