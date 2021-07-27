@@ -72,9 +72,9 @@ p {
 }
 
 hr {
-  background-color: #bbb;
+  background-color: var(--hr-color);
   border: 0 none;
-  color: #bbb;
+  color: var(--hr-color);
   height: 1px;
 }
 

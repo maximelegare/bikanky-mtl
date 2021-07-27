@@ -9,6 +9,8 @@ color: grey;
 const getCartItemsStyles = props => {
   if(props.sideSlider){
     return sliderStyles
+  }if(props.checkout){
+    return checkoutStyles
   }
   return cartDropdownStyles
 }
@@ -17,10 +19,9 @@ const getCartItemsStyles = props => {
 export const CartItemsSectionContainer = styled.div`
   margin: 10px 0;
   ${getCartItemsStyles}
-  height: 175px;
   /* height: 300px; */
   overflow-y: auto;
-  overscroll-behavior: contain;
+  scroll-behavior: contain;
   /* hides the scrollbar across browsers */
   /* scrollbar-width: none;
   -ms-overflow-style: none; */
@@ -35,8 +36,12 @@ export const CartItemsSectionContainer = styled.div`
 `;
 
 const sliderStyles = css`
-width: 100%;
+height: 175px;
 `
 const cartDropdownStyles = css`
-width: 100%;
+height: 250px;
+`
+
+const checkoutStyles = css`
+
 `

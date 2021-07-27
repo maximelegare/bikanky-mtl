@@ -12,9 +12,8 @@ export const SectionCardContainer = styled.div`
   box-shadow: 0 5px 10px #1b1b1b55;
   background-color: var(--card-background-color);
   flex: ${(props) => props.flex};
-  height: 400px;
-  ${(props) => `width: ${props.width}`};
+  /* height: 400px; */
+  ${(props) => `width: ${props.width};`}
+  ${(props) => `height: ${props.height};`}
 `;
 
-export const InfosCartSection = styled.div``;
-export const PriceSection = styled.div``;

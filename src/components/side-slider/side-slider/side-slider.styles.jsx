@@ -78,11 +78,10 @@ export const MobileOptionsContainer = styled.div`
 `;
 
 export const ButtonContainer = styled.div`
-margin-top: 20px;
+margin: 20px 0;
 width: 100%;
 display: flex;
 justify-content: center;
-
 
 `
 

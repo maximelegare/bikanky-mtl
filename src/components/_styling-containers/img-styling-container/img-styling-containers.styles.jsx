@@ -2,6 +2,8 @@ import styled, { css } from "styled-components";
 
 const selectStyles = (props) => {
   switch (props.type) {
+    case "cart": 
+    return cartStyles
     case "slider":
       return sliderStyles;
       
@@ -43,13 +45,13 @@ export const ProductImgContainer = styled.div`
   cursor: pointer;
   ${selectStyles}
 
-  /* @media screen and (max-width: 1800px) {
-    height: 30vh;
-  }
-  @media screen and (max-width: 1400px) {
-    height: 25vh;
-  }
-  @media screen and (max-width: 1100px) {
-    height: 20vh;
-  } */
+ 
+`;
+
+
+
+export const cartStyles = styled.div`
+  width: 4em;
+  height: 4em;
+  border-radius: 4px;
 `;

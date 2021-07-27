@@ -6,13 +6,14 @@ import {
   CheckoutPriceContainer,
   OrderTable,
   CheckoutTotalContainer,
+  TotalContainer
 } from "./checkout-price.styles";
 
 const CheckoutPrice = () => {
   return (
     <CheckoutPriceContainer>
       <ButtonContainer>
-        <CustomButtonMUI>Place your Order</CustomButtonMUI>
+        <CustomButtonMUI>Continu to Paiment</CustomButtonMUI>
       </ButtonContainer>
       <hr />
       <OrderTable>
@@ -20,7 +21,8 @@ const CheckoutPrice = () => {
       </OrderTable>
       <hr />
       <CheckoutTotalContainer>
-          
+        <TotalContainer>Order Total: </TotalContainer> 
+        <TotalContainer>200.00$</TotalContainer> 
       </CheckoutTotalContainer>
     </CheckoutPriceContainer>
   );

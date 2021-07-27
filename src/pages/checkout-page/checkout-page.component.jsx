@@ -1,16 +1,16 @@
 import React from "react";
 import TopImageSection from "../../components/top-image-section/top-image-section.component";
 import CheckoutSection from "../../components/checkout/checkout.component";
-import { PageMediumMarginsContainer } from "../../components/_styling-containers/pages-styling-containers/pages-styling-containers.styles";
+import { PageLargeMediaMarginsContainer, PageWrapperContainer } from "../../components/_styling-containers/pages-styling-containers/pages-styling-containers.styles";
 
 const CheckoutPage = () => {
   return (
-    <>
+    <PageWrapperContainer>
       <TopImageSection type="without-title" />
-      <PageMediumMarginsContainer>
+      <PageLargeMediaMarginsContainer>
         <CheckoutSection />
-      </PageMediumMarginsContainer>
-    </>
+      </PageLargeMediaMarginsContainer>
+    </PageWrapperContainer>
   );
 };
 

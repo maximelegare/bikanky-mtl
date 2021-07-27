@@ -1,8 +1,7 @@
 import styled from "styled-components";
 
 export const CheckoutPriceContainer = styled.div`
-  width: 90%;
-  margin: 0 auto;
+  padding: 0 15px;
 `;
 
 export const ButtonContainer = styled.div`
@@ -29,4 +28,14 @@ export const OrderTable = styled.table`
 `;
 
 
-export const CheckoutTotalContainer = styled.div``
+export const CheckoutTotalContainer = styled.div`
+padding-top: 10px;
+display: flex;
+justify-content: space-between;
+margin: 0 auto;
+`
+
+export const TotalContainer = styled.h3`
+font-size: 1.2rem;
+color: var(--red-accent);
+`

@@ -1,7 +1,9 @@
 import React from "react";
 
-import CheckoutPrice from "./checkout-price/checkout-price.component";
 
+
+import CheckoutPrice from "./checkout-price/checkout-price.component";
+import CheckoutInfos from "./checkout-Infos/checkout-infos.component";
 import {
   CheckoutSectionContainer,
   SectionCardContainer,
@@ -9,13 +11,16 @@ import {
 
 const CheckoutSection = () => {
   return (
-    <CheckoutSectionContainer>
-      <SectionCardContainer flex="6">
-      </SectionCardContainer>
-      <SectionCardContainer  width="300px">
-          <CheckoutPrice/>
-      </SectionCardContainer>
-    </CheckoutSectionContainer>
+    <>
+      <CheckoutSectionContainer>
+        <SectionCardContainer flex="6">
+          <CheckoutInfos />
+        </SectionCardContainer>
+        <SectionCardContainer width="300px" height="310px">
+          <CheckoutPrice />
+        </SectionCardContainer>
+      </CheckoutSectionContainer>
+    </>
   );
 };
 

@@ -2,6 +2,8 @@ import styled from "styled-components";
 
 export const PageWrapperContainer = styled.div`
   background-color: var(--div-bg-color);
+  min-height: 100vh;
+  /* background-color: red; */
 `;
 
 export const PageMediumMarginsContainer = styled.div`
@@ -11,6 +13,15 @@ export const PageMediumMarginsContainer = styled.div`
     width: 90%;
   }
 `;
+
+export const PageLargeMediaMarginsContainer = styled.div`
+  width: 60%;
+  margin: 40px auto 0;
+  @media screen and (max-width: 1300px) {
+    width: 90%;
+  }
+`;
+
 
 export const PageLargeMarginsContainer = styled.div`
 margin: 0 auto;
