@@ -54,7 +54,7 @@ const middleware = [thunk]
 if(devMode){
     middleware.push(logger)
 }
-
+console.log(devMode)
 
 
 
@@ -63,7 +63,7 @@ export const store = configureStore({
     reducer:persistedReducer, 
     // eslint-disable-next-line no-undef
     devTools: !devMode,
-    middleware : [thunk, logger]
+    middleware 
 })
 
 

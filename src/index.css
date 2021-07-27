@@ -2,7 +2,15 @@ body {
   /* font-family: 'Quicksand', sans-serif; */
   color: var(--dark-font-color);
   overflow-x: hidden;
+  /* overflow-y: hidden; */
 }
+
+
+/* prevent user from scrolling if the slider is open */
+body.no-scroll{
+  overflow-y: hidden;
+}
+
 
 * {
   box-sizing: border-box;

@@ -43,6 +43,7 @@ function App() {
     <div className="App">
       <Header />
       <CartIconMobile />
+      
       <Switch>
         <Route
           exact
@@ -61,6 +62,7 @@ function App() {
         <Route path="/signin" component={SigninSignupPage} />
         <Route path="/signup" component={SigninSignupPage} />
       </Switch>
+      
     </div>
   );
 }

@@ -47,6 +47,15 @@ const Header = () => {
     toggleButton();
   }, [sliderVisibility]);
 
+
+  // prevent user from beeing able to scroll when the slider is open. The class selector is in [index.css]
+  useEffect(() => {
+    sliderVisibility ? document.body.classList.add("no-scroll") : null;
+    return () => {
+      document.body.classList.remove("no-scroll");
+    };
+  });
+
   const toggleButton = useCallback(
     () =>
       setIsActive((prevState) => {
@@ -79,9 +88,7 @@ const Header = () => {
             />
           </RightSectionMobileWrapperContainer>
 
-          <SideSlider>
-            
-          </SideSlider>
+          <SideSlider />
 
           <RightSectionDesktopWrapperContainer>
             <div>
