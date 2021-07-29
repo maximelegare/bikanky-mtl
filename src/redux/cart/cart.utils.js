@@ -33,7 +33,8 @@ export const decreaseQuantityUtil = (cartItems, cartItemToUpdate) => {
     (cartItem) => cartItem.id === cartItemToUpdate.id
   );
 
-  if (existingCartItem.quantity === 1) {
+  if (existingCartItem.cartQuantity === 1) {
+  
     return cartItems.filter((cartItem) => cartItem.id !== cartItemToUpdate.id);
   }
   return cartItems.map((cartItem) =>
