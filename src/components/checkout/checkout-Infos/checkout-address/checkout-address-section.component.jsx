@@ -1,24 +1,41 @@
-import React from "react";
+import React, { useState } from "react";
 import { PropTypes } from "prop-types";
 import { AddressContainer } from "./checkout-address.styles";
+import ModalComponent from "../../../modal/modal.component";
 
 import CustomButtonMUI from "../../../buttons/material-ui/custom-button-mui.component";
 
 const CheckoutAddressSection = ({ user }) => {
-  const userAddress = user?.data?.address
+  const userAddress = user?.data?.address;
+
+  const [modalVisibility, setModalVisibility] = useState(false);
+
+  const setVisibility = (visibility) => {
+    setModalVisibility(visibility);
+  };
 
   return (
-    <AddressContainer>
-      {userAddress ? (
-        <div>
-          <h5>
-            {userAddress.lName} {userAddress.fName}
-          </h5>
-          <h5>{userAddress.address}</h5>
-          <h5>{userAddress.city}</h5>
-        </div>
-      ) : <CustomButtonMUI kind="small">Add an Address</CustomButtonMUI>}
-    </AddressContainer>
+    <>
+      <ModalComponent
+        setVisibility={setVisibility}
+        isVisible={modalVisibility}
+      />
+      <AddressContainer>
+        {userAddress ? (
+          <div>
+            <h5>
+              {userAddress.lName} {userAddress.fName}
+            </h5>
+            <h5>{userAddress.address}</h5>
+            <h5>{userAddress.city}</h5>
+          </div>
+        ) : (
+          <div onClick={() => setVisibility(true)}>
+            <CustomButtonMUI kind="small">Add an Address</CustomButtonMUI>
+          </div>
+        )}
+      </AddressContainer>
+    </>
   );
 };
 
