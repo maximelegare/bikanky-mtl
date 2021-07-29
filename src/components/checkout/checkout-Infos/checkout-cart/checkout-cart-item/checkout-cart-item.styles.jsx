@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const CheckoutCartItemWrapperContainer = styled.div`
-  margin-bottom: 10px;
+  margin-top: 15px;
   /* height: 100%; */
   padding: 20px;
   border-radius: 5px;
@@ -53,12 +53,14 @@ export const NumberContainer = styled.div`
   h4 {
     text-decoration: none;
     margin: 0 5px;
+    width:30px;
+    text-align: center;
     font-size: 1.2rem;
   }
   span {
-    font-size: 1.3rem;
+    font-size: 1.6rem;
     color: var(--yellow-accent);
-    padding: 5px;
+    padding: 3px;
     cursor: pointer;
   }
 `;

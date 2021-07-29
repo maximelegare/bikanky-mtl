@@ -6,7 +6,6 @@ const selectItemsInitialState = (state) => state.items;
 export const selectFetchItemsLoading = createSelector(
   [selectItemsInitialState],
   (items) => {
-    console.log(items.isLoading);
     return items.isLoading;
   }
 );
@@ -14,7 +13,6 @@ export const selectFetchItemsLoading = createSelector(
 export const selectItemsCategories = createSelector(
   [selectItemsInitialState],
   (items) => {
-    console.log(items.itemsCategories);
     return items.itemsCategories ? items.itemsCategories : {};
   }
 );

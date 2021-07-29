@@ -9,14 +9,13 @@ import {
   CheckoutListContainer,
 } from "./checkout-cart.styles";
 
-import { TitleContainer } from "./checkout-cart.styles";
 
 const CheckoutCart = () => {
   const cartItems = useSelector(selectCartItems);
 
   return (
     <CheckoutCartContainerWrapper>
-      <TitleContainer>2 - Your Cart</TitleContainer>
+      
 
       <CheckoutListContainer>
         {cartItems.map((cartItem) => (

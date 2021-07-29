@@ -6,9 +6,7 @@ export const ButtonWrapperContainer = styled.button`
   width: 100%;
   /* outline: none; */
   background-color: ${(props) =>
-    props.accent
-      ? "var(--yellow-accent)"
-      : "var(--mobile-slider-text-color)"};
+    props.color ? props.color : "var(--mobile-slider-text-color)"};
   display: flex;
   justify-content: space-between;
   cursor: pointer;
@@ -18,7 +16,7 @@ export const ButtonWrapperContainer = styled.button`
   transition: 300ms ease-in-out;
   :hover {
     background-color: ${(props) =>
-      props.accent ? "var(--yellow-accent-hover)" : "var(--pale-bg-hover)"};
+      props.color ? "var(--yellow-accent-hover)" : "var(--pale-bg-hover)"};
   }
 `;
 
@@ -26,12 +24,13 @@ export const TextContainer = styled.h4``;
 
 export const IconContainer = styled.span``;
 
-
 export const TextButtonContainer = styled.button`
-background-color: transparent;
-border: none;
-color: var(--yellow-accent);
-padding: 10px 15px;
-cursor: pointer;
-font-size: 1rem;
-`
+  background-color: transparent;
+  border: none;
+  color: var(--yellow-accent);
+  padding: 10px 15px;
+  cursor: pointer;
+  font-size: 1rem;
+  color: ${(props) =>
+    props.color ? props.color : "var(--mobile-slider-text-color)"};
+`;

@@ -14,7 +14,7 @@ import sliderSlice from "./side-slider/side-slider.slice";
 import dropdownSlice from "./dropdown-elements-visibility/dropdown.slice";
 import userSlice from "./user/user.slice";
 import itemsSlice from "./items/items.slice";
-
+import shippingSlice from "./shipping/shipping.slice";
 // all reducers
 const reducers = combineReducers({
     items: itemsSlice,
@@ -22,7 +22,8 @@ const reducers = combineReducers({
     cart:cartSlice,
     slider:sliderSlice,
     dropdown:dropdownSlice,
-    user:userSlice
+    user:userSlice,
+    shipping:shippingSlice
 })
 
 
@@ -62,7 +63,7 @@ console.log(devMode)
 export const store = configureStore({
     reducer:persistedReducer, 
     // eslint-disable-next-line no-undef
-    devTools: !devMode,
+    devTools: devMode,
     middleware 
 })
 

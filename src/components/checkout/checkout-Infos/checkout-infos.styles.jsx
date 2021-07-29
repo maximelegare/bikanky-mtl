@@ -13,3 +13,6 @@ export const CheckoutStepContainer = styled.div`
   padding: 15px 0;
 `;
 
+export const TitleContainer = styled.h4`
+  width: 200px;
+`;

@@ -5,11 +5,18 @@ import {
   ButtonContainer,
   CheckoutPriceContainer,
   OrderTable,
-  CheckoutTotalContainer,
-  TotalContainer
+ 
 } from "./checkout-price.styles";
 
+import { useSelector } from "react-redux";
+import { selectCartCount, selectCartTotalPrice } from "../../../redux/cart/cart.selectors";
+import { selectShippingPricing } from "../../../redux/shipping/shipping.selector";
+
 const CheckoutPrice = () => {
+  const shippingPrice = useSelector(selectShippingPricing)
+  const cartItemsCount = useSelector(selectCartCount)
+  const totalPrice = useSelector(selectCartTotalPrice)  
+
   return (
     <CheckoutPriceContainer>
       <ButtonContainer>
@@ -17,13 +24,8 @@ const CheckoutPrice = () => {
       </ButtonContainer>
       <hr />
       <OrderTable>
-        <CheckoutTable />
+        <CheckoutTable shippingPrice={shippingPrice} price={totalPrice} itemsCount={cartItemsCount}/>
       </OrderTable>
-      <hr />
-      <CheckoutTotalContainer>
-        <TotalContainer>Order Total: </TotalContainer> 
-        <TotalContainer>200.00$</TotalContainer> 
-      </CheckoutTotalContainer>
     </CheckoutPriceContainer>
   );
 };

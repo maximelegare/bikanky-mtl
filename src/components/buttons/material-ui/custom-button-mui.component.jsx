@@ -38,6 +38,7 @@ const CustomButtonMUI = ({ children, kind, deleteIcon, routeName, type }) => {
     case "icon":
       return (
         <IconButton
+          disableRipple
           classes={{
             root: `${
               deleteIcon ? classes.deleteIconClass : classes.iconClass
@@ -60,7 +61,7 @@ const CustomButtonMUI = ({ children, kind, deleteIcon, routeName, type }) => {
             {children}
           </Button>
         </Link>
-      );  
+      );
     case "signInWithGoogle":
       return (
         <Button variant="contained" type={type} color="primary">

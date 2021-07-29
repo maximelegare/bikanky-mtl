@@ -8,17 +8,17 @@ import {
   TextButtonContainer
 } from "./custom-button.styles";
 
-const CustomButton = ({ icon, title, accent, kind }) => {
+const CustomButton = ({ icon, title, kind, color }) => {
   switch (kind) {
     case "text":
       return(
-        <TextButtonContainer>
+        <TextButtonContainer color={color}>
           {title}
         </TextButtonContainer>
       )
     default:
       return (
-        <ButtonWrapperContainer accent={accent}>
+        <ButtonWrapperContainer color={color}>
           <TextContainer>{title}</TextContainer>
           <IconContainer className="material-icons">{icon}</IconContainer>
         </ButtonWrapperContainer>
@@ -29,8 +29,8 @@ const CustomButton = ({ icon, title, accent, kind }) => {
 CustomButton.propTypes = {
   icon: PropTypes.string,
   title: PropTypes.string,
-  accent: PropTypes.bool,
   kind: PropTypes.string,
+  color: PropTypes.string
 };
 
 export default CustomButton;

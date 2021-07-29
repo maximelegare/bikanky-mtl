@@ -3,20 +3,25 @@ import React from "react";
 import {
   CheckoutInfosContainer,
   CheckoutStepContainer,
+  TitleContainer,
 } from "./checkout-infos.styles";
 
 import CheckoutAddress from "./checkout-address/checkout-address.component";
 import CheckoutCart from "./checkout-cart/checkout-cart.component";
+import CheckoutShipping from "./checkout-shipping/checkout-shipping.component";
 
-const CheckoutInfos = () => {   
+const CheckoutInfos = () => {
   return (
     <CheckoutInfosContainer>
       <CheckoutStepContainer flex>
+        
         <CheckoutAddress />
       </CheckoutStepContainer>
       <hr />
       <CheckoutStepContainer>
-        <CheckoutCart/>
+        <TitleContainer>2 - Cart and Shipping</TitleContainer>
+        <CheckoutShipping />
+        <CheckoutCart />
       </CheckoutStepContainer>
     </CheckoutInfosContainer>
   );

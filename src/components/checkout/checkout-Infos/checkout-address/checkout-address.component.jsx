@@ -2,16 +2,16 @@ import React from "react";
 
 import {
   RightSectionContainer,
-  TitleContainer,
+ 
   AddressContainer,
   ButtonContainer,
 } from "./checkout-address.styles";
-
+import { TitleContainer } from "../checkout-infos.styles";
 const CheckoutAddress = () => {
   return (
     <>
       <RightSectionContainer>
-        <TitleContainer>1 - Shipping Address</TitleContainer>
+      <TitleContainer>1 - Shipping Address</TitleContainer>
         <AddressContainer>
           <h5>Maxime Legare</h5>
           <h5>136 rue Westhill</h5>

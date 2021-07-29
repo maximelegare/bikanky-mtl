@@ -42,7 +42,7 @@ const IsSignInUserDropdown = ({
           <CustomButton icon="settings" title="Settings" />
         </div>
         <div onClick={() => handleClick()}>
-          <CustomButton icon="logout" title="Logout" accent/>
+          <CustomButton icon="logout" title="Logout" color="var(--yellow-accent)"/>
         </div>
       </ContentContainer>
     </IsSignInWrapperContainer>
