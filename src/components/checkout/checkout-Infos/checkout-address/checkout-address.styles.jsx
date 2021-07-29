@@ -2,6 +2,7 @@ import styled from 'styled-components'
 
 export const RightSectionContainer = styled.div`
   display: flex;
+  min-height: 60px;
 `;
 
 

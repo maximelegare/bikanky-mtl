@@ -16,7 +16,7 @@ const CheckoutSection = () => {
         <SectionCardContainer flex="6">
           <CheckoutInfos />
         </SectionCardContainer>
-        <SectionCardContainer width="300px" height="310px">
+        <SectionCardContainer width="300px" height="320px">
           <CheckoutPrice />
         </SectionCardContainer>
       </CheckoutSectionContainer>

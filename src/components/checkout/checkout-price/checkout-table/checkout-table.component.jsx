@@ -8,25 +8,40 @@ import { PropTypes } from "prop-types";
 import { calculCost } from "./checkout-price.utils";
 
 const CheckoutTable = ({ price, itemsCount, shippingPrice }) => {
-  console.log(`${price} , ${itemsCount} , ${shippingPrice}`)
-  const { beforeTax, taxPrice, bigTotal } = calculCost(price, shippingPrice, itemsCount);
+  console.log(`${price} , ${itemsCount} , ${shippingPrice}`);
+  const { beforeShipping, tpsTax, tvqTax, bigTotal } = calculCost(
+    price,
+    shippingPrice,
+    itemsCount
+  );
 
   return (
     <>
       <tbody>
-        <CheckoutTableItem title={`Items (${itemsCount})`} price={price.toFixed(2)} />
-        <CheckoutTableItem title="Shipping" price={shippingPrice} />
+        <CheckoutTableItem
+          title={`Items (${itemsCount})`}
+          price={price.toFixed(2)}
+        />
         <tr>
           <td />
           <td className="separator">
             <hr />
           </td>
         </tr>
-        <CheckoutTableItem title="Total before tax" price={beforeTax} />
-        <CheckoutTableItem title="Estimated tax" price={taxPrice} />
+        {/* <CheckoutTableItem title="Total before tax" price={beforeTax} /> */}
+        <CheckoutTableItem title="Estimated TPS" price={tpsTax} />
+        <CheckoutTableItem title="Estimated TVQ" price={tvqTax} />
         <tr>
           <td />
           <td className="separator">
+            <hr />
+          </td>
+        </tr>
+        <CheckoutTableItem title="Total before Shipping" price={beforeShipping} />
+        <CheckoutTableItem title="Shipping" price={shippingPrice} />
+        <tr>
+          <td />
+          <td className="separator" >
             <hr />
           </td>
         </tr>
@@ -37,6 +52,7 @@ const CheckoutTable = ({ price, itemsCount, shippingPrice }) => {
             <hr />
           </td>
         </tr>
+
         <tr>
           <td>
             <TotalContainer>Order&nbsp;Total: </TotalContainer>

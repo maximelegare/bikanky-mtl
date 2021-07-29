@@ -28,8 +28,8 @@ function App() {
   const loading = useSelector(selectFetchItemsLoading);
 
   useEffect(() => {
-    dispatch(getCurrentUserStart());
     dispatch(fetchCollectionsStartAsync());
+    dispatch(getCurrentUserStart());
     
       // setTimeout(() => {
       //   dispatch(

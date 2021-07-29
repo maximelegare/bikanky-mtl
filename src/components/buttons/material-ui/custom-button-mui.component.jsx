@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import { makeStyles } from "@material-ui/core/styles";
@@ -12,6 +13,7 @@ const useStyles = makeStyles({
     fontSize: 15,
     fontWeight: 400,
     fontFamily: "Open Sans",
+    
     "&:hover": {
       backgroundColor: "var(--yellow-accent-hover)",
     },
@@ -31,8 +33,23 @@ const useStyles = makeStyles({
   },
 });
 
+const smallStyles = makeStyles({
+  root: {
+    backgroundColor: "var(--yellow-accent)",
+    fontSize: 12,
+    fontWeight: 400,
+    fontFamily: "Open Sans",
+    color:'black',
+    padding: '3px, 5px',
+    "&:hover": {
+      backgroundColor: "var(--yellow-accent-hover)",
+    },
+  },
+})
+
 const CustomButtonMUI = ({ children, kind, deleteIcon, routeName, type }) => {
   const classes = useStyles();
+  const smallClasses = smallStyles();
 
   switch (kind) {
     case "icon":
@@ -68,6 +85,12 @@ const CustomButtonMUI = ({ children, kind, deleteIcon, routeName, type }) => {
           {children}
         </Button>
       );
+      case "small":
+        return(
+          <Button variant="contained" classes={{ root: smallClasses.root }} type={type} color="primary">
+          {children}
+        </Button>
+        )
     default:
       return (
         <Button

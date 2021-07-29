@@ -2,9 +2,11 @@ import { createSelector } from "reselect";
 
 const selectUserReducer = (state) => state.user;
 
-export const selectCurrentUser = createSelector(
+export const selectCurrentUser = createSelector([selectUserReducer], (user) => {
+  return user.currentUser;
+});
+
+export const selectFetchUserloading = createSelector(
   [selectUserReducer],
-  (user) => {
-      
-     return user.currentUser}
+  (user) => user.isLoading
 );

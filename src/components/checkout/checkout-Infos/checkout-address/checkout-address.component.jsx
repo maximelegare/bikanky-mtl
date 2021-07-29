@@ -1,22 +1,27 @@
 import React from "react";
+import WithSpinner from "../../../_HOC/with-spinner/with-spinner.component";
+
+import { useSelector } from "react-redux";
+import { selectCurrentUser } from "../../../../redux/user/user.selector";
+import { selectFetchUserloading } from "../../../../redux/user/user.selector";
+import CheckoutAddressSection from "./checkout-address-section.component";
 
 import {
   RightSectionContainer,
- 
-  AddressContainer,
   ButtonContainer,
 } from "./checkout-address.styles";
 import { TitleContainer } from "../checkout-infos.styles";
+
+const CheckoutAddressWithSpinner = WithSpinner(CheckoutAddressSection);
+
 const CheckoutAddress = () => {
+  const user = useSelector(selectCurrentUser || undefined);
+  const isLoading = useSelector(selectFetchUserloading);
   return (
     <>
       <RightSectionContainer>
-      <TitleContainer>1 - Shipping Address</TitleContainer>
-        <AddressContainer>
-          <h5>Maxime Legare</h5>
-          <h5>136 rue Westhill</h5>
-          <h5>Saint-Bruno, Quebec J3V 1N6</h5>
-        </AddressContainer>
+        <TitleContainer>1 - Shipping Address</TitleContainer>
+        <CheckoutAddressWithSpinner small isLoading={isLoading} user={user} />
       </RightSectionContainer>
       <ButtonContainer>Edit Adress</ButtonContainer>
     </>

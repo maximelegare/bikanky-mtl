@@ -13,6 +13,7 @@ const CheckoutTableItem = ({title, price}) => {
 
 CheckoutTableItem.propTypes = {
     title:PropTypes.string,
-    price:PropTypes.number,
+    price:PropTypes.any,
+    inner:PropTypes.bool
 }
 export default CheckoutTableItem;
