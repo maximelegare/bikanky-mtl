@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { PropTypes } from "prop-types";
 import { AddressContainer } from "./checkout-address.styles";
-import ModalComponent from "../../../modal/modal.component";
-
+import AddressModal from "../../../modal/address-modal/address-modal.component";
 import CustomButtonMUI from "../../../buttons/material-ui/custom-button-mui.component";
 
 const CheckoutAddressSection = ({ user }) => {
@@ -16,10 +15,12 @@ const CheckoutAddressSection = ({ user }) => {
 
   return (
     <>
-      <ModalComponent
+      <AddressModal
         setVisibility={setVisibility}
         isVisible={modalVisibility}
+        userAddress={userAddress}
       />
+
       <AddressContainer>
         {userAddress ? (
           <div>

@@ -27,17 +27,17 @@ const elementExitAnimation = keyframes`
 `;
 
 export const ModalWrapperContainer = styled.div`
-  width: 300px;
-  /* min-width: 95%; */
-  height: 400px;
+  min-width: 100px;
+  min-height: 100px;
   background-color: var(--div-bg-color);
   position: fixed;
   transform: translate(-50%, -50%);
   left: 50%;
   z-index: 1000;
-  top: 40vh;
+  top: 50vh;
   border-radius: 8px;
   box-shadow: var(--medium-box-shadow);
+  overflow:hidden;
 
   &.modal-enter-active {
     animation: ${elementEnterAnimation} 500ms

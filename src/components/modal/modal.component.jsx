@@ -4,6 +4,18 @@ import { CSSTransition } from "react-transition-group";
 import { ModalWrapperContainer, ModalBackground } from "./modal.styles";
 import { PropTypes } from "prop-types";
 
+
+
+ /////////// In the parent /////////
+
+// const [modalVisibility, setModalVisibility] = useState(false);
+
+//   const setVisibility = (visibility) => {
+//     setModalVisibility(visibility);
+//   };
+
+
+
 const ModalComponent = ({ isVisible, setVisibility, children }) => {
   const modalRef = useRef();
   const backgroundRef = useRef();
@@ -43,3 +55,7 @@ ModalComponent.propTypes = {
 };
 
 export default ModalComponent;
+
+
+
+

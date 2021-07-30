@@ -57,8 +57,8 @@ const CheckoutTable = ({ price, itemsCount, shippingPrice }) => {
           <td>
             <TotalContainer>Order&nbsp;Total: </TotalContainer>
           </td>
-          <td>
-            <TotalContainer>{bigTotal}&nbsp;$</TotalContainer>
+          <td className="price">
+            <TotalContainer >{bigTotal}&thinsp;$</TotalContainer>
           </td>
         </tr>
       </tbody>

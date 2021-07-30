@@ -54,6 +54,7 @@ const FormInput = ({
         classes={{ root: classes.root }}
         color="secondary"
         onBlur={() => removeError(name)}
+        
       />
       {error ? (
         <ErrorContainer>{error}</ErrorContainer>

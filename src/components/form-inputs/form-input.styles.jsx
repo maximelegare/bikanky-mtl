@@ -4,9 +4,10 @@ export const InputContainer = styled.div`
   margin-bottom: 25px;
 `;
 
-export const InputLabel = styled.h4`
+export const InputLabel = styled.h5`
 font-weight: 600;
 margin-bottom: 5px;
+
 `
 
 export const ErrorContainer = styled.h6`
