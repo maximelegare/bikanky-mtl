@@ -37,28 +37,23 @@ export const ModalWrapperContainer = styled.div`
   overflow-y: auto;
 `;
 
+// position the modal
+export const ModalOverlayContainer = styled.div`
+  position: absolute;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 60vh;
+  z-index: 2000;
+`;
+
 // this div is the actual modal
 export const ModalContainer = styled.div`
   min-width: 100px;
   min-height: 100px;
   background-color: var(--div-bg-color);
-  position: absolute;
-  transform: translate(-50%, -50%);
-  left: 50%;
-  top: 70vh;
-  z-index: 2000;
   border-radius: 8px;
   box-shadow: var(--medium-box-shadow);
-  overflow: hidden;
-  /* &::after {
-    content: "";
-    width: 100%;
-    height: 40px;
-    display: block;
-    position: absolute;
-    bottom: 0px;
-    background-color: red;
-  } */
+  overflow:hidden;
 
   &.modal-enter-active {
     animation: ${elementEnterAnimation} 500ms
@@ -71,15 +66,11 @@ export const ModalContainer = styled.div`
   }
 `;
 
-// this div is where the user clicks if he wants to close the modal
-export const ModalTransparentBackgroundContainer = styled.div`
-  position: fixed;
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom: 0;
-  z-index: 1000;
-  overflow-y: auto;
+
+// separator under the modal
+export const SeparatorContainer = styled.div`
+  width: 100%;
+  height: 40px;
 `;
 
 // this div is the background color

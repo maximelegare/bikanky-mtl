@@ -39,6 +39,7 @@ const AddressModal = ({ userAddress, ...otherProps }) => {
     errors,
   } = credentials;
 
+
   //   handle the submit event
   const handleSubmit = (e) => {
       e.preventDefault()
@@ -55,6 +56,8 @@ const AddressModal = ({ userAddress, ...otherProps }) => {
     setCredentials({ ...credentials, errors: { ...errors, [name]: null } });
   };
 
+
+
   return (
     <ModalComponent {...otherProps}>
       <form onSubmit={handleSubmit}>
@@ -62,10 +65,6 @@ const AddressModal = ({ userAddress, ...otherProps }) => {
           <h3>Add an address</h3>
         </TitleModalContainer>
         <InputSectionContainer>
-          {/* <TitleContainer> */}
-          {/* <h3>{newUser ? "Create your account!" : "Welcome Back!"}</h3> */}
-          {/* </TitleContainer> */}
-
           <FormInput
             error={errors.country}
             type="text"
@@ -74,6 +73,7 @@ const AddressModal = ({ userAddress, ...otherProps }) => {
             value={country}
             handleChange={handleChange}
             removeError={removeError}
+            autoFocus
           />
           <FormInput
             error={errors.fullName}

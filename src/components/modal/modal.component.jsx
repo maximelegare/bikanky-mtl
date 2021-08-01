@@ -5,30 +5,25 @@ import {
   ModalContainer,
   ModalBackgroundContainer,
   ModalWrapperContainer,
-  // ModalTransparentBackgroundContainer
+  ModalOverlayContainer,
+  SeparatorContainer
 } from "./modal.styles";
 import { PropTypes } from "prop-types";
 
-/////////// In the parent /////////
 
-// const [modalVisibility, setModalVisibility] = useState(false);
-
-//   const setVisibility = (visibility) => {
-//     setModalVisibility(visibility);
-//   };
-
-// eslint-disable-next-line no-unused-vars
 const ModalComponent = ({ isVisible, setVisibility, children }) => {
+
   const modalRef = useRef();
   const backgroundRef = useRef();
   const wrapperRef = useRef();
+
+  // if modal is visible, body can't scroll
   useEffect(() => {
     isVisible ? document.body.classList.add("no-scroll") : null;
     return () => {
       document.body.classList.remove("no-scroll");
     };
   });
-
 
   // if the click is on the wrapperContainer => not on the modal, close the modal
   const handleClick = (e) => {
@@ -47,8 +42,14 @@ const ModalComponent = ({ isVisible, setVisibility, children }) => {
         {/* this is a container with the width and height of page. if overflow (the modal is longer than the page) => it will scroll */}
         {/* onClick (ModalWrapperContainer) close the modal, if it is the actual container, not the modal */}
         <ModalWrapperContainer ref={wrapperRef} onClick={handleClick}>
+
+          {/* this is positioning the modal in the center of the page */}
+          <ModalOverlayContainer>
           {/* this is the actual modal */}
-          <ModalContainer ref={modalRef}>{children}</ModalContainer>
+            <ModalContainer ref={modalRef}>{children}</ModalContainer>
+            {/* this is a separator under the modal so that it's not completly on the bottom of the page */}
+            <SeparatorContainer/>
+          </ModalOverlayContainer>
         </ModalWrapperContainer>
       </CSSTransition>
       <CSSTransition

@@ -34,7 +34,8 @@ const FormInput = ({
   message,
   placeHolder,
   name,
-  value
+  value,
+  autoFocus
 }) => {
   const classes = useStyles();
   return (
@@ -54,7 +55,7 @@ const FormInput = ({
         classes={{ root: classes.root }}
         color="secondary"
         onBlur={() => removeError(name)}
-        
+        autoFocus={autoFocus}
       />
       {error ? (
         <ErrorContainer>{error}</ErrorContainer>
@@ -74,7 +75,8 @@ FormInput.propTypes = {
   placeHolder: PropTypes.string,
   removeError:PropTypes.func,
   name:PropTypes.string,
-  value:PropTypes.string
+  value:PropTypes.string,
+  autoFocus:PropTypes.bool
 };
 
 export default FormInput;
