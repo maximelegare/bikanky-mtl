@@ -1,12 +1,15 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import { CSSTransition } from "react-transition-group";
 
-import { ModalWrapperContainer, ModalBackground } from "./modal.styles";
+import {
+  ModalContainer,
+  ModalBackgroundContainer,
+  ModalWrapperContainer,
+  // ModalTransparentBackgroundContainer
+} from "./modal.styles";
 import { PropTypes } from "prop-types";
 
-
-
- /////////// In the parent /////////
+/////////// In the parent /////////
 
 // const [modalVisibility, setModalVisibility] = useState(false);
 
@@ -14,11 +17,23 @@ import { PropTypes } from "prop-types";
 //     setModalVisibility(visibility);
 //   };
 
-
-
+// eslint-disable-next-line no-unused-vars
 const ModalComponent = ({ isVisible, setVisibility, children }) => {
   const modalRef = useRef();
   const backgroundRef = useRef();
+  const wrapperRef = useRef();
+  useEffect(() => {
+    isVisible ? document.body.classList.add("no-scroll") : null;
+    return () => {
+      document.body.classList.remove("no-scroll");
+    };
+  });
+
+
+  // if the click is on the wrapperContainer => not on the modal, close the modal
+  const handleClick = (e) => {
+    if (e.target === wrapperRef.current) setVisibility(false);
+  };
 
   return (
     <>
@@ -29,7 +44,12 @@ const ModalComponent = ({ isVisible, setVisibility, children }) => {
         nodeRef={modalRef}
         unmountOnExit={true}
       >
-        <ModalWrapperContainer ref={modalRef}>{children}</ModalWrapperContainer>
+        {/* this is a container with the width and height of page. if overflow (the modal is longer than the page) => it will scroll */}
+        {/* onClick (ModalWrapperContainer) close the modal, if it is the actual container, not the modal */}
+        <ModalWrapperContainer ref={wrapperRef} onClick={handleClick}>
+          {/* this is the actual modal */}
+          <ModalContainer ref={modalRef}>{children}</ModalContainer>
+        </ModalWrapperContainer>
       </CSSTransition>
       <CSSTransition
         in={isVisible}
@@ -38,10 +58,10 @@ const ModalComponent = ({ isVisible, setVisibility, children }) => {
         nodeRef={backgroundRef}
         unmountOnExit={true}
       >
-        <ModalBackground
+        {/* this is the bakcground color */}
+        <ModalBackgroundContainer
           ref={backgroundRef}
-          onClick={() => setVisibility(false)}
-        ></ModalBackground>
+        ></ModalBackgroundContainer>
       </CSSTransition>
     </>
   );
@@ -55,7 +75,3 @@ ModalComponent.propTypes = {
 };
 
 export default ModalComponent;
-
-
-
-

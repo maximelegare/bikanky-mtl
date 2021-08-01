@@ -1,4 +1,4 @@
-import styled, {keyframes} from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 const elementEnterAnimation = keyframes`
     0%{
@@ -26,18 +26,39 @@ const elementExitAnimation = keyframes`
     }
 `;
 
+// with this div, the modal can scroll if it is longer than the screen
 export const ModalWrapperContainer = styled.div`
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 1000;
+  overflow-y: auto;
+`;
+
+// this div is the actual modal
+export const ModalContainer = styled.div`
   min-width: 100px;
   min-height: 100px;
   background-color: var(--div-bg-color);
-  position: fixed;
+  position: absolute;
   transform: translate(-50%, -50%);
   left: 50%;
-  z-index: 1000;
-  top: 50vh;
+  top: 70vh;
+  z-index: 2000;
   border-radius: 8px;
   box-shadow: var(--medium-box-shadow);
-  overflow:hidden;
+  overflow: hidden;
+  /* &::after {
+    content: "";
+    width: 100%;
+    height: 40px;
+    display: block;
+    position: absolute;
+    bottom: 0px;
+    background-color: red;
+  } */
 
   &.modal-enter-active {
     animation: ${elementEnterAnimation} 500ms
@@ -50,7 +71,19 @@ export const ModalWrapperContainer = styled.div`
   }
 `;
 
-export const ModalBackground = styled.div`
+// this div is where the user clicks if he wants to close the modal
+export const ModalTransparentBackgroundContainer = styled.div`
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 1000;
+  overflow-y: auto;
+`;
+
+// this div is the background color
+export const ModalBackgroundContainer = styled.div`
   background-color: var(--bg-color-modal);
   top: 0;
   left: 0;
@@ -59,24 +92,18 @@ export const ModalBackground = styled.div`
   position: fixed;
   z-index: 400;
 
-  &.background-enter{
+  &.background-enter {
     opacity: 0;
   }
-  &.background-enter-active{
+  &.background-enter-active {
     opacity: 1;
-    transition: opacity 300ms ease-in 
+    transition: opacity 300ms ease-in;
   }
-  &.background-exit{
+  &.background-exit {
     opacity: 1;
   }
-  &.background-exit-active{
-    opacity:0;
+  &.background-exit-active {
+    opacity: 0;
     transition: opacity 300ms ease-out;
   }
 `;
-
-
-
- 
-
-
