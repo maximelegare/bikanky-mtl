@@ -12,11 +12,7 @@ import {
 } from "./is-sign-in-dropdown.styles";
 import { PropTypes } from "prop-types";
 
-const IsSignInUserDropdown = ({
-  currentUser: {
-    data: { email },
-  },
-}) => {
+const IsSignInUserDropdown = ({ currentUser: { email } }) => {
   const dispatch = useDispatch();
 
   const handleClick = () => {
@@ -35,14 +31,18 @@ const IsSignInUserDropdown = ({
       <ContentContainer>
         <UserInfos>
           <h5>Logged in as:</h5>
-          <h5 style={{fontWeight:600}}>{email}</h5>
+          <h5 style={{ fontWeight: 600 }}>{email}</h5>
         </UserInfos>
         <hr style={{ marginTop: "8px" }} />
         <div onClick={() => handleClick()}>
           <CustomButton icon="settings" title="Settings" />
         </div>
         <div onClick={() => handleClick()}>
-          <CustomButton icon="logout" title="Logout" color="var(--yellow-accent)"/>
+          <CustomButton
+            icon="logout"
+            title="Logout"
+            color="var(--yellow-accent)"
+          />
         </div>
       </ContentContainer>
     </IsSignInWrapperContainer>
@@ -51,9 +51,7 @@ const IsSignInUserDropdown = ({
 
 IsSignInUserDropdown.propTypes = {
   currentUser: PropTypes.shape({
-    data: PropTypes.shape({
-      email: PropTypes.string,
-    }),
+    email: PropTypes.string,
   }),
 };
 export default IsSignInUserDropdown;

@@ -3,46 +3,70 @@ import React, { useState } from "react";
 import ModalComponent from "../modal.component";
 import FormInput from "../../form-inputs/form-input.component";
 import { PropTypes } from "prop-types";
-
+import { addShippingAddress } from "../../../firebase/firebase.utils";
 import CustomButtonMUI from "../../buttons/material-ui/custom-button-mui.component";
 
-import { InputSectionContainer, TitleModalContainer, ButtonSectionContainer } from "./address-modal.styles";
+import { useSelector } from "react-redux";
+import { selectCurrentUser } from "../../../redux/user/user.selector";
 
-const AddressModal = ({ userAddress, ...otherProps }) => {
+import {
+  InputSectionContainer,
+  TitleModalContainer,
+  ButtonSectionContainer,
+} from "./address-modal.styles";
+
+const AddressModal = ({ userAddress, closeModal, ...otherProps }) => {
+  const currentUser = useSelector(selectCurrentUser);
+
   // User credentials and errors
   const [credentials, setCredentials] = useState({
-    country: "",
-    fullName: "",
-    AddressLine: "",
-    city: "",
-    state: "",
-    postalCode: "",
-    phoneNumber: "",
-    errors: {
+    country: userAddress?.country ?? "",
+    fullName: userAddress?.fullName ?? "",
+    addressLine: userAddress?.addressLine ?? "",
+    city: userAddress?.city ?? "",
+    state: userAddress?.state ?? "",
+    postalCode: userAddress?.postalCode ?? "",
+    phoneNumber: userAddress?.phoneNumber ?? "",
+    errors:{
       country: null,
       fullName: null,
-      AddressLine: null,
+      addressLine: null,
       city: null,
       state: null,
       postalCode: null,
       phoneNumber: null,
-    },
+    }
   });
+
+  // const [errors, setErrors] = useState();
+
   const {
     country,
     fullName,
-    AddressLine,
+    addressLine,
     city,
     state,
     postalCode,
     phoneNumber,
-    errors,
+    errors
   } = credentials;
-
 
   //   handle the submit event
   const handleSubmit = (e) => {
-      e.preventDefault()
+    e.preventDefault();
+    const address = {
+      country,
+      fullName,
+      addressLine,
+      city,
+      state,
+      postalCode,
+      phoneNumber,
+    };
+    console.log(address);
+    addShippingAddress(currentUser.id, address, currentUser);
+    // close the modal in the parent component
+    closeModal(false)
   };
 
   //   handle change event. the key is dynamic using the name and value provided
@@ -56,8 +80,6 @@ const AddressModal = ({ userAddress, ...otherProps }) => {
     setCredentials({ ...credentials, errors: { ...errors, [name]: null } });
   };
 
-
-
   return (
     <ModalComponent {...otherProps}>
       <form onSubmit={handleSubmit}>
@@ -66,7 +88,7 @@ const AddressModal = ({ userAddress, ...otherProps }) => {
         </TitleModalContainer>
         <InputSectionContainer>
           <FormInput
-            error={errors.country}
+            error={errors?.country}
             type="text"
             label="Country"
             name="country"
@@ -76,7 +98,7 @@ const AddressModal = ({ userAddress, ...otherProps }) => {
             autoFocus
           />
           <FormInput
-            error={errors.fullName}
+            error={errors?.fullName}
             type="text"
             label="Full name (First and last Name)"
             name="fullName"
@@ -85,16 +107,16 @@ const AddressModal = ({ userAddress, ...otherProps }) => {
             removeError={removeError}
           />
           <FormInput
-            error={errors.AddressLine}
+            error={errors?.addressLine}
             type="text"
             label="Address Line"
-            name="AddressLine"
-            value={AddressLine}
+            name="addressLine"
+            value={addressLine}
             handleChange={handleChange}
             removeError={removeError}
           />
           <FormInput
-            error={errors.city}
+            error={errors?.city}
             type="city"
             label="City"
             name="city"
@@ -103,7 +125,7 @@ const AddressModal = ({ userAddress, ...otherProps }) => {
             removeError={removeError}
           />
           <FormInput
-            error={errors.state}
+            error={errors?.state}
             type="state"
             label="State/Province/Region"
             name="state"
@@ -112,7 +134,7 @@ const AddressModal = ({ userAddress, ...otherProps }) => {
             removeError={removeError}
           />
           <FormInput
-            error={errors.postalCode}
+            error={errors?.postalCode}
             type="postalCode"
             label="Postal Code/ZIP"
             name="postalCode"
@@ -121,7 +143,7 @@ const AddressModal = ({ userAddress, ...otherProps }) => {
             removeError={removeError}
           />
           <FormInput
-            error={errors.phoneNumber}
+            error={errors?.phoneNumber}
             type="phoneNumber"
             label="Phone number"
             name="phoneNumber"
@@ -155,12 +177,13 @@ AddressModal.propTypes = {
   userAddress: PropTypes.shape({
     country: PropTypes.string,
     fullName: PropTypes.string,
-    AddressLine: PropTypes.string,
+    addressLine: PropTypes.string,
     city: PropTypes.string,
     state: PropTypes.string,
     postalCode: PropTypes.string,
     phoneNumber: PropTypes.string,
   }),
+  closeModal:PropTypes.func
 };
 
 export default AddressModal;

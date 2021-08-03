@@ -21,7 +21,7 @@ const firebaseConfig = {
 // initialize the firebase
 firebase.initializeApp(firebaseConfig);
 
-// get access to auth and firestore across the app 
+// get access to auth and firestore across the app
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
 
@@ -53,19 +53,14 @@ export const createUserProfileDocument = async (userAuth) => {
   const snapShot = await userRef.get();
 
   if (!snapShot.exists) {
-    const {email } = userAuth;
+    const { email } = userAuth;
     const createAt = new Date();
 
-    const data = {
-      
-      email,
-      createAt,
-    };
-    
     // set data at the userRef
     try {
       await userRef.set({
-        data
+        email,
+        createAt,
       });
     } catch (error) {
       console.log("error creating user", error.message);
@@ -80,29 +75,32 @@ export const createUserProfileDocument = async (userAuth) => {
 export const transformArrayToObject = (collSnapshot) => {
   // create new array
   const transformedCollections = collSnapshot.docs.map((doc) => {
-    const {title, items} = doc.data()
+    const { title, items } = doc.data();
 
-    return{
-      routeName:encodeURI(title.toLowerCase()),
+    return {
+      routeName: encodeURI(title.toLowerCase()),
       items,
       title,
-      id:doc.id
-    }
-  })
+      id: doc.id,
+    };
+  });
   // transform the array in an object
   return transformedCollections.reduce((acc, collection) => {
-    acc[collection.title.toLowerCase()] = collection
+    acc[collection.title.toLowerCase()] = collection;
     return acc;
-  }, {})
-}
+  }, {});
+};
 
+export const addShippingAddress = async (userId, address, user) => {
+  const userRef = firestore.doc(`/users/${userId}`);
+  const { email, createAt } = user;
 
-
-
-
-
-
-
+  try {
+    userRef.set({ email, createAt, address });
+  } catch (err) {
+    console.log("error creating user address", err);
+  }
+};
 
 // ///////////////////////////
 
@@ -113,25 +111,26 @@ export const signInWithGoogle = () => auth.signInWithRedirect(provider);
 
 export default firebase;
 
-
 // ///////////////////////////
 
 // batch multiple objects at the same time in firebase
-// use it in useEffect 
-export const addCollectionsAndDocuments = async (collectionKey, objectsToAdd) => {
-
+// use it in useEffect
+export const addCollectionsAndDocuments = async (
+  collectionKey,
+  objectsToAdd
+) => {
   // create new collectionRef with the name passed as argument (collectionKey)
-  const collectionRef = firestore.collection(collectionKey)
+  const collectionRef = firestore.collection(collectionKey);
 
   // get access to batch function
-  const batch = firestore.batch()
-  
+  const batch = firestore.batch();
+
   // loop through the objects (at first, it's an object => Object.values())
-  objectsToAdd.forEach(obj => {
-    const newDocRef = collectionRef.doc()
-    batch.set(newDocRef, obj)
+  objectsToAdd.forEach((obj) => {
+    const newDocRef = collectionRef.doc();
+    batch.set(newDocRef, obj);
   });
-  
+
   // await for batch to finish
-  await batch.commit()
-}
+  await batch.commit();
+};

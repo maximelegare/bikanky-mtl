@@ -4,8 +4,14 @@ import { AddressContainer } from "./checkout-address.styles";
 import AddressModal from "../../../modal/address-modal/address-modal.component";
 import CustomButtonMUI from "../../../buttons/material-ui/custom-button-mui.component";
 
+import { TitleContainer } from "../checkout-infos.styles";
+import {
+  ButtonContainer,
+  RightSectionContainer,
+} from "./checkout-address.styles";
+
 const CheckoutAddressSection = ({ user }) => {
-  const userAddress = user?.data?.address;
+  const userAddress = user?.address;
 
   const [modalVisibility, setModalVisibility] = useState(false);
 
@@ -13,44 +19,60 @@ const CheckoutAddressSection = ({ user }) => {
     setModalVisibility(visibility);
   };
 
+  console.log(userAddress)
+
   return (
     <>
-      <AddressModal
-        setVisibility={setVisibility}
-        isVisible={modalVisibility}
-        userAddress={userAddress}
-      />
+      <RightSectionContainer>
+        <TitleContainer>1 - Shipping Address</TitleContainer>
+        <AddressModal
+          setVisibility={setVisibility}
+          isVisible={modalVisibility}
+          userAddress={userAddress}
+          closeModal={setVisibility}  
+        />
 
-      <AddressContainer>
-        {userAddress ? (
-          <div>
-            <h5>
-              {userAddress.lName} {userAddress.fName}
-            </h5>
-            <h5>{userAddress.address}</h5>
-            <h5>{userAddress.city}</h5>
-          </div>
-        ) : (
-          <div onClick={() => setVisibility(true)}>
-            <CustomButtonMUI kind="small">Add an Address</CustomButtonMUI>
-          </div>
-        )}
-      </AddressContainer>
+        <AddressContainer>
+          {/* render the address section */}
+          {userAddress ? (
+            <div>
+              <h5>{userAddress.fullName}</h5>
+              <h5>{userAddress.addressLine}</h5>
+              <h5>
+                {userAddress.city}, {userAddress.state}&nbsp;&nbsp;
+                {userAddress.postalCode}
+              </h5>
+            </div>
+          ) : (
+            // or render a button to add an address
+            <div onClick={() => setVisibility(true)}>
+              <CustomButtonMUI kind="small">Add an Address</CustomButtonMUI>
+            </div>
+          )}
+        </AddressContainer>
+      </RightSectionContainer>
+      {userAddress && (
+        <ButtonContainer onClick={() => setVisibility(true)}>
+          Edit Adress
+        </ButtonContainer>
+      )}
     </>
   );
 };
 
 CheckoutAddressSection.propTypes = {
   user: PropTypes.shape({
-    data: PropTypes.shape({
-      address: PropTypes.shape({
-        lName: PropTypes.string,
-        fName: PropTypes.string,
-        address: PropTypes.string,
-        city: PropTypes.string,
-      }),
+    address: PropTypes.shape({
+      AddressLine: PropTypes.string,
+      city: PropTypes.string,
+      country: PropTypes.string,
+      fullName: PropTypes.string,
+      phoneNumber: PropTypes.string,
+      postalCode: PropTypes.string,
+      state: PropTypes.string,
     }),
   }),
+  handleClick: PropTypes.func,
 };
 
 export default CheckoutAddressSection;

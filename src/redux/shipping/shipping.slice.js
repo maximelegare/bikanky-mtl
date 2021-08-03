@@ -6,6 +6,7 @@ const initialState = {
     international: 10.99,
   },
   selectedShippingRate: null,
+  shippingAddress:null
 };
 
 const shippingSlice = createSlice({

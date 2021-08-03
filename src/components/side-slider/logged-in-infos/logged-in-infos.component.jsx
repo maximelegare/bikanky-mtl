@@ -12,7 +12,7 @@ const LoggedInSliderInfos = () => {
       {currentUser ? (
         <InfosWrapperContainer>
           <h4>logged in as:</h4>
-          <h3>{currentUser.data.email}</h3>
+          <h3>{currentUser.email}</h3>
         </InfosWrapperContainer>
       ) : null}
     </>
