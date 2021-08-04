@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import ModalComponent from "../modal.component";
 import FormInput from "../../form-inputs/form-input.component";
@@ -15,11 +14,13 @@ import {
   ButtonSectionContainer,
 } from "./address-modal.styles";
 
+import { errMessages } from "./address-modal.utils";
+
 const AddressModal = ({ userAddress, closeModal, ...otherProps }) => {
   const currentUser = useSelector(selectCurrentUser);
 
-  // User credentials and errors
-  const [credentials, setCredentials] = useState({
+  // User address state
+  const [address, setAddress] = useState({
     country: userAddress?.country ?? "",
     fullName: userAddress?.fullName ?? "",
     addressLine: userAddress?.addressLine ?? "",
@@ -27,19 +28,20 @@ const AddressModal = ({ userAddress, closeModal, ...otherProps }) => {
     state: userAddress?.state ?? "",
     postalCode: userAddress?.postalCode ?? "",
     phoneNumber: userAddress?.phoneNumber ?? "",
-    errors:{
-      country: null,
-      fullName: null,
-      addressLine: null,
-      city: null,
-      state: null,
-      postalCode: null,
-      phoneNumber: null,
-    }
   });
 
-  // const [errors, setErrors] = useState();
+  // address errors state
+  const [errors, setErrors] = useState({
+    country: null,
+    fullName: null,
+    addressLine: null,
+    city: null,
+    state: null,
+    postalCode: null,
+    phoneNumber: null,
+  });
 
+  // deconstruct address
   const {
     country,
     fullName,
@@ -48,13 +50,30 @@ const AddressModal = ({ userAddress, closeModal, ...otherProps }) => {
     state,
     postalCode,
     phoneNumber,
-    errors
-  } = credentials;
+  } = address;
+
+  ////////////////////////////////////////////////
 
   //   handle the submit event
   const handleSubmit = (e) => {
     e.preventDefault();
-    const address = {
+    // validate the form
+    const isValid = validate();
+    // the form is not valid, return
+    if (!isValid) return;
+
+    // otherwise add the shipping address
+    addShippingAddress(currentUser.id, address, currentUser);
+    // close the modal in the parent component
+    closeModal(false);
+  };
+
+  ////////////////////////////////////////////////
+
+  // validate the form in [address-modal.utils.js]
+  const validate = () => {
+    // errors from the utils
+    const {
       country,
       fullName,
       addressLine,
@@ -62,22 +81,45 @@ const AddressModal = ({ userAddress, closeModal, ...otherProps }) => {
       state,
       postalCode,
       phoneNumber,
-    };
-    console.log(address);
-    addShippingAddress(currentUser.id, address, currentUser);
-    // close the modal in the parent component
-    closeModal(false)
+    } = errMessages(address);
+    // sets the errors in errors state
+    setErrors({
+      country,
+      fullName,
+      addressLine,
+      city,
+      state,
+      postalCode,
+      phoneNumber,
+    });
+    // if any errors, return false
+    if (
+      country ||
+      fullName ||
+      addressLine ||
+      city ||
+      state ||
+      postalCode ||
+      phoneNumber
+    ) {
+      return false;
+    }
+    return true;
   };
+
+  ////////////////////////////////////////////////
 
   //   handle change event. the key is dynamic using the name and value provided
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setCredentials({ ...credentials, [name]: value });
+    setAddress({ ...address, [name]: value });
   };
+
+  ////////////////////////////////////////////////
 
   // removes error with onBlur event. the key is dynamic (renders the name of the input)
   const removeError = (name) => {
-    setCredentials({ ...credentials, errors: { ...errors, [name]: null } });
+    setErrors({ ...errors, [name]: null });
   };
 
   return (
@@ -88,7 +130,7 @@ const AddressModal = ({ userAddress, closeModal, ...otherProps }) => {
         </TitleModalContainer>
         <InputSectionContainer>
           <FormInput
-            error={errors?.country}
+            error={errors.country}
             type="text"
             label="Country"
             name="country"
@@ -98,7 +140,7 @@ const AddressModal = ({ userAddress, closeModal, ...otherProps }) => {
             autoFocus
           />
           <FormInput
-            error={errors?.fullName}
+            error={errors.fullName}
             type="text"
             label="Full name (First and last Name)"
             name="fullName"
@@ -107,7 +149,7 @@ const AddressModal = ({ userAddress, closeModal, ...otherProps }) => {
             removeError={removeError}
           />
           <FormInput
-            error={errors?.addressLine}
+            error={errors.addressLine}
             type="text"
             label="Address Line"
             name="addressLine"
@@ -116,7 +158,7 @@ const AddressModal = ({ userAddress, closeModal, ...otherProps }) => {
             removeError={removeError}
           />
           <FormInput
-            error={errors?.city}
+            error={errors.city}
             type="city"
             label="City"
             name="city"
@@ -125,7 +167,7 @@ const AddressModal = ({ userAddress, closeModal, ...otherProps }) => {
             removeError={removeError}
           />
           <FormInput
-            error={errors?.state}
+            error={errors.state}
             type="state"
             label="State/Province/Region"
             name="state"
@@ -134,16 +176,17 @@ const AddressModal = ({ userAddress, closeModal, ...otherProps }) => {
             removeError={removeError}
           />
           <FormInput
-            error={errors?.postalCode}
+            error={errors.postalCode}
             type="postalCode"
             label="Postal Code/ZIP"
             name="postalCode"
-            value={postalCode}
+            value={postalCode.toUpperCase()}
             handleChange={handleChange}
             removeError={removeError}
+            maxLength={6}
           />
           <FormInput
-            error={errors?.phoneNumber}
+            error={errors.phoneNumber}
             type="phoneNumber"
             label="Phone number"
             name="phoneNumber"
@@ -153,20 +196,8 @@ const AddressModal = ({ userAddress, closeModal, ...otherProps }) => {
           />
 
           <ButtonSectionContainer>
-            <CustomButtonMUI type="submit">
-              {/* {newUser ? "Sign up" : "Sign in"} */}
-              Confirm
-            </CustomButtonMUI>
+            <CustomButtonMUI type="submit">Confirm</CustomButtonMUI>
           </ButtonSectionContainer>
-
-          {/* <ButtonSectionContainer
-            onClick={signInWithGoogle}
-            style={{ marginTop: "15px" }}
-          >
-            <CustomButtonMUI kind="signInWithGoogle">
-              Sign in with google
-            </CustomButtonMUI>
-          </ButtonSectionContainer> */}
         </InputSectionContainer>
       </form>
     </ModalComponent>
@@ -183,7 +214,7 @@ AddressModal.propTypes = {
     postalCode: PropTypes.string,
     phoneNumber: PropTypes.string,
   }),
-  closeModal:PropTypes.func
+  closeModal: PropTypes.func,
 };
 
 export default AddressModal;

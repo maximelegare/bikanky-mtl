@@ -35,7 +35,8 @@ const FormInput = ({
   placeHolder,
   name,
   value,
-  autoFocus
+  autoFocus,
+  maxLength
 }) => {
   const classes = useStyles();
   return (
@@ -56,6 +57,7 @@ const FormInput = ({
         color="secondary"
         onBlur={() => removeError(name)}
         autoFocus={autoFocus}
+        inputProps={{maxLength}}
       />
       {error ? (
         <ErrorContainer>{error}</ErrorContainer>
@@ -76,7 +78,8 @@ FormInput.propTypes = {
   removeError:PropTypes.func,
   name:PropTypes.string,
   value:PropTypes.string,
-  autoFocus:PropTypes.bool
+  autoFocus:PropTypes.bool,
+  maxLength:PropTypes.number
 };
 
 export default FormInput;
