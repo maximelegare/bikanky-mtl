@@ -4,11 +4,10 @@ import { AddressContainer } from "./checkout-address.styles";
 import AddressModal from "../../../modal/address-modal/address-modal.component";
 import CustomButtonMUI from "../../../buttons/material-ui/custom-button-mui.component";
 
+import CustomButton from "../../../buttons/my-buttons/customButtons/custom-button.component";
+
 import { TitleContainer } from "../checkout-infos.styles";
-import {
-  ButtonContainer,
-  RightSectionContainer,
-} from "./checkout-address.styles";
+import { RightSectionContainer } from "./checkout-address.styles";
 
 const CheckoutAddressSection = ({ user }) => {
   const userAddress = user?.address;
@@ -19,7 +18,7 @@ const CheckoutAddressSection = ({ user }) => {
     setModalVisibility(visibility);
   };
 
-  console.log(userAddress)
+  console.log(userAddress);
 
   return (
     <>
@@ -29,7 +28,7 @@ const CheckoutAddressSection = ({ user }) => {
           setVisibility={setVisibility}
           isVisible={modalVisibility}
           userAddress={userAddress}
-          closeModal={setVisibility}  
+          closeModal={setVisibility}
         />
 
         <AddressContainer>
@@ -52,9 +51,9 @@ const CheckoutAddressSection = ({ user }) => {
         </AddressContainer>
       </RightSectionContainer>
       {userAddress && (
-        <ButtonContainer onClick={() => setVisibility(true)}>
-          Edit Adress
-        </ButtonContainer>
+        <div onClick={() => setVisibility(true)}>
+          <CustomButton kind="text" title="Edit Address" color="var(--dark-font-color)" />
+        </div>
       )}
     </>
   );

@@ -145,6 +145,7 @@ const SigninSignup = ({ match, history }) => {
             value={email}
             handleChange={handleChange}
             removeError={removeError}
+            autoFocus
           />
 
           <FormInput
@@ -153,7 +154,7 @@ const SigninSignup = ({ match, history }) => {
             label="Password"
             name="password"
             value={password}
-            handleChange={handleChange}
+            handleChange={handleChange}ks
             removeError={removeError}
             message={
               newUser

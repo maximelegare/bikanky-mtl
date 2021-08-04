@@ -22,7 +22,7 @@ export const OrderTable = styled.table`
     text-align: right;
   }
   td.separator {
-    width: 80px;
+    width: 90px;
     height: 10px;
   }
 `;
