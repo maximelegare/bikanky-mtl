@@ -9,13 +9,14 @@ import { useDispatch } from "react-redux";
 
 import { addItemToCart } from "../../../../redux/cart/cart.slices";
 
+import StockAvailability from "../../../stock-availability-icon/stock-availability.component";
+
 import {
   TilteContainer,
   TopDescriptionContainer,
   PriceAndAvailabilityContainer,
   ItemWrapperContentContainer,
   PriceContainer,
-  StockAvailabilityContainer,
   BulletPointsSectionContainer,
   CustomButtonContainer,
 } from "./item-description-section.styles";
@@ -23,28 +24,20 @@ import {
 const ItemDescription = ({item}) => {
 
   const dispatch = useDispatch();
+  
   const { title, price, shortDescription, stock, bulletPoints } = item;
 
 
   return (
     <ItemWrapperContainer flex="1">
       <ItemWrapperContentContainer>
-        <TilteContainer>{title}</TilteContainer>
-        <TopDescriptionContainer>{shortDescription}</TopDescriptionContainer>
-        <PriceAndAvailabilityContainer>
+        <TilteContainer className="hide-on-mobile">{title}</TilteContainer>
+        <TopDescriptionContainer className="hide-on-mobile">{shortDescription}</TopDescriptionContainer>
+        <PriceAndAvailabilityContainer className="hide-on-mobile">
           <PriceContainer>{`${price.toFixed(2)}`}&thinsp;$</PriceContainer>
-          <StockAvailabilityContainer>
-            {stock > 0 ? (
-              <div style={{ display: "flex", alignItems: "center" }}>
-                <span className="material-icons">check</span>
-                <h4>In Stock</h4>
-              </div>
-            ) : (
-              <h4>Available Soon</h4>
-            )}
-          </StockAvailabilityContainer>
+          <StockAvailability stock={!!stock}/>
         </PriceAndAvailabilityContainer>
-        <hr />
+        <hr className="hide-on-mobile"/>
         <BulletPointsSectionContainer>
           <h4>Details</h4>
           <ul>
@@ -56,7 +49,7 @@ const ItemDescription = ({item}) => {
           </ul>
         </BulletPointsSectionContainer>
         <CustomButtonContainer onClick={() => dispatch(addItemToCart(item))}>
-          <CustomButtonMUI>Add to Cart</CustomButtonMUI>
+          <CustomButtonMUI kind="small">Add to Cart</CustomButtonMUI>
         </CustomButtonContainer>
       </ItemWrapperContentContainer>
     </ItemWrapperContainer>

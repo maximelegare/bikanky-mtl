@@ -5,11 +5,11 @@ const selectHeight = (props) => {
     case "home-page":
       return homePageStyles;
     case "with-title":
-      return itemsPagesStyles;
+      return withTitleStyles;
     case "without-title":
-      return itemSpecificationsStyles;
+      return withoutTitleStyles;
     default:
-      return itemsPagesStyles
+      return withTitleStyles
   }
 };
 
@@ -24,14 +24,18 @@ const homePageStyles = css`
 
 `;
 
-const itemsPagesStyles = css`
+const withTitleStyles = css`
   height: 180px;
   @media only screen and (max-width: 900px) {
     height: 160px;
   }
 `;
-const itemSpecificationsStyles = css`
-  height: 16vh;
+const withoutTitleStyles = css`
+  height: 160px;
+  @media only screen and (max-width: 900px) {
+    height: 120px;
+  }
+
 `;
 
 export const ImageContainer = styled.div`

@@ -19,9 +19,8 @@ const CheckoutTable = ({ price, itemsCount, shippingPrice }) => {
     <>
       <tbody>
         <CheckoutTableItem
-          title={`Items (${itemsCount})`}
           price={price.toFixed(2)}
-        />
+        >Items&nbsp;({itemsCount})</CheckoutTableItem>
         <tr>
           <td />
           <td className="separator">
@@ -29,23 +28,25 @@ const CheckoutTable = ({ price, itemsCount, shippingPrice }) => {
           </td>
         </tr>
         {/* <CheckoutTableItem title="Total before tax" price={beforeTax} /> */}
-        <CheckoutTableItem title="Estimated TPS" price={tpsTax} />
-        <CheckoutTableItem title="Estimated TVQ" price={tvqTax} />
+        <CheckoutTableItem  price={tpsTax} >&nbsp;&nbsp;Estimated&nbsp;TPS</CheckoutTableItem>
+        <CheckoutTableItem  price={tvqTax} >&nbsp;&nbsp;Estimated&nbsp;TVQ</CheckoutTableItem>
         <tr>
           <td />
           <td className="separator">
             <hr />
           </td>
         </tr>
-        <CheckoutTableItem title="Total before Shipping" price={beforeShipping} />
-        <CheckoutTableItem title="Shipping" price={shippingPrice} />
+        <CheckoutTableItem price={beforeShipping}>
+          Total&nbsp;before&nbsp;Shipping
+        </CheckoutTableItem>
+        <CheckoutTableItem  price={shippingPrice} >&nbsp;&nbsp;Shipping</CheckoutTableItem>
         <tr>
           <td />
-          <td className="separator" >
+          <td className="separator">
             <hr />
           </td>
         </tr>
-        <CheckoutTableItem title="Total" price={bigTotal} />
+        <CheckoutTableItem price={bigTotal}>Total</CheckoutTableItem>
         <tr>
           {/* <td /> */}
           <td className="separator" colSpan="2">
@@ -58,7 +59,7 @@ const CheckoutTable = ({ price, itemsCount, shippingPrice }) => {
             <TotalContainer>Order&nbsp;Total: </TotalContainer>
           </td>
           <td className="price">
-            <TotalContainer >{bigTotal}&thinsp;$</TotalContainer>
+            <TotalContainer>{bigTotal}&thinsp;$</TotalContainer>
           </td>
         </tr>
       </tbody>

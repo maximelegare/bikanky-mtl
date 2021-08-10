@@ -3,14 +3,21 @@ import styled from "styled-components";
 export const CheckoutCartItemWrapperContainer = styled.div`
   margin-top: 15px;
   /* height: 100%; */
-  padding: 20px;
   border-radius: 5px;
   border: 1px solid var(--hr-color);
+  padding: 20px;
+
+  @media screen and (max-width:560px){
+    padding: 10px;
+  }
 `;
 
 export const ProductInfosWrapperContainer = styled.div`
   display: flex;
   justify-content: space-between;
+  @media screen and (max-width:560px){
+    /* justify-content: center; */
+  }
 `;
 
 export const ProductInfosContainer = styled.div`
@@ -22,8 +29,8 @@ export const ImageContainer = styled.div`
   background-image: ${(props) => `url(${props.image})`};
   background-position: center;
   background-size: cover;
-  width: 10em;
-  height: 10em;
+  min-width: 7rem;
+  height: 7rem;
   border-radius: 4px;
 `;
 
@@ -31,14 +38,21 @@ export const InfosContainer = styled.div``;
 
 export const PriceContainer = styled.h4`
   margin-top: 5px;
-  color:var(--red-accent);
+  color: var(--red-accent);
 `;
 
 export const TextContainer = styled.div`
-  width: 300px;
-  h4.title {
-    text-decoration: underline;
-    margin-bottom: 5px;
+  max-width: 300px;
+
+  .title {
+    margin-bottom: 10px;
+  }
+  .description {
+    /* max-width: 300px; */
+    margin-right: 10px;
+  }
+  @media screen and (max-width:560px){
+    display: none;
   }
 `;
 
@@ -53,7 +67,7 @@ export const NumberContainer = styled.div`
   h4 {
     text-decoration: none;
     margin: 0 5px;
-    width:30px;
+    width: 30px;
     text-align: center;
     font-size: 1.2rem;
   }
@@ -68,3 +82,19 @@ export const NumberContainer = styled.div`
 export const ButtonContainer = styled.div`
   text-align: center;
 `;
+
+
+export const TitleContainer = styled.div`
+display: flex;
+/* justify-content: center; */
+border-radius: 4px;
+a{
+  margin-right: 5px;
+}
+h4{
+  margin: auto 0 ;
+}
+@media screen and (min-width:560px){
+  display: none;
+}
+`

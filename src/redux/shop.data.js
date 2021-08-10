@@ -9,7 +9,7 @@ const SHOP_DATA = {
       {
         id: 1,
         title: "Badinedonpas",
-        collection:'hats',
+        category:'hats',
         routeName: "brown-brim",
         price: 26.00,
         cartQuantity:0,

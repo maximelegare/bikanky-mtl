@@ -20,7 +20,6 @@ import CustomButton from "../../buttons/my-buttons/customButtons/custom-button.c
 import { auth } from "../../../firebase/firebase.utils";
 import { withRouter } from "react-router";
 
-
 const SideSlider = ({ history }) => {
   const sliderVisibility = useSelector(selectSliderVisibility);
   const currentUser = useSelector(selectCurrentUser);
@@ -53,11 +52,15 @@ const SideSlider = ({ history }) => {
             <SliderOptionsLink route="/creations" title="Créations" />
             <SliderOptionsLink route="/services" title="Services" />
             <SliderOptionsLink route="/about" title="À Propos" />
-            {/* <SliderOptionsLink route="/contact" title="Contact" /> */}
+            <SliderOptionsLink route="/contact" title="Contact" />
             <CartSideSliderMobile />
           </MobileOptionsContainer>
           <ButtonContainer>
-            <CustomButtonMUI>Go to checkout</CustomButtonMUI>
+            <div onClick={() => dispatch(toggleSliderVisibility())}>
+              <CustomButtonMUI kind="link" routeName="/checkout">
+                Go to checkout
+              </CustomButtonMUI>
+            </div>
           </ButtonContainer>
           <ButtonContainer onClick={() => handleClick()}>
             <CustomButton

@@ -11,6 +11,7 @@ padding: 5px 11px;
 border-radius: 50%;
 background-color: black;
 cursor: pointer;
+box-shadow: 0 3px 5px #36363696;
 @media screen and (min-width:900px){
     display: none;
 }

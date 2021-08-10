@@ -6,7 +6,7 @@ import CustomButton from "../../../../buttons/my-buttons/customButtons/custom-bu
 import {
   cartItemQuantityIncrease,
   cartItemQuantityDecrease,
-  deleteItemFromCart
+  deleteItemFromCart,
 } from "../../../../../redux/cart/cart.slices";
 
 import {
@@ -19,10 +19,19 @@ import {
   QuantityWrapperContainer,
   PriceContainer,
   ButtonContainer,
+  TitleContainer,
 } from "./checkout-cart-item.styles";
 import { ImageContainer } from "./checkout-cart-item.styles";
 const CheckoutCartItem = ({ cartItem }) => {
-  const { title, price, cartQuantity, shortDescription, imageUrl, id } = cartItem;
+  const {
+    title,
+    price,
+    cartQuantity,
+    shortDescription,
+    imageUrl,
+    id,
+    linkUrl,
+  } = cartItem;
 
   const dispatch = useDispatch();
 
@@ -35,19 +44,34 @@ const CheckoutCartItem = ({ cartItem }) => {
         dispatch(cartItemQuantityDecrease(cartItem));
         break;
       case "delete":
-        dispatch(deleteItemFromCart(id)); 
+        dispatch(deleteItemFromCart(id));
     }
   };
 
   return (
     <CheckoutCartItemWrapperContainer>
+      <TitleContainer>
+        <CustomButton
+          title={title}
+          kind="text-link"
+          linkUrl={`/creations/${linkUrl}`}
+        />
+        <PriceContainer>—&thinsp;{price.toFixed(2)}&thinsp;$</PriceContainer>
+      </TitleContainer>
       <ProductInfosWrapperContainer>
         <ProductInfosContainer>
           <ImageContainer image={imageUrl} />
+
           <InfosContainer>
             <TextContainer>
-              <h4 className="title">{title}</h4>
-              <h5>{shortDescription}</h5>
+              <div>
+                <CustomButton
+                  title={title}
+                  kind="text-link"
+                  linkUrl={`/creations/${linkUrl}`}
+                />
+              </div>
+              <h5 className="description">{shortDescription}</h5>
               <PriceContainer>{price.toFixed(2)}&thinsp;$</PriceContainer>
             </TextContainer>
           </InfosContainer>
@@ -65,8 +89,12 @@ const CheckoutCartItem = ({ cartItem }) => {
               add_circle
             </span>
           </NumberContainer>
-          <ButtonContainer onClick={() => handleClick('delete')}>
-            <CustomButton kind="text" title="Delete" color="var(--red-accent)"/>
+          <ButtonContainer onClick={() => handleClick("delete")}>
+            <CustomButton
+              kind="text"
+              title="Delete"
+              color="var(--red-accent)"
+            />
           </ButtonContainer>
         </QuantityWrapperContainer>
       </ProductInfosWrapperContainer>
@@ -81,7 +109,8 @@ CheckoutCartItem.propTypes = {
     cartQuantity: PropTypes.number,
     shortDescription: PropTypes.string,
     imageUrl: PropTypes.string,
-    id:PropTypes.number
+    id: PropTypes.number,
+    linkUrl: PropTypes.string,
   }),
 };
 

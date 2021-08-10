@@ -1,13 +1,13 @@
 import styled from "styled-components";
 
 export const CheckoutPriceContainer = styled.div`
-  padding: 0 15px;
+  padding: 15px;
 `;
 
 export const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
-  margin: 20px 0;
+  margin-bottom: 20px ;
 `;
 
 export const OrderSummaryContainer = styled.div`
@@ -15,7 +15,7 @@ export const OrderSummaryContainer = styled.div`
 `;
 
 export const OrderTable = styled.table`
-  margin: 20px 0;
+  margin-top: 20px;
   width: 100%;
 
   td.price {

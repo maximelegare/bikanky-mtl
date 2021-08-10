@@ -40,8 +40,7 @@ export const DescriptionContainer = styled.div`
 margin-left: 8px;
   h5 {
     color: ${(props) =>
-      props.sideSlider ? "var(--mobile-slider-text-color)" : "#272727"};
-    
+      props.sideSlider ? "var(--mobile-slider-text-color)" : "#272727"}; 
   }
   .title {
     text-decoration: underline;

@@ -13,10 +13,10 @@ const CheckoutSection = () => {
   return (
     <>
       <CheckoutSectionContainer>
-        <SectionCardContainer flex="6">
+        <SectionCardContainer className="infos" flex="6" >
           <CheckoutInfos />
         </SectionCardContainer>
-        <SectionCardContainer width="300px" height="320px">
+        <SectionCardContainer className="price" width="300px" height="320px">
           <CheckoutPrice />
         </SectionCardContainer>
       </CheckoutSectionContainer>

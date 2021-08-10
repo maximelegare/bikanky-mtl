@@ -5,17 +5,17 @@ import {
   ButtonWrapperContainer,
   TextContainer,
   IconContainer,
-  TextButtonContainer
+  TextButtonContainer,
+  TextLinkContainer,
+  
 } from "./custom-button.styles";
 
-const CustomButton = ({ icon, title, kind, color }) => {
+const CustomButton = ({ icon, title, kind, color,linkUrl  }) => {
   switch (kind) {
     case "text":
-      return(
-        <TextButtonContainer color={color}>
-          {title}
-        </TextButtonContainer>
-      )
+      return <TextButtonContainer color={color}>{title}</TextButtonContainer>;
+    case "text-link":
+      return <TextLinkContainer to={linkUrl}>{title}</TextLinkContainer>;
     default:
       return (
         <ButtonWrapperContainer color={color}>
@@ -30,7 +30,8 @@ CustomButton.propTypes = {
   icon: PropTypes.string,
   title: PropTypes.string,
   kind: PropTypes.string,
-  color: PropTypes.string
+  color: PropTypes.string,
+  linkUrl:PropTypes.string
 };
 
 export default CustomButton;

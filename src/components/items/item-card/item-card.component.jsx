@@ -29,7 +29,7 @@ const ItemCard = ({ item, history, location }) => {
         image={imageUrl}
         onClick={() =>
           location.pathname === "/creations"
-            ? history.push(`creations/${linkUrl}`)
+            ? history.push(`/creations/${linkUrl}`)
             : history.push(linkUrl)
         }
       ></ProductImgContainer>

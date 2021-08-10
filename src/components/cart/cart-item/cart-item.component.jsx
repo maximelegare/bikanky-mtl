@@ -8,7 +8,7 @@ import { deleteItemFromCart } from "../../../redux/cart/cart.slices";
 import { useDispatch } from "react-redux";
 
 import CustomButtonMUI from "../../buttons/material-ui/custom-button-mui.component";
-
+import CustomButton from "../../buttons/my-buttons/customButtons/custom-button.component";
 import {
   CartDropdownWrapperContainer,
   ImageContainer,
@@ -24,6 +24,7 @@ const CartDropdownItem = ({
   id,
   cartQuantity,
   sideSlider,
+  linkUrl,
 }) => {
   const dispatch = useDispatch();
 
@@ -37,7 +38,13 @@ const CartDropdownItem = ({
         <CartLeftContainer>
           <ImageContainer image={imageUrl} />
           <DescriptionContainer sideSlider={sideSlider}>
-            <h5 className="title">{title}</h5>
+            <div className="title">
+              <CustomButton
+                title={title}
+                kind="text-link"
+                linkUrl={`/creations/${linkUrl}`}
+              />
+            </div>
             <h5 className="price">
               {`${cartQuantity} x ${price.toFixed(2)}`}&thinsp;$
             </h5>
@@ -62,6 +69,7 @@ CartDropdownItem.propTypes = {
   id: PropTypes.number,
   cartQuantity: PropTypes.number,
   sideSlider: PropTypes.bool,
+  linkUrl: PropTypes.string,
 };
 
 export default CartDropdownItem;

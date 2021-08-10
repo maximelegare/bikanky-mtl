@@ -18,6 +18,7 @@ import { fetchCollectionsStartAsync } from "./redux/items/items.slice";
 import { selectFetchItemsLoading } from "./redux/items/items.selectors";
 // import { toggleClickDropdownVisibility } from "./redux/dropdown-elements-visibility/dropdown.slice";
 
+import { PropTypes } from "prop-types";
 
 // withSpinner components
 const HomePageWithSpinner = WithSpinner(HomePage);
@@ -30,20 +31,19 @@ function App() {
   useEffect(() => {
     dispatch(fetchCollectionsStartAsync());
     dispatch(getCurrentUserStart());
-    
-      // setTimeout(() => {
-      //   dispatch(
-      //     toggleClickDropdownVisibility({ dropdownName: "signIn", value: true })
-      //   );
-      // }, 700);
-    
+
+    // setTimeout(() => {
+    //   dispatch(
+    //     toggleClickDropdownVisibility({ dropdownName: "signIn", value: true })
+    //   );
+    // }, 700);
   }, []);
 
   return (
     <div className="App">
       <Header />
-      <CartIconMobile />
-      
+      <CartIconMobile /> 
+
       <Switch>
         <Route
           exact
@@ -58,13 +58,16 @@ function App() {
             <ShopPageWithSpinner isLoading={loading} {...props} />
           )}
         />
-        <Route path="/checkout" component={CheckoutPage}/>
+        <Route path="/checkout" component={CheckoutPage} />
         <Route path="/signin" component={SigninSignupPage} />
         <Route path="/signup" component={SigninSignupPage} />
       </Switch>
-      
     </div>
   );
 }
+
+App.propTypes = {
+  match: PropTypes.object,
+};
 
 export default App;

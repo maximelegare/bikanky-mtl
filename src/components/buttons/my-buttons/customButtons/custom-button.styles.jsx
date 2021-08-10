@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
+
 
 export const ButtonWrapperContainer = styled.button`
   margin-top: 10px;
@@ -19,6 +21,12 @@ export const ButtonWrapperContainer = styled.button`
       props.color ? "var(--yellow-accent-hover)" : "var(--pale-bg-hover)"};
   }
 `;
+
+export const TextLinkContainer = styled(Link)`
+color:var(--dark-font-color);
+text-decoration: underline;
+`
+
 
 export const TextContainer = styled.h4``;
 

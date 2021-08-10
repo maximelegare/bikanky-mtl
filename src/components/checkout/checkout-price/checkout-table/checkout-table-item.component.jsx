@@ -1,19 +1,18 @@
 import React from "react";
-import { PropTypes } from 'prop-types'
+import { PropTypes } from "prop-types";
 
-
-const CheckoutTableItem = ({title, price}) => {
+const CheckoutTableItem = ({ price, children }) => {
   return (
     <tr>
-      <td>{title}:</td>
+      <td>{children}:</td>
       <td className="price">{price}&thinsp;$</td>
     </tr>
   );
 };
 
 CheckoutTableItem.propTypes = {
-    title:PropTypes.string,
-    price:PropTypes.any,
-    inner:PropTypes.bool
-}
+  price: PropTypes.any,
+  inner: PropTypes.bool,
+  children: PropTypes.string,
+};
 export default CheckoutTableItem;
