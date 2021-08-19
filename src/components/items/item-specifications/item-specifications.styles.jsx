@@ -45,3 +45,14 @@ export const ItemWrapperContainer = styled.div`
     /* height: 80vh;  */
   }
 `;
+
+export const ItemSpecificationWrapperContainer = styled.div`
+  @media screen and (min-width:900px){
+    .hide-on-desktop{
+      display: none;
+    }
+  }
+`
+
+
+

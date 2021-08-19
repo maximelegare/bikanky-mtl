@@ -12,7 +12,7 @@ import {
   ProductTextContainer,
   ProductPriceButtonContainer,
   PriceNameContainer,
-  IconButtonWrapperContainer
+  ButtonWrapperContainer,
 } from "./item-card.styles";
 
 // import IconButton from "../../buttons/icon-button.component";
@@ -32,7 +32,7 @@ const ItemCard = ({ item, history, location }) => {
             ? history.push(`/creations/${linkUrl}`)
             : history.push(linkUrl)
         }
-      ></ProductImgContainer>
+      />
       <ProductInfosContainer>
         <ProductTextContainer></ProductTextContainer>
         <ProductPriceButtonContainer>
@@ -42,9 +42,11 @@ const ItemCard = ({ item, history, location }) => {
               <h4>{`${price.toFixed(2)}`}&thinsp;$</h4>
             </div>
           </PriceNameContainer>
-          <IconButtonWrapperContainer onClick={() => dispatch(addItemToCart(item))}>
-            <CustomButtonMUI kind="icon">add_shopping_cart</CustomButtonMUI>
-          </IconButtonWrapperContainer>
+          <ButtonWrapperContainer onClick={() => dispatch(addItemToCart(item))}>
+            <CustomButtonMUI kind="small">
+              <span className="material-icons">add_shopping_cart</span>
+            </CustomButtonMUI>
+          </ButtonWrapperContainer>
         </ProductPriceButtonContainer>
       </ProductInfosContainer>
     </ItemWrapperContainer>

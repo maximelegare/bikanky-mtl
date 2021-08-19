@@ -40,9 +40,12 @@ export const ItemsListContainer = styled.div`
   justify-content: space-evenly;
 
   @media screen and (max-width: 900px) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  @media screen and (max-width: 700px) {
     grid-template-columns: 1fr 1fr;
   }
-  @media screen and (max-width: 500px) {
+  @media screen and (max-width: 350px) {
     grid-template-columns: 1fr;
   }
 `;

@@ -5,10 +5,7 @@ import React from "react";
 import { connect } from "react-redux";
 
 import { PageMediumMarginsContainer } from "../../_styling-containers/pages-styling-containers/pages-styling-containers.styles";
-import {
-  TitleContainer,
-  TitleWrapperContainer,
-} from "./items-preview.styles";
+import { TitleContainer, TitleWrapperContainer } from "./items-preview.styles";
 
 import { ItemsListContainer } from "../../_styling-containers/pages-styling-containers/pages-styling-containers.styles";
 
@@ -19,7 +16,11 @@ import TopImageSection from "../../top-image-section/top-image-section.component
 import { withRouter } from "react-router-dom";
 
 const ItemsPreview = ({ itemsCategories, history }) => {
-  // console.log(productsCategories)
+  // gets the width of the page
+  const windowWidth =
+    window.innerWidth ||
+    document.documentElement.clientWidth ||
+    document.body.clientWidth;
   return (
     <div>
       <TopImageSection type="with-title">Créations</TopImageSection>
@@ -28,7 +29,9 @@ const ItemsPreview = ({ itemsCategories, history }) => {
       {Object.values(itemsCategories).map(({ id, title, items, routeName }) => (
         <PageMediumMarginsContainer key={id}>
           <TitleWrapperContainer>
-            <TitleContainer onClick={() => history.push(`creations/${routeName}`)}>
+            <TitleContainer
+              onClick={() => history.push(`creations/${routeName}`)}
+            >
               {title.toUpperCase()}
               <sup>voir&nbsp;plus</sup>
             </TitleContainer>
@@ -37,7 +40,8 @@ const ItemsPreview = ({ itemsCategories, history }) => {
           <ItemsListContainer>
             {/* select items, filter only four items, then map */}
             {items
-              .filter((item, idx) => idx < 4)
+              // checks if the window width is between 700px and 900px and renders the number of items depending of the width
+              .filter((item, idx) => windowWidth < 700 || windowWidth > 900 ? idx < 4 : idx < 3)
               .map((item) => (
                 <Item key={item.id} item={item}></Item>
               ))}

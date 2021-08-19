@@ -9,7 +9,7 @@ import HomePage from "./pages/home-page/home-page.component";
 import Header from "./components/header/header.component";
 import ShopPage from "./pages/shop-page/shop-page.component";
 import SigninSignupPage from "./pages/signin-signup-page/signin-signup-page.component";
-import CartIconMobile from "./components/buttons/my-buttons/cart-icon-mobile/cart-icon-mobile.component";
+// import CartIconMobile from "./components/buttons/my-buttons/cart-icon-mobile/cart-icon-mobile.component";
 import CheckoutPage from "./pages/checkout-page/checkout-page.component";
 
 import { useDispatch } from "react-redux";
@@ -42,7 +42,7 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <CartIconMobile /> 
+      {/* <CartIconMobile />  */}
 
       <Switch>
         <Route

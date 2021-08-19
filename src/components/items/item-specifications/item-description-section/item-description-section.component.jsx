@@ -48,7 +48,7 @@ const ItemDescription = ({item}) => {
             ))}
           </ul>
         </BulletPointsSectionContainer>
-        <CustomButtonContainer onClick={() => dispatch(addItemToCart(item))}>
+        <CustomButtonContainer className="hide-on-mobile" onClick={() => dispatch(addItemToCart(item))}>
           <CustomButtonMUI kind="small">Add to Cart</CustomButtonMUI>
         </CustomButtonContainer>
       </ItemWrapperContentContainer>

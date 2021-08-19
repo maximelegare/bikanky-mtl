@@ -10,6 +10,7 @@ import { selectItem } from "../../../redux/items/items.selectors";
 import {
   ItemSpecificationTopContainer,
   ItemContentContainer,
+  ItemSpecificationWrapperContainer,
 } from "./item-specifications.styles";
 
 import TopImageSection from "../../top-image-section/top-image-section.component";
@@ -17,12 +18,13 @@ import TopImageSection from "../../top-image-section/top-image-section.component
 import CarouselSwiper from "./Item-carousel-section/item-carousel-section.component";
 import ItemDescription from "./item-description-section/item-description-section.component";
 import ItemTitleMobile from "./item-title-mobile/item-title-mobile.component";
+import AddToCartMobile from "./item-add-to-cart-mobile/add-to-cart-mobile.component";
 
 const ItemSpecifications = ({ item }) => {
   console.log(item);
   const { carouselImages } = item[0];
   return (
-    <div>
+    <ItemSpecificationWrapperContainer>
       <TopImageSection type="without-title" />
       <ItemSpecificationTopContainer>
         <ItemContentContainer>
@@ -33,7 +35,10 @@ const ItemSpecifications = ({ item }) => {
           <ItemDescription item={item[0]} />
         </ItemContentContainer>
       </ItemSpecificationTopContainer>
-    </div>
+      <div className="hide-on-desktop">
+        <AddToCartMobile item={item[0]} />
+      </div>
+    </ItemSpecificationWrapperContainer>
   );
 };
 

@@ -20,7 +20,7 @@ const useStyles = makeStyles({
   },
   iconClass: {
     color: "black",
-
+    padding: '6px',
     "&:hover": {
       backgroundColor: "#f7d3215a",
     },
@@ -41,6 +41,7 @@ const smallStyles = makeStyles({
     fontFamily: "Open Sans",
     color:'black',
     padding: '3px, 5px',
+    minWidth: '100px',
     "&:hover": {
       backgroundColor: "var(--yellow-accent-hover)",
     },
