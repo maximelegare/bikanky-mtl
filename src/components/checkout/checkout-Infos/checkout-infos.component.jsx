@@ -6,21 +6,21 @@ import {
   TitleContainer,
 } from "./checkout-infos.styles";
 
-import CheckoutAddress from "./checkout-address/checkout-address.component";
+// import CheckoutAddress from "./checkout-address/checkout-address.component";
 import CheckoutCart from "./checkout-cart/checkout-cart.component";
-import CheckoutShipping from "./checkout-shipping/checkout-shipping.component";
+// import CheckoutShipping from "./checkout-shipping/checkout-shipping.component";
 
 const CheckoutInfos = () => {
   return (
     <CheckoutInfosContainer>
-      <CheckoutStepContainer flex>
+      {/* <CheckoutStepContainer flex>
         
         <CheckoutAddress />
-      </CheckoutStepContainer>
-      <hr />
+      </CheckoutStepContainer> */}
+      {/* <hr /> */}
       <CheckoutStepContainer>
-        <TitleContainer>2 - Cart and Shipping</TitleContainer>
-        <CheckoutShipping />
+        <TitleContainer>1 - Your Cart</TitleContainer>
+        {/* <CheckoutShipping /> */}
         <CheckoutCart />
       </CheckoutStepContainer>
     </CheckoutInfosContainer>
