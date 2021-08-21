@@ -11,7 +11,7 @@ import { PageWrapperContainer } from "../../components/_styling-containers/pages
 
 const ShopPage = ({ match }) => {
 
-  
+  console.log(match)
 
   return (
     <PageWrapperContainer >

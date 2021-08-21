@@ -31,7 +31,6 @@ const itemsSlice = createSlice({
   reducers: {
     fetchCollectionsLoading(state, { payload }) {
       state.isLoading = payload;
-      
     },
     fetchCollectionsSuccess(state, { payload }) {
       state.itemsCategories = payload;
