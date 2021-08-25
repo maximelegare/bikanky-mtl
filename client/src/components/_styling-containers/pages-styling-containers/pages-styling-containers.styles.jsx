@@ -28,7 +28,9 @@ margin: 0 auto;
 width:40%;
 `;
 
-
+export const PageFlexSection = styled.div`
+display: flex;
+`
 
 // list items grid
 export const ItemsListContainer = styled.div`

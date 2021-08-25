@@ -1,7 +1,7 @@
 import React from "react";
 import StripeCheckout from "react-stripe-checkout";
 import { PropTypes } from "prop-types";
-import CustomButtonMUI from "../material-ui/custom-button-mui.component";
+import CustomButtonMUI from "../components/buttons/material-ui/custom-button-mui.component";
 import axios from 'axios'
 
 const StripeButton = ({ price }) => {

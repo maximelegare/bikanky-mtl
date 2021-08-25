@@ -32,6 +32,7 @@ const withTitleStyles = css`
 `;
 const withoutTitleStyles = css`
   height: 160px;
+  z-index: 1;
   @media only screen and (max-width: 900px) {
     height: 120px;
   }
@@ -39,7 +40,7 @@ const withoutTitleStyles = css`
 `;
 
 export const ImageContainer = styled.div`
-  box-shadow: 0 1px 3px #4e4e4e;
+  box-shadow: var(--medium-box-shadow);
   background-image: url(/assets/top.jpg);
   background-position-y: 100%;
   background-position-x: 50%;
@@ -47,6 +48,7 @@ export const ImageContainer = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
+  
   ${selectHeight};
 `;
 

@@ -23,8 +23,8 @@
 
 
   --hr-color:#bbb;
-  --light-box-shadow:0px 3px 5px rgb(231, 231, 231); 
-  --medium-box-shadow:0 3px 8px #3d3d3d;
+  --light-box-shadow:0px 2px 5px rgba(26, 26, 26, 0.205);
+  --medium-box-shadow:0 3px 8px #0f0f0faf;
   --reverse-box-shadow:0 -3px 8px rgba(41, 41, 41, 0.418);
   
 }

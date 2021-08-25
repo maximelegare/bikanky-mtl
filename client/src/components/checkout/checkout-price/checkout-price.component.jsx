@@ -8,7 +8,7 @@ import {
   TestCreditCardContainer
 } from "./checkout-price.styles";
 
-import StripeButton from "../../buttons/stripe-button/stripe-button.component";
+import StripeButton from "../../../stripe-button/stripe-button.component";
 
 import { useSelector } from "react-redux";
 import {
