@@ -16,7 +16,7 @@ const CategoriesPageAdmin = () => {
         <PageMediumMarginsContainer>
            <CategoriesFlexWrapperContainer>
              <AdminCard small titles={ItemsCategoriesArray}/>  
-             <AdminCard small titles={ItemsCategoriesArray}/>  
+             <AdminCard small  />  
              <AdminCard ></AdminCard>  
            </CategoriesFlexWrapperContainer>
         </PageMediumMarginsContainer>

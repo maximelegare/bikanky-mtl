@@ -17,10 +17,19 @@ export const selectItemsCategories = createSelector(
   }
 );
 
-export const selectCategory = memoize((categoryUrlParam) =>
-  createSelector([selectItemsCategories], (itemsCategories) =>
-    itemsCategories ? itemsCategories[categoryUrlParam] : {}
-  )
+export const selectCategory = memoize((categoryUrlParam) => {
+  console.log(categoryUrlParam);
+  return createSelector([selectItemsCategories], (itemsCategories) => {
+    console.log(itemsCategories);
+    return itemsCategories ? itemsCategories[categoryUrlParam] : {};
+  });
+});
+
+export const selectCategoryItemsTest = createSelector(
+  (state) => state.items,
+  (_, category) => category, // this is the parameter we need
+  (state, category) =>
+    state.itemsCategories ? state.itemsCategories[category] : {}
 );
 
 export const selectItem = memoize((urlParams) =>

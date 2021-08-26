@@ -1,5 +1,5 @@
 import React from "react";
-
+import { PropTypes } from 'prop-types'
 import { PageFlexSection } from "../_styling-containers/pages-styling-containers/pages-styling-containers.styles";
 import SideBarAdmin from "./side-bar-admin/side-bar-admin.component";
 import { Route, Switch, withRouter } from "react-router";
@@ -31,5 +31,9 @@ const Admin = ({ match }) => {
     </>
   );
 };
+
+Admin.propTypes = {
+  match:PropTypes.object
+}
 
 export default withRouter(Admin);

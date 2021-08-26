@@ -1,5 +1,4 @@
 import React from "react";
-
 import {
   SideBarLinkContainer,
   AdminButtonContainer,
@@ -7,7 +6,10 @@ import {
 import { withRouter } from "react-router";
 import { PropTypes } from "prop-types";
 
-const AdminButton = ({ title, match, navLink, routeName }) => {
+const AdminButton = ({ title, match, navLink, routeName,  }) => {
+
+
+    
 
   return (
     <>
@@ -19,7 +21,7 @@ const AdminButton = ({ title, match, navLink, routeName }) => {
         </div>
       ) : (
         <div >
-          <AdminButtonContainer value={title.toLowerCase()}>{title}</AdminButtonContainer>
+          <AdminButtonContainer value={title?.toLowerCase()}>{title}</AdminButtonContainer>
         </div>
       )}
     </>
@@ -31,6 +33,10 @@ AdminButton.propTypes = {
   match: PropTypes.object,
   navLink: PropTypes.bool,
   routeName: PropTypes.string,
+  category:PropTypes.string, 
+  sendData:PropTypes.func
 };
+
+
 
 export default withRouter(AdminButton);
