@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {  PageMediumMarginsContainer } from '../../../_styling-containers/pages-styling-containers/pages-styling-containers.styles';
 
 import { CategoriesFlexWrapperContainer } from './categories-page-admin.styles';
@@ -6,17 +6,32 @@ import { CategoriesFlexWrapperContainer } from './categories-page-admin.styles';
 import AdminCard from '../../admin-card/admin-card.component';
 
 import { useSelector } from 'react-redux';
-import { selectItemsCategories } from '../../../../redux/items/items.selectors';
+import { selectItemsCategories, selectCategoryItemsTest } from '../../../../redux/items/items.selectors';
 
 const CategoriesPageAdmin = () => {
-    const ItemsCategories = useSelector(selectItemsCategories)
-    const ItemsCategoriesArray = Object.values(ItemsCategories).map((category) => category.title )
-    console.log(ItemsCategoriesArray)
+    const [buttonValue, setButtonValue] = useState("sneakers");
+
+    const itemsCategories = useSelector(selectItemsCategories)
+    const itemsCategoriesArray = Object.values(itemsCategories).map((category) => category.title)
+    
+    const category = useSelector((state) =>
+    selectCategoryItemsTest(state, buttonValue)
+  );
+
+    const itemsCategoryTitlesArray = category.items?.map((item) => item.title)
+    console.log(itemsCategoryTitlesArray)
+
+
+    const handleClick = (e) => {
+        setButtonValue(e.target.value)
+    }
+
+
     return (
         <PageMediumMarginsContainer>
            <CategoriesFlexWrapperContainer>
-             <AdminCard small titles={ItemsCategoriesArray}/>  
-             <AdminCard small  />  
+             <AdminCard small titles={itemsCategoriesArray} handleClick={handleClick}/>  
+             <AdminCard small titles={itemsCategoryTitlesArray} />  
              <AdminCard ></AdminCard>  
            </CategoriesFlexWrapperContainer>
         </PageMediumMarginsContainer>
