@@ -6,10 +6,7 @@ import {
 import { withRouter } from "react-router";
 import { PropTypes } from "prop-types";
 
-const AdminButton = ({ title, match, navLink, routeName,  }) => {
-
-
-    
+const AdminButton = ({ title, match, navLink, routeName, currentButton }) => {
 
   return (
     <>
@@ -20,8 +17,13 @@ const AdminButton = ({ title, match, navLink, routeName,  }) => {
           </SideBarLinkContainer>
         </div>
       ) : (
-        <div >
-          <AdminButtonContainer value={title?.toLowerCase()}>{title}</AdminButtonContainer>
+        <div>
+          <AdminButtonContainer
+            className={routeName === currentButton ?  "selected" : null}
+            value={routeName}
+          >
+            {title}
+          </AdminButtonContainer>
         </div>
       )}
     </>
@@ -33,10 +35,10 @@ AdminButton.propTypes = {
   match: PropTypes.object,
   navLink: PropTypes.bool,
   routeName: PropTypes.string,
-  category:PropTypes.string, 
-  sendData:PropTypes.func
+  category: PropTypes.string,
+  sendData: PropTypes.func,
+  selected: PropTypes.bool,
+  currentButton:PropTypes.string
 };
-
-
 
 export default withRouter(AdminButton);

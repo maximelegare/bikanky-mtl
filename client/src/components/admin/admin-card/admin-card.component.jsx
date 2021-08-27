@@ -4,28 +4,45 @@ import { AdminCardContainer } from "./admin-card.styles";
 
 import AdminButton from "../admin-button/admin-button.component";
 
-const AdminCard = ({ titles, small, handleClick }) => {
-  
-    
+const AdminCard = ({
+  items,
+  small,
+  handleClick,
+  itemSpecification,
+  children,
+  currentButton,
+}) => {
+
 
   return (
     <AdminCardContainer small={small}>
-      {titles?.map((title) => {
-        return (
-          <div key={title} onClick={(e) => handleClick(e, )}>
-            <AdminButton value={title} title={title} />
-          </div>
-        );
-      })}
+      {!itemSpecification ? (
+        items?.map(({ routeName, title }) => {
+          return (
+            <div key={title} onClick={(e) => handleClick(e)}>
+              <AdminButton
+                routeName={routeName}
+                value={title}
+                title={title}
+                currentButton={currentButton}
+              />
+            </div>
+          );
+        })
+      ) : (
+        <>{children}</>
+      )}
     </AdminCardContainer>
   );
 };
 
 AdminCard.propTypes = {
-  titles: PropTypes.array,
+  items: PropTypes.array,
   small: PropTypes.bool,
-  handleClick:PropTypes.func,
-  item:PropTypes.object
+  handleClick: PropTypes.func,
+  itemSpecification: PropTypes.bool,
+  children: PropTypes.any,
+  currentButton: PropTypes.string,
 };
 
 export default AdminCard;

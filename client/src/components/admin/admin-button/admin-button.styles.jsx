@@ -1,6 +1,9 @@
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 
+
+
+
 export const SideBarLinkContainer = styled(NavLink)`
   display: block;
   margin: 0 auto;
@@ -36,9 +39,10 @@ export const AdminButtonContainer = styled.button`
   border:none;
   cursor: pointer;
   box-shadow: var(--light-box-shadow);
-  &.active{
-      background-color:#b1b1b170;
+  &.selected{
+    background-color:#b1b1b170;
   }
+
   :nth-child(1){
     margin-top: 15px;
   }
