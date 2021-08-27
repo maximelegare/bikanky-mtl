@@ -1,11 +1,14 @@
-/* eslint-disable no-unused-vars */
+// Categories pages. it's rendered inside the admin page when the user select the link categories in the side-bar-admin.
+// It's the first layer of the categories section 
+
+
 import React, { useState } from "react";
 import { PageMediumMarginsContainer } from "../../../_styling-containers/pages-styling-containers/pages-styling-containers.styles";
 
 import { CategoriesFlexWrapperContainer } from "./categories-page-admin.styles";
 
 import AdminCard from "../../admin-card/admin-card.component";
-
+import CategoriesItemSpecification from "./categories-item-specification/categories-item-specification.component";
 import { useSelector } from "react-redux";
 import {
   selectItemsCategories,
@@ -14,8 +17,6 @@ import {
 } from "../../../../redux/items/items.selectors";
 
 const CategoriesPageAdmin = () => {
-  var lastClickedCategory = "";
-  var lastClickedItem = "";
 
   // gets items categories and put all names in an array
   const itemsCategories = useSelector(selectItemsCategories);
@@ -26,27 +27,21 @@ const CategoriesPageAdmin = () => {
   //   default buttonValue, and value when the button was clicked
   const [categoryButtonValue, setCategoryButtonValue] = useState("");
   const [itemButtonValue, setItemButtonValue] = useState("");
-  // changes the buttonValue to the one clicked
 
 
-  // handle click event on button
+  // sets the button value (state) when the button was clicked (it's the value of the button that was clicked)
   const handleClick = (e) => {
     setCategoryButtonValue(e.target.value);
   };
 
-
   const handleItemClick = (e) => {
-    console.log(e.target.value);
     setItemButtonValue(e.target.value);
   };
 
-
-
-  // select a category based on the button clicked value
+  // select a category based on the button clicked value (the value is in the state)
   const category = useSelector((state) =>
     selectCategoryItemsTest(state, categoryButtonValue)
   );
-
 
   //   select item based on the category selected and the button clicked => returns the fist item of array (an object)
   const item = useSelector((state) =>
@@ -55,6 +50,7 @@ const CategoriesPageAdmin = () => {
       item: itemButtonValue,
     })
   )[0];
+
   //   gets all items's titles from the selected category and create a new array
   const itemsCategoryArray = category.items?.map((item) => item);
 
@@ -74,7 +70,7 @@ const CategoriesPageAdmin = () => {
           currentButton={itemButtonValue}
         />
         <AdminCard itemSpecification>
-          <div>{item?.title}</div>
+           <CategoriesItemSpecification item={item} />
         </AdminCard>
       </CategoriesFlexWrapperContainer>
     </PageMediumMarginsContainer>

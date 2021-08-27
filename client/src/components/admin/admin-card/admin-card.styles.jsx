@@ -6,17 +6,18 @@ const getStyles = (props) => {
 }
 
 const smallStyles = css`
-flex-basis: 200px;
-flex-grow: unset;
+/* width: 300px; */
+width:30%;
 `
 
 export const AdminCardContainer = styled.div`
   flex-grow: 1;
+  width: 100%;
   ${getStyles}
   height: 100%;
   background-color: white;
   box-shadow: var(--light-box-shadow);
   border-radius: 8px;
   height: 70vh;
-  
+  overflow: hidden;
 `;

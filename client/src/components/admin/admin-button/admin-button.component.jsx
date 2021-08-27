@@ -19,7 +19,7 @@ const AdminButton = ({ title, match, navLink, routeName, currentButton }) => {
       ) : (
         <div>
           <AdminButtonContainer
-            className={routeName === currentButton ?  "selected" : null}
+            className={routeName === currentButton ?  "active" : null}
             value={routeName}
           >
             {title}

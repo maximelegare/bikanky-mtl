@@ -12,10 +12,22 @@ const selectStyles = (props) => {
       
     case "card-image" :
       return cardStyles
+    case "admin":
+      return adminImageStyles
     default:
       return cardStyles  
   }
 };
+
+export const ProductImgContainer = styled.div`
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-image: ${(props) => `url(${props.image})`};
+  width: 100%;
+  cursor: pointer;
+  ${selectStyles}
+`;
 
 const cardStyles = css`
   border-top-left-radius: 8px;
@@ -27,12 +39,13 @@ const cardStyles = css`
   @media screen and (max-width:450px){
     height: 175px;
   }
-
 `
+
 const sliderStyles = css`
 border-radius: 8px;
 height: 100%;
 `
+
 const sliderThumbsStyles = css`
 border-radius:8px;
 height: 95%;
@@ -40,19 +53,12 @@ width:95%;
 margin: 3px auto ;
 `
 
-export const ProductImgContainer = styled.div`
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  background-image: ${(props) => `url(${props.image})`};
-  width: 100%;
-  cursor: pointer;
-  ${selectStyles}
 
- 
-`;
-
-
+const adminImageStyles = css`
+width: 8em;
+height: 8em;
+border-radius: 4px;
+`
 
 export const cartStyles = styled.div`
   width: 4em;

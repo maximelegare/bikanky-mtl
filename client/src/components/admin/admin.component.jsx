@@ -22,6 +22,7 @@ const Admin = ({ match }) => {
             path={`${match.path}/categories`}
             component={CategoriesPageAdmin}
           />
+          
           <Route path={`${match.path}/services`} />
           <Route path={`${match.path}/users`} />
           <Route path={`${match.path}/shipping`} />

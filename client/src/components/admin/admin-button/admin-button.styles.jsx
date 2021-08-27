@@ -19,8 +19,6 @@ export const SideBarLinkContainer = styled(NavLink)`
   :nth-child(1){
     margin-top: 20px;
 }
-
-
   &.active{
       background-color:var(--yellow-accent);
       color:black;
@@ -39,8 +37,8 @@ export const AdminButtonContainer = styled.button`
   border:none;
   cursor: pointer;
   box-shadow: var(--light-box-shadow);
-  &.selected{
-    background-color:#b1b1b170;
+  &.active{
+    background-color:#9b9b9b6f;
   }
 
   :nth-child(1){

@@ -21,7 +21,6 @@ import ItemTitleMobile from "./item-title-mobile/item-title-mobile.component";
 import AddToCartMobile from "./item-add-to-cart-mobile/add-to-cart-mobile.component";
 
 const ItemSpecifications = ({ item }) => {
-  console.log(item);
   const { carouselImages } = item[0];
   return (
     <ItemSpecificationWrapperContainer>

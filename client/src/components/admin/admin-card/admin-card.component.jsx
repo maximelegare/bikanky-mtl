@@ -1,3 +1,6 @@
+// background card of every element rendered in the the admin pages. I pass title props and it renders the buttons, otherwise it renders what is in children props.
+// It's the second layer in every admin pages.
+
 import React from "react";
 import { PropTypes } from "prop-types";
 import { AdminCardContainer } from "./admin-card.styles";
@@ -12,8 +15,6 @@ const AdminCard = ({
   children,
   currentButton,
 }) => {
-
-
   return (
     <AdminCardContainer small={small}>
       {!itemSpecification ? (
