@@ -6,17 +6,13 @@ import AdminButton from "../admin-button/admin-button.component";
 
 const AdminCard = ({ titles, small, handleClick }) => {
   
-
-//   get category from redux, send the value of the button clicked to redux to select the category
- 
-
-  
+    
 
   return (
     <AdminCardContainer small={small}>
       {titles?.map((title) => {
         return (
-          <div key={title} onClick={(e) => handleClick(e)}>
+          <div key={title} onClick={(e) => handleClick(e, )}>
             <AdminButton value={title} title={title} />
           </div>
         );
@@ -28,7 +24,8 @@ const AdminCard = ({ titles, small, handleClick }) => {
 AdminCard.propTypes = {
   titles: PropTypes.array,
   small: PropTypes.bool,
-  handleClick:PropTypes.func
+  handleClick:PropTypes.func,
+  item:PropTypes.object
 };
 
 export default AdminCard;

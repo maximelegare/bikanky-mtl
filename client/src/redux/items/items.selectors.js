@@ -25,12 +25,21 @@ export const selectCategory = memoize((categoryUrlParam) => {
   });
 });
 
+
+
 export const selectCategoryItemsTest = createSelector(
   (state) => state.items,
   (_, category) => category, // this is the parameter we need
   (state, category) =>
     state.itemsCategories ? state.itemsCategories[category] : {}
 );
+
+
+export const selectItemTest = createSelector((state) => state.items,
+( _, params) => params, // this is the parameter we need
+(state, params) =>
+  state.itemsCategories ? state.itemsCategories[params.category].items.filter((item => item.routeName === params.item)) : {})
+
 
 export const selectItem = memoize((urlParams) =>
   createSelector([selectItemsCategories], (itemsCategories) =>
