@@ -14,7 +14,6 @@ import {
   selectCategoryItemsTest,
   selectItemTest,
 } from "../../../../redux/items/items.selectors";
-import AdminItemsModal from "../../../modal/admin-items-modal/admin-items-modal.component";
 
 const CategoriesPageAdmin = () => {
   // gets items categories and put all names in an array
@@ -52,15 +51,9 @@ const CategoriesPageAdmin = () => {
   //   gets all items's titles from the selected category and create a new array
   const itemsCategoryArray = category.items?.map((item) => item);
 
-  const [modalVisibility, setModalVisibility] = useState(false);
-
   return (
     <>
-      <AdminItemsModal
-        isVisible={modalVisibility}
-        item={item}
-        setVisibility={setModalVisibility}
-      />
+      
       <PageMediumMarginsContainer>
         <CategoriesFlexWrapperContainer>
           <AdminCard

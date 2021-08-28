@@ -4,6 +4,7 @@
 import React from "react";
 import { PropTypes } from "prop-types";
 
+
 import {
   CategoriesItemSpecficationWrapperContainer,
   ItemBasicInfos,
@@ -13,7 +14,7 @@ import AdminItemSpecificationDetails from "./admin-item-details/admin-item-speci
 import AdminItemImages from "./admin-images/admin-images.component";
 
 const CategoriesItemSpecification = ({ item }) => {
-  console.log(item);
+
 
   return (
     <>

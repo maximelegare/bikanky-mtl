@@ -1,8 +1,13 @@
 // left section of the item specification section in admin page.
 // it shows the name, description, price, details
 
-import React from "react";
+// it's the component where the modal is redered and manage the visibility (categories pages)
+
+
+// import React from "react";
+import React, { useState } from "react";
 import { PropTypes } from "prop-types";
+import AdminItemsModal from "../../../../../modal/admin-items-modal/admin-items-modal.component";
 import CustomButtonMUI from "../../../../../buttons/material-ui/custom-button-mui.component";
 import {
   AdminItemSpecificationDetailsContainerWrapper,
@@ -16,46 +21,57 @@ import {
 import { SectionContainer } from "../categories-item-specification.styles";
 
 const AdminItemSpecificationDetails = ({ item }) => {
-const { title, shortDescription, bulletPoints, price, stock } = item;
+  const { title, shortDescription, bulletPoints, price, stock } = item;
 
-
-
+  const [modalVisibility, setModalVisibility] = useState(false);
 
   return (
-    <AdminItemSpecificationDetailsContainerWrapper>
-      <SectionContainer>
-        <TitleContainer>{title}</TitleContainer>
-      </SectionContainer>
-      <SectionContainer>
-        <LabelContainer>Price:</LabelContainer>
-        <PriceContainer>{price.toFixed(2)}$</PriceContainer>
-      </SectionContainer>
-      <SectionFlexContainer>
+    <>
+      <AdminItemsModal
+        isVisible={modalVisibility}
+        item={item}
+        setVisibility={setModalVisibility}
+      />
+      <AdminItemSpecificationDetailsContainerWrapper>
+        <SectionFlexContainer style={{ justifyContent: "space-between" }}>
+          <SectionContainer>
+            <TitleContainer>{title}</TitleContainer>
+          </SectionContainer>
+          <SectionContainer onClick={() => setModalVisibility(true)}>
+            <CustomButtonMUI kind="small">Edit</CustomButtonMUI>
+          </SectionContainer>
+        </SectionFlexContainer>
         <SectionContainer>
-          <LabelContainer>Stock: </LabelContainer>
-          <PriceContainer>{stock}</PriceContainer>
+          <LabelContainer>Price:</LabelContainer>
+          <PriceContainer>{price.toFixed(2)}$</PriceContainer>
         </SectionContainer>
-        <SectionContainer style={{alignSelf:'center', marginLeft:'10px'}}>
-          <CustomButtonMUI kind="icon-color">add</CustomButtonMUI>
+        <SectionFlexContainer>
+          <SectionContainer>
+            <LabelContainer>Stock: </LabelContainer>
+            <PriceContainer>{stock}</PriceContainer>
+          </SectionContainer>
+          <SectionContainer style={{ alignSelf: "center", marginLeft: "10px" }}>
+            <CustomButtonMUI kind="icon-color">add</CustomButtonMUI>
+          </SectionContainer>
+        </SectionFlexContainer>
+        <SectionContainer>
+          <LabelContainer>Short Description:</LabelContainer>
+          <ShortDescriptionContainer>
+            {shortDescription}
+          </ShortDescriptionContainer>
         </SectionContainer>
-      </SectionFlexContainer>
-      <SectionContainer>
-        <LabelContainer>Short Description:</LabelContainer>
-        <ShortDescriptionContainer>
-          {shortDescription}
-        </ShortDescriptionContainer>
-      </SectionContainer>
-      <SectionContainer>
-        <LabelContainer>Details:</LabelContainer>
-        <ul>
-          {bulletPoints?.map((bullet, index) => (
-            <li key={index}>
-              <span>{bullet}</span>
-            </li>
-          ))}
-        </ul>
-      </SectionContainer>
-    </AdminItemSpecificationDetailsContainerWrapper>
+        <SectionContainer>
+          <LabelContainer>Details:</LabelContainer>
+          <ul>
+            {bulletPoints?.map((bullet, index) => (
+              <li key={index}>
+                <span>{bullet}</span>
+              </li>
+            ))}
+          </ul>
+        </SectionContainer>
+      </AdminItemSpecificationDetailsContainerWrapper>
+    </>
   );
 };
 
