@@ -13,16 +13,25 @@ const useStyles = makeStyles({
     fontSize: 15,
     fontWeight: 400,
     fontFamily: "Open Sans",
-    
+
     "&:hover": {
       backgroundColor: "var(--yellow-accent-hover)",
     },
   },
   iconClass: {
     color: "black",
-    padding: '6px',
+    padding: "6px",
     "&:hover": {
       backgroundColor: "#f7d3215a",
+    },
+  },
+  iconClassColor: {
+    backgroundColor: "var(--yellow-accent)",
+    color: "black",
+    padding: "6px",
+    boxShadow:"var(--light-box-shadow)",
+    "&:hover": {
+      backgroundColor: "var(--yellow-accent-hover)",
     },
   },
   deleteIconClass: {
@@ -39,14 +48,14 @@ const smallStyles = makeStyles({
     fontSize: 12,
     fontWeight: 400,
     fontFamily: "Open Sans",
-    color:'black',
-    padding: '3px, 5px',
-    minWidth: '100px',
+    color: "black",
+    padding: "3px, 5px",
+    minWidth: "100px",
     "&:hover": {
       backgroundColor: "var(--yellow-accent-hover)",
     },
   },
-})
+});
 
 const CustomButtonMUI = ({ children, kind, deleteIcon, routeName, type }) => {
   const classes = useStyles();
@@ -61,6 +70,18 @@ const CustomButtonMUI = ({ children, kind, deleteIcon, routeName, type }) => {
             root: `${
               deleteIcon ? classes.deleteIconClass : classes.iconClass
             } `,
+          }}
+          variant="contained"
+          type={type}
+        >
+          <span className="material-icons">{children}</span>
+        </IconButton>
+      );
+    case "icon-color":
+      return (
+        <IconButton
+          classes={{
+            root: classes.iconClassColor,
           }}
           variant="contained"
           type={type}
@@ -86,12 +107,17 @@ const CustomButtonMUI = ({ children, kind, deleteIcon, routeName, type }) => {
           {children}
         </Button>
       );
-      case "small":
-        return(
-          <Button variant="contained" classes={{ root: smallClasses.root }} type={type} color="primary">
+    case "small":
+      return (
+        <Button
+          variant="contained"
+          classes={{ root: smallClasses.root }}
+          type={type}
+          color="primary"
+        >
           {children}
         </Button>
-        )
+      );
     default:
       return (
         <Button
