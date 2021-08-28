@@ -19,6 +19,11 @@ export const fetchCollectionsStartAsync = () => {
   };
 };
 
+
+
+
+
+
 const initialState = {
   isLoading: true,
   itemsCategories: null,

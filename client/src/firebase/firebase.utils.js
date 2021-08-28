@@ -27,6 +27,11 @@ export const firestore = firebase.firestore();
 
 // ///////////////////////////
 
+
+//////////////////////////////////////
+//        GET CURRENT USER          //
+////////////////////////////////////// 
+
 // get the current user obj and unsubscribe
 export const getCurrentUser = () => {
   return new Promise((resolve, reject) => {
@@ -37,7 +42,9 @@ export const getCurrentUser = () => {
   });
 };
 
-// ///////////////////////////
+//////////////////////////////////////
+//CREATE FIRESTORE PROFILE FOR USER //
+////////////////////////////////////// 
 
 // create a firestore profile if there is no snapshot that exist.
 export const createUserProfileDocument = async (userAuth) => {
@@ -69,9 +76,12 @@ export const createUserProfileDocument = async (userAuth) => {
   return userRef;
 };
 
-// ///////////////////////////
 
-// create an object with firebase data
+//////////////////////////////////////
+// CREATE OBJECT WITH FIREBASE DATA //
+////////////////////////////////////// 
+
+
 export const transformArrayToObject = (collSnapshot) => {
   // create new array
   const transformedCollections = collSnapshot.docs.map((doc) => {
@@ -91,6 +101,12 @@ export const transformArrayToObject = (collSnapshot) => {
   }, {});
 };
 
+
+
+//////////////////////////////////////
+//      ADD SHIPPING ADDRESS        //
+////////////////////////////////////// 
+
 export const addShippingAddress = async (userId, address, user) => {
   const userRef = firestore.doc(`/users/${userId}`);
   const { email, createAt } = user;
@@ -102,18 +118,28 @@ export const addShippingAddress = async (userId, address, user) => {
   }
 };
 
-// ///////////////////////////
 
-// google signIn
+//////////////////////////////////////
+//         GOOGLE SIGN-IN           //
+////////////////////////////////////// 
+
 const provider = new firebase.auth.GoogleAuthProvider();
 provider.setCustomParameters({ prompt: "select_account" });
 export const signInWithGoogle = () => auth.signInWithRedirect(provider);
 
 export default firebase;
 
-// ///////////////////////////
 
-// batch multiple objects at the same time in firebase
+//////////////////////////////////////
+//    UPDATE ITEM STOCK QUANTITY    //
+////////////////////////////////////// 
+
+
+
+//////////////////////////////////////
+//      BATCH DATA IN FIREBASE      //
+////////////////////////////////////// 
+
 // use it in useEffect
 export const addCollectionsAndDocuments = async (
   collectionKey,
@@ -134,3 +160,14 @@ export const addCollectionsAndDocuments = async (
   // await for batch to finish
   await batch.commit();
 };
+
+
+
+
+
+
+
+
+
+
+
