@@ -41,7 +41,5 @@ export const AdminButtonContainer = styled.button`
     background-color:#9b9b9b6f;
   }
 
-  :nth-child(1){
-    margin-top: 15px;
-  }
+  
 `

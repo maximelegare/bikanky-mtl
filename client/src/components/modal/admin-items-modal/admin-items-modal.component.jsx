@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useState, useEffect } from "react";
 import { PropTypes } from "prop-types";
 
 import ModalComponent from "../modal.component";
@@ -6,25 +7,38 @@ import { InputSectionContainer } from "../address-modal/address-modal.styles";
 import FormInput from "../../form-inputs/form-input.component";
 import { ButtonSectionContainer } from "../address-modal/address-modal.styles";
 import CustomButtonMUI from "../../buttons/material-ui/custom-button-mui.component";
+import CustomButton from "../../buttons/my-buttons/customButtons/custom-button.component";
 import {
   InputFlexContainer,
   BulletPointsContainer,
   BulletPointFlexContainer,
 } from "./admin-items-modal.styles";
 
-const AdminItemsModal = ({ item, ...otherProps }) => {
+// eslint-disable-next-line react/prop-types
+const AdminItemsModal = ({ item, newItem, ...otherProps }) => {
   // User address state
-
   // eslint-disable-next-line no-unused-vars
   const [itemSpecifications, setItemSpecifications] = useState({
-    title: item?.title ?? "",
-    price: item?.price ?? "",
-    stock: item?.stock ?? "",
-    shortDescription: item?.shortDescription ?? "",
-    bulletPoints: item?.bulletPoints ?? [],
+    title: item?.title,
+    price: item?.price,
+    stock: item?.stock,
+    shortDescription: item?.shortDescription,
+    bulletPoints: item?.bulletPoints,
     newBulletPoint: "",
-    // phoneNumber: userAddress?.phoneNumber ?? "",
   });
+
+  // sets default values to empty string if it's a new item
+  useEffect(() => {
+    if (newItem) {
+      setItemSpecifications({
+        title: "",
+        price: "",
+        stock: "",
+        shortDescription: "",
+        bulletPoints: [],
+      });
+    }
+  }, []);
 
   // address errors state
 
@@ -129,14 +143,16 @@ const AdminItemsModal = ({ item, ...otherProps }) => {
   };
 
   const handleClickDeleteBullet = (e) => {
-     console.log(e.target.name)   
+    const buttonValue = e.target.value;
+    const newButtonArray = bulletPoints.filter((bullet) => {
+      return bullet !== buttonValue;
+    });
 
-     const buttonValue =  e.target.name
-     const newButtonArray = bulletPoints.filter((_, idx) => idx !== buttonValue )
-     setItemSpecifications({
-        ...itemSpecifications,
-        bulletPoints: newButtonArray,
-      });
+    console.log(newButtonArray);
+    setItemSpecifications({
+      ...itemSpecifications,
+      bulletPoints: newButtonArray,
+    });
   };
 
   ////////////////////////////////////////////////
@@ -212,23 +228,30 @@ const AdminItemsModal = ({ item, ...otherProps }) => {
           </InputFlexContainer>
           <BulletPointsContainer>
             <ul>
-              {bulletPoints.map((bullet, idx) => {
-                  return(
-                <li key={idx}>
-                  <BulletPointFlexContainer>
-                    <span>{bullet}</span>
-                    <div onClick={handleClickDeleteBullet}>
-                        {/* <button name={idx}>clear</button> */}
-                        <CustomButtonMUI kind="icon" deleteIcon>clear</CustomButtonMUI>
-                    </div>
-                  </BulletPointFlexContainer>
-                </li>
-              )})}
+              {bulletPoints?.map((bullet, idx) => {
+                return (
+                  <li key={idx}>
+                    <BulletPointFlexContainer>
+                      <span>{bullet}</span>
+                      <div onClick={handleClickDeleteBullet}>
+                        <CustomButton
+                          value={bullet}
+                          kind="icon-only"
+                          deleteIcon
+                          title="clear"
+                        ></CustomButton>
+                      </div>
+                    </BulletPointFlexContainer>
+                  </li>
+                );
+              })}
             </ul>
           </BulletPointsContainer>
 
           <ButtonSectionContainer>
-            <CustomButtonMUI type="submit">Confirm</CustomButtonMUI>
+            <CustomButtonMUI type="submit">
+              {newItem ? "Save new Item" : "Confirm"}
+            </CustomButtonMUI>
           </ButtonSectionContainer>
         </InputSectionContainer>
       </form>
@@ -243,6 +266,7 @@ AdminItemsModal.propTypes = {
     stock: PropTypes.number,
     shortDescription: PropTypes.string,
     bulletPoints: PropTypes.array,
+    newItem: PropTypes.array,
   }),
 };
 

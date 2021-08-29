@@ -10,7 +10,7 @@ import {
 } from "./modal.styles";
 import { PropTypes } from "prop-types";
 
-const ModalComponent = ({ isVisible, setVisibility, children }) => {
+const ModalComponent = ({ isVisible, setVisibility, children, modalName }) => {
   const modalRef = useRef();
   const backgroundRef = useRef();
   const wrapperRef = useRef();
@@ -27,7 +27,7 @@ const ModalComponent = ({ isVisible, setVisibility, children }) => {
 
   // if the click is on the wrapperContainer => not on the modal, close the modal
   const handleClick = (e) => {
-    if (e.target === wrapperRef.current) setVisibility(false);
+    if (e.target === wrapperRef.current) setVisibility(false, modalName);
   };
 
   return (
@@ -72,6 +72,7 @@ ModalComponent.propTypes = {
   children: PropTypes.any,
   isVisible: PropTypes.bool,
   setVisibility: PropTypes.func,
+  modalName:PropTypes.string
 };
 
 export default ModalComponent;

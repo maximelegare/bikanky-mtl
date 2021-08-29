@@ -4,10 +4,8 @@ export const CategoriesItemSpecficationWrapperContainer = styled.div`
   height: 100%;
   /* display: flex; */
   margin: 0 10px;
-  overflow: auto;
   gap: 20px;
-  padding-top: 15px;
-  /* border: 2px solid red;ks */
+  /* border: 2px solid red; */
 `;
 export const ItemBasicInfos = styled.div`
   flex: 1 1 100%;

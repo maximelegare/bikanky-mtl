@@ -1,10 +1,14 @@
 // Categories pages. it's rendered inside the admin page when the user select the link categories in the side-bar-admin.
 // It's the first layer of the categories section
 
+// the modals for creating new elements are rendered in this component
+
 import React, { useState } from "react";
 import { PageMediumMarginsContainer } from "../../../_styling-containers/pages-styling-containers/pages-styling-containers.styles";
 
 import { CategoriesFlexWrapperContainer } from "./categories-page-admin.styles";
+
+import AdminItemsModal from "../../../modal/admin-items-modal/admin-items-modal.component";
 
 import AdminCard from "../../admin-card/admin-card.component";
 import CategoriesItemSpecification from "./categories-item-specification/categories-item-specification.component";
@@ -51,9 +55,19 @@ const CategoriesPageAdmin = () => {
   //   gets all items's titles from the selected category and create a new array
   const itemsCategoryArray = category.items?.map((item) => item);
 
+  // Modals Visibility  
+  const [modalVisibility, setVisibility ] = useState({
+    newCategory:false,
+    newItem:false
+  })
+
+  // sets the modal visibility using the modal name (a string passed to the [cardAdmin] and the [AminItemsModal] components )
+  const setModalVisibility = (visibility, modalName) => {
+    setVisibility({...modalVisibility, [modalName]:visibility})
+  }
+
   return (
     <>
-      
       <PageMediumMarginsContainer>
         <CategoriesFlexWrapperContainer>
           <AdminCard
@@ -61,12 +75,33 @@ const CategoriesPageAdmin = () => {
             items={itemsCategoriesArray}
             handleClick={handleClick}
             currentButton={categoryButtonValue}
+            topButton
+            modalName="newCategory"
+            setModalVisibility={setModalVisibility}
+            modalComponent={
+              <AdminItemsModal
+                isVisible={modalVisibility.newCategory}
+                item={item}
+                setVisibility={setModalVisibility}
+                modalName="newCategory"
+              />}
           />
           <AdminCard
             small
             items={itemsCategoryArray}
             handleClick={handleItemClick}
             currentButton={itemButtonValue}
+            topButton
+            modalName="newItem"
+            setModalVisibility={setModalVisibility}
+            modalComponent={
+              <AdminItemsModal
+                isVisible={modalVisibility.newItem}
+                item={item}
+                setVisibility={setModalVisibility}
+                modalName="newItem"
+                newItem
+              />}
           />
           <AdminCard itemSpecification>
             <CategoriesItemSpecification item={item} />

@@ -19,5 +19,17 @@ export const AdminCardContainer = styled.div`
   box-shadow: var(--light-box-shadow);
   border-radius: 8px;
   height: 70vh;
-  overflow: hidden;
+  overflow: auto;
+ 
 `;
+
+
+export const MarginTopContainer = styled.div`
+margin-top: 10px;
+`
+
+export const ButtonContainer = styled.div`
+margin-top: 10px;
+display: flex;
+justify-content: center;
+`

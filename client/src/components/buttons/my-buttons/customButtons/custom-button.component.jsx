@@ -14,8 +14,8 @@ const CustomButton = ({ icon, title, kind, color, linkUrl, name, value }) => {
   switch (kind) {
     case "icon-only":
       return (
-        <IconOnlyButtonContainer name={name} value={value}>
-          <span className="material-icons"  >{title}</span>
+        <IconOnlyButtonContainer name={name} value={value} className="material-icons">
+          {title}
         </IconOnlyButtonContainer>
       );
     case "text":
@@ -39,7 +39,7 @@ CustomButton.propTypes = {
   color: PropTypes.string,
   linkUrl: PropTypes.string,
   name:PropTypes.string,
-  value:PropTypes.string
+  value:PropTypes.any
 };
 
 export default CustomButton;
