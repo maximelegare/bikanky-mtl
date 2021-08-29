@@ -36,7 +36,9 @@ const FormInput = ({
   name,
   value,
   autoFocus,
-  maxLength
+  maxLength,
+  rows,
+  multiline
 }) => {
   const classes = useStyles();
   return (
@@ -58,6 +60,8 @@ const FormInput = ({
         onBlur={() => removeError(name)}
         autoFocus={autoFocus}
         inputProps={{maxLength}}
+        multiline={multiline}
+        rows={rows}
       />
       {error ? (
         <ErrorContainer>{error}</ErrorContainer>
@@ -77,9 +81,11 @@ FormInput.propTypes = {
   placeHolder: PropTypes.string,
   removeError:PropTypes.func,
   name:PropTypes.string,
-  value:PropTypes.string,
+  value:PropTypes.any ,
   autoFocus:PropTypes.bool,
-  maxLength:PropTypes.number
+  maxLength:PropTypes.number,
+  rows:PropTypes.number,
+  multiline:PropTypes.bool
 };
 
 export default FormInput;

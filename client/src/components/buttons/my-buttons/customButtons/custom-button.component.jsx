@@ -7,11 +7,17 @@ import {
   IconContainer,
   TextButtonContainer,
   TextLinkContainer,
-  
+  IconOnlyButtonContainer
 } from "./custom-button.styles";
 
-const CustomButton = ({ icon, title, kind, color,linkUrl  }) => {
+const CustomButton = ({ icon, title, kind, color, linkUrl, name, value }) => {
   switch (kind) {
+    case "icon-only":
+      return (
+        <IconOnlyButtonContainer name={name} value={value}>
+          <span className="material-icons"  >{title}</span>
+        </IconOnlyButtonContainer>
+      );
     case "text":
       return <TextButtonContainer color={color}>{title}</TextButtonContainer>;
     case "text-link":
@@ -31,7 +37,9 @@ CustomButton.propTypes = {
   title: PropTypes.string,
   kind: PropTypes.string,
   color: PropTypes.string,
-  linkUrl:PropTypes.string
+  linkUrl: PropTypes.string,
+  name:PropTypes.string,
+  value:PropTypes.string
 };
 
 export default CustomButton;

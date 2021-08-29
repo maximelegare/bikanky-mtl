@@ -1,18 +1,20 @@
-import React, {useState} from "react";
-import { PropTypes } from 'prop-types'
-
+import React, { useState } from "react";
+import { PropTypes } from "prop-types";
 
 import ModalComponent from "../modal.component";
 import { InputSectionContainer } from "../address-modal/address-modal.styles";
-import FormInput from "../../form-inputs/form-input.component"; 
+import FormInput from "../../form-inputs/form-input.component";
 import { ButtonSectionContainer } from "../address-modal/address-modal.styles";
 import CustomButtonMUI from "../../buttons/material-ui/custom-button-mui.component";
+import {
+  InputFlexContainer,
+  BulletPointsContainer,
+  BulletPointFlexContainer,
+} from "./admin-items-modal.styles";
 
-
-const AdminItemsModal = ({item, ...otherProps}) => {
-
+const AdminItemsModal = ({ item, ...otherProps }) => {
   // User address state
-  
+
   // eslint-disable-next-line no-unused-vars
   const [itemSpecifications, setItemSpecifications] = useState({
     title: item?.title ?? "",
@@ -20,11 +22,12 @@ const AdminItemsModal = ({item, ...otherProps}) => {
     stock: item?.stock ?? "",
     shortDescription: item?.shortDescription ?? "",
     bulletPoints: item?.bulletPoints ?? [],
+    newBulletPoint: "",
     // phoneNumber: userAddress?.phoneNumber ?? "",
   });
 
   // address errors state
-  
+
   // eslint-disable-next-line no-unused-vars
   const [errors, setErrors] = useState({
     title: null,
@@ -32,6 +35,7 @@ const AdminItemsModal = ({item, ...otherProps}) => {
     stock: null,
     shortDescription: null,
     bulletPoints: null,
+    newBulletPoint: null,
   });
 
   // deconstruct address
@@ -41,6 +45,7 @@ const AdminItemsModal = ({item, ...otherProps}) => {
     stock,
     shortDescription,
     bulletPoints,
+    newBulletPoint,
   } = itemSpecifications;
 
   ////////////////////////////////////////////////
@@ -64,53 +69,74 @@ const AdminItemsModal = ({item, ...otherProps}) => {
 
   // validate the form in [address-modal.utils.js]
 
-//   const validate = () => {
-//     // errors from the utils
-//     const {
-//       country,
-//       fullName,
-//       addressLine,
-//       city,
-//       state,
-//       postalCode,
-//       phoneNumber,
-//     } = errMessages(address);
+  //   const validate = () => {
+  //     // errors from the utils
+  //     const {
+  //       country,
+  //       fullName,
+  //       addressLine,
+  //       city,
+  //       state,
+  //       postalCode,
+  //       phoneNumber,
+  //     } = errMessages(address);
 
-    // sets the errors in errors state
+  // sets the errors in errors state
 
-    // setErrors({
-    //   country,
-    //   fullName,
-    //   addressLine,
-    //   city,
-    //   state,
-    //   postalCode,
-    //   phoneNumber,
-    // });
+  // setErrors({
+  //   country,
+  //   fullName,
+  //   addressLine,
+  //   city,
+  //   state,
+  //   postalCode,
+  //   phoneNumber,
+  // });
 
-    // if any errors, return false
+  // if any errors, return false
 
-    // if (
-    //   country ||
-    //   fullName ||
-    //   addressLine ||
-    //   city ||
-    //   state ||
-    //   postalCode ||
-    //   phoneNumber
-    // ) {
-    //   return false;
-    // }
-    // return true;
+  // if (
+  //   country ||
+  //   fullName ||
+  //   addressLine ||
+  //   city ||
+  //   state ||
+  //   postalCode ||
+  //   phoneNumber
+  // ) {
+  //   return false;
+  // }
+  // return true;
 
-//   };
+  //   };
 
   ////////////////////////////////////////////////
 
   //   handle change event. the key is dynamic using the name and value provided
   const handleChange = (e) => {
-    // const { name, value } = e.target;
-    // setAddress({ ...address, [name]: value });
+    const { name, value } = e.target;
+    setItemSpecifications({ ...itemSpecifications, [name]: value });
+  };
+
+  ///////////////////////////////////////////////
+  // handle adding and deleting bullet points
+
+  const handleClickAddBullet = () => {
+    setItemSpecifications({
+      ...itemSpecifications,
+      bulletPoints: [...bulletPoints, newBulletPoint],
+    });
+  };
+
+  const handleClickDeleteBullet = (e) => {
+     console.log(e.target.name)   
+
+     const buttonValue =  e.target.name
+     const newButtonArray = bulletPoints.filter((_, idx) => idx !== buttonValue )
+     setItemSpecifications({
+        ...itemSpecifications,
+        bulletPoints: newButtonArray,
+      });
   };
 
   ////////////////////////////////////////////////
@@ -135,24 +161,26 @@ const AdminItemsModal = ({item, ...otherProps}) => {
             removeError={removeError}
             autoFocus
           />
-          <FormInput
-            error={errors.price}
-            type="text"
-            label="Price"
-            name="price"
-            value={price}
-            handleChange={handleChange}
-            removeError={removeError}
-          />
-          <FormInput
-            error={errors.stock}
-            type="text"
-            label="Quantity in Stock"
-            name="stock"
-            value={stock}
-            handleChange={handleChange}
-            removeError={removeError}
-          />
+          <InputFlexContainer>
+            <FormInput
+              error={errors.price}
+              type="number"
+              label="Price"
+              name="price"
+              value={price}
+              handleChange={handleChange}
+              removeError={removeError}
+            />
+            <FormInput
+              error={errors.stock}
+              type="number"
+              label="Stock quantity"
+              name="stock"
+              value={stock}
+              handleChange={handleChange}
+              removeError={removeError}
+            />
+          </InputFlexContainer>
           <FormInput
             error={errors.shortDescription}
             type="text"
@@ -161,16 +189,44 @@ const AdminItemsModal = ({item, ...otherProps}) => {
             value={shortDescription}
             handleChange={handleChange}
             removeError={removeError}
+            multiline
+            rows={4}
           />
-          <FormInput
-            error={errors.bulletPoints}
-            type="text"
-            label="Bullet Points"
-            name="bulletPoints"
-            value={bulletPoints}
-            handleChange={handleChange}
-            removeError={removeError}
-          />
+          <InputFlexContainer>
+            <FormInput
+              error={errors.bulletPoints}
+              type="text"
+              name="newBulletPoint"
+              label="Bullet points"
+              value={newBulletPoint}
+              handleChange={handleChange}
+              removeError={removeError}
+              multiline
+              rows={2}
+            />
+            <div style={{ marginTop: "40px" }} onClick={handleClickAddBullet}>
+              <CustomButtonMUI inline kind="icon-color">
+                add
+              </CustomButtonMUI>
+            </div>
+          </InputFlexContainer>
+          <BulletPointsContainer>
+            <ul>
+              {bulletPoints.map((bullet, idx) => {
+                  return(
+                <li key={idx}>
+                  <BulletPointFlexContainer>
+                    <span>{bullet}</span>
+                    <div onClick={handleClickDeleteBullet}>
+                        {/* <button name={idx}>clear</button> */}
+                        <CustomButtonMUI kind="icon" deleteIcon>clear</CustomButtonMUI>
+                    </div>
+                  </BulletPointFlexContainer>
+                </li>
+              )})}
+            </ul>
+          </BulletPointsContainer>
+
           <ButtonSectionContainer>
             <CustomButtonMUI type="submit">Confirm</CustomButtonMUI>
           </ButtonSectionContainer>
@@ -181,15 +237,13 @@ const AdminItemsModal = ({item, ...otherProps}) => {
 };
 
 AdminItemsModal.propTypes = {
-    item:PropTypes.shape({
-        title:PropTypes.string,
-        price:PropTypes.number,
-        stock:PropTypes.number,
-        shortDescription:PropTypes.string,
-        bulletPoints:PropTypes.array
-    })
-}
-
-
+  item: PropTypes.shape({
+    title: PropTypes.string,
+    price: PropTypes.number,
+    stock: PropTypes.number,
+    shortDescription: PropTypes.string,
+    bulletPoints: PropTypes.array,
+  }),
+};
 
 export default AdminItemsModal;

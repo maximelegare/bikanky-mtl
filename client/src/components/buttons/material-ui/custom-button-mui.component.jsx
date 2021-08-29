@@ -36,6 +36,7 @@ const useStyles = makeStyles({
   },
   deleteIconClass: {
     color: "rgb(172, 16, 16)",
+    padding: "0px",
     "&:hover": {
       backgroundColor: "rgba(172, 16, 16, 0.158)",
     },
@@ -57,7 +58,7 @@ const smallStyles = makeStyles({
   },
 });
 
-const CustomButtonMUI = ({ children, kind, deleteIcon, routeName, type }) => {
+const CustomButtonMUI = ({ children, kind, deleteIcon, routeName, type, value }) => {
   const classes = useStyles();
   const smallClasses = smallStyles();
 
@@ -73,6 +74,7 @@ const CustomButtonMUI = ({ children, kind, deleteIcon, routeName, type }) => {
           }}
           variant="contained"
           type={type}
+          
         >
           <span className="material-icons">{children}</span>
         </IconButton>
@@ -137,6 +139,7 @@ CustomButtonMUI.propTypes = {
   kind: PropTypes.string,
   deleteIcon: PropTypes.bool,
   routeName: PropTypes.string,
+  value:PropTypes.any
 };
 
 export default CustomButtonMUI;

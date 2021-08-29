@@ -42,3 +42,13 @@ export const TextButtonContainer = styled.button`
   color: ${(props) =>
     props.color ? props.color : "var(--mobile-slider-text-color)"};
 `;
+
+
+export const IconOnlyButtonContainer = styled.button`
+background-color: transparent;
+border:none;
+cursor: pointer;
+span{
+  color:var(--red-accent);
+}
+`;
