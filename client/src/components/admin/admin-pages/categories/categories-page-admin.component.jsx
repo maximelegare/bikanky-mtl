@@ -84,6 +84,7 @@ const CategoriesPageAdmin = () => {
                 item={item}
                 setVisibility={setModalVisibility}
                 modalName="newCategory"
+                newCategory
               />}
           />
           <AdminCard

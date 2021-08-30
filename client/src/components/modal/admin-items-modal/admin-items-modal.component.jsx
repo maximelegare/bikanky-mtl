@@ -15,7 +15,7 @@ import {
 } from "./admin-items-modal.styles";
 
 // eslint-disable-next-line react/prop-types
-const AdminItemsModal = ({ item, newItem, ...otherProps }) => {
+const AdminItemsModal = ({ item, newItem, newCategory, ...otherProps }) => {
   // User address state
   // eslint-disable-next-line no-unused-vars
   const [itemSpecifications, setItemSpecifications] = useState({
@@ -25,6 +25,7 @@ const AdminItemsModal = ({ item, newItem, ...otherProps }) => {
     shortDescription: item?.shortDescription,
     bulletPoints: item?.bulletPoints,
     newBulletPoint: "",
+    newCategory: "",
   });
 
   // sets default values to empty string if it's a new item
@@ -50,6 +51,7 @@ const AdminItemsModal = ({ item, newItem, ...otherProps }) => {
     shortDescription: null,
     bulletPoints: null,
     newBulletPoint: null,
+    newCategoryValue:null
   });
 
   // deconstruct address
@@ -60,6 +62,7 @@ const AdminItemsModal = ({ item, newItem, ...otherProps }) => {
     shortDescription,
     bulletPoints,
     newBulletPoint,
+    newCategoryValue,
   } = itemSpecifications;
 
   ////////////////////////////////////////////////
@@ -167,90 +170,107 @@ const AdminItemsModal = ({ item, newItem, ...otherProps }) => {
     <ModalComponent {...otherProps}>
       <form onSubmit={handleSubmit}>
         <InputSectionContainer>
-          <FormInput
-            error={errors.title}
-            type="text"
-            label="Title"
-            name="title"
-            value={title}
-            handleChange={handleChange}
-            removeError={removeError}
-            autoFocus
-          />
-          <InputFlexContainer>
+          {newCategory ? (
             <FormInput
-              error={errors.price}
-              type="number"
-              label="Price"
-              name="price"
-              value={price}
-              handleChange={handleChange}
-              removeError={removeError}
-            />
-            <FormInput
-              error={errors.stock}
-              type="number"
-              label="Stock quantity"
-              name="stock"
-              value={stock}
-              handleChange={handleChange}
-              removeError={removeError}
-            />
-          </InputFlexContainer>
-          <FormInput
-            error={errors.shortDescription}
-            type="text"
-            label="Short Description"
-            name="shortDescription"
-            value={shortDescription}
-            handleChange={handleChange}
-            removeError={removeError}
-            multiline
-            rows={4}
-          />
-          <InputFlexContainer>
-            <FormInput
-              error={errors.bulletPoints}
+              error={errors.title}
               type="text"
-              name="newBulletPoint"
-              label="Bullet points"
-              value={newBulletPoint}
+              label="Category"
+              name="category"
+              value={newCategoryValue}
               handleChange={handleChange}
               removeError={removeError}
-              multiline
-              rows={2}
+              autoFocus
             />
-            <div style={{ marginTop: "40px" }} onClick={handleClickAddBullet}>
-              <CustomButtonMUI inline kind="icon-color">
-                add
-              </CustomButtonMUI>
-            </div>
-          </InputFlexContainer>
-          <BulletPointsContainer>
-            <ul>
-              {bulletPoints?.map((bullet, idx) => {
-                return (
-                  <li key={idx}>
-                    <BulletPointFlexContainer>
-                      <span>{bullet}</span>
-                      <div onClick={handleClickDeleteBullet}>
-                        <CustomButton
-                          value={bullet}
-                          kind="icon-only"
-                          deleteIcon
-                          title="clear"
-                        ></CustomButton>
-                      </div>
-                    </BulletPointFlexContainer>
-                  </li>
-                );
-              })}
-            </ul>
-          </BulletPointsContainer>
-
+          ) : (
+            <>
+              <FormInput
+                error={errors.title}
+                type="text"
+                label="Title"
+                name="title"
+                value={title}
+                handleChange={handleChange}
+                removeError={removeError}
+                autoFocus
+              />
+              <InputFlexContainer>
+                <FormInput
+                  error={errors.price}
+                  type="number"
+                  label="Price"
+                  name="price"
+                  value={price}
+                  handleChange={handleChange}
+                  removeError={removeError}
+                />
+                <FormInput
+                  error={errors.stock}
+                  type="number"
+                  label="Stock quantity"
+                  name="stock"
+                  value={stock}
+                  handleChange={handleChange}
+                  removeError={removeError}
+                />
+              </InputFlexContainer>
+              <FormInput
+                error={errors.shortDescription}
+                type="text"
+                label="Short Description"
+                name="shortDescription"
+                value={shortDescription}
+                handleChange={handleChange}
+                removeError={removeError}
+                multiline
+                rows={4}
+              />
+              <InputFlexContainer>
+                <FormInput
+                  error={errors.bulletPoints}
+                  type="text"
+                  name="newBulletPoint"
+                  label="Bullet points"
+                  value={newBulletPoint}
+                  handleChange={handleChange}
+                  removeError={removeError}
+                  multiline
+                  rows={2}
+                />
+                <div
+                  style={{ marginTop: "40px" }}
+                  onClick={handleClickAddBullet}
+                >
+                  <CustomButtonMUI inline kind="icon-color">
+                    add
+                  </CustomButtonMUI>
+                </div>
+              </InputFlexContainer>
+              <BulletPointsContainer>
+                <ul>
+                  {bulletPoints?.map((bullet, idx) => {
+                    return (
+                      <li key={idx}>
+                        <BulletPointFlexContainer>
+                          <span>{bullet}</span>
+                          <div onClick={handleClickDeleteBullet}>
+                            <CustomButton
+                              value={bullet}
+                              kind="icon-only"
+                              deleteIcon
+                              title="clear"
+                            ></CustomButton>
+                          </div>
+                        </BulletPointFlexContainer>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </BulletPointsContainer>
+            </>
+          )}
           <ButtonSectionContainer>
             <CustomButtonMUI type="submit">
-              {newItem ? "Save new Item" : "Confirm"}
+              {newItem || newCategory ? "Create" : "Confirm"}
             </CustomButtonMUI>
           </ButtonSectionContainer>
         </InputSectionContainer>
@@ -266,7 +286,8 @@ AdminItemsModal.propTypes = {
     stock: PropTypes.number,
     shortDescription: PropTypes.string,
     bulletPoints: PropTypes.array,
-    newItem: PropTypes.array,
+    newItem: PropTypes.bool,
+    newCategory: PropTypes.bool,
   }),
 };
 
