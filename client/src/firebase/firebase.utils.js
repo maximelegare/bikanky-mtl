@@ -76,17 +76,19 @@ export const createUserProfileDocument = async (userAuth) => {
 };
 
 //////////////////////////////////////
-//    CREATE FIRESTORE NEW ITEM     //
+//   CREATE FIRESTORE NEW CATEGORY  //
 //////////////////////////////////////
 
-export const createNewItemCategory = async (name) => {
-  const categoryRef = firestore.doc(`/${name}`);
+export const createNewItemCategory = async (categoryName) => {
+  const categoryRef = firestore.doc(`/categories/${categoryName}`);
 
-  const categorySnapshot = categoryRef.get();
+  const itemSnapshot = categoryRef.get();
 
-  if (!categorySnapshot.exists) {
+  if (!itemSnapshot.exists) {
     try {
-      await categoryRef.set({});
+      await categoryRef.set({
+        title:categoryName
+      });
     } catch (err) {
       console.log(err.message);
     }
@@ -146,6 +148,9 @@ export default firebase;
 //////////////////////////////////////
 //    UPDATE ITEM STOCK QUANTITY    //
 //////////////////////////////////////
+
+
+
 
 //////////////////////////////////////
 //      BATCH DATA IN FIREBASE      //

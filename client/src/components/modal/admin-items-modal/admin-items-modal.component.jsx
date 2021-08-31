@@ -27,7 +27,7 @@ const AdminItemsModal = ({ item, newItem, newCategory, ...otherProps }) => {
     shortDescription: item?.shortDescription,
     bulletPoints: item?.bulletPoints,
     newBulletPoint: "",
-    newCategoryValue: "",
+    newCategoryName: "",
   });
 
   // sets default values to empty string if it's a new item
@@ -53,7 +53,7 @@ const AdminItemsModal = ({ item, newItem, newCategory, ...otherProps }) => {
     shortDescription: null,
     bulletPoints: null,
     newBulletPoint: null,
-    newCategoryValue:null
+    newCategoryName: null,
   });
 
   // deconstruct address
@@ -64,7 +64,7 @@ const AdminItemsModal = ({ item, newItem, newCategory, ...otherProps }) => {
     shortDescription,
     bulletPoints,
     newBulletPoint,
-    newCategoryValue,
+    newCategoryName,
   } = itemSpecifications;
 
   ////////////////////////////////////////////////
@@ -73,7 +73,31 @@ const AdminItemsModal = ({ item, newItem, newCategory, ...otherProps }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    createNewItemCategory(newCategoryValue)
+    let item;
+    if (newCategory) {
+      item = {
+        title: newCategoryName,
+      };
+    } else {
+      item = {
+        bulletPoints,
+        cartQuantity: 0,
+        collection: newCategoryName,
+        carouselImages: [],
+        imageUrl: "",
+        price,
+        linkUrl: `${encodeURI(newCategoryName.toLowerCase())}/${encodeURI(
+          title?.toLowerCase()
+        )}`,
+        routeName: encodeURI(title?.toLowerCase()),
+        shortDescription,
+        stock,
+        id: new Date().toISOString(),
+      };
+    }
+
+    console.log(item)  
+    createNewItemCategory(newCategoryName, item);
     // validate the form
     // const isValid = validate();
     // // the form is not valid, return
@@ -178,8 +202,8 @@ const AdminItemsModal = ({ item, newItem, newCategory, ...otherProps }) => {
               error={errors.title}
               type="text"
               label="Category"
-              name="newCategoryValue"
-              value={newCategoryValue}
+              name="newCategoryName"
+              value={newCategoryName}
               handleChange={handleChange}
               removeError={removeError}
               autoFocus
