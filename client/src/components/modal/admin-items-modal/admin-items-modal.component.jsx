@@ -2,6 +2,8 @@
 import React, { useState, useEffect } from "react";
 import { PropTypes } from "prop-types";
 
+import { createNewItemCategory } from "../../../firebase/firebase.utils";
+
 import ModalComponent from "../modal.component";
 import { InputSectionContainer } from "../address-modal/address-modal.styles";
 import FormInput from "../../form-inputs/form-input.component";
@@ -25,7 +27,7 @@ const AdminItemsModal = ({ item, newItem, newCategory, ...otherProps }) => {
     shortDescription: item?.shortDescription,
     bulletPoints: item?.bulletPoints,
     newBulletPoint: "",
-    newCategory: "",
+    newCategoryValue: "",
   });
 
   // sets default values to empty string if it's a new item
@@ -71,6 +73,7 @@ const AdminItemsModal = ({ item, newItem, newCategory, ...otherProps }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    createNewItemCategory(newCategoryValue)
     // validate the form
     // const isValid = validate();
     // // the form is not valid, return
@@ -175,7 +178,7 @@ const AdminItemsModal = ({ item, newItem, newCategory, ...otherProps }) => {
               error={errors.title}
               type="text"
               label="Category"
-              name="category"
+              name="newCategoryValue"
               value={newCategoryValue}
               handleChange={handleChange}
               removeError={removeError}

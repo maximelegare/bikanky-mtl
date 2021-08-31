@@ -5,7 +5,7 @@ import "firebase/firestore";
 // import "firebase/analytics";
 
 // eslint-disable-next-line no-undef
-const API_KEY = 'AIzaSyCKVM5ISrbhalvgUbA2rNKqoKD8R33JgKM';
+const API_KEY = "AIzaSyCKVM5ISrbhalvgUbA2rNKqoKD8R33JgKM";
 
 // firebase config
 const firebaseConfig = {
@@ -27,10 +27,9 @@ export const firestore = firebase.firestore();
 
 // ///////////////////////////
 
-
 //////////////////////////////////////
 //        GET CURRENT USER          //
-////////////////////////////////////// 
+//////////////////////////////////////
 
 // get the current user obj and unsubscribe
 export const getCurrentUser = () => {
@@ -44,7 +43,7 @@ export const getCurrentUser = () => {
 
 //////////////////////////////////////
 //CREATE FIRESTORE PROFILE FOR USER //
-////////////////////////////////////// 
+//////////////////////////////////////
 
 // create a firestore profile if there is no snapshot that exist.
 export const createUserProfileDocument = async (userAuth) => {
@@ -76,11 +75,29 @@ export const createUserProfileDocument = async (userAuth) => {
   return userRef;
 };
 
+//////////////////////////////////////
+//    CREATE FIRESTORE NEW ITEM     //
+//////////////////////////////////////
+
+export const createNewItemCategory = async (name) => {
+  const categoryRef = firestore.doc(`/${name}`);
+
+  const categorySnapshot = categoryRef.get();
+
+  if (!categorySnapshot.exists) {
+    try {
+      await categoryRef.set({});
+    } catch (err) {
+      console.log(err.message);
+    }
+  } else {
+    console.log("category alreary exists");
+  }
+};
 
 //////////////////////////////////////
 // CREATE OBJECT WITH FIREBASE DATA //
-////////////////////////////////////// 
-
+//////////////////////////////////////
 
 export const transformArrayToObject = (collSnapshot) => {
   // create new array
@@ -101,11 +118,9 @@ export const transformArrayToObject = (collSnapshot) => {
   }, {});
 };
 
-
-
 //////////////////////////////////////
 //      ADD SHIPPING ADDRESS        //
-////////////////////////////////////// 
+//////////////////////////////////////
 
 export const addShippingAddress = async (userId, address, user) => {
   const userRef = firestore.doc(`/users/${userId}`);
@@ -118,10 +133,9 @@ export const addShippingAddress = async (userId, address, user) => {
   }
 };
 
-
 //////////////////////////////////////
 //         GOOGLE SIGN-IN           //
-////////////////////////////////////// 
+//////////////////////////////////////
 
 const provider = new firebase.auth.GoogleAuthProvider();
 provider.setCustomParameters({ prompt: "select_account" });
@@ -129,16 +143,13 @@ export const signInWithGoogle = () => auth.signInWithRedirect(provider);
 
 export default firebase;
 
-
 //////////////////////////////////////
 //    UPDATE ITEM STOCK QUANTITY    //
-////////////////////////////////////// 
-
-
+//////////////////////////////////////
 
 //////////////////////////////////////
 //      BATCH DATA IN FIREBASE      //
-////////////////////////////////////// 
+//////////////////////////////////////
 
 // use it in useEffect
 export const addCollectionsAndDocuments = async (
@@ -160,14 +171,3 @@ export const addCollectionsAndDocuments = async (
   // await for batch to finish
   await batch.commit();
 };
-
-
-
-
-
-
-
-
-
-
-
