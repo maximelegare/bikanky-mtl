@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { PropTypes } from "prop-types";
 
 import { withStyles } from "@material-ui/core/styles";
@@ -14,7 +14,7 @@ const CustomSelectInput = withStyles((theme) => ({
     position: "relative",
     backgroundColor: theme.palette.background.paper,
     border: "1px solid #c0c0c0",
-    width: '100%',
+    width: "100%",
     fontSize: 14,
     padding: "10px 26px 10px 12px",
     "&:hover": {
@@ -29,25 +29,26 @@ const CustomSelectInput = withStyles((theme) => ({
   },
 }))(InputBase);
 
+const FormSelect = ({ label, handleChange, name, menuValues, defaultValue }) => {
 
+  const [menuValue, setMenuValue] = useState( defaultValue ?? '')
 
-const FormSelect = ({ label, handleChange, name, menuValues }) => {
-  
-
+  const handleChangeLocally = (e) => {
+    setMenuValue(e.target.value)
+    console.log(e.target.value)
+    handleChange(e)
+  }
   return (
     <InputContainer>
       <InputLabel>{label}</InputLabel>
-      <FormControl style={{width:'100%'}}>
+      <FormControl style={{ width: "100%" }}>
         <Select
+          value={menuValue}          
           name={name}
-          onChange={handleChange}
-          input={<CustomSelectInput/>}
-          
+          onChange={(e) => handleChangeLocally(e)}
+          input={<CustomSelectInput />}
         >
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
-          {menuValues?.map(({title, routeName}) => (
+          {menuValues?.map(({ title, routeName }) => (
             <MenuItem key={title} value={routeName}>
               {title}
             </MenuItem>
@@ -63,6 +64,7 @@ FormSelect.propTypes = {
   handleChange: PropTypes.func,
   name: PropTypes.string,
   menuValues: PropTypes.array,
+  defaultValue:PropTypes.string
 };
 
 export default FormSelect;

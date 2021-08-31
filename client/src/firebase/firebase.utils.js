@@ -27,10 +27,6 @@ export const firestore = firebase.firestore();
 
 // ///////////////////////////
 
-
-
-
-
 //////////////////////////////////////
 //   CREATE FIRESTORE NEW CATEGORY  //
 //////////////////////////////////////
@@ -38,13 +34,13 @@ export const firestore = firebase.firestore();
 export const createNewItemCategory = async (item) => {
   const categoryRef = firestore.doc(`/categories/${item.dbTitle}`);
 
-  const itemSnapshot = categoryRef.get();
+  const categorySnapshot = categoryRef.get();
 
-  if (!itemSnapshot.exists) {
+  if (!categorySnapshot.exists) {
     try {
       await categoryRef.set({
-        title:item.title,
-        items:[]
+        title: item.title,
+        items: [],
       });
     } catch (err) {
       console.log(err.message);
@@ -54,10 +50,53 @@ export const createNewItemCategory = async (item) => {
   }
 };
 
-export const createNewItem = async (categoryName ,item) => {
+//////////////////////////////////////
+//   CREATE FIRESTORE NEW CATEGORY  //
+//////////////////////////////////////
 
-}
+export const createNewItem = async (item) => {
+  const {
+    bulletPoints,
+    cartQuantity,
+    collection,
+    id,
+    imageUrl,
+    linkUrl,
+    price,
+    routeName,
+    shortDescription,
+    stock,
+    title,
+  } = item;
 
+  // console.log(item);
+  const itemRef = firestore.doc(`categories/${item.collection}/items/${item.routeName}`);
+
+  const itemSnapshot = itemRef.get();
+  // console.log(itemSnapshot);
+
+  if (!itemSnapshot.exists) {
+    try {
+      await itemRef.set({
+        bulletPoints,
+        cartQuantity,
+        collection,
+        id,
+        imageUrl,
+        linkUrl,
+        price,
+        routeName,
+        shortDescription,
+        stock,
+        title,
+      });
+    } catch (err) {
+      console.log(err.message);
+    }
+  } else {
+    console.log("item already exists");
+  }
+};
 
 //////////////////////////////////////
 // CREATE OBJECT WITH FIREBASE DATA //
@@ -82,10 +121,8 @@ export const transformArrayToObject = (collSnapshot) => {
   }, {});
 };
 
-
-
 // USER RELATED CODE
-///////////////////////////////////////////////////////////////////////////// 
+/////////////////////////////////////////////////////////////////////////////
 
 //////////////////////////////////////
 //        GET CURRENT USER          //
@@ -100,8 +137,6 @@ export const getCurrentUser = () => {
     }, reject);
   });
 };
-
-
 
 //////////////////////////////////////
 //CREATE FIRESTORE PROFILE FOR USER //
@@ -137,8 +172,6 @@ export const createUserProfileDocument = async (userAuth) => {
   return userRef;
 };
 
-
-
 //////////////////////////////////////
 //         GOOGLE SIGN-IN           //
 //////////////////////////////////////
@@ -148,7 +181,6 @@ provider.setCustomParameters({ prompt: "select_account" });
 export const signInWithGoogle = () => auth.signInWithRedirect(provider);
 
 export default firebase;
-
 
 //////////////////////////////////////
 //      ADD SHIPPING ADDRESS        //
@@ -165,13 +197,8 @@ export const addShippingAddress = async (userId, address, user) => {
   }
 };
 
-
-
-
-
-
 // UNUSED CODE FOR REFERENCE
-///////////////////////////////////////////////////////////////////////////// 
+/////////////////////////////////////////////////////////////////////////////
 
 //////////////////////////////////////
 //      BATCH DATA IN FIREBASE      //
@@ -197,6 +224,3 @@ export const addShippingAddress = async (userId, address, user) => {
 //   // await for batch to finish
 //   await batch.commit();
 // };
-
-
-

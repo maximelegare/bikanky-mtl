@@ -4,7 +4,7 @@ import { PropTypes } from "prop-types";
 
 import { capitalizeString } from "../../_string-utilites/string-utilites";
 
-import { createNewItemCategory } from "../../../firebase/firebase.utils";
+import { createNewItemCategory, createNewItem } from "../../../firebase/firebase.utils";
 
 import FormSelect from "../../form-select/form-select.component";
 import ModalComponent from "../modal.component";
@@ -27,6 +27,7 @@ const AdminItemsModal = ({
   newCategory,
   setVisibility,
   modalName,
+  selectInputDefaultValue,
   ...otherProps
 }) => {
   // User address state
@@ -39,7 +40,7 @@ const AdminItemsModal = ({
     bulletPoints: item?.bulletPoints,
     newBulletPoint: "",
     newCategoryName: "",
-    selectedCategory: "",
+    selectedCategory: selectInputMenuValues??"",
   });
 
   // sets default values to empty string if it's a new item
@@ -81,7 +82,7 @@ const AdminItemsModal = ({
     selectedCategory,
   } = itemSpecifications;
 
-
+console.log(selectInputDefaultValue)
 
   ////////////////////////////////////////////////
 
@@ -89,34 +90,39 @@ const AdminItemsModal = ({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newCategoryNameCapitalize = capitalizeString(newCategoryName);
+    
 
     // create an item to add to firebase depending if it's a new item or a new category
     let item;
     if (newCategory) {
+      const newCategoryNameCapitalize = capitalizeString(newCategoryName);
       item = {
         title: newCategoryNameCapitalize,
         dbTitle: newCategoryName.toLocaleLowerCase(),
       };
+      createNewItemCategory(item)
     } else {
+      const capitalizedTitle = capitalizeString(title);
       item = {
-        bulletPoints,
+        id: new Date().toISOString(),
+        title:capitalizedTitle,
         cartQuantity: 0,
-        collection: newCategoryName,
-        carouselImages: [],
-        imageUrl: "",
         price,
-        linkUrl: `${encodeURI(newCategoryName.toLowerCase())}/${encodeURI(
+        bulletPoints,
+        routeName: encodeURI(title?.toLowerCase()),
+        carouselImages: [],
+        collection:selectedCategory,
+        imageUrl: "",
+        linkUrl: `${encodeURI(selectedCategory)}/${encodeURI(
           title?.toLowerCase()
         )}`,
-        routeName: encodeURI(title?.toLowerCase()),
         shortDescription,
         stock,
-        id: new Date().toISOString(),
       };
+      createNewItem(item);
     }
-
-    createNewItemCategory(item);
+    console.log(item)
+    
     // validate the form
     // const isValid = validate();
     // // the form is not valid, return
@@ -245,10 +251,10 @@ const AdminItemsModal = ({
               />
               <FormSelect
                 label="Category"
-                name="selectCategory"
+                name="selectedCategory"
                 handleChange={handleChange}
                 menuValues={selectInputMenuValues}
-                value={selectedCategory}
+                defaultValue={selectInputDefaultValue}
               />
               <InputFlexContainer>
                 <FormInput
@@ -352,7 +358,8 @@ AdminItemsModal.propTypes = {
   setVisibility:PropTypes.func,
   newCategory:PropTypes.bool,
   newItem:PropTypes.bool,
-  selectInputMenuValues:PropTypes.array
+  selectInputMenuValues:PropTypes.array,
+  selectInputDefaultValue:PropTypes.string
 };
 
 export default AdminItemsModal;
