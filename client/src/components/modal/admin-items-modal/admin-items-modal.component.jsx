@@ -2,8 +2,11 @@
 import React, { useState, useEffect } from "react";
 import { PropTypes } from "prop-types";
 
+import { capitalizeString } from "../../_string-utilites/string-utilites";
+
 import { createNewItemCategory } from "../../../firebase/firebase.utils";
 
+import FormSelect from "../../form-select/form-select.component";
 import ModalComponent from "../modal.component";
 import { InputSectionContainer } from "../address-modal/address-modal.styles";
 import FormInput from "../../form-inputs/form-input.component";
@@ -17,7 +20,15 @@ import {
 } from "./admin-items-modal.styles";
 
 // eslint-disable-next-line react/prop-types
-const AdminItemsModal = ({ item, newItem, newCategory, ...otherProps }) => {
+const AdminItemsModal = ({
+  selectInputMenuValues,
+  item,
+  newItem,
+  newCategory,
+  setVisibility,
+  modalName,
+  ...otherProps
+}) => {
   // User address state
   // eslint-disable-next-line no-unused-vars
   const [itemSpecifications, setItemSpecifications] = useState({
@@ -28,6 +39,7 @@ const AdminItemsModal = ({ item, newItem, newCategory, ...otherProps }) => {
     bulletPoints: item?.bulletPoints,
     newBulletPoint: "",
     newCategoryName: "",
+    selectedCategory: "",
   });
 
   // sets default values to empty string if it's a new item
@@ -54,6 +66,7 @@ const AdminItemsModal = ({ item, newItem, newCategory, ...otherProps }) => {
     bulletPoints: null,
     newBulletPoint: null,
     newCategoryName: null,
+    selectedCategory: null,
   });
 
   // deconstruct address
@@ -65,7 +78,10 @@ const AdminItemsModal = ({ item, newItem, newCategory, ...otherProps }) => {
     bulletPoints,
     newBulletPoint,
     newCategoryName,
+    selectedCategory,
   } = itemSpecifications;
+
+
 
   ////////////////////////////////////////////////
 
@@ -73,10 +89,14 @@ const AdminItemsModal = ({ item, newItem, newCategory, ...otherProps }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const newCategoryNameCapitalize = capitalizeString(newCategoryName);
+
+    // create an item to add to firebase depending if it's a new item or a new category
     let item;
     if (newCategory) {
       item = {
-        title: newCategoryName,
+        title: newCategoryNameCapitalize,
+        dbTitle: newCategoryName.toLocaleLowerCase(),
       };
     } else {
       item = {
@@ -96,8 +116,7 @@ const AdminItemsModal = ({ item, newItem, newCategory, ...otherProps }) => {
       };
     }
 
-    console.log(item)  
-    createNewItemCategory(newCategoryName, item);
+    createNewItemCategory(item);
     // validate the form
     // const isValid = validate();
     // // the form is not valid, return
@@ -194,7 +213,11 @@ const AdminItemsModal = ({ item, newItem, newCategory, ...otherProps }) => {
   };
 
   return (
-    <ModalComponent {...otherProps}>
+    <ModalComponent
+      {...otherProps}
+      modalName={modalName}
+      setVisibility={setVisibility}
+    >
       <form onSubmit={handleSubmit}>
         <InputSectionContainer>
           {newCategory ? (
@@ -219,6 +242,13 @@ const AdminItemsModal = ({ item, newItem, newCategory, ...otherProps }) => {
                 handleChange={handleChange}
                 removeError={removeError}
                 autoFocus
+              />
+              <FormSelect
+                label="Category"
+                name="selectCategory"
+                handleChange={handleChange}
+                menuValues={selectInputMenuValues}
+                value={selectedCategory}
               />
               <InputFlexContainer>
                 <FormInput
@@ -295,7 +325,9 @@ const AdminItemsModal = ({ item, newItem, newCategory, ...otherProps }) => {
               </BulletPointsContainer>
             </>
           )}
-          <ButtonSectionContainer>
+          <ButtonSectionContainer
+            onClick={() => setVisibility(false, modalName)}
+          >
             <CustomButtonMUI type="submit">
               {newItem || newCategory ? "Create" : "Confirm"}
             </CustomButtonMUI>
@@ -316,6 +348,11 @@ AdminItemsModal.propTypes = {
     newItem: PropTypes.bool,
     newCategory: PropTypes.bool,
   }),
+  modalName:PropTypes.string,
+  setVisibility:PropTypes.func,
+  newCategory:PropTypes.bool,
+  newItem:PropTypes.bool,
+  selectInputMenuValues:PropTypes.array
 };
 
 export default AdminItemsModal;

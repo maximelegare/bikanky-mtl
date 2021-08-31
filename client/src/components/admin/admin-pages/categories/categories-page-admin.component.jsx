@@ -83,6 +83,7 @@ const CategoriesPageAdmin = () => {
                 isVisible={modalVisibility.newCategory}
                 item={item}
                 setVisibility={setModalVisibility}
+                closeModal={setModalVisibility}
                 modalName="newCategory"
                 newCategory
               />}
@@ -97,9 +98,11 @@ const CategoriesPageAdmin = () => {
             setModalVisibility={setModalVisibility}
             modalComponent={
               <AdminItemsModal
+                selectInputMenuValues={itemsCategoriesArray}
                 isVisible={modalVisibility.newItem}
                 item={item}
                 setVisibility={setModalVisibility}
+                closeModal={setModalVisibility}
                 modalName="newItem"
                 newItem
               />}

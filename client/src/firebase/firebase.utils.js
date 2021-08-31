@@ -27,6 +27,66 @@ export const firestore = firebase.firestore();
 
 // ///////////////////////////
 
+
+
+
+
+//////////////////////////////////////
+//   CREATE FIRESTORE NEW CATEGORY  //
+//////////////////////////////////////
+
+export const createNewItemCategory = async (item) => {
+  const categoryRef = firestore.doc(`/categories/${item.dbTitle}`);
+
+  const itemSnapshot = categoryRef.get();
+
+  if (!itemSnapshot.exists) {
+    try {
+      await categoryRef.set({
+        title:item.title,
+        items:[]
+      });
+    } catch (err) {
+      console.log(err.message);
+    }
+  } else {
+    console.log("category alreary exists");
+  }
+};
+
+export const createNewItem = async (categoryName ,item) => {
+
+}
+
+
+//////////////////////////////////////
+// CREATE OBJECT WITH FIREBASE DATA //
+//////////////////////////////////////
+
+export const transformArrayToObject = (collSnapshot) => {
+  // create new array
+  const transformedCollections = collSnapshot.docs.map((doc) => {
+    const { title, items } = doc.data();
+
+    return {
+      routeName: encodeURI(title.toLowerCase()),
+      items,
+      title,
+      id: doc.id,
+    };
+  });
+  // transform the array in an object
+  return transformedCollections.reduce((acc, collection) => {
+    acc[collection.title.toLowerCase()] = collection;
+    return acc;
+  }, {});
+};
+
+
+
+// USER RELATED CODE
+///////////////////////////////////////////////////////////////////////////// 
+
 //////////////////////////////////////
 //        GET CURRENT USER          //
 //////////////////////////////////////
@@ -40,6 +100,8 @@ export const getCurrentUser = () => {
     }, reject);
   });
 };
+
+
 
 //////////////////////////////////////
 //CREATE FIRESTORE PROFILE FOR USER //
@@ -75,50 +137,18 @@ export const createUserProfileDocument = async (userAuth) => {
   return userRef;
 };
 
-//////////////////////////////////////
-//   CREATE FIRESTORE NEW CATEGORY  //
-//////////////////////////////////////
 
-export const createNewItemCategory = async (categoryName) => {
-  const categoryRef = firestore.doc(`/categories/${categoryName}`);
-
-  const itemSnapshot = categoryRef.get();
-
-  if (!itemSnapshot.exists) {
-    try {
-      await categoryRef.set({
-        title:categoryName
-      });
-    } catch (err) {
-      console.log(err.message);
-    }
-  } else {
-    console.log("category alreary exists");
-  }
-};
 
 //////////////////////////////////////
-// CREATE OBJECT WITH FIREBASE DATA //
+//         GOOGLE SIGN-IN           //
 //////////////////////////////////////
 
-export const transformArrayToObject = (collSnapshot) => {
-  // create new array
-  const transformedCollections = collSnapshot.docs.map((doc) => {
-    const { title, items } = doc.data();
+const provider = new firebase.auth.GoogleAuthProvider();
+provider.setCustomParameters({ prompt: "select_account" });
+export const signInWithGoogle = () => auth.signInWithRedirect(provider);
 
-    return {
-      routeName: encodeURI(title.toLowerCase()),
-      items,
-      title,
-      id: doc.id,
-    };
-  });
-  // transform the array in an object
-  return transformedCollections.reduce((acc, collection) => {
-    acc[collection.title.toLowerCase()] = collection;
-    return acc;
-  }, {});
-};
+export default firebase;
+
 
 //////////////////////////////////////
 //      ADD SHIPPING ADDRESS        //
@@ -135,44 +165,38 @@ export const addShippingAddress = async (userId, address, user) => {
   }
 };
 
-//////////////////////////////////////
-//         GOOGLE SIGN-IN           //
-//////////////////////////////////////
-
-const provider = new firebase.auth.GoogleAuthProvider();
-provider.setCustomParameters({ prompt: "select_account" });
-export const signInWithGoogle = () => auth.signInWithRedirect(provider);
-
-export default firebase;
-
-//////////////////////////////////////
-//    UPDATE ITEM STOCK QUANTITY    //
-//////////////////////////////////////
 
 
 
+
+
+// UNUSED CODE FOR REFERENCE
+///////////////////////////////////////////////////////////////////////////// 
 
 //////////////////////////////////////
 //      BATCH DATA IN FIREBASE      //
 //////////////////////////////////////
 
 // use it in useEffect
-export const addCollectionsAndDocuments = async (
-  collectionKey,
-  objectsToAdd
-) => {
-  // create new collectionRef with the name passed as argument (collectionKey)
-  const collectionRef = firestore.collection(collectionKey);
+// export const addCollectionsAndDocuments = async (
+//   collectionKey,
+//   objectsToAdd
+// ) => {
+//   // create new collectionRef with the name passed as argument (collectionKey)
+//   const collectionRef = firestore.collection(collectionKey);
 
-  // get access to batch function
-  const batch = firestore.batch();
+//   // get access to batch function
+//   const batch = firestore.batch();
 
-  // loop through the objects (at first, it's an object => Object.values())
-  objectsToAdd.forEach((obj) => {
-    const newDocRef = collectionRef.doc();
-    batch.set(newDocRef, obj);
-  });
+//   // loop through the objects (at first, it's an object => Object.values())
+//   objectsToAdd.forEach((obj) => {
+//     const newDocRef = collectionRef.doc();
+//     batch.set(newDocRef, obj);
+//   });
 
-  // await for batch to finish
-  await batch.commit();
-};
+//   // await for batch to finish
+//   await batch.commit();
+// };
+
+
+
