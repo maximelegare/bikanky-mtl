@@ -21,13 +21,13 @@ export const selectItemsCategories = createSelector(
 export const selectItem = memoize((urlParams) =>
   createSelector([selectItemsCategories], (itemsCategories) =>
     itemsCategories
-      ? itemsCategories[urlParams.category].items.filter(
-          (item) => item.routeName === urlParams.item
-        )
-      : {}
+      ? itemsCategories[urlParams.category]
+      : // .items.filter(
+        //   (item) => item.routeName === urlParams.item
+        // )
+        {}
   )
 );
-
 
 // select the category based on url param (used in shop section)
 export const selectCategory = memoize((categoryUrlParam) =>
@@ -38,7 +38,6 @@ export const selectCategory = memoize((categoryUrlParam) =>
 
 ///////////////////// HOOKS ///////////////////////
 
-
 // select item category based on the category parameter received (used with hooks in admin section)
 export const selectCategoryItemsTest = createSelector(
   (state) => state.items,
@@ -47,17 +46,12 @@ export const selectCategoryItemsTest = createSelector(
     state.itemsCategories && category ? state.itemsCategories[category] : {}
 );
 
-
-
 // select the item based on the category and item received (used with hooks in admin section)
 export const selectItemTest = createSelector(
   (state) => state.items,
   (_, params) => params,
   (state, params) =>
-    state.itemsCategories && params.category
-      ? state.itemsCategories[params.category].items.filter(
-          (item) => item.routeName === params.item
-        )
+    state.itemsCategories && params.category && params.category
+      ? state.itemsCategories[params.category].items[params.item]
       : {}
 );
-

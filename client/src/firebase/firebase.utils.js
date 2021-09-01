@@ -40,7 +40,7 @@ export const createNewItemCategory = async (item) => {
     try {
       await categoryRef.set({
         title: item.title,
-        items: [],
+        items: {},
       });
     } catch (err) {
       console.log(err.message);
@@ -57,6 +57,7 @@ export const createNewItemCategory = async (item) => {
 export const createNewItem = async (item) => {
   const {
     bulletPoints,
+    carouselImages,
     cartQuantity,
     collection,
     id,
@@ -68,27 +69,33 @@ export const createNewItem = async (item) => {
     stock,
     title,
   } = item;
-
   // console.log(item);
-  const itemRef = firestore.doc(`categories/${item.collection}/items/${item.routeName}`);
+  const itemRef = firestore.doc(`categories/${collection}`);
 
   const itemSnapshot = itemRef.get();
   // console.log(itemSnapshot);
 
+  console.log(item);
   if (!itemSnapshot.exists) {
     try {
       await itemRef.set({
-        bulletPoints,
-        cartQuantity,
-        collection,
-        id,
-        imageUrl,
-        linkUrl,
-        price,
-        routeName,
-        shortDescription,
-        stock,
-        title,
+        items: {
+          [item.routeName.toLowerCase()]: {
+            bulletPoints,
+            carouselImages,
+            cartQuantity,
+            collection,
+            id,
+            imageUrl,
+            linkUrl,
+            price,
+            routeName,
+            shortDescription,
+            stock,
+            title,
+          },
+        },
+        title:collection.toLowerCase()
       });
     } catch (err) {
       console.log(err.message);

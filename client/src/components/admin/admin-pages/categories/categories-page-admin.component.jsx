@@ -22,9 +22,9 @@ import {
 const CategoriesPageAdmin = () => {
   // gets items categories and put all names in an array
   const itemsCategories = useSelector(selectItemsCategories);
-  const itemsCategoriesArray = Object.values(itemsCategories).map(
-    (category) => category
-  );
+  // console.log(itemsCategories)
+  const itemsCategoriesArray = Object.values(itemsCategories).map((item) => item)
+  console.log(itemsCategoriesArray)
 
   //   default buttonValue, and value when the button was clicked
   const [categoryButtonValue, setCategoryButtonValue] = useState("");
@@ -42,7 +42,11 @@ const CategoriesPageAdmin = () => {
   // select a category based on the button clicked value (the value is in the state)
   const category = useSelector((state) =>
     selectCategoryItemsTest(state, categoryButtonValue)
-  );
+    );
+    
+  console.log(category)
+
+    //   gets all items's titles from the selected category and create a new array
 
   //   select item based on the category selected and the button clicked => returns the fist item of array (an object)
   const item = useSelector((state) =>
@@ -50,10 +54,9 @@ const CategoriesPageAdmin = () => {
       category: categoryButtonValue,
       item: itemButtonValue,
     })
-  )[0];
+  );
+  console.log(item)
 
-  //   gets all items's titles from the selected category and create a new array
-  const itemsCategoryArray = category.items?.map((item) => item);
 
   // Modals Visibility  
   const [modalVisibility, setVisibility ] = useState({
@@ -72,7 +75,7 @@ const CategoriesPageAdmin = () => {
         <CategoriesFlexWrapperContainer>
           <AdminCard
             small
-            items={itemsCategoriesArray}
+            items={itemsCategories}
             handleClick={handleClick}
             currentButton={categoryButtonValue}
             topButton
@@ -90,7 +93,7 @@ const CategoriesPageAdmin = () => {
           />
           <AdminCard
             small
-            items={itemsCategoryArray}
+            items={category.items}
             handleClick={handleItemClick}
             currentButton={itemButtonValue}
             topButton

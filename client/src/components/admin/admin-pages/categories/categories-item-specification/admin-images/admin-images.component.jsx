@@ -11,17 +11,17 @@ import { ImageLabelContainer } from "./admin-images.styles";
 import { SectionContainer } from "../categories-item-specification.styles";
 
 const AdminItemImages = ({ item }) => {
-  const { imageUrl, carouselImages } = item;
+  // const { imageUrl, carouselImages } = item;
   return (
     <>
       <SectionContainer>
         <ImageLabelContainer>Main Image:</ImageLabelContainer>
-        <ProductImgContainer type="admin" image={imageUrl} />
+        <ProductImgContainer type="admin" image={item.imageUrl} />
       </SectionContainer>
       <SectionContainer>
         <ImageLabelContainer>Carousel Images:</ImageLabelContainer>
         <AdminItemImagesContainer>
-          {carouselImages.map((image, idx) => (
+          {item?.carouselImages?.map((image, idx) => (
             <ProductImgContainer key={idx} type="admin" image={image} />
           ))}
         </AdminItemImagesContainer>

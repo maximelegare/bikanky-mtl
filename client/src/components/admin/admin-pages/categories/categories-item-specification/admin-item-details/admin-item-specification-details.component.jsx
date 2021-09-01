@@ -14,13 +14,12 @@ import {
   LabelContainer,
   PriceContainer,
   SectionFlexContainer,
-  
 } from "./admin-item-specification-details.styles";
 
 import { SectionContainer } from "../categories-item-specification.styles";
 
 const AdminItemSpecificationDetails = ({ item }) => {
-  const { title, shortDescription, bulletPoints, price, stock } = item;
+  const { title, shortDescription, bulletPoints, stock, price } = item;
 
   const [modalVisibility, setModalVisibility] = useState(false);
 
@@ -43,7 +42,7 @@ const AdminItemSpecificationDetails = ({ item }) => {
         </SectionFlexContainer>
         <SectionContainer>
           <LabelContainer>Price:</LabelContainer>
-          <PriceContainer>{price.toFixed(2)}$</PriceContainer>
+          {price && <PriceContainer>{parseInt(price)?.toFixed(2)}$</PriceContainer>}
         </SectionContainer>
         <SectionFlexContainer>
           <SectionContainer>

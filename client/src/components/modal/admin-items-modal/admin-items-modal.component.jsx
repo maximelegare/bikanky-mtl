@@ -358,7 +358,7 @@ AdminItemsModal.propTypes = {
   setVisibility:PropTypes.func,
   newCategory:PropTypes.bool,
   newItem:PropTypes.bool,
-  selectInputMenuValues:PropTypes.array,
+  selectInputMenuValues:PropTypes.object,
   selectInputDefaultValue:PropTypes.string
 };
 

@@ -28,7 +28,7 @@ const ItemsOverview = ({ collection: { title, items } }) => {
       
       <PageMediumMarginsContainer>
         <ItemsListContainer>
-          {items.map((item) => (
+          {Object.values(items).map((item) => (
             <Item key={item.id} item={item}></Item>
           ))}
         </ItemsListContainer>

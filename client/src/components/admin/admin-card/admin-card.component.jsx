@@ -45,8 +45,8 @@ const AdminCard = ({
           </ButtonContainer>
         )}
         <MarginTopContainer>
-          {!itemSpecification ? (
-            items?.map(({ routeName, title }) => {
+          {!itemSpecification && items ? (
+            Object.values(items).map(({ routeName, title }) => {
               return (
                 <div key={title} onClick={(e) => handleClick(e)}>
                   <AdminButton
