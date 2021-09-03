@@ -1,6 +1,5 @@
 import React, { useRef, useEffect } from "react";
 import { CSSTransition } from "react-transition-group";
-
 import {
   ModalContainer,
   ModalBackgroundContainer,

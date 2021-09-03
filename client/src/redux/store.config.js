@@ -55,7 +55,6 @@ const middleware = [thunk]
 if(devMode){
     middleware.push(logger)
 }
-console.log(devMode)
 
 
 

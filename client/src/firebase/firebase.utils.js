@@ -2,6 +2,8 @@ import firebase from "firebase";
 
 import "firebase/auth";
 import "firebase/firestore";
+import "firebase/storage";
+
 // import "firebase/analytics";
 
 // eslint-disable-next-line no-undef
@@ -21,9 +23,48 @@ const firebaseConfig = {
 // initialize the firebase
 firebase.initializeApp(firebaseConfig);
 
-// get access to auth and firestore across the app
+// get access to auth, firestore and storage
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
+
+var storage = firebase.storage();
+
+// Create a storage reference from our storage service
+// eslint-disable-next-line no-unused-vars
+var storageRef = storage.ref();
+
+// ///////////////////////////ks
+
+//////////////////////////////////////
+//        CREATE STORAGE PATH       //
+//////////////////////////////////////
+
+export const createNewStorageImagePath = async ({ file, itemId, type }) => {
+  var fileName = file.name;
+  console.log(type);
+  if (type === "imageUrl") {
+    fileName = `main-${fileName}`;
+  }
+  
+  const fullPathNewImageRef = storage.ref(`images/${itemId}/${fileName}`);
+  fullPathNewImageRef
+    .put(file)
+    .then((snapShot) => {
+      fullPathNewImageRef
+        .getDownloadURL()
+        .then((url) => {
+          return url
+          
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+    // return linkUrl
+};
 
 // ///////////////////////////
 
@@ -69,13 +110,10 @@ export const createNewItem = async (item) => {
     stock,
     title,
   } = item;
-  // console.log(item);
   const itemRef = firestore.doc(`categories/${collection}`);
 
   const itemSnapshot = itemRef.get();
-  // console.log(itemSnapshot);
 
-  console.log(item);
   if (!itemSnapshot.exists) {
     try {
       await itemRef.set({
@@ -95,7 +133,7 @@ export const createNewItem = async (item) => {
             title,
           },
         },
-        title:collection
+        title: collection,
       });
     } catch (err) {
       console.log(err.message);
@@ -151,7 +189,6 @@ export const getCurrentUser = () => {
 
 // create a firestore profile if there is no snapshot that exist.
 export const createUserProfileDocument = async (userAuth) => {
-  // console.log(additionnalData)
   if (!userAuth) {
     return;
   }

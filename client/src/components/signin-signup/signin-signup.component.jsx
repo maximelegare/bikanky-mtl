@@ -52,7 +52,6 @@ const SigninSignup = ({ match, history }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const isValid = validate();
-    console.log(isValid);
 
     if (!isValid) return;
 

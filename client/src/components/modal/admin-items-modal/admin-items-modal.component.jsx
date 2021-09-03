@@ -2,25 +2,29 @@
 import React, { useState } from "react";
 import { PropTypes } from "prop-types";
 
-import { capitalizeString } from "../../_string-utilites/string-utilites";
+import { generateUID } from "../../../_string-utilites/string-utilites";
 
+import { capitalizeString } from "../../../_string-utilites/string-utilites";
 import {
   createNewItemCategory,
   createNewItem,
+  createNewStorageImagePath,
 } from "../../../firebase/firebase.utils";
 
-import FormSelect from "../../form-select/form-select.component";
-import ModalComponent from "../modal.component";
 import { InputSectionContainer } from "../address-modal/address-modal.styles";
-import FormInput from "../../form-inputs/form-input.component";
 import { ButtonSectionContainer } from "../address-modal/address-modal.styles";
-import CustomButtonMUI from "../../buttons/material-ui/custom-button-mui.component";
-import CustomButton from "../../buttons/my-buttons/customButtons/custom-button.component";
 import {
   InputFlexContainer,
   BulletPointsContainer,
   BulletPointFlexContainer,
 } from "./admin-items-modal.styles";
+
+import FormFileInput from "../../form-file-input/form-file-input.component";
+import FormSelect from "../../form-select/form-select.component";
+import ModalComponent from "../modal.component";
+import FormInput from "../../form-inputs/form-input.component";
+import CustomButtonMUI from "../../buttons/material-ui/custom-button-mui.component";
+import CustomButton from "../../buttons/my-buttons/customButtons/custom-button.component";
 
 // eslint-disable-next-line react/prop-types
 const AdminItemsModal = ({
@@ -36,20 +40,21 @@ const AdminItemsModal = ({
   // User address state
   // eslint-disable-next-line no-unused-vars
   const [itemSpecifications, setItemSpecifications] = useState({
-    title: item?.title??"",
-    price: item?.price??0,
-    stock: item?.stock??0,
-    shortDescription: item?.shortDescription??"",
-    bulletPoints: item?.bulletPoints??[],
+    id: item?.id ?? generateUID(),
+    title: item?.title ?? "",
+    price: item?.price ?? 0,
+    stock: item?.stock ?? 0,
+    shortDescription: item?.shortDescription ?? "",
+    bulletPoints: item?.bulletPoints ?? [],
+    imageUrl: item?.imageUrl ?? "",
+    carouselImages: item?.carouselImages ?? [],
     newBulletPoint: "",
     newCategoryName: "",
-    selectedCategory:selectInputDefaultValue??"",
+    selectedCategory: selectInputDefaultValue ?? "",
+    editImagesPage: false,
   });
 
   // sets default values to empty string if it's a new item
- 
-
-
 
   // eslint-disable-next-line no-unused-vars
   const [errors, setErrors] = useState({
@@ -65,6 +70,7 @@ const AdminItemsModal = ({
 
   // deconstruct address
   const {
+    id,
     title,
     price,
     stock,
@@ -73,18 +79,17 @@ const AdminItemsModal = ({
     newBulletPoint,
     newCategoryName,
     selectedCategory,
+    editImagesPage,
+    imageUrl,
+    carouselImages,
   } = itemSpecifications;
-
-  console.log(selectedCategory)
-
 
   // useEffect(() => {
   //   setItemSpecifications({
   //     ...itemSpecifications,
   //     selectedCategory: selectInputDefaultValue,
   //   });
-  //   console.log(selectInputDefaultValue)
-  //   console.log(itemSpecifications)
+  //
   // }, [selectInputDefaultValue]);
   ////////////////////////////////////////////////
 
@@ -105,7 +110,7 @@ const AdminItemsModal = ({
     } else {
       const capitalizedTitle = capitalizeString(title);
       item = {
-        id: new Date().toISOString(),
+        id: id,
         title: capitalizedTitle,
         cartQuantity: 0,
         price,
@@ -180,11 +185,37 @@ const AdminItemsModal = ({
   //   };
 
   ////////////////////////////////////////////////
-
   //   handle change event. the key is dynamic using the name and value provided
   const handleChange = (e) => {
     const { name, value } = e.target;
     setItemSpecifications({ ...itemSpecifications, [name]: value });
+  };
+
+  ///////////////////////////////////////////////
+  // handle change for the images
+  const handleImageChange = (e) => {
+    const { name } = e.target;
+    const file = e.currentTarget.files[0];
+    console.log(file);
+    
+    const imageRefUrl = createNewStorageImagePath({
+      file,
+      itemId: itemSpecifications.id,
+      type: name,
+    })
+    console.log(imageRefUrl)
+    
+
+    // if (name === "carouselImages") {
+    //   setItemSpecifications({
+    //     ...itemSpecifications,
+    //     [carouselImages]: [...carouselImages],
+    //   });
+    // } else {
+    //   setItemSpecifications({ ...itemSpecifications, [name]: file });
+    // }
+
+
   };
 
   ///////////////////////////////////////////////
@@ -203,7 +234,6 @@ const AdminItemsModal = ({
       return bullet !== buttonValue;
     });
 
-    console.log(newButtonArray);
     setItemSpecifications({
       ...itemSpecifications,
       bulletPoints: newButtonArray,
@@ -211,6 +241,14 @@ const AdminItemsModal = ({
   };
 
   ////////////////////////////////////////////////
+  // handle click to change between edit images and edit text
+
+  const handleClickEditImagesPage = () => {
+    setItemSpecifications({
+      ...itemSpecifications,
+      editImagesPage: !editImagesPage,
+    });
+  };
 
   // removes error with onBlur event. the key is dynamic (renders the name of the input)
 
@@ -226,117 +264,149 @@ const AdminItemsModal = ({
     >
       <form onSubmit={handleSubmit}>
         <InputSectionContainer>
-          {newCategory ? (
-            <FormInput
-              error={errors.title}
-              type="text"
-              label="Category"
-              name="newCategoryName"
-              value={newCategoryName}
-              handleChange={handleChange}
-              removeError={removeError}
-              autoFocus
-            />
-          ) : (
-            <>
+          {
+            // if the modal is newCategory => render new category input
+            newCategory ? (
               <FormInput
                 error={errors.title}
                 type="text"
-                label="Title"
-                name="title"
-                value={title}
+                label="Category"
+                name="newCategoryName"
+                value={newCategoryName}
                 handleChange={handleChange}
                 removeError={removeError}
                 autoFocus
               />
-              <FormSelect
-                label="Category"
-                name="selectedCategory"
-                handleChange={handleChange}
-                menuValues={selectInputMenuValues}
-                defaultValue={selectInputDefaultValue}
-              />
-              <InputFlexContainer>
-                <FormInput
-                  error={errors.price}
-                  type="number"
-                  label="Price"
-                  name="price"
-                  value={price}
-                  handleChange={handleChange}
-                  removeError={removeError}
-                />
-                <FormInput
-                  error={errors.stock}
-                  type="number"
-                  label="Stock quantity"
-                  name="stock"
-                  value={stock}
-                  handleChange={handleChange}
-                  removeError={removeError}
-                />
-              </InputFlexContainer>
-              <FormInput
-                error={errors.shortDescription}
-                type="text"
-                label="Short Description"
-                name="shortDescription"
-                value={shortDescription}
-                handleChange={handleChange}
-                removeError={removeError}
-                multiline
-                rows={4}
-              />
-              <InputFlexContainer>
-                <FormInput
-                  error={errors.bulletPoints}
-                  type="text"
-                  name="newBulletPoint"
-                  label="Bullet points"
-                  value={newBulletPoint}
-                  handleChange={handleChange}
-                  removeError={removeError}
-                  multiline
-                  rows={2}
-                />
-                <div
-                  style={{ marginTop: "40px" }}
-                  onClick={handleClickAddBullet}
-                >
-                  <CustomButtonMUI inline kind="icon-color">
-                    add
-                  </CustomButtonMUI>
+            ) : (
+              <>
+                <div style={{ display: "flex", justifyContent: "flex-end" }}>
+                  <div onClick={handleClickEditImagesPage}>
+                    <CustomButtonMUI kind="small-grey">
+                      {!editImagesPage ? "Edit Images" : "Edit Text"}
+                    </CustomButtonMUI>
+                  </div>
                 </div>
-              </InputFlexContainer>
-              <BulletPointsContainer>
-                <ul>
-                  {bulletPoints?.map((bullet, idx) => {
-                    return (
-                      <li key={idx}>
-                        <BulletPointFlexContainer>
-                          <span>{bullet}</span>
-                          <div onClick={handleClickDeleteBullet}>
-                            <CustomButton
-                              value={bullet}
-                              kind="icon-only"
-                              deleteIcon
-                              title="clear"
-                            ></CustomButton>
+                {
+                  // if the page is not editImagePage => edit text
+                  !editImagesPage ? (
+                    <>
+                      <FormInput
+                        error={errors.title}
+                        type="text"
+                        label="Title"
+                        name="title"
+                        value={title}
+                        handleChange={handleChange}
+                        removeError={removeError}
+                        autoFocus
+                      />
+                      <FormSelect
+                        label="Category"
+                        name="selectedCategory"
+                        handleChange={handleChange}
+                        menuValues={selectInputMenuValues}
+                        defaultValue={selectInputDefaultValue}
+                      />
+                      <InputFlexContainer>
+                        <FormInput
+                          error={errors.price}
+                          type="number"
+                          label="Price"
+                          name="price"
+                          value={price}
+                          handleChange={handleChange}
+                          removeError={removeError}
+                        />
+                        <FormInput
+                          error={errors.stock}
+                          type="number"
+                          label="Stock quantity"
+                          name="stock"
+                          value={stock}
+                          handleChange={handleChange}
+                          removeError={removeError}
+                        />
+                      </InputFlexContainer>
+                      <FormInput
+                        error={errors.shortDescription}
+                        type="text"
+                        label="Short Description"
+                        name="shortDescription"
+                        value={shortDescription}
+                        handleChange={handleChange}
+                        removeError={removeError}
+                        multiline
+                        rows={4}
+                      />
+                      <InputFlexContainer>
+                        <FormInput
+                          error={errors.bulletPoints}
+                          type="text"
+                          name="newBulletPoint"
+                          label="Bullet points"
+                          value={newBulletPoint}
+                          handleChange={handleChange}
+                          removeError={removeError}
+                          multiline
+                          rows={2}
+                        />
+                        <div style={{ marginTop: "40px" }}>
+                          <div onClick={handleClickAddBullet}>
+                            <CustomButtonMUI inline kind="icon-color">
+                              add
+                            </CustomButtonMUI>
                           </div>
-                        </BulletPointFlexContainer>
-                      </li>
-                    );
-                  })}
-                </ul>
-              </BulletPointsContainer>
-            </>
-          )}
-          <ButtonSectionContainer
-            onClick={() => setVisibility(false, modalName)}
-          >
-            <CustomButtonMUI type="submit">
-              {newItem || newCategory ? "Create" : "Confirm"}
-            </CustomButtonMUI>
+                        </div>
+                      </InputFlexContainer>
+                      <BulletPointsContainer>
+                        <ul>
+                          {bulletPoints?.map((bullet, idx) => {
+                            return (
+                              <li key={idx}>
+                                <BulletPointFlexContainer>
+                                  <span>{bullet}</span>
+                                  <div onClick={handleClickDeleteBullet}>
+                                    <CustomButton
+                                      value={bullet}
+                                      kind="icon-only"
+                                      deleteIcon
+                                      title="clear"
+                                    ></CustomButton>
+                                  </div>
+                                </BulletPointFlexContainer>
+                              </li>
+                            );
+                          })}
+                        </ul>
+                      </BulletPointsContainer>
+                    </>
+                  ) : (
+                    <>
+                      <FormFileInput
+                        items={[imageUrl]}
+                        label="Main image"
+                        maxLength={1}
+                        name="imageUrl"
+                        handleChange={handleImageChange}
+                      />
+                      <FormFileInput
+                        name="carouselImages"
+                        items={carouselImages}
+                        label="Carousel Images"
+                        handleChange={handleImageChange}
+                      />
+                    </>
+                  )
+                }
+              </>
+            )
+          }
+          <ButtonSectionContainer>
+            <div onClick={() => setVisibility(false, modalName)}>
+              <CustomButtonMUI type="submit">
+                {newItem || newCategory ? "Create" : "Confirm"}
+              </CustomButtonMUI>
+            </div>
           </ButtonSectionContainer>
         </InputSectionContainer>
       </form>
@@ -346,6 +416,7 @@ const AdminItemsModal = ({
 
 AdminItemsModal.propTypes = {
   item: PropTypes.shape({
+    id: PropTypes.string,
     title: PropTypes.string,
     price: PropTypes.number,
     stock: PropTypes.number,
@@ -353,6 +424,8 @@ AdminItemsModal.propTypes = {
     bulletPoints: PropTypes.array,
     newItem: PropTypes.bool,
     newCategory: PropTypes.bool,
+    imageUrl: PropTypes.string,
+    carouselImages: PropTypes.array,
   }),
   modalName: PropTypes.string,
   setVisibility: PropTypes.func,

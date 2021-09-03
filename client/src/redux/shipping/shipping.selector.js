@@ -12,6 +12,5 @@ export const selectShippingRates = createSelector(
 export const selectShippingPricing = createSelector(
   [selectShippingInitialState],
   (shipping) => {
-      console.log(shipping)
       return shipping.selectedShippingRate}
 );

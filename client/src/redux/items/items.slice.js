@@ -9,7 +9,6 @@ export const fetchCollectionsStartAsync = () => {
     try {
       collectionRef.onSnapshot(async (snapshot) => {
         const transformedCollection = transformArrayToObject(snapshot);
-        console.log(transformedCollection);
         dispatch(fetchCollectionsSuccess(transformedCollection));
         dispatch(fetchCollectionsLoading(false));
       });

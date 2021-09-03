@@ -18,7 +18,6 @@ const CheckoutAddressSection = ({ user }) => {
     setModalVisibility(visibility);
   };
 
-  console.log(userAddress);
 
   return (
     <>

@@ -23,7 +23,6 @@ const CheckoutShipping = () => {
 
   const shippingRates = useSelector(selectShippingRates)
   
-  console.log(shippingRates)
   
   const [value, setValue] = useState('canada');
 

@@ -13,7 +13,6 @@ const useStyles = makeStyles({
     fontSize: 15,
     fontWeight: 400,
     fontFamily: "Open Sans",
-
     "&:hover": {
       backgroundColor: "var(--yellow-accent-hover)",
     },
@@ -116,6 +115,17 @@ const CustomButtonMUI = ({ children, kind, deleteIcon, routeName, type, value })
           classes={{ root: smallClasses.root }}
           type={type}
           color="primary"
+        >
+          {children}
+        </Button>
+      );
+    case "small-grey":
+      return (
+        <Button
+          variant="contained"
+          classes={{ root: smallClasses.root }}
+          type={type}
+          style={{backgroundColor:"var(--pale-bg-hover)"}}
         >
           {children}
         </Button>

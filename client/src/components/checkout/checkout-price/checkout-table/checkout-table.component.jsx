@@ -8,7 +8,6 @@ import { PropTypes } from "prop-types";
 import { calculCost } from "./checkout-price.utils";
 
 const CheckoutTable = ({ price, itemsCount, shippingPrice }) => {
-  console.log(`${price} , ${itemsCount} , ${shippingPrice}`);
   const { beforeShipping, tpsTax, tvqTax, bigTotal } = calculCost(
     price,
     shippingPrice,

@@ -22,9 +22,7 @@ import {
 const CategoriesPageAdmin = () => {
   // gets items categories and put all names in an array
   const itemsCategories = useSelector(selectItemsCategories);
-  // console.log(itemsCategories)
   const itemsCategoriesArray = Object.values(itemsCategories).map((item) => item)
-  console.log(itemsCategoriesArray)
 
   //   default buttonValue, and value when the button was clicked
   const [categoryButtonValue, setCategoryButtonValue] = useState(null);
@@ -44,7 +42,6 @@ const CategoriesPageAdmin = () => {
     selectCategoryItemsTest(state, categoryButtonValue)
     );
     
-  console.log(category)
 
     //   gets all items's titles from the selected category and create a new array
 
@@ -55,7 +52,6 @@ const CategoriesPageAdmin = () => {
       item: itemButtonValue,
     })
   );
-  console.log(item)
 
 
   // Modals Visibility  

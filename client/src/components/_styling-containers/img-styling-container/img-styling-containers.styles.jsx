@@ -2,20 +2,20 @@ import styled, { css } from "styled-components";
 
 const selectStyles = (props) => {
   switch (props.type) {
-    case "cart": 
-    return cartStyles
+    case "cart":
+      return cartStyles;
     case "slider":
       return sliderStyles;
-      
     case "slider-thumbs":
       return sliderThumbsStyles;
-      
-    case "card-image" :
-      return cardStyles
+    case "card-image":
+      return cardStyles;
     case "admin":
-      return adminImageStyles
+      return adminImageStyles;
+    case "admin-small":
+      return adminImagesSmallStyles;
     default:
-      return cardStyles  
+      return cardStyles;
   }
 };
 
@@ -33,32 +33,36 @@ const cardStyles = css`
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
   height: 300px;
-  @media screen and (max-width:900px){
+  @media screen and (max-width: 900px) {
     height: 250px;
   }
-  @media screen and (max-width:450px){
+  @media screen and (max-width: 450px) {
     height: 175px;
   }
-`
+`;
 
 const sliderStyles = css`
-border-radius: 8px;
-height: 100%;
-`
+  border-radius: 8px;
+  height: 100%;
+`;
 
 const sliderThumbsStyles = css`
-border-radius:8px;
-height: 95%;
-width:95%;
-margin: 3px auto ;
-`
-
+  border-radius: 8px;
+  height: 95%;
+  width: 95%;
+  margin: 3px auto;
+`;
 
 const adminImageStyles = css`
-width: 8em;
-height: 8em;
-border-radius: 4px;
-`
+  width: 8em;
+  height: 8em;
+  border-radius: 4px;
+`;
+const adminImagesSmallStyles = css`
+  width: 6em;
+  height: 6em;
+  border-radius: 4px;
+`;
 
 export const cartStyles = styled.div`
   width: 4em;

@@ -50,7 +50,6 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     setCurrentUser(state, { payload }) {
-      console.log('is loading current user' + state.isLoading)
       state.currentUser = payload;
       state.isLoading = false
     },

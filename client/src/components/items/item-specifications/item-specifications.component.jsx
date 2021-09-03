@@ -22,7 +22,6 @@ import AddToCartMobile from "./item-add-to-cart-mobile/add-to-cart-mobile.compon
 
 const ItemSpecifications = ({ item }) => {
   const { carouselImages } = item;
-  console.log(item)
   return (
     <ItemSpecificationWrapperContainer>
       <TopImageSection type="without-title" />
