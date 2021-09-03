@@ -22,6 +22,7 @@ import CustomButtonMUI from "../../buttons/material-ui/custom-button-mui.compone
 const ItemCard = ({ item, history, location }) => {
   const { imageUrl, title, price, linkUrl } = item;
   const dispatch = useDispatch();
+  
   return (
     <ItemWrapperContainer>
       <ProductImgContainer
@@ -39,7 +40,7 @@ const ItemCard = ({ item, history, location }) => {
           <PriceNameContainer>
             <div>
               <h3>{title}</h3>
-              <h4>{`${price.toFixed(2)}`}&thinsp;$</h4>
+              <h4>{`${parseInt(price).toFixed(2)}`}&thinsp;$</h4>
             </div>
           </PriceNameContainer>
           <ButtonWrapperContainer onClick={() => dispatch(addItemToCart(item))}>

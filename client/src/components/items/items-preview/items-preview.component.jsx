@@ -39,7 +39,7 @@ const ItemsPreview = ({ itemsCategories, history }) => {
           </TitleWrapperContainer>
           <ItemsListContainer>
             {/* select items, filter only four items, then map */}
-            {items
+            {Object.values(items)
               // checks if the window width is between 700px and 900px and renders the number of items depending of the width
               .filter((item, idx) => windowWidth < 700 || windowWidth > 900 ? idx < 4 : idx < 3)
               .map((item) => (

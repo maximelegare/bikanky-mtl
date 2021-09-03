@@ -21,21 +21,22 @@ import ItemTitleMobile from "./item-title-mobile/item-title-mobile.component";
 import AddToCartMobile from "./item-add-to-cart-mobile/add-to-cart-mobile.component";
 
 const ItemSpecifications = ({ item }) => {
-  const { carouselImages } = item[0];
+  const { carouselImages } = item;
+  console.log(item)
   return (
     <ItemSpecificationWrapperContainer>
       <TopImageSection type="without-title" />
       <ItemSpecificationTopContainer>
         <ItemContentContainer>
           <div className="item-title-mobile">
-            <ItemTitleMobile item={item[0]} />
+            <ItemTitleMobile item={item} />
           </div>
           <CarouselSwiper images={carouselImages} />
-          <ItemDescription item={item[0]} />
+          <ItemDescription item={item} />
         </ItemContentContainer>
       </ItemSpecificationTopContainer>
       <div className="hide-on-desktop">
-        <AddToCartMobile item={item[0]} />
+        <AddToCartMobile item={item} />
       </div>
     </ItemSpecificationWrapperContainer>
   );

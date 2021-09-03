@@ -88,14 +88,14 @@ export const createNewItem = async (item) => {
             id,
             imageUrl,
             linkUrl,
-            price,
+            price: parseInt(price),
             routeName,
             shortDescription,
             stock,
             title,
           },
         },
-        title:collection.toLowerCase()
+        title:collection
       });
     } catch (err) {
       console.log(err.message);

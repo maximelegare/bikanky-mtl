@@ -21,7 +21,7 @@ export const selectItemsCategories = createSelector(
 export const selectItem = memoize((urlParams) =>
   createSelector([selectItemsCategories], (itemsCategories) =>
     itemsCategories
-      ? itemsCategories[urlParams.category]
+      ? itemsCategories[urlParams.category].items[urlParams.item]
       : // .items.filter(
         //   (item) => item.routeName === urlParams.item
         // )
@@ -35,6 +35,8 @@ export const selectCategory = memoize((categoryUrlParam) =>
     itemsCategories ? itemsCategories[categoryUrlParam] : {}
   )
 );
+
+
 
 ///////////////////// HOOKS ///////////////////////
 

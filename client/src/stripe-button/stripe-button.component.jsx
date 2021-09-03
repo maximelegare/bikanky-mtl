@@ -32,7 +32,7 @@ const StripeButton = ({ price }) => {
       stripeKey={publishableKey}
       amount={priceForStripe}
       name="BIKANKY MONTRÉAL"
-      description={`Your total is $${price.toFixed(2)}`}
+      description={`Your total is $${parseInt(price.toFixed(2))}`}
       label="Pay Now"
       panelLabel="Pay Now"
       image="https://svgshare.com/i/_P9.svg"

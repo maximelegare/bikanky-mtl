@@ -30,7 +30,7 @@ const ItemTitleMobile = ({ item }) => {
         </TitleWrapperContentContainer>
         <hr style={{ marginBottom: "15px" }} />
         <TopDescriptionContainer>{shortDescription}</TopDescriptionContainer>
-        <PriceContainer>{`${price.toFixed(2)}`}&thinsp;$</PriceContainer>
+        <PriceContainer>{`${parseInt(price).toFixed(2)}`}&thinsp;$</PriceContainer>
       </MarginWrapperContainer>
     </ItemWrapperContainer>
   );

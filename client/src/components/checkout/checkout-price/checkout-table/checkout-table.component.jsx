@@ -18,7 +18,7 @@ const CheckoutTable = ({ price, itemsCount, shippingPrice }) => {
   return (
     <>
       <tbody>
-        <CheckoutTableItem price={price.toFixed(2)}>
+        <CheckoutTableItem price={parseInt(price.toFixed(2))}>
           Items&nbsp;({itemsCount})
         </CheckoutTableItem>
         <tr>
