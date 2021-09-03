@@ -1,10 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { PropTypes } from "prop-types";
 
 import { capitalizeString } from "../../_string-utilites/string-utilites";
 
-import { createNewItemCategory, createNewItem } from "../../../firebase/firebase.utils";
+import {
+  createNewItemCategory,
+  createNewItem,
+} from "../../../firebase/firebase.utils";
 
 import FormSelect from "../../form-select/form-select.component";
 import ModalComponent from "../modal.component";
@@ -33,30 +36,20 @@ const AdminItemsModal = ({
   // User address state
   // eslint-disable-next-line no-unused-vars
   const [itemSpecifications, setItemSpecifications] = useState({
-    title: item?.title,
-    price: item?.price,
-    stock: item?.stock,
-    shortDescription: item?.shortDescription,
-    bulletPoints: item?.bulletPoints,
+    title: item?.title??"",
+    price: item?.price??0,
+    stock: item?.stock??0,
+    shortDescription: item?.shortDescription??"",
+    bulletPoints: item?.bulletPoints??[],
     newBulletPoint: "",
     newCategoryName: "",
-    selectedCategory: selectInputMenuValues??"",
+    selectedCategory:selectInputDefaultValue??"",
   });
 
   // sets default values to empty string if it's a new item
-  useEffect(() => {
-    if (newItem) {
-      setItemSpecifications({
-        title: "",
-        price: "",
-        stock: "",
-        shortDescription: "",
-        bulletPoints: [],
-      });
-    }
-  }, []);
+ 
 
-  // address errors state
+
 
   // eslint-disable-next-line no-unused-vars
   const [errors, setErrors] = useState({
@@ -82,15 +75,23 @@ const AdminItemsModal = ({
     selectedCategory,
   } = itemSpecifications;
 
-console.log(selectInputDefaultValue)
+  console.log(selectedCategory)
 
+
+  // useEffect(() => {
+  //   setItemSpecifications({
+  //     ...itemSpecifications,
+  //     selectedCategory: selectInputDefaultValue,
+  //   });
+  //   console.log(selectInputDefaultValue)
+  //   console.log(itemSpecifications)
+  // }, [selectInputDefaultValue]);
   ////////////////////////////////////////////////
 
   //   handle the submit event
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
 
     // create an item to add to firebase depending if it's a new item or a new category
     let item;
@@ -100,18 +101,18 @@ console.log(selectInputDefaultValue)
         title: newCategoryNameCapitalize,
         dbTitle: newCategoryName.toLocaleLowerCase(),
       };
-      createNewItemCategory(item)
+      createNewItemCategory(item);
     } else {
       const capitalizedTitle = capitalizeString(title);
       item = {
         id: new Date().toISOString(),
-        title:capitalizedTitle,
+        title: capitalizedTitle,
         cartQuantity: 0,
         price,
         bulletPoints,
         routeName: encodeURI(title?.toLowerCase()),
         carouselImages: [],
-        collection:selectedCategory,
+        collection: selectedCategory,
         imageUrl: "",
         linkUrl: `${encodeURI(selectedCategory)}/${encodeURI(
           title?.toLowerCase()
@@ -121,8 +122,7 @@ console.log(selectInputDefaultValue)
       };
       createNewItem(item);
     }
-    console.log(item)
-    
+
     // validate the form
     // const isValid = validate();
     // // the form is not valid, return
@@ -354,12 +354,12 @@ AdminItemsModal.propTypes = {
     newItem: PropTypes.bool,
     newCategory: PropTypes.bool,
   }),
-  modalName:PropTypes.string,
-  setVisibility:PropTypes.func,
-  newCategory:PropTypes.bool,
-  newItem:PropTypes.bool,
-  selectInputMenuValues:PropTypes.object,
-  selectInputDefaultValue:PropTypes.string
+  modalName: PropTypes.string,
+  setVisibility: PropTypes.func,
+  newCategory: PropTypes.bool,
+  newItem: PropTypes.bool,
+  selectInputMenuValues: PropTypes.object,
+  selectInputDefaultValue: PropTypes.string,
 };
 
 export default AdminItemsModal;

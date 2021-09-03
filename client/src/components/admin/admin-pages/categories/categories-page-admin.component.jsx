@@ -27,8 +27,8 @@ const CategoriesPageAdmin = () => {
   console.log(itemsCategoriesArray)
 
   //   default buttonValue, and value when the button was clicked
-  const [categoryButtonValue, setCategoryButtonValue] = useState("");
-  const [itemButtonValue, setItemButtonValue] = useState("");
+  const [categoryButtonValue, setCategoryButtonValue] = useState(null);
+  const [itemButtonValue, setItemButtonValue] = useState(null);
 
   // sets the button value (state) when the button was clicked (it's the value of the button that was clicked)
   const handleClick = (e) => {

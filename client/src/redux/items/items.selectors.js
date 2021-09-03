@@ -53,5 +53,5 @@ export const selectItemTest = createSelector(
   (state, params) =>
     state.itemsCategories && params.category && params.category
       ? state.itemsCategories[params.category].items[params.item]
-      : {}
+      : null
 );
