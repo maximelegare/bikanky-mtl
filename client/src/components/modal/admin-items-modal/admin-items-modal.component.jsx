@@ -116,9 +116,9 @@ const AdminItemsModal = ({
         price,
         bulletPoints,
         routeName: encodeURI(title?.toLowerCase()),
-        carouselImages: [],
+        carouselImages,
         collection: selectedCategory,
-        imageUrl: "",
+        imageUrl,
         linkUrl: `${encodeURI(selectedCategory)}/${encodeURI(
           title?.toLowerCase()
         )}`,
@@ -193,29 +193,27 @@ const AdminItemsModal = ({
 
   ///////////////////////////////////////////////
   // handle change for the images
-  const handleImageChange = (e) => {
+  const handleImageChange = async (e) => {
     const { name } = e.target;
     const file = e.currentTarget.files[0];
     console.log(file);
-    
-    const imageRefUrl = createNewStorageImagePath({
+
+    // creates a new storage image
+    const imageUrlLinkStorage = await createNewStorageImagePath({
       file,
       itemId: itemSpecifications.id,
       type: name,
-    })
-    console.log(imageRefUrl)
-    
+    });
 
-    // if (name === "carouselImages") {
-    //   setItemSpecifications({
-    //     ...itemSpecifications,
-    //     [carouselImages]: [...carouselImages],
-    //   });
-    // } else {
-    //   setItemSpecifications({ ...itemSpecifications, [name]: file });
-    // }
-
-
+    if (name === "carouselImages") {
+      setItemSpecifications({
+        ...itemSpecifications,
+        carouselImages: [...carouselImages, imageUrlLinkStorage],
+      });
+      console.log(carouselImages)
+    } else {
+      setItemSpecifications({ ...itemSpecifications, [name]: imageUrlLinkStorage });
+    }
   };
 
   ///////////////////////////////////////////////
@@ -226,6 +224,7 @@ const AdminItemsModal = ({
       ...itemSpecifications,
       bulletPoints: [...bulletPoints, newBulletPoint],
     });
+    console.log(bulletPoints)
   };
 
   const handleClickDeleteBullet = (e) => {

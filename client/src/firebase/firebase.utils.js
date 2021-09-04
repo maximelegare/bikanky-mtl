@@ -40,21 +40,19 @@ var storageRef = storage.ref();
 //////////////////////////////////////
 
 export const createNewStorageImagePath = async ({ file, itemId, type }) => {
-  var fileName = file.name;
+  var filePath = `images/${itemId}/${file.name}`;
   console.log(type);
   if (type === "imageUrl") {
-    fileName = `main-${fileName}`;
+    filePath = `images/${itemId}/main-${file.name}`;
   }
-  
-  const fullPathNewImageRef = storage.ref(`images/${itemId}/${fileName}`);
-  fullPathNewImageRef
+  const fullPathNewImageRef = storage.ref(filePath);
+  return fullPathNewImageRef
     .put(file)
     .then((snapShot) => {
-      fullPathNewImageRef
+      return fullPathNewImageRef
         .getDownloadURL()
         .then((url) => {
-          return url
-          
+          return url;
         })
         .catch((err) => {
           console.log(err);
@@ -63,7 +61,6 @@ export const createNewStorageImagePath = async ({ file, itemId, type }) => {
     .catch((err) => {
       console.log(err);
     });
-    // return linkUrl
 };
 
 // ///////////////////////////
