@@ -34,7 +34,7 @@ const ItemDescription = ({item}) => {
         <TilteContainer className="hide-on-mobile">{title}</TilteContainer>
         <TopDescriptionContainer className="hide-on-mobile">{shortDescription}</TopDescriptionContainer>
         <PriceAndAvailabilityContainer className="hide-on-mobile">
-          <PriceContainer>{`${parseInt(price).toFixed(2)}`}&thinsp;$</PriceContainer>
+          <PriceContainer>{`${(price).toFixed(2)}`}&thinsp;$</PriceContainer>
           <StockAvailability stock={!!stock}/>
         </PriceAndAvailabilityContainer>
         <hr className="hide-on-mobile"/>

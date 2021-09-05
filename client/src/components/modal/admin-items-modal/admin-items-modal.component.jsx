@@ -34,7 +34,6 @@ const AdminItemsModal = ({
   newCategory,
   setVisibility,
   modalName,
-  selectInputDefaultValue,
   ...otherProps
 }) => {
   // User address state
@@ -50,7 +49,7 @@ const AdminItemsModal = ({
     carouselImages: item?.carouselImages ?? [],
     newBulletPoint: "",
     newCategoryName: "",
-    selectedCategory: selectInputDefaultValue ?? "",
+    selectedCategory:  "",
     editImagesPage: false,
   });
 
@@ -113,7 +112,7 @@ const AdminItemsModal = ({
         id: id,
         title: capitalizedTitle,
         cartQuantity: 0,
-        price,
+        price:parseInt(price),
         bulletPoints,
         routeName: encodeURI(title?.toLowerCase()),
         carouselImages,
@@ -304,7 +303,6 @@ const AdminItemsModal = ({
                         name="selectedCategory"
                         handleChange={handleChange}
                         menuValues={selectInputMenuValues}
-                        defaultValue={selectInputDefaultValue}
                       />
                       <InputFlexContainer>
                         <FormInput

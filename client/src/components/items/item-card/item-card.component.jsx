@@ -40,7 +40,7 @@ const ItemCard = ({ item, history, location }) => {
           <PriceNameContainer>
             <div>
               <h3>{title}</h3>
-              <h4>{`${parseInt(price).toFixed(2)}`}&thinsp;$</h4>
+              <h4>{`${(price).toFixed(2)}`}&thinsp;$</h4>
             </div>
           </PriceNameContainer>
           <ButtonWrapperContainer onClick={() => dispatch(addItemToCart(item))}>

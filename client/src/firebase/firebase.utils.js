@@ -123,7 +123,7 @@ export const createNewItem = async (item) => {
             id,
             imageUrl,
             linkUrl,
-            price: parseInt(price),
+            price: (price),
             routeName,
             shortDescription,
             stock,

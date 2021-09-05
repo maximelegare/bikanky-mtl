@@ -46,7 +46,7 @@ const CartDropdownItem = ({
               />
             </div>
             <h5 className="price">
-              {`${cartQuantity} x ${parseInt(price).toFixed(2)}`}&thinsp;$
+              {`${cartQuantity} x ${(price).toFixed(2)}`}&thinsp;$
             </h5>
           </DescriptionContainer>
         </CartLeftContainer>

@@ -42,7 +42,7 @@ const AdminItemSpecificationDetails = ({ item }) => {
         </SectionFlexContainer>
         <SectionContainer>
           <LabelContainer>Price:</LabelContainer>
-          {price && <PriceContainer>{parseInt(price)?.toFixed(2)}$</PriceContainer>}
+          {price && <PriceContainer>{(price)?.toFixed(2)}$</PriceContainer>}
         </SectionContainer>
         <SectionFlexContainer>
           <SectionContainer>

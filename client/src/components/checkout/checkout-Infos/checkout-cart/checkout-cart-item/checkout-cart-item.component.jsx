@@ -60,7 +60,7 @@ const CheckoutCartItem = ({ cartItem }) => {
           kind="text-link"
           linkUrl={`/creations/${linkUrl}`}
         />
-        <PriceContainer>—&thinsp;{parseInt(price.toFixed(2))}&thinsp;$</PriceContainer>
+        <PriceContainer>—&thinsp;{(price.toFixed(2))}&thinsp;$</PriceContainer>
       </TitleContainer>
       <ProductInfosWrapperContainer>
         <ProductInfosContainer>
@@ -76,7 +76,7 @@ const CheckoutCartItem = ({ cartItem }) => {
                 />
               </div>
               <h5 className="description">{shortDescription}</h5>
-              <PriceContainer>{parseInt(price.toFixed(2))}&thinsp;$</PriceContainer>
+              <PriceContainer>{(price.toFixed(2))}&thinsp;$</PriceContainer>
             </TextContainer>
           </InfosContainer>
         </ProductInfosContainer>

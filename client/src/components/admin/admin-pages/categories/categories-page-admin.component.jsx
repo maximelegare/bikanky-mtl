@@ -98,7 +98,6 @@ const CategoriesPageAdmin = () => {
             modalComponent={
               <AdminItemsModal
                 selectInputMenuValues={itemsCategoriesArray}
-                selectInputDefaultValue={categoryButtonValue}
                 isVisible={modalVisibility.newItem}
                 item={item}
                 setVisibility={setModalVisibility}
