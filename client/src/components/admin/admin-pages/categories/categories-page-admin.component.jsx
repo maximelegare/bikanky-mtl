@@ -29,12 +29,13 @@ const CategoriesPageAdmin = () => {
   const [itemButtonValue, setItemButtonValue] = useState(null);
 
   // sets the button value (state) when the button was clicked (it's the value of the button that was clicked)
-  const handleClick = (e) => {
-    setCategoryButtonValue(e.target.value);
+  const handleClick = (value) => {
+    setCategoryButtonValue(value);
   };
 
-  const handleItemClick = (e) => {
-    setItemButtonValue(e.target.value);
+  const handleItemClick = (value) => {
+    console.log(value)
+    setItemButtonValue(value);
   };
 
   // select a category based on the button clicked value (the value is in the state)
@@ -77,6 +78,7 @@ const CategoriesPageAdmin = () => {
             topButton
             modalName="newCategory"
             setModalVisibility={setModalVisibility}
+            categoryElement
             modalComponent={
               <AdminItemsModal
                 isVisible={modalVisibility.newCategory}
@@ -107,7 +109,7 @@ const CategoriesPageAdmin = () => {
               />}
           />
           <AdminCard itemSpecification>
-            <CategoriesItemSpecification item={item} />
+            <CategoriesItemSpecification item={item} selectInputMenuValues={itemsCategoriesArray}/>
           </AdminCard>
         </CategoriesFlexWrapperContainer>
       </PageMediumMarginsContainer>

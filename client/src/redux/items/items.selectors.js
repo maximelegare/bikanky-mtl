@@ -21,11 +21,11 @@ export const selectItemsCategories = createSelector(
 export const selectItem = memoize((urlParams) =>
   createSelector([selectItemsCategories], (itemsCategories) =>
     itemsCategories
-      ? itemsCategories[urlParams.category].items[urlParams.item]
+      ? itemsCategories[urlParams.category]?.items[urlParams.item]
       : // .items.filter(
         //   (item) => item.routeName === urlParams.item
         // )
-        {}
+        null
   )
 );
 

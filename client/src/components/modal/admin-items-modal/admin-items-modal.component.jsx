@@ -9,6 +9,7 @@ import {
   createNewItemCategory,
   createNewItem,
   createNewStorageImagePath,
+  updateFirestoreItem,
 } from "../../../firebase/firebase.utils";
 
 import { InputSectionContainer } from "../address-modal/address-modal.styles";
@@ -49,9 +50,10 @@ const AdminItemsModal = ({
     carouselImages: item?.carouselImages ?? [],
     newBulletPoint: "",
     newCategoryName: "",
-    selectedCategory:  "",
+    selectedCategory: "",
     editImagesPage: false,
   });
+  // const [previousRouteName, setPreviousRouteName] = useState()
 
   // sets default values to empty string if it's a new item
 
@@ -98,21 +100,20 @@ const AdminItemsModal = ({
     e.preventDefault();
 
     // create an item to add to firebase depending if it's a new item or a new category
-    let item;
     if (newCategory) {
-      const newCategoryNameCapitalize = capitalizeString(newCategoryName);
-      item = {
-        title: newCategoryNameCapitalize,
+      const capitalizedTitle = capitalizeString(newCategoryName);
+      const item = {
+        title: capitalizedTitle,
         dbTitle: newCategoryName.toLocaleLowerCase(),
       };
       createNewItemCategory(item);
-    } else {
+    } else if (newItem) {
       const capitalizedTitle = capitalizeString(title);
-      item = {
+      const item = {
         id: id,
         title: capitalizedTitle,
         cartQuantity: 0,
-        price:parseInt(price),
+        price: parseInt(price),
         bulletPoints,
         routeName: encodeURI(title?.toLowerCase()),
         carouselImages,
@@ -122,9 +123,28 @@ const AdminItemsModal = ({
           title?.toLowerCase()
         )}`,
         shortDescription,
-        stock,
+        stock: parseInt(stock),
       };
       createNewItem(item);
+    } else {
+      const capitalizedTitle = capitalizeString(title);
+      const item = {
+        id: id,
+        title: capitalizedTitle,
+        cartQuantity: 0,
+        price: parseInt(price),
+        bulletPoints,
+        routeName: encodeURI(title?.toLowerCase()),
+        carouselImages,
+        collection: selectedCategory,
+        imageUrl,
+        linkUrl: `${encodeURI(selectedCategory)}/${encodeURI(
+          title?.toLowerCase()
+        )}`,
+        shortDescription,
+        stock: parseInt(stock),
+      };
+      updateFirestoreItem(item);
     }
 
     // validate the form
@@ -209,9 +229,12 @@ const AdminItemsModal = ({
         ...itemSpecifications,
         carouselImages: [...carouselImages, imageUrlLinkStorage],
       });
-      console.log(carouselImages)
+      console.log(carouselImages);
     } else {
-      setItemSpecifications({ ...itemSpecifications, [name]: imageUrlLinkStorage });
+      setItemSpecifications({
+        ...itemSpecifications,
+        [name]: imageUrlLinkStorage,
+      });
     }
   };
 
@@ -222,8 +245,10 @@ const AdminItemsModal = ({
     setItemSpecifications({
       ...itemSpecifications,
       bulletPoints: [...bulletPoints, newBulletPoint],
+      newBulletPoint: "",
     });
-    console.log(bulletPoints)
+
+    console.log(bulletPoints);
   };
 
   const handleClickDeleteBullet = (e) => {

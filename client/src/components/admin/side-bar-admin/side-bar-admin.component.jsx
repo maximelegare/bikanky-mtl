@@ -9,7 +9,7 @@ const SideBarAdmin = ({ titles }) => {
   return (
     <SideBarWrapperContainer>
       {titles.map((title) => (
-        <AdminButton key={title} title={title} navLink routeName={title.toLowerCase()}/>
+        <AdminButton key={title} title={title} navLink routeName={title.toLowerCase()}></AdminButton>
       ))}
     </SideBarWrapperContainer>
   );

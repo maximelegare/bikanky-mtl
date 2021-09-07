@@ -13,14 +13,14 @@ import {
 import AdminItemSpecificationDetails from "./admin-item-details/admin-item-specification-details.component";
 import AdminItemImages from "./admin-images/admin-images.component";
 
-const CategoriesItemSpecification = ({ item }) => {
+const CategoriesItemSpecification = ({ item, selectInputMenuValues }) => {
 
   return (
     <>
       {item ? (
         <CategoriesItemSpecficationWrapperContainer>
           <ItemBasicInfos>
-            <AdminItemSpecificationDetails item={item} />
+            <AdminItemSpecificationDetails item={item} selectInputMenuValues={selectInputMenuValues}/>
             <AdminItemImages item={item} />
           </ItemBasicInfos>
         </CategoriesItemSpecficationWrapperContainer>
@@ -33,6 +33,7 @@ CategoriesItemSpecification.propTypes = {
   item: PropTypes.shape({
     carouselImages: PropTypes.array,
   }),
+  selectInputMenuValues:PropTypes.array
 };
 
 export default CategoriesItemSpecification;

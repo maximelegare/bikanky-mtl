@@ -26,7 +26,16 @@ export const SideBarLinkContainer = styled(NavLink)`
   }
 `;
 
-export const AdminButtonContainer = styled.button`
+export const ButtonFlexContainer = styled.div`
+display: flex;
+justify-content: space-between;
+align-items: center;
+width: 90%;
+margin: 0 auto;
+`
+
+
+export const AdminButtonContainer = styled.div`
   display: block;
   margin:0 auto 10px auto;
   background-color: #d8d8d86f;
@@ -40,6 +49,4 @@ export const AdminButtonContainer = styled.button`
   &.active{
     background-color:#9b9b9b6f;
   }
-
-  
 `

@@ -89,10 +89,11 @@ export const createNewItemCategory = async (item) => {
 };
 
 //////////////////////////////////////
-//   CREATE FIRESTORE NEW CATEGORY  //
+//     CREATE FIRESTORE NEW ITEM    //
 //////////////////////////////////////
 
 export const createNewItem = async (item) => {
+  console.log("create item");
   const {
     bulletPoints,
     carouselImages,
@@ -113,9 +114,106 @@ export const createNewItem = async (item) => {
 
   if (!itemSnapshot.exists) {
     try {
-      await itemRef.set({
+      await itemRef.set(
+        {
+          items: {
+            [item.routeName.toLowerCase()]: {
+              bulletPoints,
+              carouselImages,
+              cartQuantity,
+              collection,
+              id,
+              imageUrl,
+              linkUrl,
+              price: price,
+              routeName,
+              shortDescription,
+              stock,
+              title,
+            },
+          },
+        },
+        { merge: true }
+      );
+    } catch (err) {
+      console.log(err.message);
+    }
+  } else {
+    console.log("item already exists");
+  }
+};
+
+//////////////////////////////////////
+//     DELETE FIRESTORE CATEGORY    //
+//////////////////////////////////////
+
+export const deleteFirestoreCategory = async (value) => {
+  const categoryRef = firestore.doc(`/categories/${value}`);
+
+  const categorySnapshot = categoryRef.get();
+
+  if (!categorySnapshot.exists) {
+    try {
+      await categoryRef.delete();
+    } catch (err) {
+      console.log(err.message);
+    }
+  } else {
+    console.log("category alreary exists");
+  }
+};
+
+//////////////////////////////////////
+//       DELETE FIRESTORE ITEM      //
+//////////////////////////////////////
+
+export const deleteFirestoreItem = async (collection, routeName) => {
+  const itemRef = firestore.doc(`categories/${collection}`);
+
+  const itemSnapshot = itemRef.get();
+  console.log(itemSnapshot);
+  if (!itemSnapshot.exists) {
+    try {
+      await itemRef.update({
+        [`items.${routeName}`]: firebase.firestore.FieldValue.delete(),
+      });
+    } catch (err) {
+      console.log(err.message);
+    }
+  } else {
+    console.log("item already exists");
+  }
+};
+
+//////////////////////////////////////
+//       UPDATE FIRESTORE ITEM      //
+//////////////////////////////////////
+
+export const updateFirestoreItem = async (item, currentRouteName) => {
+  console.log("update item");
+  const {
+    bulletPoints,
+    carouselImages,
+    cartQuantity,
+    collection,
+    id,
+    imageUrl,
+    linkUrl,
+    price,
+    routeName,
+    shortDescription,
+    stock,
+    title,
+  } = item;
+  const itemRef = firestore.doc(`categories/${collection}`);
+
+  const itemSnapshot = itemRef.get();
+  console.log(`items.${routeName}`);
+  if (!itemSnapshot.exists) {
+    try {
+      await itemRef.update({
         items: {
-          [item.routeName.toLowerCase()]: {
+          [`item.${routeName}`]: {
             bulletPoints,
             carouselImages,
             cartQuantity,
@@ -123,14 +221,13 @@ export const createNewItem = async (item) => {
             id,
             imageUrl,
             linkUrl,
-            price: (price),
+            price,
             routeName,
             shortDescription,
             stock,
             title,
           },
         },
-        title: collection,
       });
     } catch (err) {
       console.log(err.message);
@@ -148,7 +245,6 @@ export const transformArrayToObject = (collSnapshot) => {
   // create new array
   const transformedCollections = collSnapshot.docs.map((doc) => {
     const { title, items } = doc.data();
-
     return {
       routeName: encodeURI(title.toLowerCase()),
       items,
@@ -179,6 +275,7 @@ export const getCurrentUser = () => {
     }, reject);
   });
 };
+
 
 //////////////////////////////////////
 //CREATE FIRESTORE PROFILE FOR USER //

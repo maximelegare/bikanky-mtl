@@ -18,7 +18,7 @@ import {
 
 import { SectionContainer } from "../categories-item-specification.styles";
 
-const AdminItemSpecificationDetails = ({ item }) => {
+const AdminItemSpecificationDetails = ({ item, selectInputMenuValues }) => {
   const { title, shortDescription, bulletPoints, stock, price } = item;
 
   const [modalVisibility, setModalVisibility] = useState(false);
@@ -29,6 +29,7 @@ const AdminItemSpecificationDetails = ({ item }) => {
         isVisible={modalVisibility}
         item={item}
         setVisibility={setModalVisibility}
+        selectInputMenuValues={selectInputMenuValues}
       />
 
       <AdminItemSpecificationDetailsContainerWrapper>
@@ -76,6 +77,7 @@ const AdminItemSpecificationDetails = ({ item }) => {
 
 AdminItemSpecificationDetails.propTypes = {
   item: PropTypes.object,
+  selectInputMenuValues:PropTypes.array
 };
 
 export default AdminItemSpecificationDetails;
