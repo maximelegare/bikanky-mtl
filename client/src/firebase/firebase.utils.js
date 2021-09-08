@@ -3,6 +3,7 @@ import firebase from "firebase";
 import "firebase/auth";
 import "firebase/firestore";
 import "firebase/storage";
+import { generateUID } from "../_string-utilites/string-utilites";
 
 // import "firebase/analytics";
 
@@ -70,7 +71,8 @@ export const createNewStorageImagePath = async ({ file, itemId, type }) => {
 //////////////////////////////////////
 
 export const createNewItemCategory = async (item) => {
-  const categoryRef = firestore.doc(`/categories/${item.dbTitle}`);
+  const id = generateUID();
+  const categoryRef = firestore.doc(`/categories/${id}`);
 
   const categorySnapshot = categoryRef.get();
 
@@ -79,6 +81,7 @@ export const createNewItemCategory = async (item) => {
       await categoryRef.set({
         title: item.title,
         items: {},
+        id,
       });
     } catch (err) {
       console.log(err.message);
@@ -189,13 +192,14 @@ export const deleteFirestoreItem = async (collection, routeName) => {
 //       UPDATE FIRESTORE ITEM      //
 //////////////////////////////////////
 
-export const updateFirestoreItem = async (item, currentRouteName) => {
+export const updateFirestoreItem = async (item) => {
   console.log("update item");
   const {
     bulletPoints,
     carouselImages,
     cartQuantity,
     collection,
+    collectionId,
     id,
     imageUrl,
     linkUrl,
@@ -205,28 +209,26 @@ export const updateFirestoreItem = async (item, currentRouteName) => {
     stock,
     title,
   } = item;
-  const itemRef = firestore.doc(`categories/${collection}`);
+  const itemRef = firestore.doc(`categories/${collectionId}`);
 
   const itemSnapshot = itemRef.get();
   console.log(`items.${routeName}`);
   if (!itemSnapshot.exists) {
     try {
       await itemRef.update({
-        items: {
-          [`item.${routeName}`]: {
-            bulletPoints,
-            carouselImages,
-            cartQuantity,
-            collection,
-            id,
-            imageUrl,
-            linkUrl,
-            price,
-            routeName,
-            shortDescription,
-            stock,
-            title,
-          },
+        [`items.${routeName}`]: {
+          bulletPoints,
+          carouselImages,
+          cartQuantity,
+          collection,
+          id,
+          imageUrl,
+          linkUrl,
+          price,
+          routeName,
+          shortDescription,
+          stock,
+          title,
         },
       });
     } catch (err) {
@@ -275,7 +277,6 @@ export const getCurrentUser = () => {
     }, reject);
   });
 };
-
 
 //////////////////////////////////////
 //CREATE FIRESTORE PROFILE FOR USER //

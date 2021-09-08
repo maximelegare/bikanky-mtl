@@ -35,6 +35,7 @@ const AdminItemsModal = ({
   newCategory,
   setVisibility,
   modalName,
+  categoryId,
   ...otherProps
 }) => {
   // User address state
@@ -210,6 +211,15 @@ const AdminItemsModal = ({
     setItemSpecifications({ ...itemSpecifications, [name]: value });
   };
 
+  const handleSelectChange = (e) => {
+    const { name, value } = e.target;
+    setItemSpecifications({
+      ...itemSpecifications,
+      selectedCategory: name,
+      selectedCategoryId: value,
+    });
+  };
+
   ///////////////////////////////////////////////
   // handle change for the images
   const handleImageChange = async (e) => {
@@ -325,8 +335,7 @@ const AdminItemsModal = ({
                       />
                       <FormSelect
                         label="Category"
-                        name="selectedCategory"
-                        handleChange={handleChange}
+                        handleChange={handleSelectChange}
                         menuValues={selectInputMenuValues}
                       />
                       <InputFlexContainer>
@@ -455,6 +464,7 @@ AdminItemsModal.propTypes = {
   newItem: PropTypes.bool,
   selectInputMenuValues: PropTypes.object,
   selectInputDefaultValue: PropTypes.string,
+  categoryId: PropTypes.string,
 };
 
 export default AdminItemsModal;
