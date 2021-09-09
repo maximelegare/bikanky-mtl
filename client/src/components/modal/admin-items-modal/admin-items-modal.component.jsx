@@ -52,6 +52,7 @@ const AdminItemsModal = ({
     newBulletPoint: "",
     newCategoryName: "",
     selectedCategory: "",
+    selectedCategoryId: "",
     editImagesPage: false,
   });
   // const [previousRouteName, setPreviousRouteName] = useState()
@@ -84,6 +85,7 @@ const AdminItemsModal = ({
     editImagesPage,
     imageUrl,
     carouselImages,
+    selectedCategoryId,
   } = itemSpecifications;
 
   // useEffect(() => {
@@ -108,25 +110,6 @@ const AdminItemsModal = ({
         dbTitle: newCategoryName.toLocaleLowerCase(),
       };
       createNewItemCategory(item);
-    } else if (newItem) {
-      const capitalizedTitle = capitalizeString(title);
-      const item = {
-        id: id,
-        title: capitalizedTitle,
-        cartQuantity: 0,
-        price: parseInt(price),
-        bulletPoints,
-        routeName: encodeURI(title?.toLowerCase()),
-        carouselImages,
-        collection: selectedCategory,
-        imageUrl,
-        linkUrl: `${encodeURI(selectedCategory)}/${encodeURI(
-          title?.toLowerCase()
-        )}`,
-        shortDescription,
-        stock: parseInt(stock),
-      };
-      createNewItem(item);
     } else {
       const capitalizedTitle = capitalizeString(title);
       const item = {
@@ -138,14 +121,17 @@ const AdminItemsModal = ({
         routeName: encodeURI(title?.toLowerCase()),
         carouselImages,
         collection: selectedCategory,
+        collectionId: selectedCategoryId,
         imageUrl,
-        linkUrl: `${encodeURI(selectedCategory)}/${encodeURI(
-          title?.toLowerCase()
-        )}`,
+        linkUrl: `${encodeURI(selectedCategory)}/${id}`,
         shortDescription,
         stock: parseInt(stock),
       };
-      updateFirestoreItem(item);
+      if (newItem) {
+        createNewItem(item);
+      } else {
+        updateFirestoreItem(item);
+      }
     }
 
     // validate the form
@@ -211,12 +197,11 @@ const AdminItemsModal = ({
     setItemSpecifications({ ...itemSpecifications, [name]: value });
   };
 
-  const handleSelectChange = (e) => {
-    const { name, value } = e.target;
+  const handleSelectClickValue = (id, title) => {
     setItemSpecifications({
       ...itemSpecifications,
-      selectedCategory: name,
-      selectedCategoryId: value,
+      selectedCategory: title,
+      selectedCategoryId: id,
     });
   };
 
@@ -335,7 +320,7 @@ const AdminItemsModal = ({
                       />
                       <FormSelect
                         label="Category"
-                        handleChange={handleSelectChange}
+                        handleClick={handleSelectClickValue}
                         menuValues={selectInputMenuValues}
                       />
                       <InputFlexContainer>

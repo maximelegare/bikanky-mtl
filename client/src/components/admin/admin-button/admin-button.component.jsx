@@ -24,7 +24,8 @@ const AdminButton = ({
   currentButton,
   handleClick,
   categoryElement,
-  collection
+  collectionId,
+  name
 }) => {
 
   const handleDeleteClick = (e) => {
@@ -35,16 +36,18 @@ const AdminButton = ({
     // the categoryElement bool determines if the admin card is for newCategories or new items because it's not the same firebase utils used to delete one vs the other
     if(categoryElement){
       console.log('category')
-      deleteFirestoreCategory(routeName)
+      deleteFirestoreCategory(id)
     }else{
       console.log('item')
-      deleteFirestoreItem(collection ,routeName)
+      deleteFirestoreItem(collectionId ,id)
     }
   }
 
   return (
     <>
-      {navLink ? (
+      {
+      
+      navLink ? (
         <div>
           <SideBarLinkContainer to={`${match.path}/${routeName}`}>
             {title}
@@ -52,8 +55,9 @@ const AdminButton = ({
         </div>
       ) : (
         <AdminButtonContainer
-          className={routeName === currentButton ? "active" : null}
-          onClick={() => handleClick(routeName, id)}
+
+          className={id === currentButton ? "active" : null}
+          onClick={() => handleClick(routeName, id, name)}
         >
           <ButtonFlexContainer>
             <div>{title}</div>
@@ -74,14 +78,15 @@ AdminButton.propTypes = {
   title: PropTypes.string,
   match: PropTypes.object,
   navLink: PropTypes.bool,
-  collection:PropTypes.string,
+  collectionId:PropTypes.string,
   routeName: PropTypes.string,
   category: PropTypes.string,
   sendData: PropTypes.func,
   selected: PropTypes.bool,
   currentButton: PropTypes.string,
   handleClick: PropTypes.func,
-  categoryElement:PropTypes.bool
+  categoryElement:PropTypes.bool,
+  name:PropTypes.string
 };
 
 export default withRouter(AdminButton);

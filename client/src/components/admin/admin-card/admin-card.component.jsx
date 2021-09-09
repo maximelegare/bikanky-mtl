@@ -24,7 +24,7 @@ const AdminCard = ({
   modalComponent,
   setModalVisibility,
   modalName,
-  categoryElement
+  categoryElement,
 }) => {
   return (
     <>
@@ -43,17 +43,18 @@ const AdminCard = ({
         )}
         <MarginTopContainer>
           {!itemSpecification && items ? (
-            Object.values(items).map(({ id ,routeName, title, collection }) => {
+            Object.values(items).map(({ id ,routeName, title, collectionId }) => {
               return (
                 <AdminButton
-                  id
+                  id={id}
                   key={title}
                   routeName={routeName}
                   title={title}
                   currentButton={currentButton}
                   handleClick={handleClick}
-                  collection={collection}
+                  collectionId={collectionId}
                   categoryElement={categoryElement}
+                  name={modalName}
                 />
               );
             })
@@ -77,7 +78,8 @@ AdminCard.propTypes = {
   modalComponent: PropTypes.element,
   setModalVisibility: PropTypes.func,
   modalName: PropTypes.string,
-  categoryElement:PropTypes.bool
+  categoryElement:PropTypes.bool,
+  itemsCard:PropTypes.bool
 };
 
 export default AdminCard;

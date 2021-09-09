@@ -102,6 +102,7 @@ export const createNewItem = async (item) => {
     carouselImages,
     cartQuantity,
     collection,
+    collectionId,
     id,
     imageUrl,
     linkUrl,
@@ -111,7 +112,7 @@ export const createNewItem = async (item) => {
     stock,
     title,
   } = item;
-  const itemRef = firestore.doc(`categories/${collection}`);
+  const itemRef = firestore.doc(`categories/${collectionId}`);
 
   const itemSnapshot = itemRef.get();
 
@@ -120,15 +121,16 @@ export const createNewItem = async (item) => {
       await itemRef.set(
         {
           items: {
-            [item.routeName.toLowerCase()]: {
+            [id]: {
               bulletPoints,
               carouselImages,
               cartQuantity,
               collection,
+              collectionId,
               id,
               imageUrl,
               linkUrl,
-              price: price,
+              price,
               routeName,
               shortDescription,
               stock,
@@ -210,17 +212,17 @@ export const updateFirestoreItem = async (item) => {
     title,
   } = item;
   const itemRef = firestore.doc(`categories/${collectionId}`);
-
+  
   const itemSnapshot = itemRef.get();
-  console.log(`items.${routeName}`);
   if (!itemSnapshot.exists) {
     try {
       await itemRef.update({
-        [`items.${routeName}`]: {
+        [`items.${id}`]: {
           bulletPoints,
           carouselImages,
           cartQuantity,
           collection,
+          collectionId,
           id,
           imageUrl,
           linkUrl,

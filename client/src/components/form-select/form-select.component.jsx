@@ -31,36 +31,32 @@ const CustomSelectInput = withStyles((theme) => ({
   },
 }))(InputBase);
 
-const FormSelect = ({ label, handleChange, menuValues }) => {
+const FormSelect = ({ label, handleClick, menuValues }) => {
   // eslint-disable-next-line no-unused-vars
-  const [valueAndName, setMenuValue] = useState({ name: "", value: "" });
+  const [value, setValue] = useState("");
 
-  const handleClickLocally = (e, title) => {
-
-    console.log(e, title)
-    const {value} = e.target
-    console.log(value)
-    setMenuValue({value:value });
-    // console.log(valueAndName);
-    handleChange(e);
+  const handleChangeLocally = (e) => {
+    const { value } = e.target;
+    setValue(value);
   };
+
   return (
     <InputContainer>
       <InputLabel>{label}</InputLabel>
       <FormControl style={{ width: "100%" }}>
         <Select
-          value={valueAndName.value}
-          name={valueAndName.name}
-          onChange={(e) => handleClickLocally(e)}
+          value={value}
+          
+          onChange={(e) => handleChangeLocally(e)}
           input={<CustomSelectInput />}
         >
           {menuValues?.map(({ title, id }) => (
-            // eslint-disable-next-line no-undef
-            <MenuItem key={title} value={id} name={title} 
-            onClick={(e) => handleClickLocally(e, title)}
+            <MenuItem
+              key={title}
+              value={id}
+              onClick={() => handleClick(id, title.toLowerCase())}
             >
               {title}
-              {/* <MenuItemInner  onClick={() => console.log(title)}>{title}</MenuItemInner> */}
             </MenuItem>
           ))}
         </Select>
@@ -71,7 +67,7 @@ const FormSelect = ({ label, handleChange, menuValues }) => {
 
 FormSelect.propTypes = {
   label: PropTypes.string,
-  handleChange: PropTypes.func,
+  handleClick: PropTypes.func,
   name: PropTypes.string,
   menuValues: PropTypes.array,
   defaultValue: PropTypes.string,

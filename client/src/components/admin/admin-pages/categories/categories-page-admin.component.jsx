@@ -29,13 +29,13 @@ const CategoriesPageAdmin = () => {
   const [itemButtonValue, setItemButtonValue] = useState(null);
 
   // sets the button value (state) when the button was clicked (it's the value of the button that was clicked)
-  const handleClick = (value) => {
-    setCategoryButtonValue(value);
-  };
-
-  const handleItemClick = (value) => {
-    console.log(value)
-    setItemButtonValue(value);
+  const handleClick = (routeName, id, name) => {
+    if(name === "newCategory"){
+      setCategoryButtonValue(routeName);
+    }else{
+      console.log("id", id)
+      setItemButtonValue(id);
+    }
   };
 
   // select a category based on the button clicked value (the value is in the state)
@@ -92,7 +92,7 @@ const CategoriesPageAdmin = () => {
           <AdminCard
             small
             items={category.items}
-            handleClick={handleItemClick}
+            handleClick={handleClick}
             currentButton={itemButtonValue}
             topButton
             modalName="newItem"

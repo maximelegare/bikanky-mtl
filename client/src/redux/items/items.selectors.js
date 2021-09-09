@@ -44,8 +44,10 @@ export const selectCategory = memoize((categoryUrlParam) =>
 export const selectCategoryItemsTest = createSelector(
   (state) => state.items,
   (_, category) => category, // this is the parameter we need
-  (state, category) =>
-    state.itemsCategories && category ? state.itemsCategories[category] : {}
+  (state, category) =>{
+    console.log(state.itemsCategories)
+    return state.itemsCategories && category ? state.itemsCategories[category] : {}
+  }
 );
 
 // select the item based on the category and item received (used with hooks in admin section)
