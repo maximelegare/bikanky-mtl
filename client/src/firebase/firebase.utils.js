@@ -3,6 +3,7 @@ import firebase from "firebase";
 import "firebase/auth";
 import "firebase/firestore";
 import "firebase/storage";
+import "firebase/functions"
 import { generateUID } from "../_string-utilites/string-utilites";
 
 // import "firebase/analytics";
@@ -27,12 +28,14 @@ firebase.initializeApp(firebaseConfig);
 // get access to auth, firestore and storage
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
+export const functions = firebase.functions()
 
 var storage = firebase.storage();
 
 // Create a storage reference from our storage service
 // eslint-disable-next-line no-unused-vars
-var storageRef = storage.ref();
+
+
 
 // ///////////////////////////ks
 

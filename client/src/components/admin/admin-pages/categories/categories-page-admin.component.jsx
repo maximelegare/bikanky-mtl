@@ -108,7 +108,7 @@ const CategoriesPageAdmin = () => {
                 newItem
               />}
           />
-          <AdminCard itemSpecification>
+          <AdminCard noList>
             <CategoriesItemSpecification item={item} selectInputMenuValues={itemsCategoriesArray}/>
           </AdminCard>
         </CategoriesFlexWrapperContainer>

@@ -10,3 +10,8 @@ export const selectFetchUserloading = createSelector(
   [selectUserReducer],
   (user) => user.isLoading
 );
+
+export const selectIsAdmin = createSelector(
+  [selectUserReducer],
+  (user) => user.isAdmin
+);

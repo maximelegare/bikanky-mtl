@@ -21,6 +21,9 @@ import { fetchCollectionsStartAsync } from "./redux/items/items.slice";
 import { selectFetchItemsLoading } from "./redux/items/items.selectors";
 // import { toggleClickDropdownVisibility } from "./redux/dropdown-elements-visibility/dropdown.slice";
 
+import { selectIsAdmin } from "./redux/user/user.selector";
+
+
 // withSpinner components
 const HomePageWithSpinner = WithSpinner(HomePage);
 const ShopPageWithSpinner = WithSpinner(ShopPage);
@@ -28,6 +31,10 @@ const ShopPageWithSpinner = WithSpinner(ShopPage);
 function App() {
   const dispatch = useDispatch();
   const loading = useSelector(selectFetchItemsLoading);
+  const isAdmin = useSelector(selectIsAdmin)
+
+  console.log("isAdmin", isAdmin)
+
 
   useEffect(() => {
     dispatch(fetchCollectionsStartAsync());

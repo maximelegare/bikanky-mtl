@@ -17,7 +17,7 @@ const AdminCard = ({
   items,
   small,
   handleClick,
-  itemSpecification,
+  noList,
   children,
   currentButton,
   topButton,
@@ -42,7 +42,7 @@ const AdminCard = ({
           </ButtonContainer>
         )}
         <MarginTopContainer>
-          {!itemSpecification && items ? (
+          {!noList && items ? (
             Object.values(items).map(({ id ,routeName, title, collectionId }) => {
               return (
                 <AdminButton
@@ -71,7 +71,7 @@ AdminCard.propTypes = {
   items: PropTypes.object,
   small: PropTypes.bool,
   handleClick: PropTypes.func,
-  itemSpecification: PropTypes.bool,
+  noList: PropTypes.bool,
   children: PropTypes.any,
   currentButton: PropTypes.string,
   topButton: PropTypes.bool,

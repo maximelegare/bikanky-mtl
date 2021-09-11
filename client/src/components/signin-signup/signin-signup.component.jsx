@@ -41,10 +41,9 @@ const SigninSignup = ({ match, history }) => {
   useEffect(() => {
     if (match.url === "/signup") {
       setCredentials({ ...credentials, newUser: true });
-    } else {
-      setCredentials({ ...credentials, newUser: false });
     }
-  }, [match.url, credentials]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [match.url]);
 
   // ////////////////////////////////
 
@@ -153,7 +152,7 @@ const SigninSignup = ({ match, history }) => {
             label="Password"
             name="password"
             value={password}
-            handleChange={handleChange}ks
+            handleChange={handleChange}
             removeError={removeError}
             message={
               newUser

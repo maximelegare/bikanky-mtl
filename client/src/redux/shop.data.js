@@ -9,10 +9,10 @@ const SHOP_DATA = {
       {
         id: 1,
         title: "Badinedonpas",
-        category:'hats',
+        category: "hats",
         routeName: "brown-brim",
-        price: 26.00,
-        cartQuantity:0,
+        price: 26.0,
+        cartQuantity: 0,
         shortDescription:
           "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
         stock: 1,
