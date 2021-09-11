@@ -6,6 +6,8 @@ import { Route, Switch } from "react-router-dom";
 import "./App.css";
 
 import WithSpinner from "./components/_HOC/with-spinner/with-spinner.component";
+import WithNavigationGuard from "./components/_HOC/navigation-guard/with-navigation-guard.component";
+
 import HomePage from "./pages/home-page/home-page.component";
 import Header from "./components/header/header.component";
 import ShopPage from "./pages/shop-page/shop-page.component";
@@ -13,6 +15,8 @@ import SigninSignupPage from "./pages/signin-signup-page/signin-signup-page.comp
 // import CartIconMobile from "./components/buttons/my-buttons/cart-icon-mobile/cart-icon-mobile.component";
 import CheckoutPage from "./pages/checkout-page/checkout-page.component";
 import AdminPage from "./pages/admin-page/admin-page.component";
+
+
 
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
@@ -27,6 +31,8 @@ import { selectIsAdmin } from "./redux/user/user.selector";
 // withSpinner components
 const HomePageWithSpinner = WithSpinner(HomePage);
 const ShopPageWithSpinner = WithSpinner(ShopPage);
+const AdminPageWithNavigationGuard = WithNavigationGuard(AdminPage)
+
 
 function App() {
   const dispatch = useDispatch();
@@ -69,7 +75,8 @@ function App() {
         <Route path="/checkout" component={CheckoutPage} />
         <Route path="/signin" component={SigninSignupPage} />
         <Route path="/signup" component={SigninSignupPage} />
-        <Route path="/admin" component={AdminPage} />
+        {/* <Route path="/admin" component={AdminPage} /> */}
+        <AdminPageWithNavigationGuard path="/admin" redirectUrl="/creations"/>    
       </Switch>
     </div>
   );

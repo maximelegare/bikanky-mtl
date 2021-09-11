@@ -15,7 +15,9 @@ export const getCurrentUserStart = () => {
 
           // sets admin status to redux
           const adminStatus = await userAuth.getIdTokenResult()
-          dispatch(setAdminStatus(adminStatus.claims.admin))
+          if(adminStatus.claims.admin){
+            dispatch(setAdminStatus(adminStatus.claims.admin))
+          }
           
           // listen to the userRef => when changes, create user with only the values I want
           userRef.onSnapshot(async (snapshot) => {
@@ -45,8 +47,8 @@ export const getCurrentUserStart = () => {
 
 
 const initialState = {
-  currentUser: null,
-  isAdmin:undefined,
+  currentUser: undefined,
+  isAdmin:null,
   error: null,
   isLoading: true,
 };
