@@ -44,7 +44,9 @@ export const RightSectionDesktopWrapperContainer = styled.div`
   }
 `;
 
-
+export const IconsFlexContainer = styled.div`
+display: flex;
+`
 
 
 export const OptionsLink = styled(NavLink)`

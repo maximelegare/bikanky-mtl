@@ -17,14 +17,14 @@ import CheckoutPage from "./pages/checkout-page/checkout-page.component";
 import AdminPage from "./pages/admin-page/admin-page.component";
 
 
-
+import { selectCurrentUser } from "./redux/user/user.selector";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { getCurrentUserStart } from "./redux/user/user.slice";
+import { resetIsAdmin } from "./redux/user/user.slice";
 import { fetchCollectionsStartAsync } from "./redux/items/items.slice";
 import { selectFetchItemsLoading } from "./redux/items/items.selectors";
 // import { toggleClickDropdownVisibility } from "./redux/dropdown-elements-visibility/dropdown.slice";
-
 import { selectIsAdmin } from "./redux/user/user.selector";
 
 
@@ -38,19 +38,19 @@ function App() {
   const dispatch = useDispatch();
   const loading = useSelector(selectFetchItemsLoading);
   const isAdmin = useSelector(selectIsAdmin)
-
+  const currentUser = useSelector(selectCurrentUser)
 
 
   useEffect(() => {
     dispatch(fetchCollectionsStartAsync());
     dispatch(getCurrentUserStart());
-
-    // setTimeout(() => {
-    //   dispatch(
-    //     toggleClickDropdownVisibility({ dropdownName: "signIn", value: true })
-    //   );
-    // }, 700);
   }, []);
+
+  useEffect(() => {
+    if(!currentUser){
+      dispatch(resetIsAdmin())
+    }
+  }, [currentUser])
 
   return (
     <div className="App">

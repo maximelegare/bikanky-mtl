@@ -29,14 +29,18 @@ import CartIcon from "../buttons/my-buttons/cart-icon/cart-icon.component";
 import UserIconButton from "../buttons/my-buttons/user-icon/userIcon.component";
 import DropdownWithTransitions from "../drop-down/dropdown-with-transitions/dropdown-with-transitions.component";
 import UserDropdown from "../drop-down/user-dropdown/user-dropodwn.component";
+import { selectIsAdmin } from "../../redux/user/user.selector";
+import CustomButtonMUI from "../buttons/material-ui/custom-button-mui.component";
 
 const Header = () => {
   const sliderVisibility = useSelector(selectSliderVisibility);
-
+  const isAdmin = useSelector(selectIsAdmin);
   const cartClickVisibility = useSelector(selectClickCartVisibility);
   const cartHoverVisibility = useSelector(selectHoverCartVisibility);
   const signinHoverVisibility = useSelector(selectHoverSignInVisibility);
   const signinClickVisibility = useSelector(selectClickSignInVisibility);
+
+  console.log(isAdmin);
 
   const dispatch = useDispatch();
 
@@ -45,15 +49,12 @@ const Header = () => {
 
   useEffect(() => {
     toggleButton();
-  },
-   [sliderVisibility]
-   );
-
+  }, [sliderVisibility]);
 
   // prevent user from beeing able to scroll when the slider is open. The class selector is in [index.css]
   useEffect(() => {
-    if(sliderVisibility){
-      document.body.classList.add("no-scroll")
+    if (sliderVisibility) {
+      document.body.classList.add("no-scroll");
     }
     return () => {
       document.body.classList.remove("no-scroll");
@@ -96,6 +97,11 @@ const Header = () => {
 
           <RightSectionDesktopWrapperContainer>
             <div>
+              {isAdmin &&
+              <CustomButtonMUI kind="small-link" routeName="/admin/categories">
+                Admin
+              </CustomButtonMUI>
+              }
               <OptionsLink activeClassName="active" to="/creations">
                 Créations
               </OptionsLink>
@@ -109,6 +115,7 @@ const Header = () => {
                 Contact
               </OptionsLink>
             </div>
+
             <DropdownWithTransitions
               isActive={
                 signinClickVisibility
@@ -120,6 +127,7 @@ const Header = () => {
               name="signIn"
               clickStatus={signinClickVisibility}
             />
+
             <DropdownWithTransitions
               isActive={
                 cartClickVisibility ? cartClickVisibility : cartHoverVisibility

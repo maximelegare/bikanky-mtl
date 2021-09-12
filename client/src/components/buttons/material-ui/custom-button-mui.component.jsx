@@ -102,6 +102,18 @@ const CustomButtonMUI = ({ children, kind, deleteIcon, routeName, type, value })
           </Button>
         </Link>
       );
+      case "small-link":
+      return (
+        <Link to={routeName}>
+          <Button
+            classes={{ root: smallClasses.root }}
+            variant="contained"
+            type={type}
+          >
+            {children}
+          </Button>
+        </Link>
+      );
     case "signInWithGoogle":
       return (
         <Button variant="contained" type={type} color="primary">

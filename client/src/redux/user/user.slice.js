@@ -69,9 +69,12 @@ const userSlice = createSlice({
     },
     setAdminStatus(state, {payload}){
       state.isAdmin = payload
+    },
+    resetIsAdmin(state){
+      state.isAdmin = null
     }
   },
 });
-export const { setCurrentUser, fetchUserLoading, fetchUserError, setAdminStatus } =
+export const { setCurrentUser, fetchUserLoading, fetchUserError, setAdminStatus, resetIsAdmin } =
   userSlice.actions;
 export default userSlice.reducer;
