@@ -6,7 +6,7 @@ import { Route, Switch } from "react-router-dom";
 import "./App.css";
 
 import WithSpinner from "./components/_HOC/with-spinner/with-spinner.component";
-import WithNavigationGuard from "./components/_HOC/navigation-guard/with-navigation-guard.component";
+import WithNavigationGuard from "./components/_HOC/with-navigation-guard/with-navigation-guard.component";
 
 import HomePage from "./pages/home-page/home-page.component";
 import Header from "./components/header/header.component";
@@ -39,7 +39,6 @@ function App() {
   const loading = useSelector(selectFetchItemsLoading);
   const isAdmin = useSelector(selectIsAdmin)
 
-  console.log("isAdmin", isAdmin)
 
 
   useEffect(() => {
@@ -75,8 +74,7 @@ function App() {
         <Route path="/checkout" component={CheckoutPage} />
         <Route path="/signin" component={SigninSignupPage} />
         <Route path="/signup" component={SigninSignupPage} />
-        {/* <Route path="/admin" component={AdminPage} /> */}
-        <AdminPageWithNavigationGuard path="/admin" redirectUrl="/creations"/>    
+        <AdminPageWithNavigationGuard path="/admin" redirectUrl="/creations" condition={isAdmin}/>    
       </Switch>
     </div>
   );

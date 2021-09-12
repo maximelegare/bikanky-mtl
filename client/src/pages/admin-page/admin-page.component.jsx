@@ -8,6 +8,7 @@ import TopImageSection from "../../components/top-image-section/top-image-sectio
 
 import Admin from "../../components/admin/admin.component";
 
+// eslint-disable-next-line react/prop-types
 const AdminPage = () => {
   return (
     <PageWrapperContainer>
