@@ -74,7 +74,7 @@ function App() {
         <Route path="/checkout" component={CheckoutPage} />
         <Route path="/signin" component={SigninSignupPage} />
         <Route path="/signup" component={SigninSignupPage} />
-        <AdminPageWithNavigationGuard path="/admin" redirectUrl="/creations" condition={isAdmin}/>    
+        <AdminPageWithNavigationGuard path="/admin" redirectUrl="/" condition={isAdmin}/>    
       </Switch>
     </div>
   );

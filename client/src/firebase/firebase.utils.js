@@ -273,6 +273,7 @@ export const transformArrayToObject = (collSnapshot) => {
 //        GET CURRENT USER          //
 //////////////////////////////////////
 
+
 // get the current user obj and unsubscribe
 export const getCurrentUser = () => {
   return new Promise((resolve, reject) => {
@@ -282,6 +283,7 @@ export const getCurrentUser = () => {
     }, reject);
   });
 };
+
 
 //////////////////////////////////////
 //CREATE FIRESTORE PROFILE FOR USER //
