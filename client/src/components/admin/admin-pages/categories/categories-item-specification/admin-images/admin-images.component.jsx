@@ -16,13 +16,13 @@ const AdminItemImages = ({ item }) => {
     <>
       <SectionContainer>
         <ImageLabelContainer>Main Image:</ImageLabelContainer>
-        <ProductImgContainer type="admin" image={item.imageUrl} />
+        <ProductImgContainer type="admin" image={item.imageUrl.url} />
       </SectionContainer>
       <SectionContainer>
         <ImageLabelContainer>Carousel Images:</ImageLabelContainer>
         <AdminItemImagesContainer>
           {item?.carouselImages?.map((image, idx) => (
-            <ProductImgContainer key={idx} type="admin" image={image} />
+            <ProductImgContainer key={idx} type="admin" image={image.url} />
           ))}
         </AdminItemImagesContainer>
       </SectionContainer>
@@ -32,7 +32,9 @@ const AdminItemImages = ({ item }) => {
 
 AdminItemImages.propTypes = {
   item: PropTypes.shape({
-    imageUrl: PropTypes.string,
+    imageUrl: PropTypes.shape({
+      url:PropTypes.string
+    }),
     carouselImages: PropTypes.array,
   }),
 };

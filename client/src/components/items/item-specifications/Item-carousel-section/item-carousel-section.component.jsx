@@ -25,7 +25,7 @@ const CarouselSwiper = ({ images }) => {
           <SwiperSlide key={index}>
             <ProductImgContainer
               type="slider"
-              image={image}
+              image={image.url}
               virtualIndex={index}
             ></ProductImgContainer>
           </SwiperSlide>
@@ -47,7 +47,7 @@ const CarouselSwiper = ({ images }) => {
           <SwiperSlide key={index}>
             <ProductImgContainer
               type="slider-thumbs"
-              image={image}
+              image={image.url}
               virtualIndex={index}
               
             ></ProductImgContainer>

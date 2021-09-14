@@ -27,7 +27,7 @@ const ItemCard = ({ item, history, location }) => {
     <ItemWrapperContainer>
       <ProductImgContainer
         type="card-image"
-        image={imageUrl}
+        image={imageUrl.url}
         onClick={() =>
           location.pathname === "/creations"
             ? history.push(`/creations/${linkUrl}`)
@@ -56,7 +56,9 @@ const ItemCard = ({ item, history, location }) => {
 
 ItemCard.propTypes = {
   item: PropTypes.shape({
-    imageUrl: PropTypes.string,
+    imageUrl: PropTypes.shape({
+      url:PropTypes.string,
+    }),
     linkUrl: PropTypes.string,
     title: PropTypes.string,
     price: PropTypes.number,

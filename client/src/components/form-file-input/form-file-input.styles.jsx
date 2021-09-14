@@ -9,3 +9,12 @@ flex-wrap: wrap;
 export const InputItemContainer =styled.div`
 
 `
+
+export const DeleteButtonAbsoluteContainer = styled.div`
+position: absolute;
+right: 0;
+`
+
+export const DeleteButtonRelativeContainer = styled.div`
+position: relative;
+`

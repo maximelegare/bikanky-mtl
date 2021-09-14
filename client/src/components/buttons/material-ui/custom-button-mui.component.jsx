@@ -73,7 +73,7 @@ const CustomButtonMUI = ({ children, kind, deleteIcon, routeName, type, value })
           }}
           variant="contained"
           type={type}
-          
+          value={value}
         >
           <span className="material-icons">{children}</span>
         </IconButton>
@@ -86,6 +86,7 @@ const CustomButtonMUI = ({ children, kind, deleteIcon, routeName, type, value })
           }}
           variant="contained"
           type={type}
+          value={value}
         >
           <span className="material-icons">{children}</span>
         </IconButton>
@@ -97,6 +98,7 @@ const CustomButtonMUI = ({ children, kind, deleteIcon, routeName, type, value })
             classes={{ root: classes.root }}
             variant="contained"
             type={type}
+            value={value}
           >
             {children}
           </Button>
@@ -109,6 +111,7 @@ const CustomButtonMUI = ({ children, kind, deleteIcon, routeName, type, value })
             classes={{ root: smallClasses.root }}
             variant="contained"
             type={type}
+            value={value}
           >
             {children}
           </Button>
@@ -127,6 +130,7 @@ const CustomButtonMUI = ({ children, kind, deleteIcon, routeName, type, value })
           classes={{ root: smallClasses.root }}
           type={type}
           color="primary"
+          value={value}
         >
           {children}
         </Button>
@@ -138,6 +142,7 @@ const CustomButtonMUI = ({ children, kind, deleteIcon, routeName, type, value })
           classes={{ root: smallClasses.root }}
           type={type}
           style={{backgroundColor:"var(--pale-bg-hover)"}}
+          value={value}
         >
           {children}
         </Button>
@@ -148,6 +153,7 @@ const CustomButtonMUI = ({ children, kind, deleteIcon, routeName, type, value })
           classes={{ root: classes.root }}
           variant="contained"
           type={type}
+          value={value}
         >
           {children}
         </Button>

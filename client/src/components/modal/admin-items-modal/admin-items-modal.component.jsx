@@ -2,14 +2,17 @@
 import React, { useState } from "react";
 import { PropTypes } from "prop-types";
 
-import { generateUID } from "../../../_string-utilites/string-utilites";
+import {
+  generateUID,
+  capitalizeString,
+} from "../../../_string-utilites/string-utilites";
 
-import { capitalizeString } from "../../../_string-utilites/string-utilites";
 import {
   createNewItemCategory,
   createNewItem,
   createNewStorageImagePath,
   updateFirestoreItem,
+  deleteStorageImagePath,
 } from "../../../firebase/firebase.utils";
 
 import { InputSectionContainer } from "../address-modal/address-modal.styles";
@@ -47,7 +50,10 @@ const AdminItemsModal = ({
     stock: item?.stock ?? 0,
     shortDescription: item?.shortDescription ?? "",
     bulletPoints: item?.bulletPoints ?? [],
-    imageUrl: item?.imageUrl ?? "",
+    imageUrl: item?.imageUrl ?? {
+      fileName: "",
+      url: "",
+    },
     carouselImages: item?.carouselImages ?? [],
     newBulletPoint: "",
     newCategoryName: "",
@@ -101,7 +107,6 @@ const AdminItemsModal = ({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     // create an item to add to firebase depending if it's a new item or a new category
     if (newCategory) {
       const capitalizedTitle = capitalizeString(newCategoryName);
@@ -130,6 +135,7 @@ const AdminItemsModal = ({
       if (newItem) {
         createNewItem(item);
       } else {
+        console.log(item);
         updateFirestoreItem(item);
       }
     }
@@ -206,32 +212,64 @@ const AdminItemsModal = ({
   };
 
   ///////////////////////////////////////////////
-  // handle change for the images
-  const handleImageChange = async (e) => {
-    const { name } = e.target;
-    const file = e.currentTarget.files[0];
-    console.log(file);
+  //     HANDLE ADDING & DELETING IMAGES      //
+  ///////////////////////////////////////////////
 
-    // creates a new storage image
+  // the event for adding an image is onChange => onChange on the file input
+  const handleAddImageChange = async (name, file) => {
+    // creates a new storage image to add image in firebase storage (to get the preview)
     const imageUrlLinkStorage = await createNewStorageImagePath({
       file,
       itemId: itemSpecifications.id,
       type: name,
     });
 
+    
+
+    // if the image is iniside the carousel
     if (name === "carouselImages") {
       setItemSpecifications({
         ...itemSpecifications,
-        carouselImages: [...carouselImages, imageUrlLinkStorage],
+        carouselImages: [
+          ...carouselImages,
+          { url: imageUrlLinkStorage, fileName: file.name },
+        ],
       });
-      console.log(carouselImages);
+      console.log("carousel", carouselImages);
+      // it must be the main image otherwise
     } else {
       setItemSpecifications({
         ...itemSpecifications,
-        [name]: imageUrlLinkStorage,
+        [name]: { url: imageUrlLinkStorage, fileName: file.name },
       });
     }
   };
+
+
+
+
+  // handle delete an image from []. The event is on click on the delete button
+  const handleImageDeleteChange = (name, image, imageIdx ) => {
+    const newImagesArray = carouselImages.filter((_, idx) => idx !== imageIdx);
+    if (name === "carouselImages") {
+      setItemSpecifications({
+        ...itemSpecifications,
+        carouselImages: newImagesArray,
+      });
+    } else {
+      setItemSpecifications({
+        ...itemSpecifications,
+        [name]: { fileName: "", url: "" },
+      });
+    }
+    deleteStorageImagePath({
+      fileName: image.fileName,
+      itemId: itemSpecifications.id,
+      type: name,
+    });
+  };
+
+  //image, itemId, type
 
   ///////////////////////////////////////////////
   // handle adding and deleting bullet points
@@ -242,8 +280,6 @@ const AdminItemsModal = ({
       bulletPoints: [...bulletPoints, newBulletPoint],
       newBulletPoint: "",
     });
-
-    console.log(bulletPoints);
   };
 
   const handleClickDeleteBullet = (e) => {
@@ -399,17 +435,19 @@ const AdminItemsModal = ({
                   ) : (
                     <>
                       <FormFileInput
-                        items={[imageUrl]}
+                        mainImage={imageUrl}
                         label="Main image"
                         maxLength={1}
                         name="imageUrl"
-                        handleChange={handleImageChange}
+                        handleAdd={handleAddImageChange}
+                        handleDelete={handleImageDeleteChange}
                       />
                       <FormFileInput
                         name="carouselImages"
                         items={carouselImages}
                         label="Carousel Images"
-                        handleChange={handleImageChange}
+                        handleAdd={handleAddImageChange}
+                        handleDelete={handleImageDeleteChange}
                       />
                     </>
                   )
@@ -440,14 +478,16 @@ AdminItemsModal.propTypes = {
     bulletPoints: PropTypes.array,
     newItem: PropTypes.bool,
     newCategory: PropTypes.bool,
-    imageUrl: PropTypes.string,
+    imageUrl: PropTypes.shape({
+      url:PropTypes.string
+    }),
     carouselImages: PropTypes.array,
   }),
   modalName: PropTypes.string,
   setVisibility: PropTypes.func,
   newCategory: PropTypes.bool,
   newItem: PropTypes.bool,
-  selectInputMenuValues: PropTypes.object,
+  selectInputMenuValues: PropTypes.array,
   selectInputDefaultValue: PropTypes.string,
   categoryId: PropTypes.string,
 };

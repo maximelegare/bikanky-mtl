@@ -3,7 +3,7 @@ import firebase from "firebase";
 import "firebase/auth";
 import "firebase/firestore";
 import "firebase/storage";
-import "firebase/functions"
+import "firebase/functions";
 import { generateUID } from "../_string-utilites/string-utilites";
 
 // import "firebase/analytics";
@@ -28,14 +28,12 @@ firebase.initializeApp(firebaseConfig);
 // get access to auth, firestore and storage
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
-export const functions = firebase.functions()
+export const functions = firebase.functions();
 
 var storage = firebase.storage();
 
 // Create a storage reference from our storage service
 // eslint-disable-next-line no-unused-vars
-
-
 
 // ///////////////////////////ks
 
@@ -65,6 +63,28 @@ export const createNewStorageImagePath = async ({ file, itemId, type }) => {
     .catch((err) => {
       console.log(err);
     });
+};
+
+//////////////////////////////////////
+//       DELETE STORAGE IMAGE       //
+//////////////////////////////////////
+
+
+export const deleteStorageImagePath = async ({ fileName, itemId, type }) => {
+  console.log("firebase", fileName, itemId, type)
+  var imagePath = `images/${itemId}/${fileName}`;
+  console.log(type);
+  if (type === "imageUrl") {
+    imagePath = `images/${itemId}/main-${fileName}`;
+  }
+  const fullPathNewImageRef = storage.ref(imagePath);
+
+  console.log("fullpath", fullPathNewImageRef)
+  fullPathNewImageRef.delete().then(() => {
+    console.log("file deleted")
+  }).catch((err) => {
+    console.log(err);
+  });
 };
 
 // ///////////////////////////
@@ -215,7 +235,7 @@ export const updateFirestoreItem = async (item) => {
     title,
   } = item;
   const itemRef = firestore.doc(`categories/${collectionId}`);
-  
+
   const itemSnapshot = itemRef.get();
   if (!itemSnapshot.exists) {
     try {
@@ -273,7 +293,6 @@ export const transformArrayToObject = (collSnapshot) => {
 //        GET CURRENT USER          //
 //////////////////////////////////////
 
-
 // get the current user obj and unsubscribe
 export const getCurrentUser = () => {
   return new Promise((resolve, reject) => {
@@ -283,7 +302,6 @@ export const getCurrentUser = () => {
     }, reject);
   });
 };
-
 
 //////////////////////////////////////
 //CREATE FIRESTORE PROFILE FOR USER //
