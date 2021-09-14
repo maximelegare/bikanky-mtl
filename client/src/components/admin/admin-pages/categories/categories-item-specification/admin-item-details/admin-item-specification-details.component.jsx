@@ -23,6 +23,8 @@ const AdminItemSpecificationDetails = ({ item, selectInputMenuValues }) => {
 
   const [modalVisibility, setModalVisibility] = useState(false);
 
+  console.log(item)
+
   return (
     <>
       <AdminItemsModal
@@ -30,7 +32,9 @@ const AdminItemSpecificationDetails = ({ item, selectInputMenuValues }) => {
         item={item}
         setVisibility={setModalVisibility}
         selectInputMenuValues={selectInputMenuValues}
+        updateItem
       />
+      
 
       <AdminItemSpecificationDetailsContainerWrapper>
         <SectionFlexContainer style={{ justifyContent: "space-between" }}>

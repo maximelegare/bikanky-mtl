@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { PropTypes } from "prop-types";
 
 import {
@@ -30,11 +30,11 @@ import FormInput from "../../form-inputs/form-input.component";
 import CustomButtonMUI from "../../buttons/material-ui/custom-button-mui.component";
 import CustomButton from "../../buttons/my-buttons/customButtons/custom-button.component";
 
-// eslint-disable-next-line react/prop-types
 const AdminItemsModal = ({
   selectInputMenuValues,
   item,
   newItem,
+  updateItem,
   newCategory,
   setVisibility,
   modalName,
@@ -42,25 +42,40 @@ const AdminItemsModal = ({
   ...otherProps
 }) => {
   // User address state
-  // eslint-disable-next-line no-unused-vars
   const [itemSpecifications, setItemSpecifications] = useState({
-    id: item?.id ?? generateUID(),
-    title: item?.title ?? "",
-    price: item?.price ?? 0,
-    stock: item?.stock ?? 0,
-    shortDescription: item?.shortDescription ?? "",
-    bulletPoints: item?.bulletPoints ?? [],
-    imageUrl: item?.imageUrl ?? {
+    id: generateUID(),
+    title: "",
+    price: 0,
+    stock: 0,
+    shortDescription: "",
+    bulletPoints: [],
+    imageUrl: {
       fileName: "",
       url: "",
     },
-    carouselImages: item?.carouselImages ?? [],
+    carouselImages: [],
     newBulletPoint: "",
     newCategoryName: "",
     selectedCategory: "",
     selectedCategoryId: "",
     editImagesPage: false,
   });
+
+  useEffect(() => {
+    if (updateItem) {
+      setItemSpecifications({
+        id: item?.id,
+        title: item?.title,
+        price: item?.price,
+        stock: item?.stock,
+        shortDescription: item?.shortDescription,
+        bulletPoints: item?.bulletPoints,
+        imageUrl: item?.imageUrl,
+        carouselImages: item?.carouselImages,
+      });
+    }
+  }, [item]);
+
   // const [previousRouteName, setPreviousRouteName] = useState()
 
   // sets default values to empty string if it's a new item
@@ -134,6 +149,24 @@ const AdminItemsModal = ({
       };
       if (newItem) {
         createNewItem(item);
+        setItemSpecifications({
+          id: item?.id ?? generateUID(),
+          title: item?.title ?? "",
+          price: item?.price ?? 0,
+          stock: item?.stock ?? 0,
+          shortDescription: item?.shortDescription ?? "",
+          bulletPoints: item?.bulletPoints ?? [],
+          imageUrl: item?.imageUrl ?? {
+            fileName: "",
+            url: "",
+          },
+          carouselImages: item?.carouselImages ?? [],
+          newBulletPoint: "",
+          newCategoryName: "",
+          selectedCategory: "",
+          selectedCategoryId: "",
+          editImagesPage: false,
+        });
       } else {
         console.log(item);
         updateFirestoreItem(item);
@@ -224,8 +257,6 @@ const AdminItemsModal = ({
       type: name,
     });
 
-    
-
     // if the image is iniside the carousel
     if (name === "carouselImages") {
       setItemSpecifications({
@@ -245,11 +276,8 @@ const AdminItemsModal = ({
     }
   };
 
-
-
-
   // handle delete an image from []. The event is on click on the delete button
-  const handleImageDeleteChange = (name, image, imageIdx ) => {
+  const handleImageDeleteChange = (name, image, imageIdx) => {
     const newImagesArray = carouselImages.filter((_, idx) => idx !== imageIdx);
     if (name === "carouselImages") {
       setItemSpecifications({
@@ -479,7 +507,7 @@ AdminItemsModal.propTypes = {
     newItem: PropTypes.bool,
     newCategory: PropTypes.bool,
     imageUrl: PropTypes.shape({
-      url:PropTypes.string
+      url: PropTypes.string,
     }),
     carouselImages: PropTypes.array,
   }),
@@ -487,6 +515,7 @@ AdminItemsModal.propTypes = {
   setVisibility: PropTypes.func,
   newCategory: PropTypes.bool,
   newItem: PropTypes.bool,
+  updateItem: PropTypes.bool,
   selectInputMenuValues: PropTypes.array,
   selectInputDefaultValue: PropTypes.string,
   categoryId: PropTypes.string,
