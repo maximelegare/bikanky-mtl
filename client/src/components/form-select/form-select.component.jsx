@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import "./form-select.styles.scss";
+
 import { PropTypes } from "prop-types";
 
 import { withStyles } from "@material-ui/core/styles";
@@ -6,16 +8,24 @@ import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import InputBase from "@material-ui/core/InputBase";
-import { InputLabel, InputContainer } from "../form-inputs/form-input.styles";
+import {
+  InputLabel,
+  InputContainer,
+  ErrorContainer,
+  MessageContainer,
+} from "../form-inputs/form-input.styles";
 
 // import { MenuItemInner } from './form-select.styles'
 
-const CustomSelectInput = withStyles((theme) => ({
+const CustomSelectInput = withStyles((theme, error) => ({
   input: {
+    border: "solid",
+    // borderColor:"#c0c0c0",
+    borderColor:"transparent",
+    borderWidth:"1px",
     borderRadius: 4,
     position: "relative",
     backgroundColor: theme.palette.background.paper,
-    border: "1px solid #c0c0c0",
     width: "100%",
     fontSize: 14,
     padding: "10px 26px 10px 12px",
@@ -31,7 +41,15 @@ const CustomSelectInput = withStyles((theme) => ({
   },
 }))(InputBase);
 
-const FormSelect = ({ label, handleClick, menuValues }) => {
+const FormSelect = ({
+  label,
+  handleClick,
+  menuValues,
+  error,
+  message,
+  removeError,
+  name,
+}) => {
   // eslint-disable-next-line no-unused-vars
   const [value, setValue] = useState("");
 
@@ -46,9 +64,15 @@ const FormSelect = ({ label, handleClick, menuValues }) => {
       <FormControl style={{ width: "100%" }}>
         <Select
           value={value}
-          
+          onBlur={() => removeError(name)}
           onChange={(e) => handleChangeLocally(e)}
-          input={<CustomSelectInput />}
+          input={
+            <CustomSelectInput
+            error={!!error}
+              style={{ border:`1px solid ${error? "red" : "#c0c0c0"}` , borderRadius:"6px" }}
+              className="custom-select-input"
+            />
+          }
         >
           {menuValues?.map(({ title, id }) => (
             <MenuItem
@@ -60,6 +84,11 @@ const FormSelect = ({ label, handleClick, menuValues }) => {
             </MenuItem>
           ))}
         </Select>
+        {error ? (
+          <ErrorContainer>{error}</ErrorContainer>
+        ) : message ? (
+          <MessageContainer>{message}</MessageContainer>
+        ) : null}
       </FormControl>
     </InputContainer>
   );
@@ -71,6 +100,9 @@ FormSelect.propTypes = {
   name: PropTypes.string,
   menuValues: PropTypes.array,
   defaultValue: PropTypes.string,
+  error: PropTypes.string,
+  message: PropTypes.string,
+  removeError: PropTypes.func,
 };
 
 export default FormSelect;

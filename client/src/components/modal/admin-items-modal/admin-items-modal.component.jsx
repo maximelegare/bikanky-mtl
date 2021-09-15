@@ -7,6 +7,8 @@ import {
   capitalizeString,
 } from "../../../_string-utilites/string-utilites";
 
+import { errMessages } from "./admin-modal.utils";
+
 import {
   createNewItemCategory,
   createNewItem,
@@ -39,6 +41,7 @@ const AdminItemsModal = ({
   setVisibility,
   modalName,
   categoryId,
+  // closeModal,
   ...otherProps
 }) => {
   // User address state
@@ -61,6 +64,7 @@ const AdminItemsModal = ({
     editImagesPage: false,
   });
 
+  // sets default values of the inputs if it's the modal to update the items
   useEffect(() => {
     if (updateItem) {
       setItemSpecifications({
@@ -76,19 +80,9 @@ const AdminItemsModal = ({
     }
   }, [item]);
 
-  // const [previousRouteName, setPreviousRouteName] = useState()
-
-  // sets default values to empty string if it's a new item
-
   // eslint-disable-next-line no-unused-vars
   const [errors, setErrors] = useState({
     title: null,
-    price: null,
-    stock: null,
-    shortDescription: null,
-    bulletPoints: null,
-    newBulletPoint: null,
-    newCategoryName: null,
     selectedCategory: null,
   });
 
@@ -109,19 +103,16 @@ const AdminItemsModal = ({
     selectedCategoryId,
   } = itemSpecifications;
 
-  // useEffect(() => {
-  //   setItemSpecifications({
-  //     ...itemSpecifications,
-  //     selectedCategory: selectInputDefaultValue,
-  //   });
-  //
-  // }, [selectInputDefaultValue]);
-  ////////////////////////////////////////////////
-
   //   handle the submit event
-
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    // validate the form
+    const isValid = validate();
+    // // the form is not valid, return
+    if (!isValid) return;
+
+    console.log("valid", isValid);
     // create an item to add to firebase depending if it's a new item or a new category
     if (newCategory) {
       const capitalizedTitle = capitalizeString(newCategoryName);
@@ -168,66 +159,38 @@ const AdminItemsModal = ({
           editImagesPage: false,
         });
       } else {
-        console.log(item);
         updateFirestoreItem(item);
       }
     }
 
-    // validate the form
-    // const isValid = validate();
-    // // the form is not valid, return
-    // if (!isValid) return;
-
-    // // otherwise add the shipping address
-    // addShippingAddress(currentUser.id, address, currentUser);
-    // // close the modal in the parent component
-    // closeModal(false);
+    // close the modal in the parent component
+    setVisibility(false, modalName);
   };
 
   ////////////////////////////////////////////////
 
   // validate the form in [address-modal.utils.js]
 
-  //   const validate = () => {
-  //     // errors from the utils
-  //     const {
-  //       country,
-  //       fullName,
-  //       addressLine,
-  //       city,
-  //       state,
-  //       postalCode,
-  //       phoneNumber,
-  //     } = errMessages(address);
+  const validate = () => {
+    // errors from the utils
+    const { title, selectedCategory } = errMessages(itemSpecifications);
 
-  // sets the errors in errors state
+    // sets the errors in errors state
 
-  // setErrors({
-  //   country,
-  //   fullName,
-  //   addressLine,
-  //   city,
-  //   state,
-  //   postalCode,
-  //   phoneNumber,
-  // });
+    console.log(errMessages(itemSpecifications))
+    setErrors({
+      title,
+      selectedCategory
+    });
 
-  // if any errors, return false
+    // if any errors, return false
+    if (title || selectedCategory) {
+      return false;
+    }
+    return true;
+  };
 
-  // if (
-  //   country ||
-  //   fullName ||
-  //   addressLine ||
-  //   city ||
-  //   state ||
-  //   postalCode ||
-  //   phoneNumber
-  // ) {
-  //   return false;
-  // }
-  // return true;
 
-  //   };
 
   ////////////////////////////////////////////////
   //   handle change event. the key is dynamic using the name and value provided
@@ -275,6 +238,8 @@ const AdminItemsModal = ({
       });
     }
   };
+
+
 
   // handle delete an image from []. The event is on click on the delete button
   const handleImageDeleteChange = (name, image, imageIdx) => {
@@ -335,7 +300,7 @@ const AdminItemsModal = ({
   // removes error with onBlur event. the key is dynamic (renders the name of the input)
 
   const removeError = (name) => {
-    // setErrors({ ...errors, [name]: null });
+    setErrors({ ...errors, [name]: null });
   };
 
   return (
@@ -364,7 +329,7 @@ const AdminItemsModal = ({
                 <div style={{ display: "flex", justifyContent: "flex-end" }}>
                   <div onClick={handleClickEditImagesPage}>
                     <CustomButtonMUI kind="small-grey">
-                      {!editImagesPage ? "Edit Images" : "Edit Text"}
+                      {!editImagesPage ? "Edit Images" : "Confirm"}
                     </CustomButtonMUI>
                   </div>
                 </div>
@@ -383,13 +348,16 @@ const AdminItemsModal = ({
                         autoFocus
                       />
                       <FormSelect
+                        error={errors.selectedCategory}
                         label="Category"
                         handleClick={handleSelectClickValue}
                         menuValues={selectInputMenuValues}
+                        removeError={removeError}
+                        name="selectedCategory"
                       />
                       <InputFlexContainer>
                         <FormInput
-                          error={errors.price}
+                          // error={errors.price}
                           type="number"
                           label="Price"
                           name="price"
@@ -398,7 +366,7 @@ const AdminItemsModal = ({
                           removeError={removeError}
                         />
                         <FormInput
-                          error={errors.stock}
+                          // error={errors.stock}
                           type="number"
                           label="Stock quantity"
                           name="stock"
@@ -408,7 +376,7 @@ const AdminItemsModal = ({
                         />
                       </InputFlexContainer>
                       <FormInput
-                        error={errors.shortDescription}
+                        // error={errors.shortDescription}
                         type="text"
                         label="Short Description"
                         name="shortDescription"
@@ -420,7 +388,7 @@ const AdminItemsModal = ({
                       />
                       <InputFlexContainer>
                         <FormInput
-                          error={errors.bulletPoints}
+                          // error={errors.bulletPoints}
                           type="text"
                           name="newBulletPoint"
                           label="Bullet points"
@@ -483,13 +451,15 @@ const AdminItemsModal = ({
               </>
             )
           }
-          <ButtonSectionContainer>
-            <div onClick={() => setVisibility(false, modalName)}>
-              <CustomButtonMUI type="submit">
-                {newItem || newCategory ? "Create" : "Confirm"}
-              </CustomButtonMUI>
-            </div>
-          </ButtonSectionContainer>
+          {editImagesPage ? null : (
+            <ButtonSectionContainer>
+              <div>
+                <CustomButtonMUI type="submit">
+                  {newItem || newCategory ? "Create" : "Confirm"}
+                </CustomButtonMUI>
+              </div>
+            </ButtonSectionContainer>
+          )}
         </InputSectionContainer>
       </form>
     </ModalComponent>
@@ -519,6 +489,7 @@ AdminItemsModal.propTypes = {
   selectInputMenuValues: PropTypes.array,
   selectInputDefaultValue: PropTypes.string,
   categoryId: PropTypes.string,
+  closeModal: PropTypes.func,
 };
 
 export default AdminItemsModal;
