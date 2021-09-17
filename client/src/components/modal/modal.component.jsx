@@ -9,10 +9,19 @@ import {
 } from "./modal.styles";
 import { PropTypes } from "prop-types";
 
-const ModalComponent = ({ isVisible, setVisibility, children, modalName }) => {
+import { useDispatch } from "react-redux";
+import { setModalVisibility } from "../../redux/modal-elements-visibility/modal.slice";
+
+const ModalComponent = ({
+  isVisible,
+  children,
+  modalName,
+  noBackgroundClosing,
+}) => {
   const modalRef = useRef();
   const backgroundRef = useRef();
   const wrapperRef = useRef();
+  const dispatch = useDispatch();
 
   // if modal is visible, body can't scroll
   useEffect(() => {
@@ -26,7 +35,8 @@ const ModalComponent = ({ isVisible, setVisibility, children, modalName }) => {
 
   // if the click is on the wrapperContainer => not on the modal, close the modal
   const handleClick = (e) => {
-    if (e.target === wrapperRef.current) setVisibility(false, modalName);
+    if (e.target === wrapperRef.current && !noBackgroundClosing)
+      dispatch(setModalVisibility({ modalName, visibility: false }));
   };
 
   return (
@@ -71,7 +81,8 @@ ModalComponent.propTypes = {
   children: PropTypes.any,
   isVisible: PropTypes.bool,
   setVisibility: PropTypes.func,
-  modalName:PropTypes.string
+  modalName: PropTypes.string,
+  noBackgroundClosing: PropTypes.bool, // user can't click on background to close the modal
 };
 
 export default ModalComponent;

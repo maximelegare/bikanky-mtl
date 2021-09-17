@@ -15,6 +15,7 @@ import dropdownSlice from "./dropdown-elements-visibility/dropdown.slice";
 import userSlice from "./user/user.slice";
 import itemsSlice from "./items/items.slice";
 import shippingSlice from "./shipping/shipping.slice";
+import modalSlice from "./modal-elements-visibility/modal.slice";
 // all reducers
 const reducers = combineReducers({
     items: itemsSlice,
@@ -23,7 +24,8 @@ const reducers = combineReducers({
     slider:sliderSlice,
     dropdown:dropdownSlice,
     user:userSlice,
-    shipping:shippingSlice
+    shipping:shippingSlice,
+    modal:modalSlice
 })
 
 

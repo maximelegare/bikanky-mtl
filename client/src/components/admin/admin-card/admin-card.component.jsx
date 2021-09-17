@@ -13,6 +13,9 @@ import {
 // import AdminItemsModal from "../../modal/admin-items-modal/admin-items-modal.component";
 import AdminButton from "../admin-button/admin-button.component";
 import CustomButtonMUI from "../../buttons/material-ui/custom-button-mui.component";
+import { useDispatch } from "react-redux";
+import { setModalVisibility } from "../../../redux/modal-elements-visibility/modal.slice";
+
 const AdminCard = ({
   items,
   small,
@@ -22,10 +25,12 @@ const AdminCard = ({
   currentButton,
   topButton,
   modalComponent,
-  setModalVisibility,
+  // setModalVisibility,
   modalName,
   categoryElement,
 }) => {
+
+  const dispatch = useDispatch()
   return (
     <>
       {/* <AdminItemsModal
@@ -37,7 +42,7 @@ const AdminCard = ({
 
       <AdminCardContainer small={small}>
         {topButton && (
-          <ButtonContainer onClick={() => setModalVisibility(true, modalName)}>
+          <ButtonContainer onClick={() => dispatch(setModalVisibility({modalName, visibility:true}))}>
             <CustomButtonMUI kind="icon-color">add</CustomButtonMUI>
           </ButtonContainer>
         )}

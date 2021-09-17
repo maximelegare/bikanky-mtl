@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { PropTypes } from "prop-types";
 import { AddressContainer } from "./checkout-address.styles";
 import AddressModal from "../../../modal/address-modal/address-modal.component";
@@ -8,26 +8,28 @@ import CustomButton from "../../../buttons/my-buttons/customButtons/custom-butto
 
 import { TitleContainer } from "../checkout-infos.styles";
 import { RightSectionContainer } from "./checkout-address.styles";
+import { useSelector, useDispatch } from "react-redux";
+import { selectAddressModalVisibility } from "../../../../redux/modal-elements-visibility/modal.selector";
+import { setModalVisibility } from "../../../../redux/modal-elements-visibility/modal.slice";
 
 const CheckoutAddressSection = ({ user }) => {
   const userAddress = user?.address;
 
-  const [modalVisibility, setModalVisibility] = useState(false);
+  const addressModalVisibility = useSelector(selectAddressModalVisibility);
+  const dispatch = useDispatch();
 
-  const setVisibility = (visibility) => {
-    setModalVisibility(visibility);
+  const handleClick = () => {
+    dispatch(setModalVisibility({ modalName: "addressModal", visibility: true }));
   };
-
 
   return (
     <>
       <RightSectionContainer>
         <TitleContainer>1 - Shipping Address</TitleContainer>
         <AddressModal
-          setVisibility={setVisibility}
-          isVisible={modalVisibility}
+          isVisible={addressModalVisibility}
           userAddress={userAddress}
-          closeModal={setVisibility}
+          modalName="addressModal"
         />
 
         <AddressContainer>
@@ -43,15 +45,19 @@ const CheckoutAddressSection = ({ user }) => {
             </div>
           ) : (
             // or render a button to add an address
-            <div onClick={() => setVisibility(true)}>
+            <div onClick={handleClick}>
               <CustomButtonMUI kind="small">Add an Address</CustomButtonMUI>
             </div>
           )}
         </AddressContainer>
       </RightSectionContainer>
       {userAddress && (
-        <div onClick={() => setVisibility(true)}>
-          <CustomButton kind="text" title="Edit Address" color="var(--dark-font-color)" />
+        <div onClick={handleClick}>
+          <CustomButton
+            kind="text"
+            title="Edit Address"
+            color="var(--dark-font-color)"
+          />
         </div>
       )}
     </>

@@ -19,6 +19,9 @@ import {
   selectItemTest,
 } from "../../../../redux/items/items.selectors";
 
+import { selectNewItemModalVisibility } from "../../../../redux/modal-elements-visibility/modal.selector";
+import { selectNewCategoryModalVisibility } from "../../../../redux/modal-elements-visibility/modal.selector";
+
 const CategoriesPageAdmin = () => {
   // gets items categories and put all names in an array
   const itemsCategories = useSelector(selectItemsCategories);
@@ -60,6 +63,9 @@ const CategoriesPageAdmin = () => {
     newCategory:false,
     newItem:false
   })
+  
+  const newItemModalVisibility = useSelector(selectNewItemModalVisibility)
+  const newCategoryModalVisibility = useSelector(selectNewCategoryModalVisibility)
 
   // sets the modal visibility using the modal name (a string passed to the [cardAdmin] and the [AminItemsModal] components )
   const setModalVisibility = (visibility, modalName) => {
@@ -81,7 +87,7 @@ const CategoriesPageAdmin = () => {
             categoryElement
             modalComponent={
               <AdminItemsModal
-                isVisible={modalVisibility.newCategory}
+                isVisible={newCategoryModalVisibility}
                 // item={item}
                 setVisibility={setModalVisibility}
                 closeModal={setModalVisibility}
@@ -100,7 +106,7 @@ const CategoriesPageAdmin = () => {
             modalComponent={
               <AdminItemsModal
                 selectInputMenuValues={itemsCategoriesArray}
-                isVisible={modalVisibility.newItem}
+                isVisible={newItemModalVisibility}
                 // item={item}
                 setVisibility={setModalVisibility}
                 closeModal={setModalVisibility}

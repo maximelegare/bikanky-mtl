@@ -73,7 +73,7 @@ const CustomButtonMUI = ({ children, kind, deleteIcon, routeName, type, value })
           }}
           variant="contained"
           type={type}
-          value={value}
+          
         >
           <span className="material-icons">{children}</span>
         </IconButton>
@@ -86,7 +86,7 @@ const CustomButtonMUI = ({ children, kind, deleteIcon, routeName, type, value })
           }}
           variant="contained"
           type={type}
-          value={value}
+          data-testid={value}
         >
           <span className="material-icons">{children}</span>
         </IconButton>

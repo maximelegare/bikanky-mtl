@@ -7,6 +7,8 @@ import CustomButtonMUI from "../../buttons/material-ui/custom-button-mui.compone
 
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../../../redux/user/user.selector";
+import { setModalVisibility } from "../../../redux/modal-elements-visibility/modal.slice";
+import { useDispatch } from "react-redux";
 
 import {
   InputSectionContainer,
@@ -16,8 +18,10 @@ import {
 
 import { errMessages } from "./address-modal.utils";
 
-const AddressModal = ({ userAddress, closeModal, ...otherProps }) => {
+const AddressModal = ({ userAddress, modalName, ...otherProps }) => {
   const currentUser = useSelector(selectCurrentUser);
+  const dispatch = useDispatch()
+
 
   // User address state
   const [address, setAddress] = useState({
@@ -62,10 +66,10 @@ const AddressModal = ({ userAddress, closeModal, ...otherProps }) => {
     // the form is not valid, return
     if (!isValid) return;
 
-    // otherwise add the shipping address
+    // otherwise add the shipping addressks
     addShippingAddress(currentUser.id, address, currentUser);
-    // close the modal in the parent component
-    closeModal(false);
+    // close the modal in the parent component 
+    dispatch(setModalVisibility({modalName, visibility:false}))
   };
 
   ////////////////////////////////////////////////
@@ -123,7 +127,7 @@ const AddressModal = ({ userAddress, closeModal, ...otherProps }) => {
   };
 
   return (
-    <ModalComponent {...otherProps}>
+    <ModalComponent {...otherProps} modalName={modalName}>
       <form onSubmit={handleSubmit}>
         <TitleModalContainer>
           <h3>Add an address</h3>
@@ -215,6 +219,7 @@ AddressModal.propTypes = {
     phoneNumber: PropTypes.string,
   }),
   closeModal: PropTypes.func,
+  modalName:PropTypes.string
 };
 
 export default AddressModal;
