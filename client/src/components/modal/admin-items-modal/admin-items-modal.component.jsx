@@ -46,7 +46,7 @@ const AdminItemsModal = ({
 }) => {
   // User address state
   const [itemSpecifications, setItemSpecifications] = useState({
-    id: generateUID(),
+    id: "",
     title: "",
     price: 0,
     stock: 0,
@@ -124,7 +124,6 @@ const AdminItemsModal = ({
     } else {
       const capitalizedTitle = capitalizeString(title);
       const item = {
-        id: id,
         title: capitalizedTitle,
         cartQuantity: 0,
         price: parseInt(price),
@@ -139,19 +138,19 @@ const AdminItemsModal = ({
         stock: parseInt(stock),
       };
       if (newItem) {
-        createNewItem(item);
+        createNewItem({...item, id:generateUID()});
         setItemSpecifications({
-          id: item?.id ?? generateUID(),
-          title: item?.title ?? "",
-          price: item?.price ?? 0,
-          stock: item?.stock ?? 0,
-          shortDescription: item?.shortDescription ?? "",
-          bulletPoints: item?.bulletPoints ?? [],
-          imageUrl: item?.imageUrl ?? {
+          id: "",
+          title: "",
+          price: 0,
+          stock: 0,
+          shortDescription: "",
+          bulletPoints: [],
+          imageUrl: {
             fileName: "",
             url: "",
           },
-          carouselImages: item?.carouselImages ?? [],
+          carouselImages: [],
           newBulletPoint: "",
           newCategoryName: "",
           selectedCategory: "",
@@ -159,7 +158,7 @@ const AdminItemsModal = ({
           editImagesPage: false,
         });
       } else {
-        updateFirestoreItem(item);
+        updateFirestoreItem({...item, id:id});
       }
     }
 
@@ -177,10 +176,10 @@ const AdminItemsModal = ({
 
     // sets the errors in errors state
 
-    console.log(errMessages(itemSpecifications))
+    console.log(errMessages(itemSpecifications));
     setErrors({
       title,
-      selectedCategory
+      selectedCategory,
     });
 
     // if any errors, return false
@@ -189,8 +188,6 @@ const AdminItemsModal = ({
     }
     return true;
   };
-
-
 
   ////////////////////////////////////////////////
   //   handle change event. the key is dynamic using the name and value provided
@@ -238,8 +235,6 @@ const AdminItemsModal = ({
       });
     }
   };
-
-
 
   // handle delete an image from []. The event is on click on the delete button
   const handleImageDeleteChange = (name, image, imageIdx) => {
