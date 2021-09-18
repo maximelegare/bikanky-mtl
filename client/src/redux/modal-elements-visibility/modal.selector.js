@@ -28,3 +28,9 @@ export const selectconfirmationModalVisibility = createSelector(
     return modal.confirmationModal;
   }
 );
+export const selectUpdateItemModalVisibility = createSelector(
+  [selectModalInitialState],
+  (modal) => {
+    return modal.updateItem;
+  }
+);

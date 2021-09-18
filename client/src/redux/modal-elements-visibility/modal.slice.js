@@ -4,7 +4,8 @@ const initialState = {
     addressModal:false,
     newItem:false,
     confirmationModal:false,
-    newCategory:false
+    newCategory:false,
+    updateItem:false
   };
   
   const modalSlice = createSlice({

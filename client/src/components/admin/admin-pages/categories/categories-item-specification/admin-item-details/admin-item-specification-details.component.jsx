@@ -3,9 +3,8 @@
 
 // it's the component where the modal for editing an item is rendered is redered and manage the visibility (categories pages)
 
-import React, { useState } from "react";
+import React from "react";
 import { PropTypes } from "prop-types";
-import AdminItemsModal from "../../../../../modal/admin-items-modal/admin-items-modal.component";
 import CustomButtonMUI from "../../../../../buttons/material-ui/custom-button-mui.component";
 import {
   AdminItemSpecificationDetailsContainerWrapper,
@@ -17,31 +16,22 @@ import {
 } from "./admin-item-specification-details.styles";
 
 import { SectionContainer } from "../categories-item-specification.styles";
+import { useDispatch } from "react-redux";
+import { setModalVisibility } from "../../../../../../redux/modal-elements-visibility/modal.slice";
 
-const AdminItemSpecificationDetails = ({ item, selectInputMenuValues }) => {
+const AdminItemSpecificationDetails = ({ item, modalName }) => {
   const { title, shortDescription, bulletPoints, stock, price } = item;
 
-  const [modalVisibility, setModalVisibility] = useState(false);
-
-  console.log(item)
+  const dispatch = useDispatch()
 
   return (
     <>
-      <AdminItemsModal
-        isVisible={modalVisibility}
-        item={item}
-        setVisibility={setModalVisibility}
-        selectInputMenuValues={selectInputMenuValues}
-        updateItem
-      />
-      
-
       <AdminItemSpecificationDetailsContainerWrapper>
         <SectionFlexContainer style={{ justifyContent: "space-between" }}>
           <SectionContainer>
             <TitleContainer>{title}</TitleContainer>
           </SectionContainer>
-          <SectionContainer onClick={() => setModalVisibility(true)}>
+          <SectionContainer onClick={() => dispatch(setModalVisibility({modalName, visibility:true}))}>
             <CustomButtonMUI kind="small">Edit</CustomButtonMUI>
           </SectionContainer>
         </SectionFlexContainer>
@@ -81,7 +71,8 @@ const AdminItemSpecificationDetails = ({ item, selectInputMenuValues }) => {
 
 AdminItemSpecificationDetails.propTypes = {
   item: PropTypes.object,
-  selectInputMenuValues:PropTypes.array
+  selectInputMenuValues:PropTypes.array,
+  modalName:PropTypes.string
 };
 
 export default AdminItemSpecificationDetails;
