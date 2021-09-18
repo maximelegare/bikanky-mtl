@@ -16,7 +16,6 @@ const ModalComponent = ({
   isVisible,
   children,
   modalName,
-  noBackgroundClosing,
   withConfirmationModal,
 }) => {
   const modalRef = useRef();
@@ -37,7 +36,8 @@ const ModalComponent = ({
 
   // if the click is on the wrapperContainer => not on the modal, close the modal
   const handleClick = (e) => {
-    if (e.target === wrapperRef.current && !noBackgroundClosing) {
+    if (e.target === wrapperRef.current) {
+      // if the modal uses confirmation, open confirmation modal
       if (withConfirmationModal) {
         dispatch(
           setModalVisibility({
@@ -45,8 +45,10 @@ const ModalComponent = ({
             visibility: true,
           })
         );
+        // otherwise close the modal
+      }else{
+        dispatch(setModalVisibility({ modalName, visibility: false }));
       }
-      dispatch(setModalVisibility({ modalName, visibility: false }));
     }
 
   };
@@ -67,7 +69,7 @@ const ModalComponent = ({
           onClick={handleClick}
           style={{
             zIndex: `${
-              modalName === "confirmationModal" ? "1000" : "default"
+              modalName === "confirmationModal" ? "10000" : "default"
             }`,
           }}
         >

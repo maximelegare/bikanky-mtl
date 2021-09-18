@@ -26,9 +26,10 @@ const ConfirmationModal = ({
   const dispatch = useDispatch();
   const handleClick = (status) => {
     if(status){
-        dispatch(setModalVisibility({ modalName:modalToConfirm, visibility: false }));
-        dispatch(setModalVisibility({ modalName, visibility: false }));
+        // close all the modals
+        dispatch(setModalVisibility({ visibility: false, closeAllModal:true }));
     }else{
+        // close only this modal
         dispatch(setModalVisibility({ modalName, visibility: false }));
     }  
   };

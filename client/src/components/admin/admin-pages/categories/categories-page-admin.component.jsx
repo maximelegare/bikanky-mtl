@@ -10,7 +10,7 @@ import { CategoriesFlexWrapperContainer } from "./categories-page-admin.styles";
 
 import AdminItemsModal from "../../../modal/admin-items-modal/admin-items-modal.component";
 import AdminCategoryModal from "../../../modal/admin-category-modal/admin-category-modal.component";
-// import WithConfirmationModal from "../../../_HOC/with-confirmation-modal/with-confirmation-modal.component";
+import WithConfirmationModal from "../../../_HOC/with-confirmation-modal/with-confirmation-modal.component";
 
 import AdminCard from "../../admin-card/admin-card.component";
 import CategoriesItemSpecification from "./categories-item-specification/categories-item-specification.component";
@@ -34,8 +34,9 @@ const CategoriesPageAdmin = () => {
     (item) => item
   );
 
-  // const AdminCategoryModalWithConfirmation = WithConfirmationModal(AdminCategoryModal)
-  // const AdminItemModalWithConfirmation = WithConfirmationModal(AdminItemsModal)
+  // Modals with the confirmation modal (HOC) 
+  const AdminCategoryModalWithConfirmation = WithConfirmationModal(AdminCategoryModal)
+  const AdminItemModalWithConfirmation = WithConfirmationModal(AdminItemsModal)
 
   //   default buttonValue, and value when the button was clicked
   const [categoryButtonValue, setCategoryButtonValue] = useState(null);
@@ -99,7 +100,7 @@ const CategoriesPageAdmin = () => {
             // setModalVisibility={setModalVisibility}
             categoryElement
             modalComponent={
-              <AdminCategoryModal
+              <AdminCategoryModalWithConfirmation
                 isVisible={newCategoryModalVisibility}
                 // item={item}
                 // setVisibility={setModalVisibility}
@@ -118,7 +119,7 @@ const CategoriesPageAdmin = () => {
             modalName="newItem"
             // setModalVisibility={setModalVisibility}
             modalComponent={
-              <AdminItemsModal
+              <AdminItemModalWithConfirmation
                 selectInputMenuValues={itemsCategoriesArray}
                 isVisible={newItemModalVisibility}
                 // item={item}
@@ -132,7 +133,7 @@ const CategoriesPageAdmin = () => {
           <AdminCard
             noList
             modalComponent={
-              <AdminItemsModal
+              <AdminItemModalWithConfirmation
                 isVisible={updateItemModalVisibility}
                 item={item}
                 modalName="updateItem"
