@@ -10,7 +10,7 @@ import {
   capitalizeString,
 } from "../../../_string-utilites/string-utilites";
 
-import { errMessages } from "./admin-modal.utils";
+import { newItemErrors } from "../admin-modal.utils";
 
 import {
   createNewItemCategory,
@@ -34,10 +34,10 @@ import ModalComponent from "../modal.component";
 import FormInput from "../../form-inputs/form-input.component";
 import CustomButtonMUI from "../../buttons/material-ui/custom-button-mui.component";
 import CustomButton from "../../buttons/my-buttons/customButtons/custom-button.component";
-import ConfirmationModal from "../confirmation-modal/confirmation-modal.component";
+// import ConfirmationModal from "../confirmation-modal/confirmation-modal.component";
 
-import { selectconfirmationModalVisibility } from "../../../redux/modal-elements-visibility/modal.selector";
-import { useSelector } from "react-redux";
+// import { selectconfirmationModalVisibility } from "../../../redux/modal-elements-visibility/modal.selector";
+// import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { setModalVisibility } from "../../../redux/modal-elements-visibility/modal.slice";
 
@@ -66,21 +66,21 @@ const AdminItemsModal = ({
     },
     carouselImages: [],
     newBulletPoint: "",
-    newCategoryName: "",
     selectedCategory: "",
     selectedCategoryId: "",
     editImagesPage: false,
   });
 
   const dispatch = useDispatch();
-  const confirmationModalVisibility = useSelector(
-    selectconfirmationModalVisibility
-  );
+  // const confirmationModalVisibility = useSelector(
+  //   selectconfirmationModalVisibility
+  // );
 
   // default errors
   const [errors, setErrors] = useState({
     title: null,
     selectedCategory: null,
+    newCategoryName: null,
   });
 
   // sets default values of the inputs if it's the modal to update the items
@@ -108,7 +108,6 @@ const AdminItemsModal = ({
     shortDescription,
     bulletPoints,
     newBulletPoint,
-    newCategoryName,
     selectedCategory,
     editImagesPage,
     imageUrl,
@@ -127,14 +126,15 @@ const AdminItemsModal = ({
     const isValid = validate();
     // // the form is not valid, return
     if (!isValid) return;
-
+    console.log(newCategory);
     // create an item to add to firebase depending if it's a new item or a new category
     if (newCategory) {
-      const capitalizedTitle = capitalizeString(newCategoryName);
+      const capitalizedTitle = capitalizeString(title);
       const item = {
         title: capitalizedTitle,
-        dbTitle: newCategoryName.toLocaleLowerCase(),
+        dbTitle: title.toLocaleLowerCase(),
       };
+
       createNewItemCategory(item);
     } else {
       const capitalizedTitle = capitalizeString(title);
@@ -193,7 +193,7 @@ const AdminItemsModal = ({
 
   const validate = () => {
     // errors from the utils
-    const { title, selectedCategory } = errMessages(itemSpecifications);
+    const { title, selectedCategory } = newItemErrors(itemSpecifications);
 
     // sets the errors in errors state
     setErrors({
@@ -331,164 +331,143 @@ const AdminItemsModal = ({
 
   return (
     <>
-      <ConfirmationModal
-        noBackgroundClosing
-        isVisible={confirmationModalVisibility}
-        modalName="confirmationModal"
-        message="Are you sure you want to quit? All data will be lost!"
-      />
+      
       <ModalComponent
         {...otherProps}
         modalName={modalName}
-        setVisibility={setVisibility}
+        // setVisibility={setVisibility}
       >
         <form onSubmit={handleSubmit}>
           <InputSectionContainer>
-            {
-              // if the modal is newCategory => render new category input
-              newCategory ? (
-                <FormInput
-                  error={errors.title}
-                  type="text"
-                  label="Category"
-                  name="newCategoryName"
-                  value={newCategoryName}
-                  handleChange={handleChange}
-                  removeError={removeError}
-                  autoFocus
-                />
-              ) : (
-                <>
-                  <div style={{ display: "flex", justifyContent: "flex-end" }}>
-                    <div onClick={handleClickEditImagesPage}>
-                      <CustomButtonMUI kind="small-grey">
-                        {!editImagesPage ? "Edit Images" : "Confirm"}
-                      </CustomButtonMUI>
-                    </div>
-                  </div>
-                  {
-                    // if the page is not editImagePage => edit text
-                    !editImagesPage ? (
-                      <>
-                        <FormInput
-                          error={errors.title}
-                          type="text"
-                          label="Title"
-                          name="title"
-                          value={title}
-                          handleChange={handleChange}
-                          removeError={removeError}
-                          autoFocus
-                        />
-                        <FormSelect
-                          error={errors.selectedCategory}
-                          label="Category"
-                          handleClick={handleSelectClickValue}
-                          menuValues={selectInputMenuValues}
-                          removeError={removeError}
-                          name="selectedCategory"
-                        />
-                        <InputFlexContainer>
-                          <FormInput
-                            // error={errors.price}
-                            type="number"
-                            label="Price"
-                            name="price"
-                            value={price}
-                            handleChange={handleChange}
-                            removeError={removeError}
-                          />
-                          <FormInput
-                            // error={errors.stock}
-                            type="number"
-                            label="Stock quantity"
-                            name="stock"
-                            value={stock}
-                            handleChange={handleChange}
-                            removeError={removeError}
-                          />
-                        </InputFlexContainer>
-                        <FormInput
-                          // error={errors.shortDescription}
-                          type="text"
-                          label="Short Description"
-                          name="shortDescription"
-                          value={shortDescription}
-                          handleChange={handleChange}
-                          removeError={removeError}
-                          multiline
-                          rows={4}
-                        />
-                        <InputFlexContainer>
-                          <FormInput
-                            // error={errors.bulletPoints}
-                            type="text"
-                            name="newBulletPoint"
-                            label="Bullet points"
-                            value={newBulletPoint}
-                            handleChange={handleChange}
-                            removeError={removeError}
-                            multiline
-                            rows={2}
-                          />
-                          <div style={{ marginTop: "40px" }}>
-                            <div onClick={handleClickAddBullet}>
-                              <CustomButtonMUI inline kind="icon-color">
-                                add
-                              </CustomButtonMUI>
-                            </div>
-                          </div>
-                        </InputFlexContainer>
-                        <BulletPointsContainer>
-                          <ul>
-                            {bulletPoints?.map((bullet, idx) => {
-                              return (
-                                <li key={idx}>
-                                  <BulletPointFlexContainer>
-                                    <span>{bullet}</span>
-                                    <div onClick={handleClickDeleteBullet}>
-                                      <CustomButton
-                                        value={bullet}
-                                        kind="icon-only"
-                                        deleteIcon
-                                        title="clear"
-                                      ></CustomButton>
-                                    </div>
-                                  </BulletPointFlexContainer>
-                                </li>
-                              );
-                            })}
-                          </ul>
-                        </BulletPointsContainer>
-                      </>
-                    ) : (
-                      <>
-                        <FormFileInput
-                          mainImage={imageUrl}
-                          label="Main image"
-                          maxLength={1}
-                          name="imageUrl"
-                          handleAdd={handleAddImageChange}
-                          handleDelete={handleImageDeleteChange}
-                        />
-                        <FormFileInput
-                          name="carouselImages"
-                          items={carouselImages}
-                          label="Carousel Images"
-                          handleAdd={handleAddImageChange}
-                          handleDelete={handleImageDeleteChange}
-                        />
-                      </>
-                    )
-                  }
-                </>
-              )
-            }
+            <>
+              <div style={{ display: "flex", justifyContent: "flex-end" }}>
+                <div onClick={handleClickEditImagesPage}>
+                  <CustomButtonMUI kind="small-grey">
+                    {!editImagesPage ? "Edit Images" : "Confirm"}
+                  </CustomButtonMUI>
+                </div>
+              </div>
+              {
+                // if the page is not editImagePage => edit text
+                !editImagesPage ? (
+                  <>
+                    <FormInput
+                      error={errors.title}
+                      type="text"
+                      label="Title"
+                      name="title"
+                      value={title}
+                      handleChange={handleChange}
+                      removeError={removeError}
+                      autoFocus
+                    />
+                    <FormSelect
+                      error={errors.selectedCategory}
+                      label="Category"
+                      handleClick={handleSelectClickValue}
+                      menuValues={selectInputMenuValues}
+                      removeError={removeError}
+                      name="selectedCategory"
+                    />
+                    <InputFlexContainer>
+                      <FormInput
+                        // error={errors.price}
+                        type="number"
+                        label="Price"
+                        name="price"
+                        value={price}
+                        handleChange={handleChange}
+                        removeError={removeError}
+                      />
+                      <FormInput
+                        // error={errors.stock}
+                        type="number"
+                        label="Stock quantity"
+                        name="stock"
+                        value={stock}
+                        handleChange={handleChange}
+                        removeError={removeError}
+                      />
+                    </InputFlexContainer>
+                    <FormInput
+                      // error={errors.shortDescription}
+                      type="text"
+                      label="Short Description"
+                      name="shortDescription"
+                      value={shortDescription}
+                      handleChange={handleChange}
+                      removeError={removeError}
+                      multiline
+                      rows={4}
+                    />
+                    <InputFlexContainer>
+                      <FormInput
+                        // error={errors.bulletPoints}
+                        type="text"
+                        name="newBulletPoint"
+                        label="Bullet points"
+                        value={newBulletPoint}
+                        handleChange={handleChange}
+                        removeError={removeError}
+                        multiline
+                        rows={2}
+                      />
+                      <div style={{ marginTop: "40px" }}>
+                        <div onClick={handleClickAddBullet}>
+                          <CustomButtonMUI inline kind="icon-color">
+                            add
+                          </CustomButtonMUI>
+                        </div>
+                      </div>
+                    </InputFlexContainer>
+                    <BulletPointsContainer>
+                      <ul>
+                        {bulletPoints?.map((bullet, idx) => {
+                          return (
+                            <li key={idx}>
+                              <BulletPointFlexContainer>
+                                <span>{bullet}</span>
+                                <div onClick={handleClickDeleteBullet}>
+                                  <CustomButton
+                                    value={bullet}
+                                    kind="icon-only"
+                                    deleteIcon
+                                    title="clear"
+                                  ></CustomButton>
+                                </div>
+                              </BulletPointFlexContainer>
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    </BulletPointsContainer>
+                  </>
+                ) : (
+                  <>
+                    <FormFileInput
+                      mainImage={imageUrl}
+                      label="Main image"
+                      maxLength={1}
+                      name="imageUrl"
+                      handleAdd={handleAddImageChange}
+                      handleDelete={handleImageDeleteChange}
+                    />
+                    <FormFileInput
+                      name="carouselImages"
+                      items={carouselImages}
+                      label="Carousel Images"
+                      handleAdd={handleAddImageChange}
+                      handleDelete={handleImageDeleteChange}
+                    />
+                  </>
+                )
+              }
+            </>
             {editImagesPage ? null : (
               <ButtonSectionContainer>
                 <div>
                   <CustomButtonMUI type="submit">
-                    {newItem || newCategory ? "Create" : "Confirm"}
+                    {newItem ? "Create" : "Confirm"}
                   </CustomButtonMUI>
                 </div>
               </ButtonSectionContainer>

@@ -20,20 +20,23 @@ const ConfirmationModal = ({
   setVisibility,
   modalName,
   message,
-
+  modalToConfirm,
   ...otherProps
 }) => {
   const dispatch = useDispatch();
-
   const handleClick = (status) => {
-    dispatch(setModalVisibility({ modalName, visibility: false }));
+    if(status){
+        dispatch(setModalVisibility({ modalName:modalToConfirm, visibility: false }));
+        dispatch(setModalVisibility({ modalName, visibility: false }));
+    }else{
+        dispatch(setModalVisibility({ modalName, visibility: false }));
+    }  
   };
 
   return (
     <ModalComponent
       {...otherProps}
       modalName={modalName}
-      setVisibility={setVisibility}
     >
       <ConfimationModalWrapperContainer>
         <ConfimationModalMarginsContainer>
@@ -58,6 +61,7 @@ ConfirmationModal.propTypes = {
   setVisibility: PropTypes.func,
   modalName: PropTypes.string,
   message: PropTypes.string,
+  modalToConfirm:PropTypes.string
 };
 
 export default ConfirmationModal;

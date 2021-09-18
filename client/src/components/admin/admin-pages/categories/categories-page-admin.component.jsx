@@ -9,6 +9,9 @@ import { PageMediumMarginsContainer } from "../../../_styling-containers/pages-s
 import { CategoriesFlexWrapperContainer } from "./categories-page-admin.styles";
 
 import AdminItemsModal from "../../../modal/admin-items-modal/admin-items-modal.component";
+import AdminCategoryModal from "../../../modal/admin-category-modal/admin-category-modal.component";
+// import WithConfirmationModal from "../../../_HOC/with-confirmation-modal/with-confirmation-modal.component";
+
 
 import AdminCard from "../../admin-card/admin-card.component";
 import CategoriesItemSpecification from "./categories-item-specification/categories-item-specification.component";
@@ -19,6 +22,7 @@ import {
   selectItemTest,
 } from "../../../../redux/items/items.selectors";
 
+
 import { selectNewItemModalVisibility } from "../../../../redux/modal-elements-visibility/modal.selector";
 import { selectNewCategoryModalVisibility } from "../../../../redux/modal-elements-visibility/modal.selector";
 
@@ -26,6 +30,10 @@ const CategoriesPageAdmin = () => {
   // gets items categories and put all names in an array
   const itemsCategories = useSelector(selectItemsCategories);
   const itemsCategoriesArray = Object.values(itemsCategories).map((item) => item)
+
+  // const AdminCategoryModalWithConfirmation = WithConfirmationModal(AdminCategoryModal)
+  // const AdminItemModalWithConfirmation = WithConfirmationModal(AdminItemsModal)
+
 
   //   default buttonValue, and value when the button was clicked
   const [categoryButtonValue, setCategoryButtonValue] = useState(null);
@@ -86,13 +94,13 @@ const CategoriesPageAdmin = () => {
             setModalVisibility={setModalVisibility}
             categoryElement
             modalComponent={
-              <AdminItemsModal
+              <AdminCategoryModal
                 isVisible={newCategoryModalVisibility}
                 // item={item}
-                setVisibility={setModalVisibility}
-                closeModal={setModalVisibility}
+                // setVisibility={setModalVisibility}
+                // closeModal={setModalVisibility}
                 modalName="newCategory"
-                newCategory
+                // newCategory
               />}
           />
           <AdminCard
