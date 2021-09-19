@@ -29,6 +29,8 @@ const useStyles = makeStyles({
     color: "black",
     padding: "6px",
     boxShadow:"var(--light-box-shadow)",
+    position: "relative",
+    zIndex:"0",
     "&:hover": {
       backgroundColor: "var(--yellow-accent-hover)",
     },
@@ -51,6 +53,7 @@ const smallStyles = makeStyles({
     color: "black",
     padding: "3px, 5px",
     minWidth: "100px",
+    
     "&:hover": {
       backgroundColor: "var(--yellow-accent-hover)",
     },

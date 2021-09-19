@@ -4,6 +4,8 @@
 import React from "react";
 import { PropTypes } from "prop-types";
 
+import WithAnimation from "../../_HOC/with-animation/with-animation.component";
+
 import ModalComponent from "../modal.component";
 import CustomButtonMUI from "../../buttons/material-ui/custom-button-mui.component";
 
@@ -66,4 +68,4 @@ ConfirmationModal.propTypes = {
   modalToConfirm:PropTypes.string
 };
 
-export default ConfirmationModal;
+export default WithAnimation(ConfirmationModal);

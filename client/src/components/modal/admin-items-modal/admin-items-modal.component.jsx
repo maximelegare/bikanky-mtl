@@ -5,6 +5,8 @@
 import React, { useState, useEffect } from "react";
 import { PropTypes } from "prop-types";
 
+import WithAnimation from "../../_HOC/with-animation/with-animation.component";
+
 import {
   generateUID,
   capitalizeString,
@@ -505,4 +507,4 @@ AdminItemsModal.propTypes = {
   closeModal: PropTypes.func,
 };
 
-export default AdminItemsModal;
+export default WithAnimation(AdminItemsModal);

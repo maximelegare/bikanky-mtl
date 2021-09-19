@@ -10,7 +10,7 @@ import { CategoriesFlexWrapperContainer } from "./categories-page-admin.styles";
 
 import AdminItemsModal from "../../../modal/admin-items-modal/admin-items-modal.component";
 import AdminCategoryModal from "../../../modal/admin-category-modal/admin-category-modal.component";
-import WithConfirmationModal from "../../../_HOC/with-confirmation-modal/with-confirmation-modal.component";
+// import WithConfirmationModal from "../../../_HOC/with-confirmation-modal/with-confirmation-modal.component";
 
 import AdminCard from "../../admin-card/admin-card.component";
 import CategoriesItemSpecification from "./categories-item-specification/categories-item-specification.component";
@@ -67,7 +67,6 @@ const CategoriesPageAdmin = () => {
     })
   );
 
-
   const newItemModalVisibility = useSelector(selectNewItemModalVisibility);
   const newCategoryModalVisibility = useSelector(
     selectNewCategoryModalVisibility
@@ -75,7 +74,6 @@ const CategoriesPageAdmin = () => {
   const updateItemModalVisibility = useSelector(
     selectUpdateItemModalVisibility
   );
-
 
   return (
     <>
@@ -104,33 +102,25 @@ const CategoriesPageAdmin = () => {
             topButton
             modalName="newItem"
             modalComponent={
-              <WithConfirmationModal
-                modalComponent={
-                  <AdminItemsModal
-                    selectInputMenuValues={itemsCategoriesArray}
-                    isVisible={newItemModalVisibility}
-                    modalName="newItem"
-                    withConfirmationModal
-                    newItem
-                  />
-                }
+              <AdminItemsModal
+                selectInputMenuValues={itemsCategoriesArray}
+                isVisible={newItemModalVisibility}
+                modalName="newItem"
+                // withConfirmationModal
+                newItem
               />
             }
           />
           <AdminCard
             noList
             modalComponent={
-              <WithConfirmationModal
-                modalComponent={
-                  <AdminItemsModal
-                    isVisible={updateItemModalVisibility}
-                    item={item}
-                    modalName="updateItem"
-                    withConfirmationModal
-                    selectInputMenuValues={itemsCategoriesArray}
-                    updateItem
-                  />
-                }
+              <AdminItemsModal
+                isVisible={updateItemModalVisibility}
+                item={item}
+                modalName="updateItem"
+                // withConfirmationModal
+                selectInputMenuValues={itemsCategoriesArray}
+                updateItem
               />
             }
           >

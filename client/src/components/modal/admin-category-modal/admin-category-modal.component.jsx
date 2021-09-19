@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import { PropTypes } from "prop-types";
 import ModalComponent from "../modal.component";
 
+import WithAnimation from "../../_HOC/with-animation/with-animation.component";
+
 import { capitalizeString } from "../../../_string-utilites/string-utilites";
 
 import { InputSectionContainer } from "../address-modal/address-modal.styles";
@@ -93,7 +95,7 @@ const AdminCategoryModal = ({ modalName, ...otherProps }) => {
   const removeError = (name) => {
     setErrors({ ...errors, [name]: null });
   };
-  
+  console.log(modalName)
   return (
     <ModalComponent modalName={modalName} {...otherProps}>
       <form onSubmit={handleSubmit}>
@@ -123,4 +125,4 @@ AdminCategoryModal.propTypes = {
   modalName: PropTypes.string,
 };
 
-export default AdminCategoryModal;
+export default WithAnimation(AdminCategoryModal);

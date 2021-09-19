@@ -1,30 +1,5 @@
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 
-const elementEnterAnimation = keyframes`
-    0%{
-      opacity:0;
-      margin-top:5px
-    }
-    30%{
-      opacity:1;
-      
-    }
-    100%{
-      margin-top:0px
-    }
-`;
-
-const elementExitAnimation = keyframes`
-    0% {
-        opacity:1;
-        margin-top:0;
-    }
-    100%{
-        opacity:0;
-        margin-top:10px;
-        
-    }
-`;
 
 // with this div, the modal can scroll if it is longer than the screen
 export const ModalWrapperContainer = styled.div`
@@ -55,15 +30,7 @@ export const ModalContainer = styled.div`
   box-shadow: var(--medium-box-shadow);
   overflow:hidden;
 
-  &.modal-enter-active {
-    animation: ${elementEnterAnimation} 500ms
-      cubic-bezier(0.33, -0.36, 0.42, 0.97) forwards;
-  }
-
-  &.modal-exit-active {
-    animation: ${elementExitAnimation} 200ms
-      cubic-bezier(0.33, -0.36, 0.42, 0.97) forwards;
-  }
+  
 `;
 
 
