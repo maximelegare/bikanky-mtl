@@ -76,7 +76,6 @@ const ModalComponent = ({
           {/* this is positioning the modal in the center of the page */}
           <ModalOverlayContainer>
             {/* this is the actual modal */}
-            <div>{modalName}</div>
             <ModalContainer ref={modalRef}>{children}</ModalContainer>
             {/* this is a separator under the modal so that it's not completly on the bottom of the page */}
             <SeparatorContainer />

@@ -34,9 +34,9 @@ const CategoriesPageAdmin = () => {
     (item) => item
   );
 
-  // Modals with the confirmation modal (HOC) 
-  const AdminCategoryModalWithConfirmation = WithConfirmationModal(AdminCategoryModal)
-  const AdminItemModalWithConfirmation = WithConfirmationModal(AdminItemsModal)
+  // Modals with the confirmation modal (HOC)
+  // const AdminCategoryModalWithConfirmation = WithConfirmationModal(AdminCategoryModal)
+  // const AdminItemModalWithConfirmation = WithConfirmationModal(AdminItemsModal)
 
   //   default buttonValue, and value when the button was clicked
   const [categoryButtonValue, setCategoryButtonValue] = useState(null);
@@ -67,11 +67,6 @@ const CategoriesPageAdmin = () => {
     })
   );
 
-  // Modals Visibility
-  // const [modalVisibility, setVisibility] = useState({
-  //   newCategory: false,
-  //   newItem: false,
-  // });
 
   const newItemModalVisibility = useSelector(selectNewItemModalVisibility);
   const newCategoryModalVisibility = useSelector(
@@ -81,10 +76,6 @@ const CategoriesPageAdmin = () => {
     selectUpdateItemModalVisibility
   );
 
-  // sets the modal visibility using the modal name (a string passed to the [cardAdmin] and the [AminItemsModal] components )
-  // const setModalVisibility = (visibility, modalName) => {
-  //   setVisibility({ ...modalVisibility, [modalName]: visibility });
-  // };
 
   return (
     <>
@@ -97,16 +88,11 @@ const CategoriesPageAdmin = () => {
             currentButton={categoryButtonValue}
             topButton
             modalName="newCategory"
-            // setModalVisibility={setModalVisibility}
             categoryElement
             modalComponent={
-              <AdminCategoryModalWithConfirmation
+              <AdminCategoryModal
                 isVisible={newCategoryModalVisibility}
-                // item={item}
-                // setVisibility={setModalVisibility}
-                // closeModal={setModalVisibility}
                 modalName="newCategory"
-                // newCategory
               />
             }
           />
@@ -117,29 +103,34 @@ const CategoriesPageAdmin = () => {
             currentButton={itemButtonValue}
             topButton
             modalName="newItem"
-            // setModalVisibility={setModalVisibility}
             modalComponent={
-              <AdminItemModalWithConfirmation
-                selectInputMenuValues={itemsCategoriesArray}
-                isVisible={newItemModalVisibility}
-                // item={item}
-                // setVisibility={setModalVisibility}
-                // closeModal={setModalVisibility}
-                modalName="newItem"
-                newItem
+              <WithConfirmationModal
+                modalComponent={
+                  <AdminItemsModal
+                    selectInputMenuValues={itemsCategoriesArray}
+                    isVisible={newItemModalVisibility}
+                    modalName="newItem"
+                    withConfirmationModal
+                    newItem
+                  />
+                }
               />
             }
           />
           <AdminCard
             noList
             modalComponent={
-              <AdminItemModalWithConfirmation
-                isVisible={updateItemModalVisibility}
-                item={item}
-                modalName="updateItem"
-                // setVisibility={setModalVisibility}
-                selectInputMenuValues={itemsCategoriesArray}
-                updateItem
+              <WithConfirmationModal
+                modalComponent={
+                  <AdminItemsModal
+                    isVisible={updateItemModalVisibility}
+                    item={item}
+                    modalName="updateItem"
+                    withConfirmationModal
+                    selectInputMenuValues={itemsCategoriesArray}
+                    updateItem
+                  />
+                }
               />
             }
           >

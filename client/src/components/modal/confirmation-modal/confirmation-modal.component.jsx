@@ -1,4 +1,5 @@
 // modal that pops up to make sure if the user really wants to cancel
+// it is used with an HOC => withConfirmationModal
 
 import React from "react";
 import { PropTypes } from "prop-types";
