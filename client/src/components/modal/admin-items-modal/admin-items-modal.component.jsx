@@ -5,6 +5,8 @@
 import React, { useState, useEffect } from "react";
 import { PropTypes } from "prop-types";
 
+import WithConfirmationModalTest from "../../_HOC/with-confirmation-modal/with-confirmation-modal-test.component";
+
 import WithAnimation from "../../_HOC/with-animation/with-animation.component";
 
 import {
@@ -507,4 +509,4 @@ AdminItemsModal.propTypes = {
   closeModal: PropTypes.func,
 };
 
-export default WithAnimation(AdminItemsModal);
+export default WithAnimation(WithConfirmationModalTest(AdminItemsModal));

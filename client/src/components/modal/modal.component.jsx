@@ -36,7 +36,7 @@ const ModalComponent = ({
   // if the click is on the wrapperContainer => not on the modal, close the modal
   const handleClick = (e) => {
     if (e.target === wrapperRef.current) {
-      console.log('clicked')
+      console.log("clicked");
       // if the modal uses confirmation, open confirmation modal
       if (withConfirmationModal) {
         dispatch(
@@ -54,47 +54,33 @@ const ModalComponent = ({
 
   return (
     <>
-      {/* this is a container with the width and height of page. if overflow (the modal is longer than the page) => it will scroll */}
-      {/* onClick (ModalWrapperContainer) close the modal, if it is the actual container, not the modal */}
-      <ModalWrapperContainer
-        ref={wrapperRef}
-        onClick={handleClick}
-        style={{
-          zIndex: `${modalName === "confirmationModal" ? "10000" : "default"}`,
-        }}
-      >
-        {/* this is positioning the modal in the center of the page */}
-        <ModalOverlayContainer>
-          {/* this is the actual modal */}
-          <ModalContainer>{children}</ModalContainer>
-          {/* this is a separator under the modal so that it's not completly on the bottom of the page */}
-          <SeparatorContainer />
-        </ModalOverlayContainer>
-      </ModalWrapperContainer>
-      <ModalBackgroundContainer
-      ></ModalBackgroundContainer>
-
-
-
-
-
-
-
-
-      {/* <CSSTransition
-        in={isVisible && modalName !== "confirmationModal"}
-        timeout={300}
-        classNames="background"
-        nodeRef={backgroundRef}
-        unmountOnExit={true}
-      > */}
-        {/* this is the bakcground color */}
-      {/* </CSSTransition> */}
+      { (
+        //this is a container with the width and height of page. if overflow (the modal is longer than the page) => it will scroll
+        //onClick (ModalWrapperContainer) close the modal, if it is the actual container, not the modal
+        <>
+          <ModalWrapperContainer
+            ref={wrapperRef}
+            onClick={handleClick}
+            style={{
+              zIndex: `${
+                modalName === "confirmationModal" ? "10000" : "default"
+              }`,
+            }}
+          >
+            {/* this is positioning the modal in the center of the page */}
+            <ModalOverlayContainer>
+              {/* this is the actual modal */}
+              <ModalContainer>{children}</ModalContainer>
+              {/* this is a separator under the modal so that it's not completly on the bottom of the page */}
+              <SeparatorContainer />
+            </ModalOverlayContainer>
+          </ModalWrapperContainer>
+          <ModalBackgroundContainer />
+        </>
+      )}
     </>
   );
 };
-
-
 
 ModalComponent.propTypes = {
   openModal: PropTypes.any,
