@@ -4,7 +4,7 @@ import "./form-select.styles.scss";
 import { PropTypes } from "prop-types";
 
 import { withStyles } from "@material-ui/core/styles";
-// import MenuItem from "@material-ui/core/MenuItem";
+import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import InputBase from "@material-ui/core/InputBase";
@@ -61,11 +61,12 @@ const FormSelect = ({
   return (
     <InputContainer>
       <InputLabel>{label}</InputLabel>
-      <FormControl style={{ width: "100%" }}>
+      <FormControl style={{ width: "100%", zIndex:3000 }}>
         <Select
           value={value}
           onBlur={() => removeError(name)}
           onChange={(e) => handleChangeLocally(e)}
+          MenuProps={{style:{zIndex:3000}}}
           input={
             <CustomSelectInput
               error={!!error}
@@ -79,21 +80,15 @@ const FormSelect = ({
           {menuValues?.map(({ title, id }) => {
             console.log(title);
             return (
-              <div
+              
+              <MenuItem
                 key={title}
-                value={value}
+                value={id}
                 onClick={() => handleClick(id, title.toLowerCase())}
+                style={{zIndex:"100000"}}
               >
                 {title}
-              </div>
-              // <MenuItem
-              //   key={title}
-              //   value={id}
-              //   onClick={() => handleClick(id, title.toLowerCase())}
-              //   style={{zIndex:"100000"}}
-              // >
-              //   {title}
-              // </MenuItem>
+              </MenuItem>
             );
           })}
         </Select>
