@@ -4,7 +4,7 @@ import "./form-select.styles.scss";
 import { PropTypes } from "prop-types";
 
 import { withStyles } from "@material-ui/core/styles";
-import MenuItem from "@material-ui/core/MenuItem";
+// import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import InputBase from "@material-ui/core/InputBase";
@@ -21,8 +21,8 @@ const CustomSelectInput = withStyles((theme, error) => ({
   input: {
     border: "solid",
     // borderColor:"#c0c0c0",
-    borderColor:"transparent",
-    borderWidth:"1px",
+    borderColor: "transparent",
+    borderWidth: "1px",
     borderRadius: 4,
     position: "relative",
     backgroundColor: theme.palette.background.paper,
@@ -68,21 +68,34 @@ const FormSelect = ({
           onChange={(e) => handleChangeLocally(e)}
           input={
             <CustomSelectInput
-            error={!!error}
-              style={{ border:`1px solid ${error? "red" : "#c0c0c0"}` , borderRadius:"6px" }}
-              className="custom-select-input"
+              error={!!error}
+              style={{
+                border: `1px solid ${error ? "red" : "#c0c0c0"}`,
+                borderRadius: "6px",
+              }}
             />
           }
         >
-          {menuValues?.map(({ title, id }) => (
-            <MenuItem
-              key={title}
-              value={id}
-              onClick={() => handleClick(id, title.toLowerCase())}
-            >
-              {title}
-            </MenuItem>
-          ))}
+          {menuValues?.map(({ title, id }) => {
+            console.log(title);
+            return (
+              <div
+                key={title}
+                value={value}
+                onClick={() => handleClick(id, title.toLowerCase())}
+              >
+                {title}
+              </div>
+              // <MenuItem
+              //   key={title}
+              //   value={id}
+              //   onClick={() => handleClick(id, title.toLowerCase())}
+              //   style={{zIndex:"100000"}}
+              // >
+              //   {title}
+              // </MenuItem>
+            );
+          })}
         </Select>
         {error ? (
           <ErrorContainer>{error}</ErrorContainer>

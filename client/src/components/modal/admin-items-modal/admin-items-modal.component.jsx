@@ -75,6 +75,9 @@ const AdminItemsModal = ({
     editImagesPage: false,
   });
 
+  
+
+
   const dispatch = useDispatch();
   // const confirmationModalVisibility = useSelector(
   //   selectconfirmationModalVisibility
@@ -87,10 +90,14 @@ const AdminItemsModal = ({
     newCategoryName: null,
   });
 
+
+  
+
   // sets default values of the inputs if it's the modal to update the items
   useEffect(() => {
     if (updateItem) {
       setItemSpecifications({
+        ...itemSpecifications,
         id: item?.id,
         title: item?.title,
         price: item?.price,
@@ -102,6 +109,28 @@ const AdminItemsModal = ({
       });
     }
   }, [item]);
+
+  useEffect(() => {
+    return () => {
+      setItemSpecifications({
+        ...itemSpecifications,
+        id: "",
+        title: "",
+        price: 0,
+        stock: 0,
+        shortDescription: "",
+        bulletPoints: [],
+        imageUrl: {
+          fileName: "",
+          url: "",
+        },
+        carouselImages: [],
+      })
+    }
+  }, []);
+
+
+
 
   // deconstruct item
   const {
@@ -118,6 +147,8 @@ const AdminItemsModal = ({
     carouselImages,
     selectedCategoryId,
   } = itemSpecifications;
+
+
 
   /////////////////////////////////
   //   HANDLE THE SUBMIT EVENT  //
@@ -510,3 +541,4 @@ AdminItemsModal.propTypes = {
 };
 
 export default WithAnimation(WithConfirmationModalTest(AdminItemsModal));
+

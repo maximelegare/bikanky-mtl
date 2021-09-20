@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import { PropTypes } from "prop-types";
 import ModalComponent from "../modal.component";
 
-import WithConfirmationModalTest from "../../_HOC/with-confirmation-modal/with-confirmation-modal-test.component";
 
 import WithAnimation from "../../_HOC/with-animation/with-animation.component";
 
@@ -127,4 +126,4 @@ AdminCategoryModal.propTypes = {
   modalName: PropTypes.string,
 };
 
-export default WithAnimation(WithConfirmationModalTest(AdminCategoryModal));
+export default WithAnimation(AdminCategoryModal)
