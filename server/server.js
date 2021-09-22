@@ -5,9 +5,10 @@ const path = require('path')
 const cors = require('cors')
 const Stripe = require('stripe')
 
-if(process.env.NODE_ENV !== 'production') require('dotenv').config()
+if(process.env.NODE_ENV !== 'production') require('dotenv').config({path:__dirname + '/.env'})
 
 const apiKey = process.env.STRIPE_SECRET_KEY
+
 
 const stripe = Stripe(apiKey)
 

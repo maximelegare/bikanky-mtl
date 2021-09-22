@@ -32,11 +32,12 @@ const CartDropdownItem = ({
     onSwipedLeft: () => dispatch(deleteItemFromCart(id)),
   });
 
+  console.log("imageUrl :", imageUrl.url)
   return (
     <CartDropdownWrapperContainer {...handlers} sideSlider={sideSlider}>
       <CartDropdownContainer>
         <CartLeftContainer>
-          <ImageContainer image={imageUrl} />
+          <ImageContainer image={imageUrl.url} />
           <DescriptionContainer sideSlider={sideSlider}>
             <div className="title">
               <CustomButton
@@ -65,7 +66,9 @@ const CartDropdownItem = ({
 CartDropdownItem.propTypes = {
   title: PropTypes.string,
   price: PropTypes.number,
-  imageUrl: PropTypes.string,
+  imageUrl: PropTypes.shape({
+    url:PropTypes.string
+  }),
   id: PropTypes.number,
   cartQuantity: PropTypes.number,
   sideSlider: PropTypes.bool,

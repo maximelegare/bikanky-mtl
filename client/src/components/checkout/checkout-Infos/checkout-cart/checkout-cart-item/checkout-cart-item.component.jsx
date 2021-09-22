@@ -64,7 +64,7 @@ const CheckoutCartItem = ({ cartItem }) => {
       </TitleContainer>
       <ProductInfosWrapperContainer>
         <ProductInfosContainer>
-          <ImageContainer image={imageUrl} />
+          <ImageContainer image={imageUrl.url} />
 
           <InfosContainer>
             <TextContainer>

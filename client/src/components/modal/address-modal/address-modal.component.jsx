@@ -10,6 +10,8 @@ import { selectCurrentUser } from "../../../redux/user/user.selector";
 import { setModalVisibility } from "../../../redux/modal-elements-visibility/modal.slice";
 import { useDispatch } from "react-redux";
 
+import WithAnimation from "../../_HOC/with-animation/with-animation.component";
+
 import {
   InputSectionContainer,
   TitleModalContainer,
@@ -222,4 +224,4 @@ AddressModal.propTypes = {
   modalName:PropTypes.string
 };
 
-export default AddressModal;
+export default WithAnimation(AddressModal);
