@@ -16,6 +16,9 @@ import CustomButtonMUI from "../../buttons/material-ui/custom-button-mui.compone
 
 
 const AdminButton = ({
+  imageUrl,
+  carouselImages,
+  item,
   id,
   title,
   match,
@@ -28,6 +31,8 @@ const AdminButton = ({
   name
 }) => {
 
+  console.log("admin-button-item", )
+  console.log("carouselImages", carouselImages)
   const handleDeleteClick = (e) => {
     // it prevent the default action when a user clicks on the parent(it doesn't select a category when user click on delete button)
     e.preventDefault();
@@ -39,7 +44,7 @@ const AdminButton = ({
       deleteFirestoreCategory(id)
     }else{
       console.log('item')
-      deleteFirestoreItem(collectionId ,id)
+      deleteFirestoreItem(collectionId , id, [...carouselImages, imageUrl])
     }
   }
 
@@ -74,6 +79,9 @@ const AdminButton = ({
 };
 
 AdminButton.propTypes = {
+  item:PropTypes.object,
+  carouselImages:PropTypes.array,
+  imageUrl:PropTypes.object,
   id:PropTypes.string,
   title: PropTypes.string,
   match: PropTypes.object,
@@ -86,7 +94,8 @@ AdminButton.propTypes = {
   currentButton: PropTypes.string,
   handleClick: PropTypes.func,
   categoryElement:PropTypes.bool,
-  name:PropTypes.string
+  name:PropTypes.string,
+  images:PropTypes.array
 };
 
 export default withRouter(AdminButton);

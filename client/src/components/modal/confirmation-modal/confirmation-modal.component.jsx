@@ -9,7 +9,7 @@ import WithAnimation from "../../_HOC/with-animation/with-animation.component";
 import ModalComponent from "../modal.component";
 import CustomButtonMUI from "../../buttons/material-ui/custom-button-mui.component";
 
-import { setModalVisibility } from "../../../redux/modal-elements-visibility/modal.slice";
+import { setModalVisibility, deleteItemImagesStatus } from "../../../redux/modal-elements-visibility/modal.slice";
 import { useDispatch } from "react-redux";
 
 import {
@@ -31,6 +31,8 @@ const ConfirmationModal = ({
     if(status){
         // close all the modals
         dispatch(setModalVisibility({ visibility: false, closeAllModal:true }));
+        // this is for the item admin modal (to tell it to delete all the images)
+        dispatch(deleteItemImagesStatus(true))
     }else{
         // close only this modal
         dispatch(setModalVisibility({ modalName, visibility: false }));
@@ -65,7 +67,8 @@ ConfirmationModal.propTypes = {
   setVisibility: PropTypes.func,
   modalName: PropTypes.string,
   message: PropTypes.string,
-  modalToConfirm:PropTypes.string
+  modalToConfirm:PropTypes.string,
+  deleteImagesStatus:PropTypes.func
 };
 
 export default WithAnimation(ConfirmationModal);

@@ -42,8 +42,14 @@ import CustomButton from "../../buttons/my-buttons/customButtons/custom-button.c
 
 // import { selectconfirmationModalVisibility } from "../../../redux/modal-elements-visibility/modal.selector";
 // import { useSelector } from "react-redux";
+
+import { selectDeleteItemImagesStatus } from "../../../redux/modal-elements-visibility/modal.selector";
+import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
+import { deleteItemImagesStatus } from "../../../redux/modal-elements-visibility/modal.slice";
+
 import { setModalVisibility } from "../../../redux/modal-elements-visibility/modal.slice";
+import { deleteStorageItem } from "../../../firebase/firebase.utils";
 
 const AdminItemsModal = ({
   selectInputMenuValues,
@@ -51,7 +57,6 @@ const AdminItemsModal = ({
   newItem,
   updateItem,
   newCategory,
-  setVisibility,
   modalName,
   categoryId,
   ...otherProps
@@ -65,8 +70,8 @@ const AdminItemsModal = ({
     shortDescription: "",
     bulletPoints: [],
     imageUrl: {
-      fileName: "",
-      url: "",
+      fileId: "",
+      url: null,
     },
     carouselImages: [],
     newBulletPoint: "",
@@ -75,14 +80,6 @@ const AdminItemsModal = ({
     editImagesPage: false,
   });
 
-  
-
-
-  const dispatch = useDispatch();
-  // const confirmationModalVisibility = useSelector(
-  //   selectconfirmationModalVisibility
-  // );
-
   // default errors
   const [errors, setErrors] = useState({
     title: null,
@@ -90,12 +87,28 @@ const AdminItemsModal = ({
     newCategoryName: null,
   });
 
-
-  
+  useEffect(() => {
+    setItemSpecifications({ ...itemSpecifications, id: generateUID() });
+    return () => {
+      setItemSpecifications({
+        ...itemSpecifications,
+        title: "",
+        price: 0,
+        stock: 0,
+        shortDescription: "",
+        bulletPoints: [],
+        imageUrl: {
+          fileId: "",
+          url: "",
+        },
+        carouselImages: [],
+      });
+    };
+  }, []);
 
   // sets default values of the inputs if it's the modal to update the items
   useEffect(() => {
-    if (updateItem) {
+    if (modalName === "updateItem") {
       setItemSpecifications({
         ...itemSpecifications,
         id: item?.id,
@@ -110,27 +123,23 @@ const AdminItemsModal = ({
     }
   }, [item]);
 
-  useEffect(() => {
-    return () => {
-      setItemSpecifications({
-        ...itemSpecifications,
-        id: "",
-        title: "",
-        price: 0,
-        stock: 0,
-        shortDescription: "",
-        bulletPoints: [],
-        imageUrl: {
-          fileName: "",
-          url: "",
-        },
-        carouselImages: [],
-      })
+  const dispatch = useDispatch();
+  const deleteItemImages = useSelector(selectDeleteItemImagesStatus);
+
+
+  // delete the images from firebase storage
+  useEffect(async () => {
+    // if the status of deleteItemImages is true && it's a new item
+    if (deleteItemImages && newItem) {
+      // and if there is an image
+      if (imageUrl.url || (carouselImages.length > 0)) {
+        // delete the all the images
+        await deleteStorageItem([...carouselImages, imageUrl]);
+        // change the status of to delete images to false
+        dispatch(deleteItemImagesStatus(false));
+      }
     }
-  }, []);
-
-
-
+  }, [deleteItemImages]);
 
   // deconstruct item
   const {
@@ -147,8 +156,6 @@ const AdminItemsModal = ({
     carouselImages,
     selectedCategoryId,
   } = itemSpecifications;
-
-
 
   /////////////////////////////////
   //   HANDLE THE SUBMIT EVENT  //
@@ -190,7 +197,7 @@ const AdminItemsModal = ({
 
       // if it's a new item, send the item with a newly generated UID and resets the fields
       if (newItem) {
-        createNewItem({ ...item, id: generateUID() });
+        createNewItem({ ...item, id: id });
         setItemSpecifications({
           id: "",
           title: "",
@@ -199,7 +206,7 @@ const AdminItemsModal = ({
           shortDescription: "",
           bulletPoints: [],
           imageUrl: {
-            fileName: "",
+            fileId: "",
             url: "",
           },
           carouselImages: [],
@@ -275,11 +282,12 @@ const AdminItemsModal = ({
 
   // the event for adding an image is onChange => onChange on the file input
   const handleAddImageChange = async (name, file) => {
+    const fileId = generateUID();
+    console.log(fileId);
     // creates a new storage image to add image in firebase storage (to get the preview)
     const imageUrlLinkStorage = await createNewStorageImagePath({
       file,
-      itemId: itemSpecifications.id,
-      type: name,
+      fileId: fileId,
     });
 
     // if the image is iniside the carousel
@@ -288,20 +296,20 @@ const AdminItemsModal = ({
         ...itemSpecifications,
         carouselImages: [
           ...carouselImages,
-          { url: imageUrlLinkStorage, fileName: file.name },
+          { url: imageUrlLinkStorage, fileId: fileId },
         ],
       });
       // it must be the main image otherwise
     } else {
       setItemSpecifications({
         ...itemSpecifications,
-        [name]: { url: imageUrlLinkStorage, fileName: file.name },
+        [name]: { url: imageUrlLinkStorage, fileId: fileId },
       });
     }
   };
 
   // handle delete an image from []. The event is on click on the delete button
-  const handleImageDeleteChange = (name, image, imageIdx) => {
+  const handleImageDeleteChange = (name, file, imageIdx) => {
     // deletes the image locally using filter and the index of the image
     const newImagesArray = carouselImages.filter((_, idx) => idx !== imageIdx);
     // overwrites the image array with the new array
@@ -314,13 +322,13 @@ const AdminItemsModal = ({
       // sets the main image field to empty strings
       setItemSpecifications({
         ...itemSpecifications,
-        [name]: { fileName: "", url: "" },
+        [name]: { fileId: "", url: "" },
       });
     }
 
     // deletes the storage path from firebase to make sure there is no junk images
     deleteStorageImagePath({
-      fileName: image.fileName,
+      fileId: file.fileId,
       itemId: itemSpecifications.id,
       type: name,
     });
@@ -366,12 +374,7 @@ const AdminItemsModal = ({
 
   return (
     <>
-      
-      <ModalComponent
-        {...otherProps}
-        modalName={modalName}
-        // setVisibility={setVisibility}
-      >
+      <ModalComponent {...otherProps} modalName={modalName}>
         <form onSubmit={handleSubmit}>
           <InputSectionContainer>
             <>
@@ -530,7 +533,6 @@ AdminItemsModal.propTypes = {
     carouselImages: PropTypes.array,
   }),
   modalName: PropTypes.string,
-  setVisibility: PropTypes.func,
   newCategory: PropTypes.bool,
   newItem: PropTypes.bool,
   updateItem: PropTypes.bool,
@@ -538,7 +540,7 @@ AdminItemsModal.propTypes = {
   selectInputDefaultValue: PropTypes.string,
   categoryId: PropTypes.string,
   closeModal: PropTypes.func,
+  deleteImages: PropTypes.bool,
 };
 
 export default WithAnimation(WithConfirmationModalTest(AdminItemsModal));
-

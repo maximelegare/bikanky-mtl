@@ -34,3 +34,9 @@ export const selectUpdateItemModalVisibility = createSelector(
     return modal.updateItem;
   }
 );
+export const selectDeleteItemImagesStatus = createSelector(
+  [selectModalInitialState],
+  (modal) => {
+    return modal.deleteItemImagesStatus;
+  }
+);

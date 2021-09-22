@@ -106,7 +106,6 @@ const CategoriesPageAdmin = () => {
                 selectInputMenuValues={itemsCategoriesArray}
                 isVisible={newItemModalVisibility}
                 modalName="newItem"
-                // withConfirmationModal
                 newItem
               />
             }
@@ -118,7 +117,6 @@ const CategoriesPageAdmin = () => {
                 isVisible={updateItemModalVisibility}
                 item={item}
                 modalName="updateItem"
-                // withConfirmationModal
                 selectInputMenuValues={itemsCategoriesArray}
                 updateItem
               />

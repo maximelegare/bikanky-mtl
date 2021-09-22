@@ -6,6 +6,7 @@ const initialState = {
   confirmationModal: false,
   newCategory: false,
   updateItem: false,
+  deleteItemImagesStatus:false
 };
 
 const modalSlice = createSlice({
@@ -30,8 +31,11 @@ const modalSlice = createSlice({
         state[payload.modalName] = payload.visibility;
       }
     },
+    deleteItemImagesStatus(state, {payload}){
+      state.deleteItemImagesStatus = payload
+    }
   },
 });
 
 export default modalSlice.reducer;
-export const { setModalVisibility } = modalSlice.actions;
+export const { setModalVisibility, deleteItemImagesStatus } = modalSlice.actions;

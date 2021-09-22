@@ -41,19 +41,23 @@ var storage = firebase.storage();
 //        CREATE STORAGE PATH       //
 //////////////////////////////////////
 
-export const createNewStorageImagePath = async ({ file, itemId, type }) => {
-  var filePath = `images/${itemId}/${file.name}`;
-  console.log(type);
-  if (type === "imageUrl") {
-    filePath = `images/${itemId}/main-${file.name}`;
-  }
+export const createNewStorageImagePath = async ({ file, fileId }) => {
+  // create firebase storage file path
+  var filePath = `images/${fileId}`;
+
+  // get ref of the path 
   const fullPathNewImageRef = storage.ref(filePath);
+
   return fullPathNewImageRef
+    // add the file
     .put(file)
     .then((snapShot) => {
+      // return the snapshot
       return fullPathNewImageRef
+        // return the url of the image
         .getDownloadURL()
         .then((url) => {
+          // url
           return url;
         })
         .catch((err) => {
@@ -69,22 +73,46 @@ export const createNewStorageImagePath = async ({ file, itemId, type }) => {
 //       DELETE STORAGE IMAGE       //
 //////////////////////////////////////
 
-
-export const deleteStorageImagePath = async ({ fileName, itemId, type }) => {
-  console.log("firebase", fileName, itemId, type)
-  var imagePath = `images/${itemId}/${fileName}`;
+export const deleteStorageImagePath = async ({ fileId, type }) => {
+  var imagePath = `images/${fileId}`;
   console.log(type);
-  if (type === "imageUrl") {
-    imagePath = `images/${itemId}/main-${fileName}`;
-  }
+
   const fullPathNewImageRef = storage.ref(imagePath);
 
-  console.log("fullpath", fullPathNewImageRef)
-  fullPathNewImageRef.delete().then(() => {
-    console.log("file deleted")
-  }).catch((err) => {
-    console.log(err);
-  });
+  console.log("fullpath", fullPathNewImageRef);
+  fullPathNewImageRef
+    .delete()
+    .then(() => {
+      console.log("file deleted");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+//////////////////////////////////////
+//   DELETE FIREBASE STORAGE ITEM   //
+//////////////////////////////////////
+
+export const deleteStorageItem = async (files) => {
+
+  // for each file
+  for (let i = 0; i < files.length; i++) {
+    console.log("file", files[i]);
+
+    // create a path to firebase storage
+    const itemPath = `images/${files[i].fileId}`;
+
+    // get's the ref
+    const fullPathNewImageRef = storage.ref(itemPath);
+
+    // delete the file
+    try {
+      await fullPathNewImageRef.delete();
+    } catch (err) {
+      console.log(err);
+    }
+  }
 };
 
 // ///////////////////////////
@@ -161,6 +189,7 @@ export const createNewItem = async (item) => {
             },
           },
         },
+        // merge with existing data (does'nt overwrite)
         { merge: true }
       );
     } catch (err) {
@@ -195,21 +224,33 @@ export const deleteFirestoreCategory = async (value) => {
 //       DELETE FIRESTORE ITEM      //
 //////////////////////////////////////
 
-export const deleteFirestoreItem = async (collection, routeName) => {
-  const itemRef = firestore.doc(`categories/${collection}`);
+export const deleteFirestoreItem = async (category, itemId, mediaFiles) => {
+  try {
+    const itemRef = firestore.doc(`categories/${category}`);
 
-  const itemSnapshot = itemRef.get();
-  console.log(itemSnapshot);
-  if (!itemSnapshot.exists) {
-    try {
-      await itemRef.update({
-        [`items.${routeName}`]: firebase.firestore.FieldValue.delete(),
-      });
-    } catch (err) {
-      console.log(err.message);
+
+    const itemSnapshot = itemRef.get();
+
+    // checks if there is data
+    if (!itemSnapshot.exists) {
+      try {
+        await itemRef.update({
+          // update the item from firestore
+          [`items.${itemId}`]: firebase.firestore.FieldValue.delete(),
+        });
+      } catch (err) {
+        console.log(err.message);
+      }
+    } else {
+      console.log("item already exists");
     }
-  } else {
-    console.log("item already exists");
+
+    // delete the images from the firebase storage
+    await deleteStorageItem(mediaFiles);
+
+    console.log("item was deleted")
+  } catch (err) {
+    console.log("something went wrong!", err);
   }
 };
 

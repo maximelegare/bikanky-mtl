@@ -5,10 +5,15 @@ import { useSelector } from "react-redux";
 import { selectconfirmationModalVisibility } from "../../../redux/modal-elements-visibility/modal.selector";
 
 const WithConfirmationModalTest = (WrappedComponent) => {
+
+  
+
   const NewModal = ({ ...otherProps }) => {
     const confirmationModalVisibility = useSelector(
       selectconfirmationModalVisibility
     );
+
+
     return (
       <>
         <ConfirmationModal
@@ -17,7 +22,7 @@ const WithConfirmationModalTest = (WrappedComponent) => {
           //   modalToConfirm={modalName}
           message="Are you sure you want to qui?"
         />
-        <WrappedComponent withConfirmationModal {...otherProps} />
+        <WrappedComponent withConfirmationModal  {...otherProps} />
       </>
     );
   };

@@ -48,10 +48,13 @@ const AdminCard = ({
         )}
         <MarginTopContainer>
           {!noList && items ? (
-            Object.values(items).map(({ id ,routeName, title, collectionId }) => {
+            Object.values(items).map(({ id ,routeName, title, collectionId, imageUrl, carouselImages }) => {
+              console.log(carouselImages)
               return (
                 <AdminButton
                   id={id}
+                  imageUrl={imageUrl}
+                  carouselImages={carouselImages}
                   key={title}
                   routeName={routeName}
                   title={title}

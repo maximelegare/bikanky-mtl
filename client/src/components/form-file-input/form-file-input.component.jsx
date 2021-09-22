@@ -24,7 +24,6 @@ const FormFileInput = ({
   handleDelete,
   mainImage,
 }) => {
-  console.log("items", items);
   // file input
   const fileInputRef = useRef(null);
 
