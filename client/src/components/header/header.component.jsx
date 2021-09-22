@@ -105,7 +105,7 @@ const Header = () => {
               <OptionsLink activeClassName="active" to="/creations">
                 Créations
               </OptionsLink>
-              <OptionsLink activeClassName="active" to="/services">
+              {/* <OptionsLink activeClassName="active" to="/services">
                 Services
               </OptionsLink>
               <OptionsLink activeClassName="active" to="/about">
@@ -113,7 +113,7 @@ const Header = () => {
               </OptionsLink>
               <OptionsLink activeClassName="active" to="/contact">
                 Contact
-              </OptionsLink>
+              </OptionsLink> */}
             </div>
 
             <DropdownWithTransitions

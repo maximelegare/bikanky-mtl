@@ -1,3 +1,5 @@
+// Stripe backend for payment handling
+
 const express = require('express') 
 const path = require('path') 
 const cors = require('cors')
@@ -11,7 +13,7 @@ const stripe = Stripe(apiKey)
 
 
 const app = express()
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 4000;
 
 app.use(cors())
 app.use(express.json())
@@ -25,7 +27,6 @@ if(process.env.NODE_ENV === 'production'){
     app.get('*', function(req, res){
         res.sendFile(path.join(__dirname, 'client/build', 'index.html'))
     })
-
 }
 
 // when route payment

@@ -1,4 +1,4 @@
-// fireBase functions
+// fireBase functions for server side.
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
 
