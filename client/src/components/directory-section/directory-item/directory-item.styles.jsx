@@ -55,7 +55,7 @@ export const TextContentContainer = styled.h2`
   text-align: center;
   padding: 5px 8px;
   border-radius: 5px;
-  border: 2px solid var(--yellow-accent)
+  border: 2px solid var(--yellow-accent);
 `;
 
 export const ImageContainer = styled.div`
