@@ -1,3 +1,6 @@
+// margins of the pages (layout)
+
+
 import styled from "styled-components";
 
 export const PageWrapperContainer = styled.div`

@@ -4,7 +4,6 @@ import React from "react";
 
 const styles = {
   root: {
-    // color: "var(--yellow-accent)",
     '&$checked':{
       color:'var(--yellow-accent)'  
     },

@@ -1,7 +1,6 @@
+// main section where all the components of the checkout page are rendered
+
 import React from "react";
-
-
-
 import CheckoutPrice from "./checkout-price/checkout-price.component";
 import CheckoutInfos from "./checkout-Infos/checkout-infos.component";
 import {

@@ -1,7 +1,11 @@
+// each cart item visible inside of the [cartItemsSection] & [cart-slider-mobile] components
+// receives title, price, etc. from the it's parent
+
+
 import React from "react";
 import { PropTypes } from "prop-types";
 
-import { useSwipeable } from "react-swipeable";
+import { useSwipeable } from "react-swipeable"
 
 import { deleteItemFromCart } from "../../../redux/cart/cart.slices";
 

@@ -1,5 +1,4 @@
 import React from "react";
-// import CustomButtonMUI from "../../buttons/material-ui/custom-button-mui.component";
 import CheckoutTable from "./checkout-table/checkout-table.component";
 import {
   ButtonContainer,

@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import { makeStyles } from "@material-ui/core/styles";

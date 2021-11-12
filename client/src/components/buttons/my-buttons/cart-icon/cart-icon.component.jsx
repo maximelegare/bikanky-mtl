@@ -1,3 +1,5 @@
+// cart icon visible on desktop (rendered in the header component)
+
 import React from "react";
 import { useSelector } from "react-redux";
 import { selectCartCount } from "../../../../redux/cart/cart.selectors";

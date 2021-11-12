@@ -1,12 +1,12 @@
+// HOC used to add a confirmation to close or to stay on a modal
+
 import React from "react";
-// import { PropTypes } from "prop-types";
 import ConfirmationModal from "../../modal/confirmation-modal/confirmation-modal.component";
 import { useSelector } from "react-redux";
 import { selectconfirmationModalVisibility } from "../../../redux/modal-elements-visibility/modal.selector";
 
 const WithConfirmationModalTest = (WrappedComponent) => {
 
-  
 
   const NewModal = ({ ...otherProps }) => {
     const confirmationModalVisibility = useSelector(
@@ -19,7 +19,6 @@ const WithConfirmationModalTest = (WrappedComponent) => {
         <ConfirmationModal
           isVisible={confirmationModalVisibility}
           modalName="confirmationModal"
-          //   modalToConfirm={modalName}
           message="Are you sure you want to qui?"
         />
         <WrappedComponent withConfirmationModal  {...otherProps} />

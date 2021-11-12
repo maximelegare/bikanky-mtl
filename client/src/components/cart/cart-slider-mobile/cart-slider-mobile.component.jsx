@@ -1,3 +1,5 @@
+// cart section only visible on mode (it's on a sideSlider)
+
 import React from "react";
 import CartItemsSection from "../cart-items-section/cartItemsSection.component";
 import {SliderCartContainer} from "./cart-slider-mobile.styles";

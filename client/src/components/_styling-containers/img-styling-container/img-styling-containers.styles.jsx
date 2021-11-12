@@ -1,3 +1,7 @@
+// styling for the image on top of each pages. 
+// it receives the prop name [type] to render the dimensions of the image
+
+
 import styled, { css } from "styled-components";
 
 const selectStyles = (props) => {

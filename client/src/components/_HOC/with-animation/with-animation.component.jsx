@@ -1,3 +1,6 @@
+// HOC used with the modal the animation works
+
+
 import React, { useRef } from "react";
 import PropTypes from "prop-types";
 import { CSSTransition } from "react-transition-group";

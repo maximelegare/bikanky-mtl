@@ -1,4 +1,7 @@
-/* eslint-disable react/prop-types */
+// section where all the cart items are rendered
+// it receives a sideSlider Bool to know if it's used there or not
+
+import {PropTypes} from 'prop-types'
 import React from "react";
 import { useSelector } from "react-redux";
 import { selectCartItems } from "../../../redux/cart/cart.selectors";
@@ -10,7 +13,9 @@ import {
 } from "./cartItemsSection.styles";
 
 const CartItemsSection = ({ sideSlider }) => {
+
   const cartItems = useSelector(selectCartItems);
+
   return (
     <CartItemsSectionContainer sideSlider={sideSlider}>
       {cartItems.length ? (
@@ -30,5 +35,10 @@ const CartItemsSection = ({ sideSlider }) => {
     </CartItemsSectionContainer>
   );
 };
+
+CartItemsSection.propTypes = {
+  sideSlider:PropTypes.bool
+}
+
 
 export default CartItemsSection;
