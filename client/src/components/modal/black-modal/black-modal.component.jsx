@@ -63,7 +63,7 @@ const BlackModal = ({ userAddress, modalName, ...otherProps }) => {
               dispatch(setModalVisibility({ modalName, visibility: false }))
             }
           >
-            <CustomButtonMUI kind="small">Close</CustomButtonMUI>
+            <CustomButtonMUI kind="small">Fermer</CustomButtonMUI>
           </div>
         </CustomButtonContainer>
       </BlackModalWrapperContainer>
