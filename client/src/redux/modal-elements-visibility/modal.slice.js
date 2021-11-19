@@ -6,7 +6,8 @@ const initialState = {
   confirmationModal: false,
   newCategory: false,
   updateItem: false,
-  deleteItemImagesStatus:false
+  deleteItemImagesStatus:false,
+  blackModal:false
 };
 
 const modalSlice = createSlice({

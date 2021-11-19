@@ -27,9 +27,9 @@ const useStyles = makeStyles({
     backgroundColor: "var(--yellow-accent)",
     color: "black",
     padding: "6px",
-    boxShadow:"var(--light-box-shadow)",
+    boxShadow: "var(--light-box-shadow)",
     position: "relative",
-    zIndex:"0",
+    zIndex: "0",
     "&:hover": {
       backgroundColor: "var(--yellow-accent-hover)",
     },
@@ -52,14 +52,22 @@ const smallStyles = makeStyles({
     color: "black",
     padding: "3px, 5px",
     minWidth: "100px",
-    
+
     "&:hover": {
       backgroundColor: "var(--yellow-accent-hover)",
     },
   },
 });
 
-const CustomButtonMUI = ({ children, kind, deleteIcon, routeName, type, value }) => {
+const CustomButtonMUI = ({
+  children,
+  kind,
+  deleteIcon,
+  routeName,
+  type,
+  value,
+  disable,
+}) => {
   const classes = useStyles();
   const smallClasses = smallStyles();
 
@@ -75,7 +83,6 @@ const CustomButtonMUI = ({ children, kind, deleteIcon, routeName, type, value })
           }}
           variant="contained"
           type={type}
-          
         >
           <span className="material-icons">{children}</span>
         </IconButton>
@@ -94,19 +101,30 @@ const CustomButtonMUI = ({ children, kind, deleteIcon, routeName, type, value })
         </IconButton>
       );
     case "link":
-      return (
+      return disable ? (
+        <Button
+          classes={{ root: classes.root }}
+          variant="contained"
+          type={type}
+          value={value}
+          disabled={disable}
+        >
+          {children}
+        </Button>
+      ) : (
         <Link to={routeName}>
           <Button
             classes={{ root: classes.root }}
             variant="contained"
             type={type}
             value={value}
+            disabled={disable}
           >
             {children}
           </Button>
         </Link>
       );
-      case "small-link":
+    case "small-link":
       return (
         <Link to={routeName}>
           <Button
@@ -133,6 +151,7 @@ const CustomButtonMUI = ({ children, kind, deleteIcon, routeName, type, value })
           type={type}
           color="primary"
           value={value}
+          disabled={disable}
         >
           {children}
         </Button>
@@ -143,7 +162,7 @@ const CustomButtonMUI = ({ children, kind, deleteIcon, routeName, type, value })
           variant="contained"
           classes={{ root: smallClasses.root }}
           type={type}
-          style={{backgroundColor:"var(--pale-bg-hover)"}}
+          style={{ backgroundColor: "var(--pale-bg-hover)" }}
           value={value}
         >
           {children}
@@ -169,7 +188,8 @@ CustomButtonMUI.propTypes = {
   kind: PropTypes.string,
   deleteIcon: PropTypes.bool,
   routeName: PropTypes.string,
-  value:PropTypes.any
+  value: PropTypes.any,
+  disable: PropTypes.bool,
 };
 
 export default CustomButtonMUI;

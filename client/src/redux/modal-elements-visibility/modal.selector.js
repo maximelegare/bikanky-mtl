@@ -8,6 +8,12 @@ export const selectAddressModalVisibility = createSelector(
     return modal.addressModal;
   }
 );
+export const selectBlackModalVisibility = createSelector(
+  [selectModalInitialState],
+  (modal) => {
+    return modal.blackModal;
+  }
+);
 
 export const selectNewItemModalVisibility = createSelector(
   [selectModalInitialState],

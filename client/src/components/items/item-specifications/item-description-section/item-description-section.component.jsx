@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import "./bullet-customization.styles.scss";
 import React from "react";
@@ -48,8 +49,10 @@ const ItemDescription = ({item}) => {
             ))}
           </ul>
         </BulletPointsSectionContainer>
-        <CustomButtonContainer className="hide-on-mobile" onClick={() => dispatch(addItemToCart(item))}>
-          <CustomButtonMUI kind="small">Add to Cart</CustomButtonMUI>
+        <CustomButtonContainer className="hide-on-mobile" 
+        // onClick={() => dispatch(addItemToCart(item))}
+        >
+          <CustomButtonMUI kind="small" disable>Add to Cart</CustomButtonMUI>
         </CustomButtonContainer>
       </ItemWrapperContentContainer>
     </ItemWrapperContainer>

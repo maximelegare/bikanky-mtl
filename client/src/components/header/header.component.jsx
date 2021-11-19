@@ -75,7 +75,7 @@ const Header = () => {
   };
 
   return (
-    <div>
+    <>
       <HeaderStylesContainer>
         <HeaderContainer>
           <LogoContainer to="/">
@@ -140,7 +140,7 @@ const Header = () => {
           </RightSectionDesktopWrapperContainer>
         </HeaderContainer>
       </HeaderStylesContainer>
-    </div>
+    </>
   );
 };
 

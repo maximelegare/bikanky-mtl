@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from "react";
 import { withRouter } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -43,8 +44,10 @@ const ItemCard = ({ item, history, location }) => {
               <h4>{`${(price).toFixed(2)}`}&thinsp;$</h4>
             </div>
           </PriceNameContainer>
-          <ButtonWrapperContainer onClick={() => dispatch(addItemToCart(item))}>
-            <CustomButtonMUI kind="small">
+          <ButtonWrapperContainer 
+          // onClick={() => dispatch(addItemToCart(item))}
+          >
+            <CustomButtonMUI kind="small" disable>
               <span className="material-icons">add_shopping_cart</span>
             </CustomButtonMUI>
           </ButtonWrapperContainer>

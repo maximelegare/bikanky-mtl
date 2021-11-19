@@ -40,12 +40,15 @@ const CartDropdown = ({ ...props }) => {
           <hr />
         </CartContainer>
         <BottomSectionContainer>
-          <ButtonWrapperContainer onClick={() => handleClick()}>
+          <ButtonWrapperContainer
+           onClick={() => handleClick()}
+           >
             <CustomButtonMUI
               type="button"
               kind="link"
               routeName="/checkout"
               name="cart"
+              disable
             >
               Go to Checkout
             </CustomButtonMUI>

@@ -14,6 +14,7 @@ import ShopPage from "./pages/shop-page/shop-page.component";
 import SigninSignupPage from "./pages/signin-signup-page/signin-signup-page.component";
 import CheckoutPage from "./pages/checkout-page/checkout-page.component";
 import AdminPage from "./pages/admin-page/admin-page.component";
+import BlackModal from './components/modal/black-modal/black-modal.component'
 
 
 import { selectCurrentUser } from "./redux/user/user.selector";
@@ -24,7 +25,8 @@ import { resetIsAdmin } from "./redux/user/user.slice";
 import { fetchCollectionsStartAsync } from "./redux/items/items.slice";
 import { selectFetchItemsLoading } from "./redux/items/items.selectors";
 import { selectIsAdmin } from "./redux/user/user.selector";
-
+import { selectBlackModalVisibility } from "./redux/modal-elements-visibility/modal.selector";
+import { setModalVisibility } from "./redux/modal-elements-visibility/modal.slice";
 
 // withSpinner components
 const HomePageWithSpinner = WithSpinner(HomePage);
@@ -37,11 +39,13 @@ function App() {
   const loading = useSelector(selectFetchItemsLoading);
   const isAdmin = useSelector(selectIsAdmin)
   const currentUser = useSelector(selectCurrentUser)
-
+  const blackModalVisibility = useSelector(selectBlackModalVisibility)
 
   useEffect(() => {
     dispatch(fetchCollectionsStartAsync());
     dispatch(getCurrentUserStart());
+    dispatch(setModalVisibility({modalName:"blackModal", visibility:true}))
+
   }, []);
 
   useEffect(() => {
@@ -50,10 +54,14 @@ function App() {
     }
   }, [currentUser])
 
+
   return (
     <div className="App">
       <Header />
 
+      <BlackModal 
+      isVisible={blackModalVisibility}
+      modalName="blackModal"/>
       <Switch>
         <Route
           exact
